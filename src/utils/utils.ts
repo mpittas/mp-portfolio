@@ -51,7 +51,7 @@ function getMDXData(dir: string) {
 
 // Updated to reflect new path inside 'src' folder
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "src", "app", "blog", "posts"))
+  return getMDXData(path.join(process.cwd(), "src", "posts"))
 }
 
 export function formatDate(date: string, includeRelative = false) {
