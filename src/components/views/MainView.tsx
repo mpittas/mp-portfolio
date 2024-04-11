@@ -1,5 +1,5 @@
 import TitleBig from "@/components/widgets/TitleBig";
-import { BlogPosts } from "@/components/content/BlogPosts";
+import { PortfolioPosts } from "@/components/content/PortfolioPosts";
 
 export default function MainView() {
   return (
@@ -9,7 +9,7 @@ export default function MainView() {
           <TitleBig title="Passionate front-end developer that also specializes in UI/UX." />
         </div>
 
-        <BlogPosts />
+        <PortfolioPosts />
       </div>
     </div>
   );

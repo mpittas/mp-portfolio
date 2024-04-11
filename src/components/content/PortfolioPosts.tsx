@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { formatDate, getBlogPosts } from "@/utils/utils";
+import { formatDate, getPortfolioPosts } from "@/utils/utils";
 
-export function BlogPosts() {
-  let allBlogs = getBlogPosts();
+export function PortfolioPosts() {
+  let allPortfolios = getPortfolioPosts();
 
   return (
     <div className="flex flex-col gap-y-2">
-      {allBlogs
+      {allPortfolios
         .sort((a, b) => {
           if (
             new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
@@ -19,7 +19,7 @@ export function BlogPosts() {
           <Link
             key={post.slug}
             className="flex flex-col py-1 px-2 space-y-1 bg-orange-300 rounded-md "
-            href={`/blog/${post.slug}`}
+            href={`/portfolio/${post.slug}`}
           >
             <div className="w-full flex flex-col md:flex-row justify-start md:justify-between space-x-0 md:space-x-2">
               <div className="text-neutral-900 dark:text-neutral-100 tracking-tight">

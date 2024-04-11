@@ -50,7 +50,7 @@ function getMDXData(dir: string) {
 }
 
 // Updated to reflect new path inside 'src' folder
-export function getBlogPosts() {
+export function getPortfolioPosts() {
   return getMDXData(path.join(process.cwd(), "posts"));
 }
 

@@ -1,8 +1,8 @@
-import { BlogPosts } from "@/components/content/BlogPosts";
+import { PortfolioPosts } from "@/components/content/PortfolioPosts";
 
 export const metadata = {
-  title: "Blog",
-  description: "Read my blog.",
+  title: "My Portfolio",
+  description: "Take a look at my projects.",
 };
 
 export default function Page() {
@@ -11,7 +11,7 @@ export default function Page() {
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">
         Portfolio view
       </h1>
-      <BlogPosts />
+      <PortfolioPosts />
     </section>
   );
 }
