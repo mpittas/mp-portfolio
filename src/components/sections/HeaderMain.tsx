@@ -31,7 +31,7 @@ export default function HeaderMain() {
                   <Link href="/portfolio">Portfolio</Link>
                 </li>
                 <li>
-                  <Link href="/about">Playground</Link>
+                  <Link href="/playground">Playground</Link>
                 </li>
               </ul>
             </nav>

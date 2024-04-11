@@ -1,4 +1,6 @@
-import { PortfolioPosts } from "@/components/content/PortfolioPosts";
+import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts";
+import TitleBig from "@/components/widgets/TitleBig";
+import PageWrap from "@/components/layout/PageWrap";
 
 export const metadata = {
   title: "My Portfolio",
@@ -7,11 +9,13 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">
-        Portfolio view
-      </h1>
-      <PortfolioPosts />
-    </section>
+    <PageWrap>
+      <section>
+        <div className="pb-8">
+          <TitleBig title="Portfolio" />
+        </div>
+        <PortfolioPosts />
+      </section>
+    </PageWrap>
   );
 }
