@@ -8,7 +8,7 @@ interface PageWrapProps {
 export default function PageWrap({ children }: PageWrapProps) {
   return (
     <>
-      <div className="pagewrap py-12 bg-orange-100">
+      <div className="pagewrap py-12">
         <div className="container">{children}</div>
       </div>
     </>
