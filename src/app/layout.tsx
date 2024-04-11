@@ -1,17 +1,17 @@
-import "./global.css";
-import type { Metadata } from "next";
-import { Space_Mono } from "next/font/google";
-import HeaderMain from "@/components/sections/HeaderMain";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "@/components/sections/Footer";
-import { baseUrl } from "@/seo/sitemap";
+import "./global.css"
+import type { Metadata } from "next"
+import { Space_Mono } from "next/font/google"
+import Header from "@/components/sections/Header"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import Footer from "@/components/sections/Footer"
+import { baseUrl } from "@/seo/sitemap"
 
 const spacemono = Space_Mono({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
-});
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -39,24 +39,24 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-};
+}
 
-const cx = (...classes) => classes.filter(Boolean).join(" ");
+const cx = (...classes) => classes.filter(Boolean).join(" ")
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html
       lang="en"
       // className={cx("text-black bg-white dark:text-white dark:bg-black")}
     >
-      <body className={`antialiased ${spacemono.className}`}>
+      <body className={`antialiased ${spacemono.className} bg-slate-50`}>
         <div>
           <main className="">
-            <HeaderMain />
+            <Header />
             {children}
             {/* <Footer /> */}
             <Analytics />
@@ -65,5 +65,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  );
+  )
 }

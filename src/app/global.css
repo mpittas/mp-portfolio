@@ -19,10 +19,6 @@
   --sh-entity: #e25a1c;
 }
 
-body {
-  background: #fffdf9;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;

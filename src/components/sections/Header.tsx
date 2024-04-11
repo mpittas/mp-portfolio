@@ -1,40 +1,56 @@
-import Link from "next/link";
+import Image from "next/image"
+import Link from "next/link"
+import CodeErrorMsg from "@/components/widgets/CodeErrorMsg"
 
 const navItems = {
-  "/": {
-    name: "home",
+  "/about": {
+    name: "about",
   },
   "/portfolio": {
     name: "portfolio",
   },
-  "https://vercel.com/templates/next.js/portfolio-starter-kit": {
-    name: "deploy",
+  "/playground": {
+    name: "playground",
   },
-};
+}
 
-export function Header() {
+export default function Header() {
   return (
-    <aside className="-ml-[8px] mb-16 tracking-tight">
-      <div className="lg:sticky lg:top-20">
-        <nav
-          className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
-          id="nav"
-        >
-          <div className="flex flex-row space-x-0 pr-10">
-            {Object.entries(navItems).map(([path, { name }]) => {
-              return (
-                <Link
-                  key={path}
-                  href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
-                >
-                  {name}
-                </Link>
-              );
-            })}
+    <>
+      <CodeErrorMsg>
+        {
+          "ReferenceError: 'sleep' is not defined at deadlineApproaching.js:24:7 - Did you mean 'coffee'?"
+        }
+      </CodeErrorMsg>
+      <div className="header py-6">
+        <div className="container mx-auto">
+          <div className="flex gap-x-8">
+            <Link href="/">
+              <Image
+                src="/logo.svg"
+                width={90}
+                height={20}
+                alt="Picture of the author"
+                className="relative top-1"
+              />
+            </Link>
+
+            <nav className="flex">
+              {Object.entries(navItems).map(([path, { name }]) => {
+                return (
+                  <Link
+                    key={path}
+                    href={path}
+                    className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+                  >
+                    {name}
+                  </Link>
+                )
+              })}
+            </nav>
           </div>
-        </nav>
+        </div>
       </div>
-    </aside>
-  );
+    </>
+  )
 }

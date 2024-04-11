@@ -1,15 +1,17 @@
-import Link from "next/link";
-import { formatDate } from "@/utils/utils";
+import Link from "next/link"
+import { formatDate } from "@/utils/utils"
+import Badge from "@/components/core/Badge"
 
 type PortfolioPostsItemsProps = {
   allPortfolios: {
     metadata: {
-      publishedAt: string;
-      title: string;
-    };
-    slug: string;
-  }[];
-};
+      publishedAt: string
+      title: string
+      category: string
+    }
+    slug: string
+  }[]
+}
 
 const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
   return (
@@ -17,21 +19,20 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
       {allPortfolios.map((post) => (
         <Link
           key={post.slug}
-          className="flex flex-col py-1 px-2 space-y-1 bg-gray-200 hover:bg-gray-900 rounded-md"
+          className="flex justify-between items-center py-1 px-2 space-y-1 bg-gray-200 hover:bg-gray-900 group rounded-md"
           href={`/portfolio/${post.slug}`}
         >
-          <div className="w-full flex flex-col md:flex-row justify-start md:justify-between space-x-0 md:space-x-2">
-            <div className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-              {post.metadata.title}
-            </div>
-            <div className="text-neutral-600 dark:text-neutral-400 tabular-nums">
-              {formatDate(post.metadata.publishedAt, false, true)}
-            </div>
+          <div className=" group-hover:text-neutral-100 flex items-center gap-x-2 tracking-tight">
+            {post.metadata.title}
+            <Badge title={post.metadata.category} />
+          </div>
+          <div className="group-hover:text-neutral-100 tabular-nums">
+            {formatDate(post.metadata.publishedAt, false, true)}
           </div>
         </Link>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default PortfolioPostsItems;
+export default PortfolioPostsItems

@@ -1,32 +1,33 @@
-import { notFound } from "next/navigation";
-import { CustomMDX } from "@/components/custom/Mdx";
-import { formatDate, getPortfolioPosts } from "@/utils/utils";
-import { baseUrl } from "@/seo/sitemap";
-import PageWrap from "@/components/layout/PageWrap";
+import { notFound } from "next/navigation"
+import { CustomMDX } from "@/components/custom/Mdx"
+import { formatDate, getPortfolioPosts } from "@/utils/utils"
+import { baseUrl } from "@/seo/sitemap"
+import PageWrap from "@/components/layout/PageWrap"
 
 export async function generateStaticParams() {
-  let posts = getPortfolioPosts();
+  let posts = getPortfolioPosts()
 
   return posts.map((post) => ({
     slug: post.slug,
-  }));
+  }))
 }
 
 export function generateMetadata({ params }) {
-  let post = getPortfolioPosts().find((post) => post.slug === params.slug);
+  let post = getPortfolioPosts().find((post) => post.slug === params.slug)
   if (!post) {
-    return;
+    return
   }
 
   let {
     title,
     publishedAt: publishedTime,
     summary: description,
+    category,
     image,
-  } = post.metadata;
+  } = post.metadata
   let ogImage = image
     ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
   return {
     title,
@@ -49,14 +50,14 @@ export function generateMetadata({ params }) {
       description,
       images: [ogImage],
     },
-  };
+  }
 }
 
 export default function Portfolio({ params }) {
-  let post = getPortfolioPosts().find((post) => post.slug === params.slug);
+  let post = getPortfolioPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
-    notFound();
+    notFound()
   }
 
   return (
@@ -73,6 +74,7 @@ export default function Portfolio({ params }) {
               datePublished: post.metadata.publishedAt,
               dateModified: post.metadata.publishedAt,
               description: post.metadata.summary,
+              category: post.metadata.category,
               image: post.metadata.image
                 ? `${baseUrl}${post.metadata.image}`
                 : `/og?title=${encodeURIComponent(post.metadata.title)}`,
@@ -97,5 +99,5 @@ export default function Portfolio({ params }) {
         </article>
       </section>
     </PageWrap>
-  );
+  )
 }
