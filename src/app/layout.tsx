@@ -1,12 +1,17 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { Header } from "@/components/sections/Header";
+import { Space_Mono } from "next/font/google";
+import HeaderMain from "@/components/sections/HeaderMain";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/sections/Footer";
 import { baseUrl } from "@/seo/sitemap";
+
+const spacemono = Space_Mono({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -46,23 +51,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cx(
-        "text-black bg-white dark:text-white dark:bg-black",
-        GeistSans.variable,
-        GeistMono.variable
-      )}
+      // className={cx("text-black bg-white dark:text-white dark:bg-black")}
     >
-      <body className="antialiased mx-4 mt-8 lg:mx-auto">
-        <div className=" bg-slate-200">
-          <div className="container">
-            <main className="">
-              <Header />
-              {children}
-              <Footer />
-              <Analytics />
-              <SpeedInsights />
-            </main>
-          </div>
+      <body className={`antialiased ${spacemono.className}`}>
+        <div>
+          <main className="">
+            <HeaderMain />
+            {children}
+            {/* <Footer /> */}
+            <Analytics />
+            <SpeedInsights />
+          </main>
         </div>
       </body>
     </html>

@@ -19,6 +19,16 @@
   --sh-entity: #e25a1c;
 }
 
+body {
+  background: #fffdf9;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --sh-class: #4c97f8;
@@ -29,10 +39,6 @@
   html {
     color-scheme: dark;
   }
-}
-
-html {
-  min-width: 360px;
 }
 
 .prose .anchor {
