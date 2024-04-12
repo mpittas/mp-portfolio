@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { formatDate } from "@/utils/utils"
 import Badge from "@/components/core/Badge"
 
@@ -8,6 +9,7 @@ type PortfolioPostsItemsProps = {
       publishedAt: string
       title: string
       category: string
+      featuredImage: string
     }
     slug: string
   }[]
@@ -29,6 +31,13 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
           <div className="group-hover:text-neutral-100 tabular-nums">
             {formatDate(post.metadata.publishedAt, false, true)}
           </div>
+
+          <Image
+            src={`/${post.metadata.featuredImage}`} // Add a leading slash to the src attribute
+            alt={post.metadata.title}
+            width="200"
+            height="200"
+          />
         </Link>
       ))}
     </div>
