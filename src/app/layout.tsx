@@ -1,4 +1,5 @@
 import "./global.css"
+import "./anim.css"
 import type { Metadata } from "next"
 import { Space_Mono } from "next/font/google"
 import Header from "@/components/sections/Header"
