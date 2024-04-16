@@ -3,8 +3,8 @@ import { Canvas } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
 import { Suspense } from "react"
 
-import Model from "@/components/Ascii/Model"
-import AsciiRenderer from "@/components/Ascii/AsciiRenderer"
+import Model from "@/components/ascii/Model"
+import AsciiRenderer from "@/components/ascii/AsciiRenderer"
 
 export default function AsciiHolxer() {
   return (
