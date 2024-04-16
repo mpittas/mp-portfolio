@@ -13,7 +13,7 @@ export default function AsciiHolxer() {
         <color attach="background" args={["black"]} />
         <spotLight
           position={[10, 10, 10]}
-          angle={0.45}
+          angle={0.455}
           penumbra={1}
           intensity={1}
         />
