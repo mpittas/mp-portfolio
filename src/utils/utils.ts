@@ -7,6 +7,7 @@ type Metadata = {
   summary: string
   category: string
   image?: string
+  featuredImage: string
 }
 
 function parseFrontmatter(fileContent: string) {
