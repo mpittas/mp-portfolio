@@ -33,7 +33,7 @@ const PortfolioPostsItems = ({allPortfolios}: PortfolioPostsItemsProps) => {
           </div>
 
           <Image
-            src={`/posts/${post.metadata.featuredImage}`}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/${post.metadata.featuredImage}`}
             alt={post.metadata.title}
             width="200"
             height="200"
