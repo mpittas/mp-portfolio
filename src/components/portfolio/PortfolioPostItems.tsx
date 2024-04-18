@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { formatDate } from "@/utils/utils"
+import {formatDate} from "@/utils/utils"
 import Badge from "@/components/core/Badge"
 
 type PortfolioPostsItemsProps = {
@@ -15,7 +15,7 @@ type PortfolioPostsItemsProps = {
   }[]
 }
 
-const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
+const PortfolioPostsItems = ({allPortfolios}: PortfolioPostsItemsProps) => {
   return (
     <div className="flex flex-col gap-y-2">
       {allPortfolios.map((post) => (
@@ -33,7 +33,7 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
           </div>
 
           <Image
-            src={`/${post.metadata.featuredImage}`} // Add a leading slash to the src attribute
+            src={`/posts/${post.metadata.featuredImage}`}
             alt={post.metadata.title}
             width="200"
             height="200"
