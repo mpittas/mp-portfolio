@@ -32,11 +32,10 @@ const PortfolioPostsItems = ({allPortfolios}: PortfolioPostsItemsProps) => {
             {formatDate(post.metadata.publishedAt, false, true)}
           </div>
 
-          <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/${post.metadata.featuredImage}`}
-            alt={post.metadata.title}
-            width="200"
-            height="200"
+          <img
+            src={`/${post.metadata.featuredImage}`}
+            alt="Project image"
+            className="w-[20px]"
           />
         </Link>
       ))}
