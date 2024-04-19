@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import CodeErrorMsg from "@/components/widgets/CodeErrorMsg"
+import ThemeSwitch from "@/components/atoms/ThemeSwitch"
 
 const navItems = {
   "/about": {
@@ -34,7 +35,7 @@ export default function Header() {
                 className="relative top-1"
               />
             </Link>
-
+            <ThemeSwitch />
             <nav className="flex">
               {Object.entries(navItems).map(([path, { name }]) => {
                 return (
