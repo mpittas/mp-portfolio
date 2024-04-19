@@ -21,14 +21,14 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
       {allPortfolios.map((post) => (
         <Link
           key={post.slug}
-          className="flex justify-between items-center py-1 px-2 space-y-1 bg-gray-200 hover:bg-gray-900 group rounded-md"
+          className="flex justify-between items-center py-1 px-2 space-y-1 bg-gray-200 group rounded-md"
           href={`/portfolio/${post.slug}`}
         >
-          <div className=" group-hover:text-neutral-100 flex items-center gap-x-2 tracking-tight">
+          <div className="flex items-center gap-x-2 tracking-tight">
             {post.metadata.title}
             <Badge title={post.metadata.category} />
           </div>
-          <div className="group-hover:text-neutral-100 tabular-nums flex items-center gap-x-4">
+          <div className="tabular-nums flex items-center gap-x-4">
             {formatDate(post.metadata.publishedAt, false, true)}
             {/* <img
               src={`/${post.metadata.featuredImage}`} // Add a leading slash to the src attribute

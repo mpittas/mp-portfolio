@@ -56,7 +56,7 @@ export default function RootLayout({
           enableSystem={false}
           defaultTheme="light"
         >
-          <div className="bg-gray-50 dark:bg-slate-900">
+          <div className="bg-gray-50 dark:bg-red-900 min-h-screen">
             <Header />
             {children}
             <Analytics />

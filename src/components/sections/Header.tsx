@@ -31,7 +31,7 @@ export default function Header() {
           <div className="flex gap-x-8">
             <Link href="/">
               <Image
-                src="/logo.svg"
+                src={theme === "dark" ? "/logo-light.svg" : "/logo-dark.svg"}
                 width={90}
                 height={20}
                 alt="Picture of the author"
@@ -56,7 +56,7 @@ export default function Header() {
                   <Link
                     key={path}
                     href={path}
-                    className="transition-all hover:text-neutral-800 dark:hover:text-red-800 flex align-middle relative py-1 px-2 m-1"
+                    className="flex align-middle relative py-1 px-2 m-1"
                   >
                     {name}
                   </Link>
