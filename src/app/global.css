@@ -37,7 +37,7 @@
   }
 }
 
-section {
+.c-cricle-wrap {
   transform: rotateX(50deg);
 }
 

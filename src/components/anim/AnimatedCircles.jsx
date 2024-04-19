@@ -4,33 +4,33 @@ import { gsap } from "gsap"
 
 class AnimatedCircle extends React.Component {
   componentDidMount() {
-    gsap.to(".circle", {
-      y: -50,
-      borderColor: "#ecaeae",
+    gsap.to(".c-circle", {
+      y: -40,
+      borderColor: "#d6d3d1",
       ease: "sine.inOut",
-      stagger: { each: 0.05, from: "end", repeat: -1, yoyo: true },
+      stagger: { each: 0.06, from: "end", repeat: -1, yoyo: true },
     })
   }
 
   render() {
     return (
-      <main className="h-[320px] grid place-items-center text-white">
-        <section
-          className="w-96 h-96 relative grid place-items-center"
+      <div className="h-[440px] select-none grid place-items-center text-white">
+        <div
+          className="c-circle-wrap w-96 h-96 relative grid place-items-center"
           style={{ transform: "rotateX(50deg)" }}
         >
           {Array.from({ length: 20 }, (_, i) => (
             <div
               key={i}
-              className="circle rounded-full absolute border border-neutral-200"
+              className="c-circle rounded-full absolute border border-neutral-100"
               style={{
                 width: `${100 - 5 * i}%`,
                 height: `${100 - 5 * i}%`,
               }}
             />
           ))}
-        </section>
-      </main>
+        </div>
+      </div>
     )
   }
 }
