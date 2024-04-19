@@ -56,12 +56,17 @@ export default function RootLayout({
           enableSystem={false}
           defaultTheme="light"
         >
-          <div className="bg-gray-50 dark:bg-red-900 min-h-screen">
-            <Header />
-            {children}
-            <Analytics />
-            <SpeedInsights />
+          <div className="opacity-70">
+            <div className="bg" />
           </div>
+          <main className="bg-neutral-900 text-neutral-200 dark:bg-red-900 min-h-screen">
+            <div className="relative">
+              <Header />
+              {children}
+              <Analytics />
+              <SpeedInsights />
+            </div>
+          </main>
         </ThemeProvider>
       </body>
     </html>

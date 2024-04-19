@@ -6,7 +6,7 @@ class AnimatedCircle extends React.Component {
   componentDidMount() {
     gsap.to(".c-circle", {
       y: -40,
-      borderColor: "#d6d3d1",
+      borderColor: "#737373",
       ease: "sine.inOut",
       stagger: { each: 0.06, from: "end", repeat: -1, yoyo: true },
     })
@@ -22,7 +22,7 @@ class AnimatedCircle extends React.Component {
           {Array.from({ length: 20 }, (_, i) => (
             <div
               key={i}
-              className="c-circle rounded-full absolute border border-neutral-100"
+              className="c-circle rounded-full absolute border border-neutral-800"
               style={{
                 width: `${100 - 5 * i}%`,
                 height: `${100 - 5 * i}%`,
