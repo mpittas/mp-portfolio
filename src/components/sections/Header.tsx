@@ -31,13 +31,25 @@ export default function Header() {
           <div className="flex justify-between items-center">
             <div className="flex gap-x-8 items-center">
               <Link href="/">
-                <Image
-                  src={theme === "dark" ? "/logo-light.svg" : "/logo-dark.svg"}
-                  width={90}
-                  height={20}
-                  alt="Picture of the author"
-                  className="relative top-1"
-                />
+                <div className="hidden dark:block">
+                  <Image
+                    src="/logo-light.svg"
+                    width={90}
+                    height={20}
+                    alt="Picture of the author"
+                    className="relative top-1"
+                  />
+                </div>
+
+                <div className="dark:hidden">
+                  <Image
+                    src="/logo-dark.svg"
+                    width={90}
+                    height={20}
+                    alt="Picture of the author"
+                    className="relative top-1"
+                  />
+                </div>
               </Link>
 
               <nav className="flex gap-x-10">
