@@ -37,6 +37,10 @@
   }
 }
 
+section {
+  transform: rotateX(50deg);
+}
+
 .prose .anchor {
   @apply absolute invisible no-underline;
 
