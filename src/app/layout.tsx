@@ -2,6 +2,7 @@ import "./global.css"
 import type { Metadata } from "next"
 import { Space_Mono } from "next/font/google"
 import Header from "@/components/sections/Header"
+import { ThemeProvider } from "next-themes"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Footer from "@/components/sections/Footer"
@@ -54,15 +55,18 @@ export default function RootLayout({
       // className={cx("text-black bg-white dark:text-white dark:bg-black")}
     >
       <body className={`antialiased ${spacemono.className} bg-slate-50`}>
-        <div>
+        <ThemeProvider
+          attribute="class"
+          enableSystem={false}
+          defaultTheme="light"
+        >
           <main className="">
             <Header />
             {children}
-            {/* <Footer /> */}
             <Analytics />
             <SpeedInsights />
           </main>
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   )
