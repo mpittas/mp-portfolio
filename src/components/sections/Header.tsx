@@ -42,11 +42,10 @@ export default function Header() {
             <button
               aria-label="theme toggler"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="flex h-8 w-8 items-center justify-center text-body-color duration-300 dark:text-white"
+              className="bg-red-200"
             >
               <span>
                 <span className="hidden dark:block">Light</span>
-
                 <span className="dark:hidden">Dark</span>
               </span>
             </button>
