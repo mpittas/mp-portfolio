@@ -40,13 +40,13 @@ export default function Header() {
                 />
               </Link>
 
-              <nav className="flex">
+              <nav className="flex gap-x-10">
                 {Object.entries(navItems).map(([path, { name }]) => {
                   return (
                     <Link
                       key={path}
                       href={path}
-                      className="flex align-middle relative py-1 px-2 m-1 text-zinc-600 dark:text-zinc-300"
+                      className="flex align-middle text-zinc-600 dark:text-zinc-300"
                     >
                       {name}
                     </Link>
