@@ -54,18 +54,18 @@ export default function RootLayout({
       lang="en"
       // className={cx("text-black bg-white dark:text-white dark:bg-black")}
     >
-      <body className={`antialiased ${spacemono.className} bg-slate-50`}>
+      <body className={`antialiased ${spacemono.className}`}>
         <ThemeProvider
           attribute="class"
           enableSystem={false}
           defaultTheme="light"
         >
-          <main className="">
+          <div className="bg-gray-50 dark:bg-slate-900">
             <Header />
             {children}
             <Analytics />
             <SpeedInsights />
-          </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
