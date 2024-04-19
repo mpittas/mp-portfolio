@@ -1,11 +1,11 @@
 interface TitleBigProps {
-  title?: string;
+  title?: string
 }
 
 export default function TitleBig({ title = "Title here" }: TitleBigProps) {
   return (
     <div className="header">
-      <h1 className="text-5xl">{title}</h1>
+      <h1 className="text-4xl leading-tight">{title}</h1>
     </div>
-  );
+  )
 }

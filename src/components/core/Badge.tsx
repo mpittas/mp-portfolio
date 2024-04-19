@@ -4,7 +4,7 @@ interface BadgeProps {
 
 export default function Badge({ title }: BadgeProps) {
   return (
-    <div className="badge p-1 rounded-md bg-gray-300 text-gray-950 text-xs font-bold">
+    <div className="badge py-1 px-2 rounded-md bg-gray-50 text-gray-950 text-sm font-bold">
       {title}
     </div>
   )

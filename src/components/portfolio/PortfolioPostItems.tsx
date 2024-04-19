@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import {formatDate} from "@/utils/utils"
+import { formatDate } from "@/utils/utils"
 import Badge from "@/components/core/Badge"
 
 type PortfolioPostsItemsProps = {
@@ -15,7 +15,7 @@ type PortfolioPostsItemsProps = {
   }[]
 }
 
-const PortfolioPostsItems = ({allPortfolios}: PortfolioPostsItemsProps) => {
+const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
   return (
     <div className="flex flex-col gap-y-2">
       {allPortfolios.map((post) => (
@@ -28,15 +28,14 @@ const PortfolioPostsItems = ({allPortfolios}: PortfolioPostsItemsProps) => {
             {post.metadata.title}
             <Badge title={post.metadata.category} />
           </div>
-          <div className="group-hover:text-neutral-100 tabular-nums">
+          <div className="group-hover:text-neutral-100 tabular-nums flex items-center gap-x-4">
             {formatDate(post.metadata.publishedAt, false, true)}
+            <img
+              src={`/${post.metadata.featuredImage}`} // Add a leading slash to the src attribute
+              alt={post.metadata.title}
+              width={20}
+            />
           </div>
-
-          <img
-            src={`/${post.metadata.featuredImage}`}
-            alt="Project image"
-            className="w-[20px]"
-          />
         </Link>
       ))}
     </div>
