@@ -21,7 +21,7 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
       {allPortfolios.map((post) => (
         <Link
           key={post.slug}
-          className="flex justify-between items-center py-1 px-2 space-y-1 bg-gray-200 group rounded-md"
+          className="flex justify-between items-center py-1 px-2 space-y-1 bg-gray-200 dark:bg-red-950 group rounded-md"
           href={`/portfolio/${post.slug}`}
         >
           <div className="flex items-center gap-x-2 tracking-tight">
