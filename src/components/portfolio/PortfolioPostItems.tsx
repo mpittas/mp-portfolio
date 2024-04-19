@@ -30,11 +30,11 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
           </div>
           <div className="group-hover:text-neutral-100 tabular-nums flex items-center gap-x-4">
             {formatDate(post.metadata.publishedAt, false, true)}
-            <img
+            {/* <img
               src={`/${post.metadata.featuredImage}`} // Add a leading slash to the src attribute
               alt={post.metadata.title}
               width={20}
-            />
+            /> */}
           </div>
         </Link>
       ))}
