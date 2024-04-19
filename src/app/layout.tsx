@@ -2,9 +2,9 @@ import "./global.css"
 import type { Metadata } from "next"
 import { Space_Mono } from "next/font/google"
 import Header from "@/components/sections/Header"
+import { ThemeProvider } from "next-themes"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import Footer from "@/components/sections/Footer"
 import { baseUrl } from "@/seo/sitemap"
 
 const spacemono = Space_Mono({
@@ -49,20 +49,20 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      // className={cx("text-black bg-white dark:text-white dark:bg-black")}
-    >
-      <body className={`antialiased ${spacemono.className} bg-slate-50`}>
-        <div>
-          <main className="">
+    <html lang="en">
+      <body className={`antialiased ${spacemono.className}`}>
+        <ThemeProvider
+          attribute="class"
+          enableSystem={false}
+          defaultTheme="light"
+        >
+          <div className="bg-gray-50 dark:bg-red-900 min-h-screen">
             <Header />
             {children}
-            {/* <Footer /> */}
             <Analytics />
             <SpeedInsights />
-          </main>
-        </div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )

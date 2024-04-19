@@ -1,53 +1,80 @@
+"use client"
 import Image from "next/image"
 import Link from "next/link"
+import { useTheme } from "next-themes"
 import CodeErrorMsg from "@/components/widgets/CodeErrorMsg"
 
 const navItems = {
   "/about": {
-    name: "about",
+    name: "About",
   },
   "/portfolio": {
-    name: "portfolio",
+    name: "Portfolio",
   },
   "/playground": {
-    name: "playground",
+    name: "Playground",
   },
 }
 
 export default function Header() {
+  const { theme, setTheme } = useTheme()
+
   return (
     <>
-      <CodeErrorMsg>
+      {/* <CodeErrorMsg>
         {
           "ReferenceError: 'sleep' is not defined at deadlineApproaching.js:24:7 - Did you mean 'coffee'?"
         }
-      </CodeErrorMsg>
+      </CodeErrorMsg> */}
       <div className="header py-6">
         <div className="container mx-auto">
-          <div className="flex gap-x-8">
-            <Link href="/">
-              <Image
-                src="/logo.svg"
-                width={90}
-                height={20}
-                alt="Picture of the author"
-                className="relative top-1"
-              />
-            </Link>
+          <div className="flex justify-between items-center">
+            <div className="flex gap-x-8 items-center">
+              <Link href="/">
+                <div className="hidden dark:block">
+                  <Image
+                    src="/logo-light.svg"
+                    width={90}
+                    height={20}
+                    alt="Picture of the author"
+                    className="relative top-1"
+                  />
+                </div>
 
-            <nav className="flex">
-              {Object.entries(navItems).map(([path, { name }]) => {
-                return (
-                  <Link
-                    key={path}
-                    href={path}
-                    className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
-                  >
-                    {name}
-                  </Link>
-                )
-              })}
-            </nav>
+                <div className="dark:hidden">
+                  <Image
+                    src="/logo-dark.svg"
+                    width={90}
+                    height={20}
+                    alt="Picture of the author"
+                    className="relative top-1"
+                  />
+                </div>
+              </Link>
+
+              <nav className="flex gap-x-10">
+                {Object.entries(navItems).map(([path, { name }]) => {
+                  return (
+                    <Link
+                      key={path}
+                      href={path}
+                      className="flex align-middle text-zinc-600 dark:text-zinc-300"
+                    >
+                      {name}
+                    </Link>
+                  )
+                })}
+              </nav>
+            </div>
+
+            <button
+              aria-label="theme toggler"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="text-zinc-600 dark:text-zinc-300"
+            >
+              <span className="hidden dark:block">Light</span>
+              <span className="dark:hidden">Dark</span>
+            </button>
           </div>
         </div>
       </div>
