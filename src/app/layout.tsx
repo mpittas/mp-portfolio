@@ -1,4 +1,5 @@
 import "./global.css"
+import React, { useEffect } from "react"
 import type { Metadata } from "next"
 import { Space_Mono } from "next/font/google"
 import Header from "@/components/sections/Header"
@@ -6,6 +7,7 @@ import { ThemeProvider } from "next-themes"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { baseUrl } from "@/seo/sitemap"
+import locomotiveScroll from "locomotive-scroll"
 
 const spacemono = Space_Mono({
   subsets: ["latin"],

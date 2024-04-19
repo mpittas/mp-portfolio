@@ -8,7 +8,7 @@ export default function MainView() {
     <PageWrap className="overflow-hidden">
       <div className="max-w-xl py-16 pb-28 relative ">
         <TitleBig title="Passionate front-end developer that also specializes in UI/UX." />
-        <div className="absolute top-[-27%] right-[-70%]">
+        <div className="absolute top-[0%] right-[-70%]">
           <AnimatedCircle />
         </div>
       </div>
