@@ -23,7 +23,7 @@ class AnimatedCircle extends React.Component {
           {Array.from({ length: 20 }, (_, i) => (
             <div
               key={i}
-              className="c-circle rounded-full absolute border border-neutral-800/[0.5] dark:border-neutral-300/[0.1]"
+              className="c-circle rounded-full absolute border border-[rgba(255,255,255,0.01)]"
               style={{
                 width: `${100 - 5 * i}%`,
                 height: `${100 - 5 * i}%`,

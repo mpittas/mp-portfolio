@@ -2,6 +2,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useTheme } from "next-themes"
+import HackingText from "@/components/anim/HackingText"
 import CodeErrorMsg from "@/components/widgets/CodeErrorMsg"
 
 const navItems = {
@@ -48,7 +49,7 @@ export default function Header() {
                       href={path}
                       className=" transition-colors flex align-middle text-neutral-300 dark:text-zinc-300 hover:text-neutral-50 dark:hover:text-zinc-50"
                     >
-                      {name}
+                      <HackingText text={name} />
                     </Link>
                   )
                 })}
@@ -60,8 +61,12 @@ export default function Header() {
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="transition-colors  text-neutral-300 hover:text-neutral-50 dark:text-zinc-300"
             >
-              <span className="hidden dark:block">Light</span>
-              <span className="dark:hidden">Dark</span>
+              <span className="hidden dark:block">
+                <HackingText text="Light" />
+              </span>
+              <span className="dark:hidden">
+                <HackingText text="Light" />
+              </span>
             </button>
           </div>
         </div>

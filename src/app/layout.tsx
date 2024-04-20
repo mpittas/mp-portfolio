@@ -7,7 +7,6 @@ import { ThemeProvider } from "next-themes"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { baseUrl } from "@/seo/sitemap"
-import locomotiveScroll from "locomotive-scroll"
 
 const spacemono = Space_Mono({
   subsets: ["latin"],
@@ -51,14 +50,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`antialiased ${spacemono.className}`}>
         <ThemeProvider
           attribute="class"
           enableSystem={false}
           defaultTheme="light"
         >
-          <div className="opacity-70">
+          <div className="opacity-90">
             <div className="bg" />
           </div>
           <main className="bg-neutral-900 text-neutral-200 dark:bg-red-900 min-h-screen">

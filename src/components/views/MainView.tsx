@@ -2,6 +2,8 @@ import TitleBig from "@/components/widgets/TitleBig"
 import PageWrap from "../layout/PageWrap"
 import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts"
 import AnimatedCircle from "@/components/anim/AnimatedCircles"
+import Image from "next/image"
+import HackingText from "@/components/anim/HackingText"
 
 export default function MainView() {
   return (
@@ -14,6 +16,18 @@ export default function MainView() {
       </div>
 
       <div className=" z-1 relative">
+        <div className="flex items-center gap-x-4 pb-4">
+          <div className=" uppercase font-bold text-neutral-400 dark:text-neutral-300">
+            Latest projects
+          </div>
+          <Image
+            src="/arrow-double-pixel.svg"
+            width={8}
+            height={8}
+            alt="arrow-right"
+            className="opacity-70"
+          />
+        </div>
         <PortfolioPosts />
       </div>
     </PageWrap>
