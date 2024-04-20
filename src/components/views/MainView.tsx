@@ -3,7 +3,7 @@ import PageWrap from "../layout/PageWrap"
 import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts"
 import AnimatedCircle from "@/components/anim/AnimatedCircles"
 import Image from "next/image"
-import HackingText from "@/components/anim/HackingText"
+import Iframe from "react-iframe"
 
 export default function MainView() {
   return (

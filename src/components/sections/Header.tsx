@@ -31,15 +31,17 @@ export default function Header() {
         <div className="container mx-auto">
           <div className="flex justify-between items-center">
             <div className="flex gap-x-10 items-center">
-              <Link href="/">
-                <Image
-                  src="/logo-light.svg"
-                  width={90}
-                  height={20}
-                  alt="Picture of the author"
-                  className="relative top-1"
-                />
-              </Link>
+              <div className="opacity-90">
+                <Link href="/">
+                  <Image
+                    src="/logo-light.svg"
+                    width={90}
+                    height={20}
+                    alt="Picture of the author"
+                    className="relative top-1"
+                  />
+                </Link>
+              </div>
 
               <nav className="flex gap-x-10">
                 {Object.entries(navItems).map(([path, { name }]) => {
@@ -47,7 +49,7 @@ export default function Header() {
                     <Link
                       key={path}
                       href={path}
-                      className=" transition-colors flex align-middle text-neutral-300 dark:text-zinc-300 hover:text-neutral-50 dark:hover:text-zinc-50"
+                      className=" transition-colors flex align-middle"
                     >
                       <HackingText text={name} />
                     </Link>
@@ -62,10 +64,10 @@ export default function Header() {
               className="transition-colors  text-neutral-300 hover:text-neutral-50 dark:text-zinc-300"
             >
               <span className="hidden dark:block">
-                <HackingText text="Light" />
+                <HackingText text="Dark" />
               </span>
               <span className="dark:hidden">
-                <HackingText text="Light" />
+                <HackingText text="Blush" />
               </span>
             </button>
           </div>
