@@ -3,6 +3,7 @@ import { CustomMDX } from "@/components/custom/Mdx"
 import { formatDate, getPortfolioPosts } from "@/utils/utils"
 import { baseUrl } from "@/seo/sitemap"
 import PageWrap from "@/components/layout/PageWrap"
+import Image from "next/image"
 
 // Temp
 export async function generateStaticParams() {
@@ -87,9 +88,11 @@ export default function Portfolio({ params }) {
             }),
           }}
         />
-        <img
+        <Image
           src={`/${post.metadata.featuredImage}`}
           alt={post.metadata.title}
+          width={600}
+          height={200}
         />
         <h1 className="title font-semibold text-3xl tracking-tighter">
           {post.metadata.title}
