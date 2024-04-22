@@ -4,6 +4,7 @@ import { formatDate, getPortfolioPosts } from "@/utils/utils"
 import { baseUrl } from "@/seo/sitemap"
 import PageWrap from "@/components/layout/PageWrap"
 
+// Temp
 export async function generateStaticParams() {
   let posts = getPortfolioPosts()
 
