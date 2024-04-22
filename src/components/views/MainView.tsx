@@ -15,7 +15,7 @@ export default function MainView() {
       <PageWrap>
         <div className="max-w-3xl mx-auto text-center mt-[-6rem] py-16 pb-28 relative ">
           <TitleBig title="I am a passionate front-end developer that also specializes in UI/UX based in BG." />
-          <div className="absolute top-[-50px] right-0">
+          <div className="absolute top-[-40px] right-[30%]">
             <Image
               src="/click-me-handdrawn.svg"
               width={120}
