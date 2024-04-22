@@ -43,7 +43,7 @@ export default function Header() {
                 </Link>
               </div>
 
-              <nav className="flex gap-x-10">
+              <nav className="hidden md:flex gap-x-10">
                 {Object.entries(navItems).map(([path, { name }]) => {
                   return (
                     <Link
