@@ -3,8 +3,6 @@ import Image from "next/image"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import { highlight } from "sugar-high"
 import React from "react"
-import CustomComponent from "@/components/test/CustomComponent"
-import Iframe from "react-iframe"
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -89,8 +87,6 @@ function createHeading(level) {
 }
 
 let components = {
-  CustomComponent,
-  Iframe,
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),

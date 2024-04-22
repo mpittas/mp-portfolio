@@ -1,10 +1,8 @@
 import TitleBig from "@/components/widgets/TitleBig"
 import PageWrap from "../layout/PageWrap"
 import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts"
-import AnimatedCircle from "@/components/anim/AnimatedCircles"
 import Image from "next/image"
-import Iframe from "react-iframe"
-import TextScene from "@/components/scenes/TextScene"
+import TextScene from "@/components/anim/TextScene"
 
 export default function MainView() {
   return (

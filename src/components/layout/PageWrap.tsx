@@ -1,6 +1,3 @@
-import Image from "next/image"
-import Link from "next/link"
-
 interface PageWrapProps {
   children: React.ReactNode
   className?: string
