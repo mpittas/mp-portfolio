@@ -2,8 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-// Choose the style you prefer for syntax highlighting
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism"
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
 
 import React from "react"
 
@@ -55,7 +54,7 @@ function Code({ children, className }) {
   // Extract the language from the className (e.g., "language-js")
   const language = className?.replace(/language-/, "") || ""
   return (
-    <SyntaxHighlighter style={dark} language={language}>
+    <SyntaxHighlighter style={oneDark} language={language}>
       {children}
     </SyntaxHighlighter>
   )

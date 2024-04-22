@@ -92,7 +92,7 @@ body {
 }
 
 .prose pre {
-  @apply bg-neutral-800 dark:bg-neutral-900 rounded-lg overflow-x-auto py-2 px-3 text-sm;
+  @apply text-sm;
 }
 
 .prose code {
