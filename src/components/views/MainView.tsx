@@ -12,9 +12,18 @@ export default function MainView() {
       <div className="h-[50vh]">
         <TextScene />
       </div>
-      <PageWrap className="overflow-hidden">
-        <div className="max-w-xl mx-auto text-center mt-[-5rem] py-16 pb-28 relative ">
-          <TitleBig title="Passionate front-end developer that also specializes in UI/UX." />
+      <PageWrap>
+        <div className="max-w-3xl mx-auto text-center mt-[-6rem] py-16 pb-28 relative ">
+          <TitleBig title="I am a passionate front-end developer that also specializes in UI/UX based in BG." />
+          <div className="absolute top-[-50px] right-0">
+            <Image
+              src="/click-me-handdrawn.svg"
+              width={120}
+              height={80}
+              alt="arrow-right"
+              className="opacity-50"
+            />
+          </div>
           {/* <div className="absolute top-[0%] right-[-70%]">
             <AnimatedCircle />
           </div>  */}
