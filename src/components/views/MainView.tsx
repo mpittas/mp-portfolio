@@ -17,7 +17,7 @@ export default function MainView() {
           <TitleBig title="Passionate front-end developer that also specializes in UI/UX." />
           {/* <div className="absolute top-[0%] right-[-70%]">
             <AnimatedCircle />
-          </div> */}
+          </div>  */}
         </div>
 
         <div className=" z-1 relative">
