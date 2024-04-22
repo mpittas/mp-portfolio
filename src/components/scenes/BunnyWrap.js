@@ -106,8 +106,8 @@ function Sticker({ url, ...props }) {
         iridescence={1}
         iridescenceIOR={1}
         iridescenceThicknessRange={[0, 1400]}
-        roughness={1}
         clearcoat={0.5}
+        roughness={1}
         metalness={0.75}
         toneMapped={false}
       />
