@@ -33,7 +33,7 @@ function Scene() {
 export default function TextScene() {
   return (
     <Canvas dpr={[1, 2]} orthographic camera={{ zoom: 180 }}>
-      <ambientLight color="#ffffff" intensity={1} /> // Increased intensity
+      <ambientLight color="#ffffff" intensity={1} />
       <directionalLight position={[0, 3, 5]} color="#ffffff" intensity={50} />
       <Suspense fallback={null}>
         <Scene />

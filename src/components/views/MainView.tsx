@@ -14,12 +14,12 @@ export default function MainView() {
       </div>
       <PageWrap>
         <div className="max-w-3xl mx-auto text-center mt-[-6rem] py-16 pb-28 relative ">
-          <TitleBig title="I am a passionate front-end developer that also specializes in UI/UX based in BG." />
+          <TitleBig title="I am a passionate front-end developer based in BG who also specializes in UI/UX" />
           <div className="absolute top-[-40px] right-[30%]">
             <Image
               src="/click-me-hd.svg"
-              width={120}
-              height={80}
+              width={100}
+              height={20}
               alt="arrow-right"
               className="opacity-30"
             />
