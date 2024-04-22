@@ -1,7 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
 import { MDXRemote } from "next-mdx-remote/rsc"
-import { highlight } from "sugar-high"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
+
 import React from "react"
 
 function Table({ data }) {
@@ -48,9 +50,14 @@ function RoundedImage(props) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />
 }
 
-function Code({ children, ...props }) {
-  let codeHTML = highlight(children)
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
+function Code({ children, className }) {
+  // Extract the language from the className (e.g., "language-js")
+  const language = className?.replace(/language-/, "") || ""
+  return (
+    <SyntaxHighlighter style={oneDark} language={language}>
+      {children}
+    </SyntaxHighlighter>
+  )
 }
 
 function slugify(str) {
