@@ -89,7 +89,7 @@ export default function Portfolio({ params }) {
           }}
         />
         <Image
-          src={`/${post.metadata.featuredImage}`}
+          src={`/posts/${post.metadata.featuredImage}`}
           alt={post.metadata.title}
           width={600}
           height={200}
