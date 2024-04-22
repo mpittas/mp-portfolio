@@ -62,7 +62,7 @@ export default function Portfolio({ params }) {
 
   return (
     <PageWrap>
-      <section>
+      <section className="pt-8">
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -86,10 +86,14 @@ export default function Portfolio({ params }) {
             }),
           }}
         />
-        <h1 className="title font-semibold text-2xl tracking-tighter">
+        <img
+          src={`/${post.metadata.featuredImage}`}
+          alt={post.metadata.title}
+        />
+        <h1 className="title font-semibold text-3xl tracking-tighter">
           {post.metadata.title}
         </h1>
-        <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+        <div className="flex justify-between items-center mt-2 mb-8 text-sm text-neutral-400">
           <p className="text-sm ">{formatDate(post.metadata.publishedAt)}</p>
         </div>
         <article className="prose">
