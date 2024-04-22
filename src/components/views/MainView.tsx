@@ -17,7 +17,7 @@ export default function MainView() {
           <TitleBig title="I am a passionate front-end developer based in BG who also specializes in UI/UX" />
           <div className="absolute top-[-40px] right-[30%]">
             <Image
-              src="/click-me-hd.svg"
+              src="/images/click-me-hd.svg"
               width={100}
               height={20}
               alt="arrow-right"
@@ -35,7 +35,7 @@ export default function MainView() {
               Latest projects
             </div>
             <Image
-              src="/arrow-double-pixel.svg"
+              src="/images/arrow-double-pixel.svg"
               width={8}
               height={8}
               alt="arrow-right"

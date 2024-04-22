@@ -34,7 +34,7 @@ export default function Header() {
               <div className="opacity-90">
                 <Link href="/">
                   <Image
-                    src="/logo-light.svg"
+                    src="/images/logo-light.svg"
                     width={90}
                     height={20}
                     alt="Picture of the author"
