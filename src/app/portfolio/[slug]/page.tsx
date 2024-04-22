@@ -64,7 +64,7 @@ export default function Portfolio({ params }) {
 
   return (
     <PageWrap>
-      <section className="pt-8">
+      <section>
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -88,12 +88,14 @@ export default function Portfolio({ params }) {
             }),
           }}
         />
-        <Image
-          src={`/posts/${post.metadata.featuredImage}`}
-          alt={post.metadata.title}
-          width={600}
-          height={200}
-        />
+        <div className="relative h-[300px] bg-neutral-700 mb-12 rounded-3xl overflow-hidden">
+          <Image
+            src={`/posts/${post.metadata.featuredImage}`}
+            alt={post.metadata.title}
+            fill={true}
+            className="object-cover"
+          />
+        </div>
         <h1 className="title font-semibold text-3xl tracking-tighter">
           {post.metadata.title}
         </h1>
