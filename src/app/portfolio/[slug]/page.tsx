@@ -3,7 +3,9 @@ import { CustomMDX } from "@/components/custom/Mdx"
 import { formatDate, getPortfolioPosts } from "@/utils/utils"
 import { baseUrl } from "@/seo/sitemap"
 import PageWrap from "@/components/layout/PageWrap"
+import Image from "next/image"
 
+// Temp
 export async function generateStaticParams() {
   let posts = getPortfolioPosts()
 
@@ -86,10 +88,18 @@ export default function Portfolio({ params }) {
             }),
           }}
         />
-        <h1 className="title font-semibold text-2xl tracking-tighter">
+        <div className="relative h-[300px] bg-neutral-700 mb-12 rounded-3xl overflow-hidden">
+          <Image
+            src={`/posts/${post.metadata.featuredImage}`}
+            alt={post.metadata.title}
+            fill={true}
+            className="object-cover"
+          />
+        </div>
+        <h1 className="title font-semibold text-3xl tracking-tighter">
           {post.metadata.title}
         </h1>
-        <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+        <div className="flex justify-between items-center mt-2 mb-8 text-sm text-neutral-400">
           <p className="text-sm ">{formatDate(post.metadata.publishedAt)}</p>
         </div>
         <article className="prose">
