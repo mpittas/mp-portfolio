@@ -17,11 +17,11 @@ export default function MainView() {
           <TitleBig title="I am a passionate front-end developer that also specializes in UI/UX based in BG." />
           <div className="absolute top-[-40px] right-[30%]">
             <Image
-              src="/click-me-handdrawn.svg"
+              src="/click-me-hd.svg"
               width={120}
               height={80}
               alt="arrow-right"
-              className="opacity-50"
+              className="opacity-30"
             />
           </div>
           {/* <div className="absolute top-[0%] right-[-70%]">
