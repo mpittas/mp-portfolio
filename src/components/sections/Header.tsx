@@ -21,7 +21,7 @@ export default function Header() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <>
+    <div>
       {/* <CodeErrorMsg>
         {
           "ReferenceError: 'sleep' is not defined at deadlineApproaching.js:24:7 - Did you mean 'coffee'?"
@@ -73,6 +73,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

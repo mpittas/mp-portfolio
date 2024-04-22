@@ -62,7 +62,9 @@ export default function RootLayout({
           </div>
           <main className="bg-neutral-900 text-neutral-200 dark:bg-red-900 min-h-screen">
             <div className="relative">
-              <Header />
+              <div className="relative z-[1]">
+                <Header />
+              </div>
               {children}
               <Analytics />
               <SpeedInsights />

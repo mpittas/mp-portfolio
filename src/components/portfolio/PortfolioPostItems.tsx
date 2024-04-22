@@ -21,10 +21,10 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
       {allPortfolios.map((post) => (
         <Link
           key={post.slug}
-          className="flex justify-between items-center p-2 space-y-1 border border-neutral-800 dark:border-neutral-100/[0.1] hover:bg-neutral-100/[0.05] group rounded-md"
+          className="flex justify-between items-center p-2 space-y-1   group rounded-md"
           href={`/portfolio/${post.slug}`}
         >
-          <div className="flex items-center gap-x-2 tracking-tight">
+          <div className="flex items-center gap-x-2 text-neutral-300 tracking-tight">
             {post.metadata.title}
             <Badge title={post.metadata.category} />
           </div>
