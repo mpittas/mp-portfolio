@@ -1,8 +1,8 @@
-import TitleBig from "@/components/widgets/TitleBig"
-import PageWrap from "../layout/PageWrap"
-import {PortfolioPosts} from "@/components/portfolio/PortfolioPosts"
-import Image from "next/image"
-import TextScene from "@/components/anim/TextScene"
+import TitleBig from "@/components/widgets/TitleBig";
+import PageWrap from "../layout/PageWrap";
+import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts";
+import Image from "next/image";
+import TextScene from "@/components/anim/TextScene";
 
 export default function MainView() {
   return (
@@ -28,17 +28,17 @@ export default function MainView() {
         </div>
 
         <div className=" z-1 relative">
-          <div className="flex items-center gap-x-4 pb-4">
-            <div className="uppercase font-bold text-neutral-700 dark:text-neutral-500">
+          <div className="flex items-center gap-x-2 pb-4">
+            <div className="px-2 uppercase font-bold text-neutral-700 dark:text-neutral-500 text-sm">
               Latest projects
             </div>
             <div className="mix-blend-difference">
               <Image
                 src="/images/arrow-double-pixel.svg"
-                width={8}
-                height={8}
+                width={6}
+                height={6}
                 alt="arrow-right"
-                className="opacity-70"
+                className="opacity-50"
               />
             </div>
           </div>
@@ -46,5 +46,5 @@ export default function MainView() {
         </div>
       </PageWrap>
     </div>
-  )
+  );
 }

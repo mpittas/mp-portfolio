@@ -1,4 +1,4 @@
-
+"use client";
 import * as THREE from "three";
 import { Suspense, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -44,14 +44,14 @@ export default function TextScene() {
       setIsMobile(window.innerWidth < 640); // Tailwind's default breakpoint for 'sm'
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize();
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <Canvas dpr={[1, 2]} orthographic camera={{ zoom: isMobile ? 100 : 260 }}>
+    <Canvas dpr={[1, 2]} orthographic camera={{ zoom: isMobile ? 180 : 260 }}>
       <directionalLight
         position={[0, 3, 5]}
         color="#ffffff"

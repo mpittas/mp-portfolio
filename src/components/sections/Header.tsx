@@ -1,9 +1,9 @@
-"use client"
-import Image from "next/image"
-import Link from "next/link"
-import {useTheme} from "next-themes"
-import HackingText from "@/components/anim/HackingText"
-import CodeErrorMsg from "@/components/widgets/CodeErrorMsg"
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import HackingText from "@/components/anim/HackingText";
+import CodeErrorMsg from "@/components/widgets/CodeErrorMsg";
 
 const navItems = {
   "/about": {
@@ -15,10 +15,10 @@ const navItems = {
   "/playground": {
     name: "Playground",
   },
-}
+};
 
 export default function Header() {
-  const {theme, setTheme} = useTheme()
+  const { theme, setTheme } = useTheme();
 
   return (
     <>
@@ -51,7 +51,7 @@ export default function Header() {
               </div>
 
               <nav className="hidden md:flex gap-x-10">
-                {Object.entries(navItems).map(([path, {name}]) => {
+                {Object.entries(navItems).map(([path, { name }]) => {
                   return (
                     <Link
                       key={path}
@@ -60,7 +60,7 @@ export default function Header() {
                     >
                       <HackingText text={name} />
                     </Link>
-                  )
+                  );
                 })}
               </nav>
             </div>
@@ -74,12 +74,12 @@ export default function Header() {
                 <HackingText text="Go light" />
               </span>
               <span className="dark:hidden">
-                <HackingText text="Go dark" />
+                <HackingText text="Dark Side" />
               </span>
             </button>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
