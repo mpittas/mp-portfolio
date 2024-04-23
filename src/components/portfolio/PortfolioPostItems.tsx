@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { formatDate } from "@/utils/utils"
+import {formatDate} from "@/utils/utils"
 import Badge from "@/components/core/Badge"
 
 type PortfolioPostsItemsProps = {
@@ -14,13 +14,13 @@ type PortfolioPostsItemsProps = {
   }[]
 }
 
-const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
+const PortfolioPostsItems = ({allPortfolios}: PortfolioPostsItemsProps) => {
   return (
     <div className="flex flex-col gap-y-2">
       {allPortfolios.map((post) => (
         <Link
           key={post.slug}
-          className="flex justify-between items-center p-2 space-y-1 border border-neutral-800 dark:border-neutral-100/[0.1] hover:bg-neutral-100/[0.05] group rounded-md"
+          className="flex justify-between items-center p-2 hover:bg-neutral-100/[0.6] dark:hover:bg-neutral-800 group rounded-md"
           href={`/portfolio/${post.slug}`}
         >
           <div className="flex items-center gap-x-2 tracking-tight">
@@ -29,11 +29,6 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
           </div>
           <div className="tabular-nums flex items-center gap-x-4">
             {formatDate(post.metadata.publishedAt, false, true)}
-            {/* <img
-              src={`/${post.metadata.featuredImage}`} // Add a leading slash to the src attribute
-              alt={post.metadata.title}
-              width={20}
-            /> */}
           </div>
         </Link>
       ))}
