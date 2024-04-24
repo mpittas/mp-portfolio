@@ -3,8 +3,10 @@ import PageWrap from "../layout/PageWrap"
 import {PortfolioPosts} from "@/components/portfolio/PortfolioPosts"
 import Image from "next/image"
 import TextScene from "@/components/anim/TextScene"
+import MatterOne from "@/components/anim/MatterOne"
+import MatterTwo from "@/components/anim/MatterTwo"
+import MatterThree from "@/components/anim/MatterThree"
 
-import SvgExample from "@/components/anim/SvgExample"
 export default function MainView() {
   return (
     <div>
@@ -23,9 +25,6 @@ export default function MainView() {
       <PageWrap>
         <div className="max-w-3xl mx-auto text-center mt-[-8rem] py-16 pb-28 relative ">
           <TitleBig title="I am a passionate front-end developer based in BG who also specializes in UI/UX" />
-          {/* <div className="absolute top-[0%] right-[-70%]">
-            <AnimatedCircle />
-          </div>  */}
         </div>
 
         <div className=" z-1 relative">
@@ -48,7 +47,13 @@ export default function MainView() {
 
         <div></div>
       </PageWrap>
-      <SvgExample />
+      <div className="bg-red-500 h-screen" id="tag-canvas">
+        {/* <MatterOne /> */}
+        <MatterOne />
+        {/* <MatterThree /> */}
+      </div>
+
+      <div className="h-[100vh]"></div>
     </div>
   )
 }
