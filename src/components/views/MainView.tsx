@@ -1,9 +1,10 @@
-import TitleBig from "@/components/widgets/TitleBig";
-import PageWrap from "../layout/PageWrap";
-import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts";
-import Image from "next/image";
-import TextScene from "@/components/anim/TextScene";
+import TitleBig from "@/components/widgets/TitleBig"
+import PageWrap from "../layout/PageWrap"
+import {PortfolioPosts} from "@/components/portfolio/PortfolioPosts"
+import Image from "next/image"
+import TextScene from "@/components/anim/TextScene"
 
+import SvgExample from "@/components/anim/SvgExample"
 export default function MainView() {
   return (
     <div>
@@ -44,7 +45,10 @@ export default function MainView() {
           </div>
           <PortfolioPosts />
         </div>
+
+        <div></div>
       </PageWrap>
+      <SvgExample />
     </div>
-  );
+  )
 }
