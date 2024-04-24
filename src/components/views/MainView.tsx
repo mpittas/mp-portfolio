@@ -1,11 +1,12 @@
-import TitleBig from "@/components/widgets/TitleBig"
-import PageWrap from "../layout/PageWrap"
-import {PortfolioPosts} from "@/components/portfolio/PortfolioPosts"
-import Image from "next/image"
-import TextScene from "@/components/anim/TextScene"
-import MatterOne from "@/components/anim/MatterOne"
-import MatterTwo from "@/components/anim/MatterTwo"
-import MatterThree from "@/components/anim/MatterThree"
+import TitleBig from "@/components/widgets/TitleBig";
+import PageWrap from "../layout/PageWrap";
+import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts";
+import Image from "next/image";
+import TextScene from "@/components/anim/TextScene";
+import MatterOne from "@/components/anim/MatterOne";
+import MatterTwo from "@/components/anim/MatterTwo";
+import MatterThree from "@/components/anim/MatterThree";
+import TagSimulation from "@/components/anim/TagSimulation";
 
 export default function MainView() {
   return (
@@ -47,13 +48,14 @@ export default function MainView() {
 
         <div></div>
       </PageWrap>
-      <div className="bg-red-500 h-screen" id="tag-canvas">
+      <div id="tag-canvas">
         {/* <MatterOne /> */}
-        <MatterOne />
+        {/* <MatterOne /> */}
         {/* <MatterThree /> */}
+        <TagSimulation />
       </div>
 
       <div className="h-[100vh]"></div>
     </div>
-  )
+  );
 }
