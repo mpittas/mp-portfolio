@@ -5,7 +5,7 @@ import Matter from "matter-js"
 class TagSimulation extends React.Component {
   constructor(props) {
     super(props)
-    this.sceneRef = React.createRef() // Create a ref to attach to the render target
+    this.sceneRef = React.createRef()
   }
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class TagSimulation extends React.Component {
       {
         isStatic: true,
         render: {
-          strokeStyle: "rgba(0,0,0,0.15)",
+          strokeStyle: "rgba(0,0,0,0)",
         },
       }
     )
@@ -50,7 +50,7 @@ class TagSimulation extends React.Component {
       {
         isStatic: true,
         render: {
-          strokeStyle: "rgba(0,0,0,0.15)",
+          strokeStyle: "rgba(0,0,0,0)",
         },
       }
     )
@@ -63,7 +63,7 @@ class TagSimulation extends React.Component {
       {
         isStatic: true,
         render: {
-          strokeStyle: "rgba(0,0,0,0.15)",
+          strokeStyle: "rgba(0,0,0,0)",
         },
       }
     )
@@ -76,7 +76,7 @@ class TagSimulation extends React.Component {
       {
         isStatic: true,
         render: {
-          strokeStyle: "rgba(0,0,0,0.15)",
+          strokeStyle: "rgba(0,0,0,0)",
         },
       }
     )
@@ -87,8 +87,7 @@ class TagSimulation extends React.Component {
       chamfer: {radius: radius},
       render: {
         sprite: {
-          texture:
-            "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f47541d38f6886e5747c1d_uiux.svg",
+          texture: "/matter/ui-ux.svg",
           xScale: 1,
           yScale: 1,
         },
@@ -103,8 +102,7 @@ class TagSimulation extends React.Component {
         chamfer: {radius: radius},
         render: {
           sprite: {
-            texture:
-              "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f47540055ab00edffa0a68_wordpress.svg",
+            texture: "/matter/webflow.svg",
             xScale: 1,
             yScale: 1,
           },
@@ -120,8 +118,7 @@ class TagSimulation extends React.Component {
         chamfer: {radius: radius},
         render: {
           sprite: {
-            texture:
-              "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f475405a7c8ff69c27ed37_webflow.svg",
+            texture: "/matter/wordpress.svg",
             xScale: 1,
             yScale: 1,
           },
@@ -137,8 +134,7 @@ class TagSimulation extends React.Component {
         chamfer: {radius: radius},
         render: {
           sprite: {
-            texture:
-              "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f47540c9a2047edbb293d1_whitelevel.svg",
+            texture: "/matter/javascript.svg",
             xScale: 1,
             yScale: 1,
           },
@@ -154,8 +150,7 @@ class TagSimulation extends React.Component {
         chamfer: {radius: radius},
         render: {
           sprite: {
-            texture:
-              "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f47540487abf2c397d777f_webflow-green.svg",
+            texture: "/matter/react.svg",
             xScale: 1,
             yScale: 1,
           },
@@ -166,8 +161,7 @@ class TagSimulation extends React.Component {
       chamfer: {radius: radius},
       render: {
         sprite: {
-          texture:
-            "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f475407ebe06e52f9283d1_sass.svg",
+          texture: "/matter/vuejs.svg",
           xScale: 1,
           yScale: 1,
         },
@@ -177,8 +171,7 @@ class TagSimulation extends React.Component {
       chamfer: {radius: radius},
       render: {
         sprite: {
-          texture:
-            "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f47540f762b61424410849_web.svg",
+          texture: "/matter/css.svg",
           xScale: 1,
           yScale: 1,
         },
@@ -188,8 +181,7 @@ class TagSimulation extends React.Component {
       chamfer: {radius: radius},
       render: {
         sprite: {
-          texture:
-            "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f475402ae28c15adeba62f_startup.svg",
+          texture: "/matter/animations.svg",
           xScale: 1,
           yScale: 1,
         },
@@ -204,8 +196,7 @@ class TagSimulation extends React.Component {
         chamfer: {radius: radius},
         render: {
           sprite: {
-            texture:
-              "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f47540f86ad4f4175a1e69_maintence.svg",
+            texture: "/matter/responsive.svg",
             xScale: 1,
             yScale: 1,
           },
@@ -221,8 +212,7 @@ class TagSimulation extends React.Component {
         chamfer: {radius: radius},
         render: {
           sprite: {
-            texture:
-              "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f47540035d9b03fc33e447_integration.svg",
+            texture: "/matter/figma.svg",
             xScale: 1,
             yScale: 1,
           },
@@ -233,8 +223,7 @@ class TagSimulation extends React.Component {
       chamfer: {radius: radius},
       render: {
         sprite: {
-          texture:
-            "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f475405a7c8ff69c27ed00_motion.svg",
+          texture: "/matter/photoshop.svg",
           xScale: 1,
           yScale: 1,
         },
@@ -244,8 +233,7 @@ class TagSimulation extends React.Component {
       chamfer: {radius: radius},
       render: {
         sprite: {
-          texture:
-            "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f475406ef461a95eaa0f12_pay.svg",
+          texture: "/matter/api.svg",
           xScale: 1,
           yScale: 1,
         },
@@ -255,8 +243,7 @@ class TagSimulation extends React.Component {
       chamfer: {radius: radius},
       render: {
         sprite: {
-          texture:
-            "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f47540f86ad4f4175a1df1_gsap.svg",
+          texture: "/matter/adobe-suite.svg",
           xScale: 1,
           yScale: 1,
         },
@@ -266,8 +253,7 @@ class TagSimulation extends React.Component {
       chamfer: {radius: radius},
       render: {
         sprite: {
-          texture:
-            "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f475407a05afc618131310_figma.svg",
+          texture: "/matter/git.svg",
           xScale: 1,
           yScale: 1,
         },
@@ -282,8 +268,7 @@ class TagSimulation extends React.Component {
         chamfer: {radius: radius},
         render: {
           sprite: {
-            texture:
-              "https://uploads-ssl.webflow.com/64f41ea3b31af27272713c03/64f47540bfb0eee6858d556a_migration.svg",
+            texture: "/matter/typescript.svg",
             xScale: 1,
             yScale: 1,
           },

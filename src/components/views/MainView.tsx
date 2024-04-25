@@ -4,6 +4,7 @@ import {PortfolioPosts} from "@/components/portfolio/PortfolioPosts"
 import Image from "next/image"
 import TextScene from "@/components/anim/TextScene"
 import TagSimulation from "@/components/anim/TagSimulation"
+import TagSimulationOld from "@/components/anim/TagSimulationOld"
 
 export default function MainView() {
   return (
@@ -25,7 +26,7 @@ export default function MainView() {
           <TitleBig title="I am a passionate front-end developer based in BG who also specializes in UI/UX" />
         </div>
 
-        <div className=" z-1 relative pb-32">
+        <div className=" z-1 relative pb-4">
           <div className="flex items-center gap-x-2 pb-2">
             <div className="px-2 uppercase font-bold text-neutral-700 dark:text-neutral-500 text-sm">
               Latest projects
@@ -42,8 +43,9 @@ export default function MainView() {
           </div>
           <PortfolioPosts />
         </div>
+        <TagSimulation />
+        <TagSimulationOld />
       </PageWrap>
-      <TagSimulation />
       {/* <div className="h-[100vh]"></div> */}
     </div>
   )

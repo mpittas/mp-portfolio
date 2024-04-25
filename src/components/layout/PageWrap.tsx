@@ -3,10 +3,10 @@ interface PageWrapProps {
   className?: string
 }
 
-export default function PageWrap({ children, className }: PageWrapProps) {
+export default function PageWrap({children, className}: PageWrapProps) {
   return (
     <>
-      <div className={`pagewrap py-12 ${className}`}>
+      <div className={`pagewrap pt-12 ${className}`}>
         <div className="container">{children}</div>
       </div>
     </>
