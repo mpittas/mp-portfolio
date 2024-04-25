@@ -1,20 +1,20 @@
-"use client";
-import React from "react";
-import Matter, { Body } from "matter-js";
+"use client"
+import React from "react"
+import Matter from "matter-js"
 
 class TagSimulation extends React.Component {
   constructor(props) {
-    super(props);
-    this.sceneRef = React.createRef(); // Create a ref to attach to the render target
+    super(props)
+    this.sceneRef = React.createRef() // Create a ref to attach to the render target
   }
 
   componentDidMount() {
-    const { Engine, Render, World, Bodies, Mouse, MouseConstraint, Events } =
-      Matter;
-    const engine = Engine.create();
-    const containerElement = this.sceneRef.current;
-    const containerWidth = containerElement.clientWidth;
-    const containerHeight = containerElement.clientHeight;
+    const {Engine, Render, World, Bodies, Mouse, MouseConstraint, Events} =
+      Matter
+    const engine = Engine.create()
+    const containerElement = this.sceneRef.current
+    const containerWidth = containerElement.clientWidth
+    const containerHeight = containerElement.clientHeight
 
     const render = Render.create({
       element: containerElement,
@@ -26,7 +26,7 @@ class TagSimulation extends React.Component {
         background: "transparent",
         wireframes: false,
       },
-    });
+    })
 
     // Setup static and dynamic bodies here, adapted from your script
     const ground = Bodies.rectangle(
@@ -34,37 +34,57 @@ class TagSimulation extends React.Component {
       containerHeight + 80,
       containerWidth + 320,
       160,
-      { isStatic: true }
-    );
+      {
+        isStatic: true,
+        render: {
+          strokeStyle: "rgba(0,0,0,0.15)",
+        },
+      }
+    )
 
     const wallLeft = Bodies.rectangle(
       -80,
       containerHeight / 2,
       160,
       containerHeight,
-      { isStatic: true }
-    );
+      {
+        isStatic: true,
+        render: {
+          strokeStyle: "rgba(0,0,0,0.15)",
+        },
+      }
+    )
 
     const wallRight = Bodies.rectangle(
       containerWidth + 80,
       containerHeight / 2,
       160,
       1200,
-      { isStatic: true }
-    );
+      {
+        isStatic: true,
+        render: {
+          strokeStyle: "rgba(0,0,0,0.15)",
+        },
+      }
+    )
 
     const roof = Bodies.rectangle(
       containerWidth / 2 + 160,
       -80,
       containerWidth + 320,
       160,
-      { isStatic: true }
-    );
+      {
+        isStatic: true,
+        render: {
+          strokeStyle: "rgba(0,0,0,0.15)",
+        },
+      }
+    )
 
-    const radius = 20;
+    const radius = 20
 
     const tagUiUx = Bodies.rectangle(containerWidth / 2 + 150, 500, 164, 56, {
-      chamfer: { radius: radius },
+      chamfer: {radius: radius},
       render: {
         sprite: {
           texture:
@@ -73,14 +93,14 @@ class TagSimulation extends React.Component {
           yScale: 1,
         },
       },
-    });
+    })
     const tagWordpress = Bodies.rectangle(
       containerWidth / 2 + 150,
       460,
       240,
       56,
       {
-        chamfer: { radius: radius },
+        chamfer: {radius: radius},
         render: {
           sprite: {
             texture:
@@ -90,14 +110,14 @@ class TagSimulation extends React.Component {
           },
         },
       }
-    );
+    )
     const tagWebflow = Bodies.rectangle(
       containerWidth / 2 + 250,
       420,
       200,
       56,
       {
-        chamfer: { radius: radius },
+        chamfer: {radius: radius},
         render: {
           sprite: {
             texture:
@@ -107,14 +127,14 @@ class TagSimulation extends React.Component {
           },
         },
       }
-    );
+    )
     const tagWhitelevel = Bodies.rectangle(
       containerWidth / 2 - 75,
       380,
       160,
       56,
       {
-        chamfer: { radius: radius },
+        chamfer: {radius: radius},
         render: {
           sprite: {
             texture:
@@ -124,14 +144,14 @@ class TagSimulation extends React.Component {
           },
         },
       }
-    );
+    )
     const tagWebflowgreen = Bodies.rectangle(
       containerWidth / 2 - 74,
       540,
       248,
       56,
       {
-        chamfer: { radius: radius },
+        chamfer: {radius: radius},
         render: {
           sprite: {
             texture:
@@ -141,9 +161,9 @@ class TagSimulation extends React.Component {
           },
         },
       }
-    );
+    )
     const tagSass = Bodies.rectangle(containerWidth / 2 + 174, 490, 105, 56, {
-      chamfer: { radius: radius },
+      chamfer: {radius: radius},
       render: {
         sprite: {
           texture:
@@ -152,9 +172,9 @@ class TagSimulation extends React.Component {
           yScale: 1,
         },
       },
-    });
+    })
     const tagWeb = Bodies.rectangle(containerWidth / 2 - 142, 440, 186, 56, {
-      chamfer: { radius: radius },
+      chamfer: {radius: radius},
       render: {
         sprite: {
           texture:
@@ -163,9 +183,9 @@ class TagSimulation extends React.Component {
           yScale: 1,
         },
       },
-    });
+    })
     const tagStartup = Bodies.rectangle(containerWidth / 2 - 10, 260, 128, 56, {
-      chamfer: { radius: radius },
+      chamfer: {radius: radius},
       render: {
         sprite: {
           texture:
@@ -174,14 +194,14 @@ class TagSimulation extends React.Component {
           yScale: 1,
         },
       },
-    });
+    })
     const tagMaintence = Bodies.rectangle(
       containerWidth / 2 - 242,
       420,
       168,
       56,
       {
-        chamfer: { radius: radius },
+        chamfer: {radius: radius},
         render: {
           sprite: {
             texture:
@@ -191,14 +211,14 @@ class TagSimulation extends React.Component {
           },
         },
       }
-    );
+    )
     const tagIntegration = Bodies.rectangle(
       containerWidth / 2 + 60,
       380,
       155,
       56,
       {
-        chamfer: { radius: radius },
+        chamfer: {radius: radius},
         render: {
           sprite: {
             texture:
@@ -208,9 +228,9 @@ class TagSimulation extends React.Component {
           },
         },
       }
-    );
+    )
     const tagMotion = Bodies.rectangle(containerWidth / 2, 360, 180, 56, {
-      chamfer: { radius: radius },
+      chamfer: {radius: radius},
       render: {
         sprite: {
           texture:
@@ -219,9 +239,9 @@ class TagSimulation extends React.Component {
           yScale: 1,
         },
       },
-    });
+    })
     const tagPay = Bodies.rectangle(containerWidth / 2 - 59, 260, 172, 56, {
-      chamfer: { radius: radius },
+      chamfer: {radius: radius},
       render: {
         sprite: {
           texture:
@@ -230,9 +250,9 @@ class TagSimulation extends React.Component {
           yScale: 1,
         },
       },
-    });
+    })
     const tagGsap = Bodies.rectangle(containerWidth / 2 - 59, 260, 115, 56, {
-      chamfer: { radius: radius },
+      chamfer: {radius: radius},
       render: {
         sprite: {
           texture:
@@ -241,9 +261,9 @@ class TagSimulation extends React.Component {
           yScale: 1,
         },
       },
-    });
+    })
     const tagFigma = Bodies.rectangle(containerWidth / 2 - 59, 260, 210, 56, {
-      chamfer: { radius: radius },
+      chamfer: {radius: radius},
       render: {
         sprite: {
           texture:
@@ -252,14 +272,14 @@ class TagSimulation extends React.Component {
           yScale: 1,
         },
       },
-    });
+    })
     const tagMigration = Bodies.rectangle(
       containerWidth / 2 - 59,
       260,
       145,
       56,
       {
-        chamfer: { radius: radius },
+        chamfer: {radius: radius},
         render: {
           sprite: {
             texture:
@@ -269,7 +289,7 @@ class TagSimulation extends React.Component {
           },
         },
       }
-    );
+    )
 
     World.add(engine.world, [
       ground,
@@ -291,7 +311,7 @@ class TagSimulation extends React.Component {
       tagGsap,
       tagFigma,
       tagMigration,
-    ]); // Add all bodies to the world
+    ]) // Add all bodies to the world
 
     // Mouse interaction setup
     const mouse = Mouse.create(render.canvas),
@@ -299,26 +319,26 @@ class TagSimulation extends React.Component {
         mouse: mouse,
         constraint: {
           stiffness: 0.2,
-          render: { visible: false },
+          render: {visible: false},
         },
-      });
+      })
 
-    World.add(engine.world, mouseConstraint);
-    render.mouse = mouse;
+    World.add(engine.world, mouseConstraint)
+    render.mouse = mouse
 
     // Custom logic for mouse events
     mouseConstraint.mouse.element.removeEventListener(
       "mousewheel",
       mouseConstraint.mouse.mousewheel
-    );
+    )
     mouseConstraint.mouse.element.removeEventListener(
       "DOMMouseScroll",
       mouseConstraint.mouse.mousewheel
-    );
+    )
 
     // Run the engine and renderer
-    Engine.run(engine);
-    Render.run(render);
+    Engine.run(engine)
+    Render.run(render)
 
     // Setup IntersectionObserver to initialize the simulation
     // const observer = new IntersectionObserver((entries) => {
@@ -336,13 +356,10 @@ class TagSimulation extends React.Component {
   render() {
     return (
       <>
-        <div
-          ref={this.sceneRef}
-          className="mx-auto w-90% md:w-[800px] h-[600px]"
-        />
+        <div ref={this.sceneRef} className="w-full h-[600px]" />
       </>
-    );
+    )
   }
 }
 
-export default TagSimulation;
+export default TagSimulation

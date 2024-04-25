@@ -1,12 +1,9 @@
-import TitleBig from "@/components/widgets/TitleBig";
-import PageWrap from "../layout/PageWrap";
-import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts";
-import Image from "next/image";
-import TextScene from "@/components/anim/TextScene";
-import MatterOne from "@/components/anim/MatterOne";
-import MatterTwo from "@/components/anim/MatterTwo";
-import MatterThree from "@/components/anim/MatterThree";
-import TagSimulation from "@/components/anim/TagSimulation";
+import TitleBig from "@/components/widgets/TitleBig"
+import PageWrap from "../layout/PageWrap"
+import {PortfolioPosts} from "@/components/portfolio/PortfolioPosts"
+import Image from "next/image"
+import TextScene from "@/components/anim/TextScene"
+import TagSimulation from "@/components/anim/TagSimulation"
 
 export default function MainView() {
   return (
@@ -28,8 +25,8 @@ export default function MainView() {
           <TitleBig title="I am a passionate front-end developer based in BG who also specializes in UI/UX" />
         </div>
 
-        <div className=" z-1 relative">
-          <div className="flex items-center gap-x-2 pb-4">
+        <div className=" z-1 relative pb-32">
+          <div className="flex items-center gap-x-2 pb-2">
             <div className="px-2 uppercase font-bold text-neutral-700 dark:text-neutral-500 text-sm">
               Latest projects
             </div>
@@ -45,17 +42,9 @@ export default function MainView() {
           </div>
           <PortfolioPosts />
         </div>
-
-        <div></div>
       </PageWrap>
-      <div id="tag-canvas">
-        {/* <MatterOne /> */}
-        {/* <MatterOne /> */}
-        {/* <MatterThree /> */}
-        <TagSimulation />
-      </div>
-
-      <div className="h-[100vh]"></div>
+      <TagSimulation />
+      {/* <div className="h-[100vh]"></div> */}
     </div>
-  );
+  )
 }
