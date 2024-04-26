@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -7,6 +7,12 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    extend: {
+      fontFamily: {
+        spacemono: ["var(--font-spacemono)"],
+        clashdisplay: ["var(--font-clashdisplay)"],
+      },
+    },
     container: {
       center: true,
       padding: {
@@ -19,5 +25,5 @@ const config: Config = {
   },
   darkMode: "class",
   plugins: [],
-}
-export default config
+};
+export default config;

@@ -1,15 +1,14 @@
 "use client"
-import * as THREE from "three"
-import { useRef, useEffect, useMemo } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
+import {MeshNormalMaterial} from "three"
+import {useRef, useEffect, useMemo} from "react"
+import {useGLTF, useAnimations} from "@react-three/drei"
 
-const normalMaterial = new THREE.MeshNormalMaterial()
+const normalMaterial = new MeshNormalMaterial()
 
-export function Fragments({ visible, ...props }) {
+export function Fragments({visible, ...props}) {
   const group = useRef()
-  const { scene, animations, materials } = useGLTF("/hello/hello-fragments.glb")
-  const { actions } = useAnimations(animations, group)
-  // Exchange inner material
+  const {scene, animations, materials} = useGLTF("/hello/hello-fragments.glb")
+  const {actions} = useAnimations(animations, group)
   useMemo(
     () =>
       scene.traverse(
@@ -33,7 +32,7 @@ export function Fragments({ visible, ...props }) {
 }
 
 export function Model(props) {
-  const { scene } = useGLTF("/hello/hello-text.glb")
+  const {scene} = useGLTF("/hello/hello-text.glb")
   return <primitive object={scene} {...props} />
 }
 
