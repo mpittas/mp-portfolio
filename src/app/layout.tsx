@@ -1,18 +1,58 @@
-import "./global.css"
-import React, {useEffect} from "react"
-import type {Metadata} from "next"
-import {Space_Mono} from "next/font/google"
-import Header from "@/components/sections/Header"
-import {ThemeProvider} from "next-themes"
-import {Analytics} from "@vercel/analytics/react"
-import {SpeedInsights} from "@vercel/speed-insights/next"
-import {baseUrl} from "@/seo/sitemap"
+import "./global.css";
+import React, { useEffect } from "react";
+import type { Metadata } from "next";
+
+import { Space_Mono } from "next/font/google";
+import localFont from "next/font/local";
+
+import Header from "@/components/sections/Header";
+import { ThemeProvider } from "next-themes";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { baseUrl } from "@/seo/sitemap";
 
 const spacemono = Space_Mono({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
-})
+  variable: "--font-spacemono",
+});
+
+const clashDisplay = localFont({
+  variable: "--font-clashdisplay",
+  src: [
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Extralight.woff2",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Semibold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -40,14 +80,20 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-}
+};
 
-const cx = (...classes) => classes.filter(Boolean).join(" ")
+const cx = (...classes) => classes.filter(Boolean).join(" ");
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`antialiased ${spacemono.className}`}>
+      <body
+        className={`antialiased ${clashDisplay.className} ${clashDisplay.variable}`}
+      >
         <ThemeProvider
           attribute="class"
           enableSystem={false}
@@ -69,5 +115,5 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
