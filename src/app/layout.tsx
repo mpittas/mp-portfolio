@@ -54,7 +54,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`antialiased ${spacemono.className}`}>
+      <body className={`antialiased ${spacemono.className}  text-lg`}>
         <ThemeProvider
           attribute="class"
           enableSystem={false}
