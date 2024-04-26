@@ -1,10 +1,10 @@
-import TitleBig from "@/components/widgets/TitleBig"
-import PageWrap from "../layout/PageWrap"
-import {PortfolioPosts} from "@/components/portfolio/PortfolioPosts"
-import Image from "next/image"
-import TextScene from "@/components/anim/TextScene"
-import TagSimulation from "@/components/anim/TagSimulation"
-import TagSimulationOld from "@/components/anim/TagSimulationOld"
+import TitleBig from "@/components/widgets/TitleBig";
+import PageWrap from "../layout/PageWrap";
+import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts";
+import Image from "next/image";
+import TextScene from "@/components/anim/TextScene";
+import TagSimulation from "@/components/anim/TagSimulation";
+import TagSimulationOld from "@/components/anim/TagSimulationOld";
 
 export default function MainView() {
   return (
@@ -43,10 +43,10 @@ export default function MainView() {
           </div>
           <PortfolioPosts />
         </div>
-        <TagSimulation />
+        {/* <TagSimulation /> */}
         <TagSimulationOld />
       </PageWrap>
       {/* <div className="h-[100vh]"></div> */}
     </div>
-  )
+  );
 }
