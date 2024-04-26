@@ -9,7 +9,7 @@ import TagSimulationOld from "@/components/anim/TagSimulationOld";
 export default function MainView() {
   return (
     <div>
-      <div className="h-[600px] relative mt-[-5rem]">
+      <div className="h-[500px] mt-[-4rem] relative pb-16">
         <TextScene />
         <div className="absolute bottom-[15%] left-[50%] z-[1] mix-blend-difference select-none">
           <Image
@@ -28,7 +28,7 @@ export default function MainView() {
 
         <div className=" z-1 relative pb-4">
           <div className="flex items-center gap-x-2 pb-2">
-            <div className="px-2 uppercase font-bold text-neutral-700 dark:text-neutral-500 text-sm">
+            <div className="px-2 uppercase font-semibold text-neutral-700 dark:text-neutral-500 text-sm">
               Latest projects
             </div>
             <div className="mix-blend-difference">
@@ -43,9 +43,15 @@ export default function MainView() {
           </div>
           <PortfolioPosts />
         </div>
-        {/* <TagSimulation /> */}
-        <TagSimulationOld />
       </PageWrap>
+      {/* <TagSimulation /> */}
+      <TagSimulationOld />
+
+      <div className="border-t-[1px] border-neutral-800">
+        <PageWrap className="text-sm pt-2 pb-2 text-center text-neutral-600 dark:text-neutral-500">
+          <div>All copyrights reserved © Marios Pittas 2024</div>
+        </PageWrap>
+      </div>
       {/* <div className="h-[100vh]"></div> */}
     </div>
   );

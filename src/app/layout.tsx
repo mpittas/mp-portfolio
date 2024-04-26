@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import type { Metadata } from "next";
 
 import { Space_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 import Header from "@/components/sections/Header";
 import { ThemeProvider } from "next-themes";
@@ -15,6 +16,42 @@ const spacemono = Space_Mono({
   weight: "400",
   display: "swap",
   variable: "--font-spacemono",
+});
+
+const clashDisplay = localFont({
+  variable: "--font-clashdisplay",
+  src: [
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Extralight.woff2",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Semibold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/clashdisplay/ClashDisplay-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
 });
 
 export const metadata: Metadata = {
@@ -54,7 +91,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`antialiased ${spacemono.className}  text-lg`}>
+      <body
+        className={`${clashDisplay.className} ${clashDisplay.variable} antialiased text-lg bg-neutral-200 text-neutral-800 dark:text-neutral-100 dark:bg-neutral-900 `}
+      >
         <ThemeProvider
           attribute="class"
           enableSystem={false}
@@ -63,7 +102,7 @@ export default function RootLayout({
           <div className="opacity-90">
             <div className="bg" />
           </div>
-          <main className="bg-neutral-200 text-neutral-800 dark:text-neutral-100 dark:bg-neutral-900 min-h-screen">
+          <main className="min-h-screen">
             <div className="relative">
               <div className="relative z-[1]">
                 <Header />

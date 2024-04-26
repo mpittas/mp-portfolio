@@ -27,6 +27,15 @@ body {
   user-select: none;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply leading-[1.175];
+}
+
 @keyframes bg-animation {
   0% {
     transform: translate(0, 0);
@@ -114,23 +123,23 @@ body {
 }
 
 .prose p {
-  @apply my-4 text-neutral-700 dark:text-neutral-300/[0.7];
+  @apply my-4 text-neutral-700 dark:text-neutral-300/[0.9] text-xl;
 }
 
 .prose h1 {
-  @apply text-4xl font-medium tracking-tight mt-12 mb-4;
+  @apply text-4xl font-medium mt-12 mb-4;
 }
 
 .prose h2 {
-  @apply text-xl font-medium tracking-tight mt-12 mb-4;
+  @apply text-3xl font-medium mt-12 mb-4;
 }
 
 .prose h3 {
-  @apply text-xl font-medium tracking-tight mt-12 mb-4;
+  @apply text-xl font-medium mt-12 mb-4;
 }
 
 .prose h4 {
-  @apply text-lg font-medium tracking-tight mt-12 mb-4;
+  @apply text-lg font-medium mt-12 mb-4;
 }
 
 .prose strong {

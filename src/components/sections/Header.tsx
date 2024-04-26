@@ -29,54 +29,49 @@ export default function Header() {
       </CodeErrorMsg> */}
       <div className="header py-6">
         <div className="container mx-auto">
-          <div className="flex justify-between items-center">
-            <div className="flex gap-x-10 items-center">
-              <div className="opacity-90">
-                <Link href="/">
-                  <Image
-                    src="/images/logo-dark.svg"
-                    width={90}
-                    height={20}
-                    alt="Picture of the author"
-                    className="relative top-1 dark:hidden"
-                  />
-                  <Image
-                    src="/images/logo-light.svg"
-                    width={90}
-                    height={20}
-                    alt="Picture of the author"
-                    className="relative top-1 hidden dark:block"
-                  />
-                </Link>
-              </div>
-
-              <nav className="hidden md:flex gap-x-10">
-                {Object.entries(navItems).map(([path, { name }]) => {
-                  return (
-                    <Link
-                      key={path}
-                      href={path}
-                      className=" transition-colors flex align-middle"
-                    >
-                      <HackingText text={name} />
-                    </Link>
-                  );
-                })}
-              </nav>
+          <div className="flex justify-between gap-x-10 text-right">
+            <div className="opacity-90 relative top-[-5px]">
+              <Link href="/">
+                <Image
+                  src="/images/logo-dark.svg"
+                  width={90}
+                  height={20}
+                  alt="Picture of the author"
+                  className="relative top-1 dark:hidden"
+                />
+                <Image
+                  src="/images/logo-light.svg"
+                  width={90}
+                  height={20}
+                  alt="Picture of the author"
+                  className="relative top-1 hidden dark:block"
+                />
+              </Link>
             </div>
 
-            <button
-              aria-label="theme toggler"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="transition-colors"
-            >
-              <span className="hidden dark:block">
-                <HackingText text="Go light" />
-              </span>
-              <span className="dark:hidden">
-                <HackingText text="Dark Side" />
-              </span>
-            </button>
+            <nav className="hidden md:flex flex-col gap-1">
+              {Object.entries(navItems).map(([path, { name }]) => {
+                return (
+                  <div>
+                    <Link key={path} href={path} className=" transition-colors">
+                      <HackingText text={name} />
+                    </Link>
+                  </div>
+                );
+              })}
+              <button
+                aria-label="theme toggler"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="transition-colors text-right"
+              >
+                <span className="hidden dark:block">
+                  <HackingText text="Go light" />
+                </span>
+                <span className="dark:hidden">
+                  <HackingText text="Dark Side" />
+                </span>
+              </button>
+            </nav>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ interface TitleBigProps {
 export default function TitleBig({ title = "Title here" }: TitleBigProps) {
   return (
     <div className="header">
-      <h1 className="text-2xl leading-snug md:text-[42px] font-medium font-clashdisplay">
+      <h1 className="md:text-[50px] text-neutral-200/[0.9] font-medium font-clashdisplay">
         {title}
       </h1>
     </div>
