@@ -1,23 +1,23 @@
-import { notFound } from "next/navigation"
-import { CustomMDX } from "@/components/custom/Mdx"
-import { formatDate, getPortfolioPosts } from "@/utils/utils"
-import { baseUrl } from "@/seo/sitemap"
-import PageWrap from "@/components/layout/PageWrap"
-import Image from "next/image"
+import { notFound } from "next/navigation";
+import { CustomMDX } from "@/components/custom/Mdx";
+import { formatDate, getPortfolioPosts } from "@/utils/utils";
+import { baseUrl } from "@/seo/sitemap";
+import PageWrap from "@/components/layout/PageWrap";
+import Image from "next/image";
 
 // Temp
 export async function generateStaticParams() {
-  let posts = getPortfolioPosts()
+  let posts = getPortfolioPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
-  }))
+  }));
 }
 
 export function generateMetadata({ params }) {
-  let post = getPortfolioPosts().find((post) => post.slug === params.slug)
+  let post = getPortfolioPosts().find((post) => post.slug === params.slug);
   if (!post) {
-    return
+    return;
   }
 
   let {
@@ -26,10 +26,10 @@ export function generateMetadata({ params }) {
     summary: description,
     category,
     image,
-  } = post.metadata
+  } = post.metadata;
   let ogImage = image
     ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -52,14 +52,14 @@ export function generateMetadata({ params }) {
       description,
       images: [ogImage],
     },
-  }
+  };
 }
 
 export default function Portfolio({ params }) {
-  let post = getPortfolioPosts().find((post) => post.slug === params.slug)
+  let post = getPortfolioPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -96,9 +96,7 @@ export default function Portfolio({ params }) {
             className="object-cover"
           />
         </div>
-        <h1 className="title font-semibold text-3xl tracking-tighter">
-          {post.metadata.title}
-        </h1>
+        <h1 className="title text-4xl">{post.metadata.title}</h1>
         <div className="flex justify-between items-center mt-2 mb-8 text-sm text-neutral-400">
           <p className="text-sm ">{formatDate(post.metadata.publishedAt)}</p>
         </div>
@@ -107,5 +105,5 @@ export default function Portfolio({ params }) {
         </article>
       </section>
     </PageWrap>
-  )
+  );
 }

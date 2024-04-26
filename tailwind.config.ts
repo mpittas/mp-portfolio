@@ -7,6 +7,12 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    extend: {
+      fontFamily: {
+        spacemono: ["var(--font-spacemono)"],
+        clashdisplay: ["var(--font-clashdisplay)"],
+      },
+    },
     container: {
       center: true,
       padding: {

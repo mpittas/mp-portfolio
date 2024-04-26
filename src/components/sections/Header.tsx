@@ -31,7 +31,7 @@ export default function Header() {
         <div className="container mx-auto">
           <div className="flex justify-between items-center">
             <div className="flex gap-x-10 items-center">
-              <div className="opacity-90">
+              <div className="opacity-90 relative top-[-5px]">
                 <Link href="/">
                   <Image
                     src="/images/logo-dark.svg"
