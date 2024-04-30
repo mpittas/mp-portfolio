@@ -1,10 +1,10 @@
-import TitleBig from "@/components/widgets/TitleBig";
-import PageWrap from "../layout/PageWrap";
-import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts";
-import Image from "next/image";
-import TextScene from "@/components/anim/TextScene";
-import TagSimulation from "@/components/anim/TagSimulation";
-import TagSimulationOld from "@/components/anim/TagSimulationOld";
+import TitleBig from "@/components/widgets/TitleBig"
+import PageWrap from "../layout/PageWrap"
+import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts"
+import Image from "next/image"
+import TextScene from "@/components/anim/TextScene"
+import TagSimulation from "@/components/anim/TagSimulation"
+import TagSimulationOld from "@/components/anim/TagSimulationOld"
 
 export default function MainView() {
   return (
@@ -44,15 +44,10 @@ export default function MainView() {
           <PortfolioPosts />
         </div>
       </PageWrap>
+      <TagSimulation />
       {/* <TagSimulation /> */}
-      <TagSimulationOld />
 
-      <div className="border-t-[1px] border-neutral-800">
-        <PageWrap className="text-sm pt-2 pb-2 text-center text-neutral-600 dark:text-neutral-500">
-          <div>All copyrights reserved © Marios Pittas 2024</div>
-        </PageWrap>
-      </div>
       {/* <div className="h-[100vh]"></div> */}
     </div>
-  );
+  )
 }

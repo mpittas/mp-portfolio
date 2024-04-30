@@ -9,7 +9,7 @@ class TagSimulation extends React.Component {
   }
 
   componentDidMount() {
-    const {Engine, Render, World, Bodies, Mouse, MouseConstraint, Events} =
+    const { Engine, Render, World, Bodies, Mouse, MouseConstraint, Events } =
       Matter
     const engine = Engine.create()
     const containerElement = this.sceneRef.current
@@ -84,7 +84,7 @@ class TagSimulation extends React.Component {
     const radius = 20
 
     const tagUiUx = Bodies.rectangle(containerWidth / 2 + 150, 500, 164, 56, {
-      chamfer: {radius: radius},
+      chamfer: { radius: radius },
       render: {
         sprite: {
           texture: "/matter/ui-ux.svg",
@@ -99,7 +99,7 @@ class TagSimulation extends React.Component {
       240,
       56,
       {
-        chamfer: {radius: radius},
+        chamfer: { radius: radius },
         render: {
           sprite: {
             texture: "/matter/webflow.svg",
@@ -115,7 +115,7 @@ class TagSimulation extends React.Component {
       200,
       56,
       {
-        chamfer: {radius: radius},
+        chamfer: { radius: radius },
         render: {
           sprite: {
             texture: "/matter/wordpress.svg",
@@ -131,7 +131,7 @@ class TagSimulation extends React.Component {
       160,
       56,
       {
-        chamfer: {radius: radius},
+        chamfer: { radius: radius },
         render: {
           sprite: {
             texture: "/matter/javascript.svg",
@@ -147,7 +147,7 @@ class TagSimulation extends React.Component {
       248,
       56,
       {
-        chamfer: {radius: radius},
+        chamfer: { radius: radius },
         render: {
           sprite: {
             texture: "/matter/react.svg",
@@ -158,7 +158,7 @@ class TagSimulation extends React.Component {
       }
     )
     const tagSass = Bodies.rectangle(containerWidth / 2 + 174, 490, 105, 56, {
-      chamfer: {radius: radius},
+      chamfer: { radius: radius },
       render: {
         sprite: {
           texture: "/matter/vuejs.svg",
@@ -168,7 +168,7 @@ class TagSimulation extends React.Component {
       },
     })
     const tagWeb = Bodies.rectangle(containerWidth / 2 - 142, 440, 186, 56, {
-      chamfer: {radius: radius},
+      chamfer: { radius: radius },
       render: {
         sprite: {
           texture: "/matter/css.svg",
@@ -178,7 +178,7 @@ class TagSimulation extends React.Component {
       },
     })
     const tagStartup = Bodies.rectangle(containerWidth / 2 - 10, 260, 128, 56, {
-      chamfer: {radius: radius},
+      chamfer: { radius: radius },
       render: {
         sprite: {
           texture: "/matter/animations.svg",
@@ -193,7 +193,7 @@ class TagSimulation extends React.Component {
       168,
       56,
       {
-        chamfer: {radius: radius},
+        chamfer: { radius: radius },
         render: {
           sprite: {
             texture: "/matter/responsive.svg",
@@ -209,7 +209,7 @@ class TagSimulation extends React.Component {
       155,
       56,
       {
-        chamfer: {radius: radius},
+        chamfer: { radius: radius },
         render: {
           sprite: {
             texture: "/matter/figma.svg",
@@ -220,7 +220,7 @@ class TagSimulation extends React.Component {
       }
     )
     const tagMotion = Bodies.rectangle(containerWidth / 2, 360, 180, 56, {
-      chamfer: {radius: radius},
+      chamfer: { radius: radius },
       render: {
         sprite: {
           texture: "/matter/photoshop.svg",
@@ -230,7 +230,7 @@ class TagSimulation extends React.Component {
       },
     })
     const tagPay = Bodies.rectangle(containerWidth / 2 - 59, 260, 172, 56, {
-      chamfer: {radius: radius},
+      chamfer: { radius: radius },
       render: {
         sprite: {
           texture: "/matter/api.svg",
@@ -240,7 +240,7 @@ class TagSimulation extends React.Component {
       },
     })
     const tagGsap = Bodies.rectangle(containerWidth / 2 - 59, 260, 115, 56, {
-      chamfer: {radius: radius},
+      chamfer: { radius: radius },
       render: {
         sprite: {
           texture: "/matter/adobe-suite.svg",
@@ -250,7 +250,7 @@ class TagSimulation extends React.Component {
       },
     })
     const tagFigma = Bodies.rectangle(containerWidth / 2 - 59, 260, 210, 56, {
-      chamfer: {radius: radius},
+      chamfer: { radius: radius },
       render: {
         sprite: {
           texture: "/matter/git.svg",
@@ -265,7 +265,7 @@ class TagSimulation extends React.Component {
       145,
       56,
       {
-        chamfer: {radius: radius},
+        chamfer: { radius: radius },
         render: {
           sprite: {
             texture: "/matter/typescript.svg",
@@ -304,7 +304,7 @@ class TagSimulation extends React.Component {
         mouse: mouse,
         constraint: {
           stiffness: 0.2,
-          render: {visible: false},
+          render: { visible: false },
         },
       })
 
@@ -341,7 +341,7 @@ class TagSimulation extends React.Component {
   render() {
     return (
       <>
-        <div ref={this.sceneRef} className="w-full h-[600px]" />
+        <div ref={this.sceneRef} className="w-full h-[400px]" />
       </>
     )
   }

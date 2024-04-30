@@ -1,23 +1,23 @@
-import { notFound } from "next/navigation";
-import { CustomMDX } from "@/components/custom/Mdx";
-import { formatDate, getPortfolioPosts } from "@/utils/utils";
-import { baseUrl } from "@/seo/sitemap";
-import PageWrap from "@/components/layout/PageWrap";
-import Image from "next/image";
+import { notFound } from "next/navigation"
+import { CustomMDX } from "@/components/custom/Mdx"
+import { formatDate, getPortfolioPosts } from "@/utils/utils"
+import { baseUrl } from "@/seo/sitemap"
+import PageWrap from "@/components/layout/PageWrap"
+import Image from "next/image"
 
 // Temp
 export async function generateStaticParams() {
-  let posts = getPortfolioPosts();
+  let posts = getPortfolioPosts()
 
   return posts.map((post) => ({
     slug: post.slug,
-  }));
+  }))
 }
 
 export function generateMetadata({ params }) {
-  let post = getPortfolioPosts().find((post) => post.slug === params.slug);
+  let post = getPortfolioPosts().find((post) => post.slug === params.slug)
   if (!post) {
-    return;
+    return
   }
 
   let {
@@ -26,10 +26,10 @@ export function generateMetadata({ params }) {
     summary: description,
     category,
     image,
-  } = post.metadata;
+  } = post.metadata
   let ogImage = image
     ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
   return {
     title,
@@ -52,19 +52,19 @@ export function generateMetadata({ params }) {
       description,
       images: [ogImage],
     },
-  };
+  }
 }
 
 export default function Portfolio({ params }) {
-  let post = getPortfolioPosts().find((post) => post.slug === params.slug);
+  let post = getPortfolioPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
-    notFound();
+    notFound()
   }
 
   return (
     <PageWrap>
-      <section>
+      <section className="pb-14">
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -109,5 +109,5 @@ export default function Portfolio({ params }) {
         </article>
       </section>
     </PageWrap>
-  );
+  )
 }
