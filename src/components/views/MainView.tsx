@@ -44,7 +44,7 @@ export default function MainView() {
           <PortfolioPosts />
         </div>
       </PageWrap>
-      <TagSimulation />
+      {/* <TagSimulation /> */}
       {/* <TagSimulation /> */}
 
       {/* <div className="h-[100vh]"></div> */}
