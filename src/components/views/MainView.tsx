@@ -10,7 +10,7 @@ export default function MainView() {
   return (
     <div>
       <div className="h-[500px] mt-[-4rem] relative pb-16">
-        <TextScene />
+        {/* <TextScene /> */}
         <div className="absolute bottom-[15%] left-[50%] z-[1] mix-blend-difference select-none">
           <Image
             src="/images/click-me-hd.svg"
