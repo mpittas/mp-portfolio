@@ -1,18 +1,18 @@
-import Link from "next/link";
-import { formatDate } from "@/utils/utils";
-import Badge from "@/components/core/Badge";
+import Link from "next/link"
+import { formatDate } from "@/utils/utils"
+import Badge from "@/components/core/Badge"
 
 type PortfolioPostsItemsProps = {
   allPortfolios: {
     metadata: {
-      publishedAt: string;
-      title: string;
-      category: string;
-      featuredImage: string;
-    };
-    slug: string;
-  }[];
-};
+      publishedAt: string
+      title: string
+      category: string
+      featuredImage: string
+    }
+    slug: string
+  }[]
+}
 
 const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
   return (
@@ -20,7 +20,7 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
       {allPortfolios.map((post) => (
         <Link
           key={post.slug}
-          className="flex justify-between items-center p-2 hover:bg-neutral-100/[0.6] dark:hover:bg-neutral-800 group rounded-md"
+          className="flex flex-col sm:flex-row justify-start sm:justify-between items-center p-2 hover:bg-neutral-100/[0.6] dark:hover:bg-neutral-800 group rounded-md"
           href={`/portfolio/${post.slug}`}
         >
           <div className="flex items-center  gap-x-2 text-xl">
@@ -33,7 +33,7 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
         </Link>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default PortfolioPostsItems;
+export default PortfolioPostsItems
