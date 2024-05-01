@@ -12,12 +12,8 @@ export default function MainView() {
       {/* <HelloText /> */}
       <PageWrap>
         <div className="relative pb-32">
-          <div className="max-w-[500px]">
+          <div className="max-w-[700px]">
             <TitleBig title="I am a passionate front-end developer based in BG who also specializes in UI/UX" />
-          </div>
-
-          <div className="absolute top-[6%] right-[-15%]">
-            <AnimatedCircles />
           </div>
         </div>
 
@@ -41,6 +37,9 @@ export default function MainView() {
       </PageWrap>
       {/* <TagSimulation /> */}
       {/* <TagSimulation /> */}
+      <div className="absolute top-[-5%] right-[0%]">
+        <AnimatedCircles />
+      </div>
     </div>
   )
 }

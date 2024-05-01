@@ -23,7 +23,7 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
           className="flex flex-col sm:flex-row justify-start sm:justify-between items-center p-2 hover:bg-neutral-100/[0.6] dark:hover:bg-neutral-800 group rounded-md"
           href={`/portfolio/${post.slug}`}
         >
-          <div className="flex items-center  gap-x-2 text-xl">
+          <div className="flex items-center gap-x-2 text-xl">
             {post.metadata.title}
             <Badge title={post.metadata.category} />
           </div>
