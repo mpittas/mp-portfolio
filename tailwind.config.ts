@@ -19,7 +19,7 @@ const config: Config = {
         DEFAULT: "1.5rem",
       },
       screens: {
-        xl: "860px",
+        xl: "960px",
       },
     },
   },

@@ -9,6 +9,7 @@
 body {
   margin: 0;
   overflow-x: hidden;
+  @apply tracking-wide;
 }
 
 .bg {
@@ -123,7 +124,7 @@ h6 {
 }
 
 .prose p {
-  @apply my-4 text-neutral-700 dark:text-neutral-300/[0.9] text-xl;
+  @apply my-4 text-neutral-700 dark:text-neutral-300 text-2xl leading-normal;
 }
 
 .prose h1 {
