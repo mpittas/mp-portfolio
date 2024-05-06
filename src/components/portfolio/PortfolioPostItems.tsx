@@ -20,14 +20,12 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
       {allPortfolios.map((post) => (
         <Link
           key={post.slug}
-          className="flex flex-col sm:flex-row justify-start sm:justify-between items-center p-2 hover:bg-neutral-100/[0.6] dark:hover:bg-neutral-800 group rounded-md"
+          className="flex flex-col sm:flex-row justify-start sm:justify-between items-center p-1 hover:bg-neutral-100/[0.6] dark:hover:bg-neutral-800 group rounded-md"
           href={`/portfolio/${post.slug}`}
         >
-          <div className="flex items-center gap-x-2 text-xl font-medium">
-            {post.metadata.title}
-            <Badge title={post.metadata.category} />
-          </div>
+          <div className=" text-xl">{post.metadata.title}</div>
           <div className="tabular-nums flex items-center gap-x-4">
+            <Badge title={post.metadata.category} />
             {formatDate(post.metadata.publishedAt, false, true)}
           </div>
         </Link>

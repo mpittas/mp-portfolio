@@ -148,11 +148,16 @@ h6 {
 }
 
 .prose ul {
-  @apply list-disc pl-6;
+  @apply list-disc pl-6 text-2xl leading-normal;
 }
 
 .prose ol {
-  @apply list-decimal pl-6;
+  @apply list-decimal pl-6 text-2xl leading-normal;
+}
+
+.prose ul li,
+.prose ol li {
+  @apply mb-2;
 }
 
 .prose > :first-child {

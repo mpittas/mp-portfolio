@@ -1,23 +1,23 @@
-import { notFound } from "next/navigation"
-import { CustomMDX } from "@/components/custom/Mdx"
-import { formatDate, getPortfolioPosts } from "@/utils/utils"
-import { baseUrl } from "@/seo/sitemap"
-import PageWrap from "@/components/layout/PageWrap"
-import Image from "next/image"
+import { notFound } from "next/navigation";
+import { CustomMDX } from "@/components/custom/Mdx";
+import { formatDate, getPortfolioPosts } from "@/utils/utils";
+import { baseUrl } from "@/seo/sitemap";
+import PageWrap from "@/components/layout/PageWrap";
+import Image from "next/image";
 
 // Temp
 export async function generateStaticParams() {
-  let posts = getPortfolioPosts()
+  let posts = getPortfolioPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
-  }))
+  }));
 }
 
 export function generateMetadata({ params }) {
-  let post = getPortfolioPosts().find((post) => post.slug === params.slug)
+  let post = getPortfolioPosts().find((post) => post.slug === params.slug);
   if (!post) {
-    return
+    return;
   }
 
   let {
@@ -26,10 +26,10 @@ export function generateMetadata({ params }) {
     summary: description,
     category,
     image,
-  } = post.metadata
+  } = post.metadata;
   let ogImage = image
     ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -52,14 +52,14 @@ export function generateMetadata({ params }) {
       description,
       images: [ogImage],
     },
-  }
+  };
 }
 
 export default function Portfolio({ params }) {
-  let post = getPortfolioPosts().find((post) => post.slug === params.slug)
+  let post = getPortfolioPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -88,16 +88,16 @@ export default function Portfolio({ params }) {
             }),
           }}
         />
-        <div className="relative h-[300px] bg-neutral-700 mb-12 rounded-3xl overflow-hidden">
+        {/* <div className="relative h-[300px] bg-neutral-700 mb-12 rounded-3xl overflow-hidden">
           <Image
-            src={`/posts/${post.metadata.featuredImage}`}
+            src={`/projects/${post.metadata.featuredImage}`}
             alt={post.metadata.title}
             fill={true}
             className="object-cover"
           />
-        </div>
-        <div className=" border-b-[1px] border-neutral-300 dark:border-neutral-700 pb-16 mb-8">
-          <h1 className="title font-medium text-5xl mb-4">
+        </div> */}
+        <div className=" border-b-[1px] border-neutral-400/[0.5] dark:border-neutral-700 pb-16 mb-8">
+          <h1 className="title font-medium text-6xl mb-4">
             {post.metadata.title}
           </h1>
           <div className="flex justify-between items-center text-sm text-neutral-400">
@@ -109,5 +109,5 @@ export default function Portfolio({ params }) {
         </article>
       </section>
     </PageWrap>
-  )
+  );
 }
