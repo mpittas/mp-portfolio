@@ -124,23 +124,23 @@ h6 {
 }
 
 .prose p {
-  @apply my-4 text-neutral-700 dark:text-neutral-300 text-2xl leading-normal;
+  @apply mb-8 text-neutral-700 dark:text-neutral-300 text-2xl leading-normal;
 }
 
 .prose h1 {
-  @apply text-4xl font-medium mt-12 mb-4;
+  @apply text-5xl font-medium mt-16 mb-8;
 }
 
 .prose h2 {
-  @apply text-3xl font-medium mt-12 mb-4;
+  @apply text-4xl font-medium mt-16 mb-8;
 }
 
 .prose h3 {
-  @apply text-xl font-medium mt-12 mb-4;
+  @apply text-xl font-medium mt-16 mb-8;
 }
 
 .prose h4 {
-  @apply text-lg font-medium mt-12 mb-4;
+  @apply text-lg font-medium mt-16 mb-8;
 }
 
 .prose strong {
@@ -158,12 +158,6 @@ h6 {
 .prose ul li,
 .prose ol li {
   @apply mb-2;
-}
-
-.prose > :first-child {
-  /* Override removing top margin, causing layout shift */
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
 }
 
 pre::-webkit-scrollbar {

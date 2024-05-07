@@ -1,23 +1,23 @@
-import "./global.css";
-import React, { useEffect } from "react";
-import type { Metadata } from "next";
+import "./global.css"
+import React, { useEffect } from "react"
+import type { Metadata } from "next"
 
-import { Space_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Space_Mono } from "next/font/google"
+import localFont from "next/font/local"
 
-import Header from "@/components/sections/Header";
-import Footer from "@/components/sections/Footer";
-import { ThemeProvider } from "next-themes";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { baseUrl } from "@/seo/sitemap";
+import Header from "@/components/sections/Header"
+import Footer from "@/components/sections/Footer"
+import { ThemeProvider } from "next-themes"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { baseUrl } from "@/seo/sitemap"
 
 const spacemono = Space_Mono({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
   variable: "--font-spacemono",
-});
+})
 
 const clashDisplay = localFont({
   variable: "--font-clashdisplay",
@@ -53,13 +53,13 @@ const clashDisplay = localFont({
       style: "normal",
     },
   ],
-});
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Marios Pittas ☉ Portfolio",
-    template: "%s | Marios Pittas ☉ Portfolio",
+    default: "Marios Pittas ☉",
+    template: "%s | Marios Pittas ☉",
   },
   description: "This is my portfolio.",
   openGraph: {
@@ -81,14 +81,14 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-};
+}
 
-const cx = (...classes) => classes.filter(Boolean).join(" ");
+const cx = (...classes) => classes.filter(Boolean).join(" ")
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -117,5 +117,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
