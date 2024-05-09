@@ -8,7 +8,7 @@ export default function HelloText() {
       <div className="absolute bottom-[15%] left-[50%] z-[1] mix-blend-difference select-none">
         <Image
           src="/images/click-me-hd.svg"
-          width={130}
+          width={110}
           height={20}
           alt="arrow-right"
           className="opacity-80"
