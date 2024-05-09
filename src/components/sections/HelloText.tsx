@@ -3,7 +3,7 @@ import TextScene from "@/components/anim/TextScene"
 
 export default function HelloText() {
   return (
-    <div className="h-[500px] mt-[-4rem] relative pb-16">
+    <div className="h-[500px] mt-[-4rem] relative">
       <TextScene />
       <div className="absolute bottom-[15%] left-[50%] z-[1] mix-blend-difference select-none">
         <Image

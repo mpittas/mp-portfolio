@@ -1,23 +1,24 @@
-import TitleBig from "@/components/widgets/TitleBig";
-import PageWrap from "../layout/PageWrap";
-import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts";
-import Image from "next/image";
-import AnimatedCircles from "@/components/anim/AnimatedCircles";
-import TagSimulation from "@/components/anim/TagSimulation";
-import TagSimulationOld from "@/components/anim/TagSimulationOld";
+import TitleBig from "@/components/widgets/TitleBig"
+import PageWrap from "../layout/PageWrap"
+import {PortfolioPosts} from "@/components/portfolio/PortfolioPosts"
+import Image from "next/image"
+import HelloText from "@/components/sections/HelloText"
+import AnimatedCircles from "@/components/anim/AnimatedCircles"
+import TagSimulation from "@/components/anim/TagSimulation"
+import TagSimulationOld from "@/components/anim/TagSimulationOld"
 
 export default function MainView() {
   return (
     <div>
-      {/* <HelloText /> */}
+      <HelloText />
       <PageWrap>
         <div className="relative pb-32">
-          <div className="max-w-[700px]">
+          <div className="max-w-[700px] mx-auto text-center">
             <TitleBig title="I am a passionate front-end developer based in BG who also specializes in UI/UX" />
           </div>
         </div>
 
-        <div className=" z-1 relative pb-32">
+        <div className=" z-1 relative">
           <div className="flex items-center gap-x-2 pb-4">
             <div className="px-2 uppercase font-semibold text-neutral-400 dark:text-neutral-600">
               Latest projects
@@ -36,10 +37,10 @@ export default function MainView() {
         </div>
       </PageWrap>
       {/* <TagSimulation /> */}
-      {/* <TagSimulation /> */}
+      <TagSimulation />
       {/* <div className="absolute top-[-5%] right-[0%]">
         <AnimatedCircles />
       </div> */}
     </div>
-  );
+  )
 }

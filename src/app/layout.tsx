@@ -1,16 +1,16 @@
 import "./global.css"
-import React, { useEffect } from "react"
-import type { Metadata } from "next"
+import React, {useEffect} from "react"
+import type {Metadata} from "next"
 
-import { Space_Mono } from "next/font/google"
+import {Space_Mono} from "next/font/google"
 import localFont from "next/font/local"
 
 import Header from "@/components/sections/Header"
 import Footer from "@/components/sections/Footer"
-import { ThemeProvider } from "next-themes"
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { baseUrl } from "@/seo/sitemap"
+import {ThemeProvider} from "next-themes"
+import {Analytics} from "@vercel/analytics/react"
+import {SpeedInsights} from "@vercel/speed-insights/next"
+import {baseUrl} from "@/seo/sitemap"
 
 const spacemono = Space_Mono({
   subsets: ["latin"],
@@ -85,15 +85,11 @@ export const metadata: Metadata = {
 
 const cx = (...classes) => classes.filter(Boolean).join(" ")
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${clashDisplay.className} ${clashDisplay.variable} antialiased text-lg bg-neutral-200 text-neutral-800 dark:text-neutral-100 dark:bg-neutral-900 `}
+        className={`${clashDisplay.className} ${clashDisplay.variable} antialiased text-lg bg-neutral-200 text-neutral-900 dark:text-neutral-100 dark:bg-neutral-900 `}
       >
         <ThemeProvider
           attribute="class"

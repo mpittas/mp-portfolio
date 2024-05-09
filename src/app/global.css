@@ -73,6 +73,10 @@ h6 {
   }
 }
 
+.prose {
+  @apply text-neutral-900 dark:text-neutral-300;
+}
+
 .prose .anchor {
   @apply absolute invisible no-underline;
 
@@ -124,7 +128,7 @@ h6 {
 }
 
 .prose p {
-  @apply mb-8 text-neutral-700 dark:text-neutral-300 text-2xl leading-normal;
+  @apply mb-8 text-2xl leading-normal;
 }
 
 .prose h1 {
