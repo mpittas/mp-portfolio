@@ -1,25 +1,25 @@
-import "./global.css";
-import React, { useEffect } from "react";
-import type { Metadata } from "next";
+import "./global.css"
+import React, { useEffect } from "react"
+import type { Metadata } from "next"
 
-import { Space_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Space_Mono } from "next/font/google"
+import localFont from "next/font/local"
 
-import Header from "@/components/sections/Header";
-import Footer from "@/components/sections/Footer";
-import { ThemeProvider } from "next-themes";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { baseUrl } from "@/seo/sitemap";
+import Header from "@/components/sections/Header"
+import Footer from "@/components/sections/Footer"
+import { ThemeProvider } from "next-themes"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { baseUrl } from "@/seo/sitemap"
 
-import BlurryBackground from "@/components/anim/BlurryBackground";
+import BlurryBackground from "@/components/anim/BlurryBackground"
 
 const spacemono = Space_Mono({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
   variable: "--font-spacemono",
-});
+})
 
 const clashDisplay = localFont({
   variable: "--font-clashdisplay",
@@ -55,7 +55,7 @@ const clashDisplay = localFont({
       style: "normal",
     },
   ],
-});
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -83,19 +83,19 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-};
+}
 
-const cx = (...classes) => classes.filter(Boolean).join(" ");
+const cx = (...classes) => classes.filter(Boolean).join(" ")
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${clashDisplay.className} ${clashDisplay.variable} antialiased text-lg bg-neutral-100 text-neutral-900 dark:text-neutral-100 dark:bg-neutral-900 `}
+        className={`${clashDisplay.className} ${clashDisplay.variable} antialiased text-lg bg-neutral-200 text-neutral-900 dark:text-neutral-100 dark:bg-neutral-900 `}
       >
         <ThemeProvider
           attribute="class"
@@ -105,7 +105,7 @@ export default function RootLayout({
           <div className="hidden xl:block">
             <BlurryBackground />
           </div>
-          <div className="opacity-90">
+          <div className="opacity-100">
             <div className="bg" />
           </div>
           <main className="min-h-screen">
@@ -122,5 +122,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

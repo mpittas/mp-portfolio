@@ -20,7 +20,7 @@ const PortfolioPostsItems = ({ allPortfolios }: PortfolioPostsItemsProps) => {
       {allPortfolios.map((post) => (
         <Link
           key={post.slug}
-          className="flex flex-row justify-between items-center p-1 hover:bg-neutral-50/[0.4] dark:hover:bg-neutral-950/[0.4] group rounded-md"
+          className="flex flex-row justify-between items-center p-1 hover:bg-neutral-50/[0.4] dark:hover:bg-neutral-950/[1] group rounded-md"
           href={`/portfolio/${post.slug}`}
         >
           <div className="font-medium text-md sm:text-xl">

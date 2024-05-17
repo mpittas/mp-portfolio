@@ -7,11 +7,18 @@ import { Model, Fragments } from "./Text"
 import { useTheme } from "next-themes"
 
 function Scene() {
-  const { theme, setTheme } = useTheme()
+  const { theme } = useTheme()
   const vec = new THREE.Vector3()
   const [clicked, setClicked] = useState(false)
   const [hovered, setHovered] = useState(false)
   useCursor(hovered)
+
+  const [intensity, setIntensity] = useState(theme === "dark" ? 40 : 1)
+
+  useEffect(() => {
+    console.log(`Scene theme changed: ${theme}`)
+    setIntensity(theme === "dark" ? 40 : 1)
+  }, [theme])
 
   useFrame((state) => {
     state.camera.position.lerp(
@@ -23,6 +30,11 @@ function Scene() {
 
   return (
     <group>
+      <directionalLight
+        position={[0, 3, 5]}
+        color="#ffffff"
+        intensity={intensity}
+      />
       <Fragments visible={clicked} />
       <Model
         visible={!clicked}
@@ -35,9 +47,9 @@ function Scene() {
 }
 
 export default function TextScene() {
-  const { theme, setTheme } = useTheme()
-  const intensity = theme === "dark" ? 24 : 1
+  const { theme } = useTheme()
   const [isMobile, setIsMobile] = useState(false)
+  const [intensity, setIntensity] = useState(theme === "dark" ? 0 : 1)
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,6 +61,11 @@ export default function TextScene() {
 
     return () => window.removeEventListener("resize", handleResize)
   }, [])
+
+  useEffect(() => {
+    console.log(`TextScene theme changed: ${theme}`)
+    setIntensity(theme === "dark" ? 40 : 1)
+  }, [theme])
 
   return (
     <Canvas dpr={[1, 2]} orthographic camera={{ zoom: isMobile ? 180 : 260 }}>

@@ -1,69 +1,46 @@
+// BlurryBg2.tsx
 "use client"
 import React, { useEffect, useRef } from "react"
-import { throttle } from "lodash"
+import { useTheme } from "next-themes"
 
-const BlurryBackground: React.FC = () => {
+export default function BlurryBg2() {
+  const { theme } = useTheme()
   const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  const drawBlurryCircle = (
-    ctx: CanvasRenderingContext2D,
-    mouseX: number,
-    mouseY: number
-  ) => {
-    const width = ctx.canvas.width
-    const height = ctx.canvas.height
-
-    // Clear the canvas
-    ctx.clearRect(0, 0, width, height)
-
-    // Set the style for the blurred circle
-    ctx.filter = "blur(220px)"
-    ctx.fillStyle = "rgba(242,82,24,1)" // Soft black circle, change color as needed
-
-    // Draw the circle at mouse position
-    ctx.beginPath()
-    ctx.arc(mouseX, mouseY, 200, 0, 2 * Math.PI)
-    ctx.fill()
-  }
-
-  const handleMouseMove = throttle((event: MouseEvent) => {
-    const canvas = canvasRef.current
-    if (canvas) {
-      const ctx = canvas.getContext("2d")
-      if (ctx) {
-        drawBlurryCircle(ctx, event.clientX, event.clientY)
-      }
-    }
-  }, 10)
+  const position = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
 
   useEffect(() => {
     const canvas = canvasRef.current
-    if (canvas) {
-      const ctx = canvas.getContext("2d")
-      if (ctx) {
-        // Initial setup for full viewport coverage
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
+    if (!canvas) return
 
-        // Initial circle in the center
-        drawBlurryCircle(ctx, canvas.width / 2, canvas.height / 2)
+    const context = canvas.getContext("2d")
+    if (!context) return
 
-        // Set up event listeners
-        window.addEventListener("mousemove", handleMouseMove)
-        window.addEventListener("resize", () => {
-          canvas.width = window.innerWidth
-          canvas.height = window.innerHeight
-          drawBlurryCircle(ctx, window.innerWidth / 2, window.innerHeight / 2) // Redraw at center
-        })
+    const color = theme === "dark" ? "#121212" : "#fff"
 
-        // Cleanup on component unmount
-        return () => {
-          window.removeEventListener("mousemove", handleMouseMove)
-          window.removeEventListener("resize", handleMouseMove)
-        }
-      }
+    let animationFrameId: number
+
+    const render = () => {
+      context.clearRect(0, 0, canvas.width, canvas.height)
+      context.beginPath()
+      context.arc(position.current.x, position.current.y, 500, 0, 2 * Math.PI)
+      context.fillStyle = color
+      context.filter = "blur(100px)"
+      context.fill()
+      animationFrameId = requestAnimationFrame(render)
     }
-  }, [])
+
+    const handleMouseMove = (e: MouseEvent) => {
+      position.current = { x: e.clientX, y: e.clientY }
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    animationFrameId = requestAnimationFrame(render)
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [theme])
 
   return (
     <canvas
@@ -72,11 +49,12 @@ const BlurryBackground: React.FC = () => {
         position: "fixed",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%",
+        width: "100vw",
+        height: "100vh",
+        pointerEvents: "none",
       }}
+      width={window.innerWidth}
+      height={window.innerHeight}
     />
   )
 }
-
-export default BlurryBackground
