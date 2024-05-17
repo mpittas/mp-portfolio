@@ -95,7 +95,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${clashDisplay.className} ${clashDisplay.variable} antialiased text-lg bg-neutral-200 text-neutral-900 dark:text-neutral-100 dark:bg-neutral-900 `}
+        className={`${clashDisplay.className} ${clashDisplay.variable} antialiased text-lg bg-neutral-200 text-neutral-900 dark:text-neutral-100 dark:bg-neutral-950 `}
       >
         <ThemeProvider
           attribute="class"

@@ -1,30 +1,38 @@
 // BlurryBg2.tsx
 "use client"
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useTheme } from "next-themes"
 
 export default function BlurryBg2() {
   const { theme } = useTheme()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const position = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    // Set isClient to true after the component mounts
+    setIsClient(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isClient) return
+
     const canvas = canvasRef.current
     if (!canvas) return
 
     const context = canvas.getContext("2d")
     if (!context) return
 
-    const color = theme === "dark" ? "#121212" : "#fff"
+    const color = theme === "dark" ? "#111" : "#fff"
 
     let animationFrameId: number
 
     const render = () => {
       context.clearRect(0, 0, canvas.width, canvas.height)
       context.beginPath()
-      context.arc(position.current.x, position.current.y, 500, 0, 2 * Math.PI)
+      context.arc(position.current.x, position.current.y, 600, 0, 2 * Math.PI)
       context.fillStyle = color
-      context.filter = "blur(100px)"
+      context.filter = "blur(120px)"
       context.fill()
       animationFrameId = requestAnimationFrame(render)
     }
@@ -40,9 +48,9 @@ export default function BlurryBg2() {
       window.removeEventListener("mousemove", handleMouseMove)
       cancelAnimationFrame(animationFrameId)
     }
-  }, [theme])
+  }, [theme, isClient])
 
-  return (
+  return isClient ? (
     <canvas
       ref={canvasRef}
       style={{
@@ -56,5 +64,5 @@ export default function BlurryBg2() {
       width={window.innerWidth}
       height={window.innerHeight}
     />
-  )
+  ) : null
 }

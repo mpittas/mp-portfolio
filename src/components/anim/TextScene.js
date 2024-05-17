@@ -49,7 +49,7 @@ function Scene() {
 export default function TextScene() {
   const { theme } = useTheme()
   const [isMobile, setIsMobile] = useState(false)
-  const [intensity, setIntensity] = useState(theme === "dark" ? 0 : 1)
+  const [intensity, setIntensity] = useState(theme === "dark" ? 40 : 1)
 
   useEffect(() => {
     const handleResize = () => {

@@ -96,7 +96,7 @@ export default function Portfolio({ params }) {
             className="object-cover"
           />
         </div> */}
-        <div className=" border-b-[1px] border-neutral-500 dark:border-neutral-400 pb-16 mb-8">
+        <div className=" border-b-[1px] border-neutral-300 dark:border-neutral-800 pb-16 mb-8">
           <h1 className="title font-medium text-6xl mb-4">
             {post.metadata.title}
           </h1>
