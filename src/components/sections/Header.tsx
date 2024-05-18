@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
-import {useTheme} from "next-themes"
+import { useTheme } from "next-themes"
 import HackingText from "@/components/anim/HackingText"
 import CodeErrorMsg from "@/components/widgets/CodeErrorMsg"
 
@@ -18,7 +18,7 @@ const navItems = {
 }
 
 export default function Header() {
-  const {theme, setTheme} = useTheme()
+  const { theme, setTheme } = useTheme()
 
   return (
     <>

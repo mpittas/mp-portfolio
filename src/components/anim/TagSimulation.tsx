@@ -3,16 +3,17 @@ import React from "react"
 import Matter from "matter-js"
 
 class TagSimulation extends React.Component {
-  constructor(props) {
+  private sceneRef: React.RefObject<HTMLDivElement>
+
+  constructor(props: any) {
     super(props)
     this.sceneRef = React.createRef()
   }
 
   componentDidMount() {
-    const { Engine, Render, World, Bodies, Mouse, MouseConstraint, Events } =
-      Matter
+    const { Engine, Render, World, Bodies, Mouse, MouseConstraint } = Matter
     const engine = Engine.create()
-    const containerElement = this.sceneRef.current
+    const containerElement = this.sceneRef.current!
     const containerWidth = containerElement.clientWidth
     const containerHeight = containerElement.clientHeight
 
@@ -299,51 +300,35 @@ class TagSimulation extends React.Component {
     ]) // Add all bodies to the world
 
     // Mouse interaction setup
-    const mouse = Mouse.create(render.canvas),
-      mouseConstraint = MouseConstraint.create(engine, {
-        mouse: mouse,
-        constraint: {
-          stiffness: 0.2,
-          render: { visible: false },
-        },
-      })
+    const mouse = Mouse.create(render.canvas)
+    const mouseConstraint = MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: {
+        stiffness: 0.2,
+        render: { visible: false },
+      },
+    })
 
     World.add(engine.world, mouseConstraint)
     render.mouse = mouse
 
     // Custom logic for mouse events
-    mouseConstraint.mouse.element.removeEventListener(
+    ;(mouseConstraint.mouse.element as HTMLElement).removeEventListener(
       "mousewheel",
-      mouseConstraint.mouse.mousewheel
+      (mouseConstraint.mouse as any).mousewheel
     )
-    mouseConstraint.mouse.element.removeEventListener(
+    ;(mouseConstraint.mouse.element as HTMLElement).removeEventListener(
       "DOMMouseScroll",
-      mouseConstraint.mouse.mousewheel
+      (mouseConstraint.mouse as any).mousewheel
     )
 
     // Run the engine and renderer
     Engine.run(engine)
     Render.run(render)
-
-    // Setup IntersectionObserver to initialize the simulation
-    // const observer = new IntersectionObserver((entries) => {
-    //   entries.forEach((entry) => {
-    //     if (entry.isIntersecting) {
-    //       initSimulation();
-    //       observer.disconnect();
-    //     }
-    //   });
-    // }, {});
-
-    // observer.observe(containerElement);
   }
 
   render() {
-    return (
-      <>
-        <div ref={this.sceneRef} className="w-full h-[400px]" />
-      </>
-    )
+    return <div ref={this.sceneRef} className="w-full h-[400px]" />
   }
 }
 

@@ -1,11 +1,10 @@
 import TitleBig from "@/components/widgets/TitleBig"
 import PageWrap from "../layout/PageWrap"
-import {PortfolioPosts} from "@/components/portfolio/PortfolioPosts"
+import { PortfolioPosts } from "@/components/portfolio/PortfolioPosts"
 import Image from "next/image"
 import HelloText from "@/components/sections/HelloText"
 import AnimatedCircles from "@/components/anim/AnimatedCircles"
 import TagSimulation from "@/components/anim/TagSimulation"
-import TagSimulationOld from "@/components/anim/TagSimulationOld"
 
 export default function MainView() {
   return (
@@ -36,7 +35,6 @@ export default function MainView() {
           <PortfolioPosts />
         </div>
       </PageWrap>
-      {/* <TagSimulation /> */}
       <TagSimulation />
       {/* <div className="absolute top-[-5%] right-[0%]">
         <AnimatedCircles />
