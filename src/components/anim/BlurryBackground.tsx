@@ -23,7 +23,7 @@ export default function BlurryBg2() {
     const context = canvas.getContext("2d")
     if (!context) return
 
-    const color = theme === "dark" ? "#111" : "#fff"
+    const color = theme === "dark" ? "#111" : "#ccc"
 
     let animationFrameId: number
 
