@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { getPortfolioPosts } from "@/utils/utils"
 import Badge from "@/components/core/Badge"
 
 type PortfolioPost = {
@@ -14,8 +13,10 @@ type PortfolioPost = {
 
 const PortfolioPostsItems = ({
   allPortfolios,
+  onHover,
 }: {
   allPortfolios: PortfolioPost[]
+  onHover: (featuredImage: string) => void
 }) => {
   return (
     <div className="flex flex-col gap-y-2">
@@ -24,6 +25,8 @@ const PortfolioPostsItems = ({
           key={post.slug}
           className="flex flex-row justify-between items-center p-1 hover:bg-neutral-50/[0.5] dark:hover:bg-neutral-950/[1] group rounded-md"
           href={`/portfolio/${post.slug}`}
+          onMouseEnter={() => onHover(post.metadata.featuredImage)}
+          onMouseLeave={() => onHover("")}
         >
           <div className="font-medium text-md sm:text-xl">
             {post.metadata.title}
@@ -37,11 +40,14 @@ const PortfolioPostsItems = ({
   )
 }
 
-const PortfolioPosts = () => {
-  const allPortfolios = getPortfolioPosts()
-
-  return <PortfolioPostsItems allPortfolios={allPortfolios} />
+const PortfolioPosts = ({
+  allPortfolios,
+  onHover,
+}: {
+  allPortfolios: PortfolioPost[]
+  onHover: (featuredImage: string) => void
+}) => {
+  return <PortfolioPostsItems allPortfolios={allPortfolios} onHover={onHover} />
 }
 
 export default PortfolioPosts
-export { getPortfolioPosts }
