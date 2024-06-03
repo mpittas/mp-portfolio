@@ -1,51 +1,51 @@
-"use client"
-import Image from "next/image"
-import {useEffect, useRef} from "react"
-import gsap from "gsap"
+"use client";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
-const AnimatedImageReveal = ({featuredImage}) => {
-  const overlayRef = useRef(null)
-  const revealRef = useRef(null)
-  const revealInnerRef = useRef(null)
-  const revealDecoRef = useRef(null)
-  const revealImgRef = useRef(null)
-  const tl = useRef(null)
+const AnimatedImageReveal = ({ featuredImage }) => {
+  const overlayRef = useRef(null);
+  const revealRef = useRef(null);
+  const revealInnerRef = useRef(null);
+  const revealDecoRef = useRef(null);
+  const revealImgRef = useRef(null);
+  const tl = useRef(null);
 
   useEffect(() => {
     if (featuredImage) {
-      const imgUrl = `/projects/${featuredImage}`
-      revealImgRef.current.style.backgroundImage = `url(${imgUrl})`
-      startAnimation()
+      const imgUrl = `/projects/${featuredImage}`;
+      revealImgRef.current.style.backgroundImage = `url(${imgUrl})`;
+      startAnimation();
     }
-  }, [featuredImage])
+  }, [featuredImage]);
 
   const startAnimation = () => {
     gsap.killTweensOf([
       revealInnerRef.current,
       revealImgRef.current,
       revealDecoRef.current,
-    ])
+    ]);
 
     tl.current = gsap
       .timeline({
         onStart: () => {
-          revealRef.current.style.opacity = 1
-          gsap.set(revealRef.current, {zIndex: 1000})
+          revealRef.current.style.opacity = 1;
+          gsap.set(revealRef.current, { zIndex: 1000 });
         },
       })
-      .set(revealInnerRef.current, {opacity: 0})
+      .set(revealInnerRef.current, { opacity: 0 })
       .add("begin")
-      .set(revealDecoRef.current, {transformOrigin: "50% 0%"})
+      .set(revealDecoRef.current, { transformOrigin: "50% 0%" })
       .to(
         revealDecoRef.current,
         {
           duration: 0.6,
           ease: "Cubic.easeInOut",
           opacity: 1,
-          x: "0%",
-          y: "-15%",
+          x: "-6%",
+          y: "-10%",
           scaleY: 1,
-          startAt: {opacity: 0, x: "15%", y: "50%", scaleY: 3},
+          startAt: { opacity: 0, x: "0%", y: "50%", scaleY: 3 },
         },
         "begin"
       )
@@ -57,7 +57,7 @@ const AnimatedImageReveal = ({featuredImage}) => {
           opacity: 1,
           y: "0%",
           rotation: 0,
-          startAt: {y: "100%", rotation: 3},
+          startAt: { y: "100%", rotation: 3 },
         },
         "begin+=0.4"
       )
@@ -67,27 +67,27 @@ const AnimatedImageReveal = ({featuredImage}) => {
           duration: 1.3,
           ease: "Expo.easeOut",
           scale: 1,
-          startAt: {scale: 1.4},
+          startAt: { scale: 1.4 },
         },
         "begin+=0.4"
-      )
-  }
+      );
+  };
 
   const hideImage = () => {
     gsap.killTweensOf([
       revealInnerRef.current,
       revealImgRef.current,
       revealDecoRef.current,
-    ])
+    ]);
 
     tl.current = gsap
       .timeline({
         onStart: () => {
-          gsap.set(revealRef.current, {zIndex: 999})
+          gsap.set(revealRef.current, { zIndex: 999 });
         },
         onComplete: () => {
-          gsap.set(revealRef.current, {zIndex: ""})
-          gsap.set(revealRef.current, {opacity: 0})
+          gsap.set(revealRef.current, { zIndex: "" });
+          gsap.set(revealRef.current, { opacity: 0 });
         },
       })
       .add("begin")
@@ -99,33 +99,33 @@ const AnimatedImageReveal = ({featuredImage}) => {
           opacity: 0,
         },
         "begin"
-      )
-  }
+      );
+  };
 
   const handleMouseEnter = (ev) => {
-    positionElement(ev)
-    startAnimation()
-  }
+    positionElement(ev);
+    startAnimation();
+  };
 
   const handleMouseMove = (ev) => {
     requestAnimationFrame(() => {
-      positionElement(ev)
-    })
-  }
+      positionElement(ev);
+    });
+  };
 
   const handleMouseLeave = () => {
-    hideImage()
-  }
+    hideImage();
+  };
 
   const positionElement = (ev) => {
-    const mousePos = {x: ev.clientX, y: ev.clientY}
+    const mousePos = { x: ev.clientX, y: ev.clientY };
     const docScrolls = {
       left: document.body.scrollLeft + document.documentElement.scrollLeft,
       top: document.body.scrollTop + document.documentElement.scrollTop,
-    }
-    revealRef.current.style.top = `${mousePos.y + 20 - docScrolls.top}px`
-    revealRef.current.style.left = `${mousePos.x + 20 - docScrolls.left}px`
-  }
+    };
+    revealRef.current.style.top = `${mousePos.y + 20 - docScrolls.top}px`;
+    revealRef.current.style.left = `${mousePos.x + 20 - docScrolls.left}px`;
+  };
 
   return (
     <div
@@ -134,14 +134,26 @@ const AnimatedImageReveal = ({featuredImage}) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="hover-reveal" ref={revealRef}>
-        <div className="hover-reveal__deco" ref={revealDecoRef}></div>
-        <div className="hover-reveal__inner" ref={revealInnerRef}>
-          <div className="hover-reveal__img" ref={revealImgRef}></div>
+      <div
+        className="hover-reveal w-full h-[400px] top-0 left-0 pointer-events-none opacity-0"
+        ref={revealRef}
+      >
+        <div
+          className="hover-reveal__deco w-full h-full rounded-lg absolute top-0 left-0 bg-neutral-200 dark:bg-neutral-950"
+          ref={revealDecoRef}
+        ></div>
+        <div
+          className="hover-reveal__inner w-full h-full relative"
+          ref={revealInnerRef}
+        >
+          <div
+            className="hover-reveal__img w-full h-full relative bg-cover bg-center rounded-lg"
+            ref={revealImgRef}
+          ></div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AnimatedImageReveal
+export default AnimatedImageReveal;
