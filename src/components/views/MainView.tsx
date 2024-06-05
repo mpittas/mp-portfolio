@@ -9,7 +9,7 @@ export default function MainView() {
       <HelloText />
       <HeroSection />
       <ProjectsSection />
-      <TagSimulation />
+      {/* <TagSimulation /> */}
     </div>
   )
 }
