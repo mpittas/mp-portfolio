@@ -14,7 +14,11 @@ export default function Page() {
         <div className="pb-8">
           <TitleBig title="Portfolio" />
         </div>
-        <PortfolioPosts allPortfolios={[]} onHover={() => {}} />
+        <PortfolioPosts
+          allPortfolios={[]}
+          onHover={() => {}}
+          onMouseLeave={() => {}}
+        />
       </section>
     </PageWrap>
   )
