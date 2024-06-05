@@ -24,9 +24,9 @@ const ClientProjectSection = ({
   return (
     <div>
       <div className="max-w-[1920px] mx-auto">
-        <div className="px-6 xl:px-24 grid grid-cols-1 lg:grid-cols-12 p-4 gap-0 xl:gap-36">
+        <div className="px-24 grid grid-cols-1 lg:grid-cols-12 p-4 gap-36">
           {/* Col 1 */}
-          <div className="col-span-12 lg:col-span-5 hidden xl:block">
+          <div className="col-span-12 lg:col-span-5">
             <div className="sticky top-0 pt-24">
               <AnimatedImageReveal
                 featuredImage={hoveredImage}
