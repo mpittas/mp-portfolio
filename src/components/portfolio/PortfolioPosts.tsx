@@ -14,9 +14,11 @@ type PortfolioPost = {
 const PortfolioPostsItems = ({
   allPortfolios,
   onHover,
+  onMouseLeave,
 }: {
   allPortfolios: PortfolioPost[]
   onHover: (featuredImage: string) => void
+  onMouseLeave: () => void
 }) => {
   return (
     <div className="flex flex-col gap-y-2">
@@ -26,7 +28,7 @@ const PortfolioPostsItems = ({
           className="flex flex-row justify-between items-center p-1 hover:bg-neutral-50/[0.5] dark:hover:bg-neutral-950/[1] group rounded-md"
           href={`/portfolio/${post.slug}`}
           onMouseEnter={() => onHover(post.metadata.featuredImage)}
-          onMouseLeave={() => onHover("")}
+          onMouseLeave={onMouseLeave}
         >
           <div className="font-medium text-md sm:text-xl">
             {post.metadata.title}
@@ -43,11 +45,19 @@ const PortfolioPostsItems = ({
 const PortfolioPosts = ({
   allPortfolios,
   onHover,
+  onMouseLeave,
 }: {
   allPortfolios: PortfolioPost[]
   onHover: (featuredImage: string) => void
+  onMouseLeave: () => void
 }) => {
-  return <PortfolioPostsItems allPortfolios={allPortfolios} onHover={onHover} />
+  return (
+    <PortfolioPostsItems
+      allPortfolios={allPortfolios}
+      onHover={onHover}
+      onMouseLeave={onMouseLeave}
+    />
+  )
 }
 
 export default PortfolioPosts
