@@ -1,12 +1,12 @@
 // BlurryBg2.tsx
 "use client"
-import React, { useEffect, useRef, useState } from "react"
-import { useTheme } from "next-themes"
+import React, {useEffect, useRef, useState} from "react"
+import {useTheme} from "next-themes"
 
 export default function BlurryBg2() {
-  const { theme } = useTheme()
+  const {theme} = useTheme()
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const position = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
+  const position = useRef<{x: number; y: number}>({x: 0, y: 0})
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function BlurryBg2() {
     const context = canvas.getContext("2d")
     if (!context) return
 
-    const color = theme === "dark" ? "#111" : "#ccc"
+    const color = theme === "dark" ? "#151515" : "#f5f5f5"
 
     let animationFrameId: number
 
@@ -38,7 +38,7 @@ export default function BlurryBg2() {
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      position.current = { x: e.clientX, y: e.clientY }
+      position.current = {x: e.clientX, y: e.clientY}
     }
 
     window.addEventListener("mousemove", handleMouseMove)

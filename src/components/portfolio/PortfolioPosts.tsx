@@ -25,7 +25,7 @@ const PortfolioPostsItems = ({
       {allPortfolios.map((post) => (
         <Link
           key={post.slug}
-          className="flex flex-row justify-between items-center p-1 hover:bg-neutral-50/[0.5] dark:hover:bg-neutral-950/[1] group rounded-md"
+          className="flex flex-row justify-between items-center p-1 hover:bg-neutral-300 dark:hover:bg-neutral-950/[1] group rounded-md"
           href={`/portfolio/${post.slug}`}
           onMouseEnter={() => onHover(post.metadata.featuredImage)}
           onMouseLeave={onMouseLeave}

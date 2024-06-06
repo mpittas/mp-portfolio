@@ -113,7 +113,7 @@ const AnimatedImageReveal = ({featuredImage, isHovered}) => {
         ref={revealRef}
       >
         <div
-          className="hover-reveal__deco w-full h-full rounded-lg absolute top-0 left-0 bg-neutral-200 dark:bg-neutral-950"
+          className="hover-reveal__deco w-full h-full rounded-lg absolute top-0 left-0 bg-neutral-400/[0.5] dark:bg-neutral-950"
           ref={revealDecoRef}
         ></div>
         <div

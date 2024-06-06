@@ -6,10 +6,10 @@ import TagSimulation from "@/components/anim/TagSimulation"
 export default function MainView() {
   return (
     <div>
-      {/* <HelloText />
-      <HeroSection /> */}
+      <HelloText />
+      <HeroSection />
       <ProjectsSection />
-      {/* <TagSimulation /> */}
+      <TagSimulation />
     </div>
   )
 }
