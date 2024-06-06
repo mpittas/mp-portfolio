@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
-import { useTheme } from "next-themes"
+import {useTheme} from "next-themes"
 import HackingText from "@/components/anim/HackingText"
 import CodeErrorMsg from "@/components/widgets/CodeErrorMsg"
 
@@ -18,7 +18,7 @@ const navItems = {
 }
 
 export default function Header() {
-  const { theme, setTheme } = useTheme()
+  const {theme, setTheme} = useTheme()
 
   return (
     <>
@@ -49,7 +49,7 @@ export default function Header() {
               </Link>
             </div>
 
-            <nav className="hidden md:flex flex-col gap-1">
+            <nav className="flex flex-col gap-1">
               {/* {Object.entries(navItems).map(([path, { name }]) => {
                 return (
                   <div>
