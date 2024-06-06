@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation"
-import { CustomMDX } from "@/components/custom/Mdx"
-import { formatDate, getPortfolioPosts } from "@/utils/utils"
-import { baseUrl } from "@/seo/sitemap"
+import {notFound} from "next/navigation"
+import {CustomMDX} from "@/components/custom/Mdx"
+import {formatDate, getPortfolioPosts} from "@/utils/utils"
+import {baseUrl} from "@/seo/sitemap"
 import PageWrap from "@/components/layout/PageWrap"
 import Image from "next/image"
 
@@ -14,7 +14,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export function generateMetadata({ params }) {
+export function generateMetadata({params}) {
   let post = getPortfolioPosts().find((post) => post.slug === params.slug)
   if (!post) {
     return
@@ -55,7 +55,7 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function Portfolio({ params }) {
+export default function Portfolio({params}) {
   let post = getPortfolioPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
@@ -96,8 +96,8 @@ export default function Portfolio({ params }) {
             className="object-cover"
           />
         </div> */}
-        <div className=" border-b-[1px] border-neutral-300 dark:border-neutral-800 pb-16 mb-8">
-          <h1 className="title font-medium text-6xl mb-4">
+        <div className=" border-b-[1px] border-neutral-300 dark:border-neutral-800 pb-8 xl:pb-16 mb-8">
+          <h1 className="title font-medium text-5xl xl:text-6xl mb-4">
             {post.metadata.title}
           </h1>
           <div className="flex justify-between items-center text-sm text-neutral-600 dark:text-neutral-300">

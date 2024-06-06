@@ -11,7 +11,7 @@ export default function HelloText() {
           width={110}
           height={20}
           alt="arrow-right"
-          className="opacity-80"
+          className="opacity-40"
         />
       </div>
     </div>
