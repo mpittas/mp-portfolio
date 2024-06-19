@@ -1,45 +1,45 @@
-"use client"
-import Image from "next/image"
-import {useEffect, useRef} from "react"
-import gsap from "gsap"
+"use client";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
-const AnimatedImageReveal = ({featuredImage, isHovered}) => {
-  const overlayRef = useRef(null)
-  const revealRef = useRef(null)
-  const revealInnerRef = useRef(null)
-  const revealDecoRef = useRef(null)
-  const revealImgRef = useRef(null)
-  const tl = useRef(null)
+const AnimatedImageReveal = ({ featuredImage, isHovered }) => {
+  const overlayRef = useRef(null);
+  const revealRef = useRef(null);
+  const revealInnerRef = useRef(null);
+  const revealDecoRef = useRef(null);
+  const revealImgRef = useRef(null);
+  const tl = useRef(null);
 
   useEffect(() => {
     if (featuredImage) {
-      const imgUrl = `/projects/${featuredImage}`
-      revealImgRef.current.style.backgroundImage = `url(${imgUrl})`
+      const imgUrl = `/projects/${featuredImage}`;
+      revealImgRef.current.style.backgroundImage = `url(${imgUrl})`;
       if (isHovered) {
-        startAnimation()
+        startAnimation();
       } else {
-        hideImage()
+        hideImage();
       }
     }
-  }, [featuredImage, isHovered])
+  }, [featuredImage, isHovered]);
 
   const startAnimation = () => {
     gsap.killTweensOf([
       revealInnerRef.current,
       revealImgRef.current,
       revealDecoRef.current,
-    ])
+    ]);
 
     tl.current = gsap
       .timeline({
         onStart: () => {
-          revealRef.current.style.opacity = 1
-          gsap.set(revealRef.current, {zIndex: 1000})
+          revealRef.current.style.opacity = 1;
+          gsap.set(revealRef.current, { zIndex: 1000 });
         },
       })
-      .set(revealInnerRef.current, {opacity: 0})
+      .set(revealInnerRef.current, { opacity: 0 })
       .add("begin")
-      .set(revealDecoRef.current, {transformOrigin: "50% 0%"})
+      .set(revealDecoRef.current, { transformOrigin: "50% 0%" })
       .to(
         revealDecoRef.current,
         {
@@ -49,7 +49,7 @@ const AnimatedImageReveal = ({featuredImage, isHovered}) => {
           x: "-6%",
           y: "-10%",
           scaleY: 1,
-          startAt: {opacity: 0, x: "0%", y: "50%", scaleY: 3},
+          startAt: { opacity: 0, x: "0%", y: "50%", scaleY: 3 },
         },
         "begin"
       )
@@ -61,7 +61,7 @@ const AnimatedImageReveal = ({featuredImage, isHovered}) => {
           opacity: 1,
           y: "0%",
           rotation: 0,
-          startAt: {y: "100%", rotation: 3},
+          startAt: { y: "100%", rotation: 3 },
         },
         "begin+=0.4"
       )
@@ -71,27 +71,27 @@ const AnimatedImageReveal = ({featuredImage, isHovered}) => {
           duration: 1.3,
           ease: "Expo.easeOut",
           scale: 1,
-          startAt: {scale: 1.4},
+          startAt: { scale: 1.4 },
         },
         "begin+=0.4"
-      )
-  }
+      );
+  };
 
   const hideImage = () => {
     gsap.killTweensOf([
       revealInnerRef.current,
       revealImgRef.current,
       revealDecoRef.current,
-    ])
+    ]);
 
     tl.current = gsap
       .timeline({
         onStart: () => {
-          gsap.set(revealRef.current, {zIndex: 999})
+          gsap.set(revealRef.current, { zIndex: 999 });
         },
         onComplete: () => {
-          gsap.set(revealRef.current, {zIndex: ""})
-          gsap.set(revealRef.current, {opacity: 0})
+          gsap.set(revealRef.current, { zIndex: "" });
+          gsap.set(revealRef.current, { opacity: 0 });
         },
       })
       .add("begin")
@@ -103,8 +103,8 @@ const AnimatedImageReveal = ({featuredImage, isHovered}) => {
           opacity: 0,
         },
         "begin"
-      )
-  }
+      );
+  };
 
   return (
     <div className="relative">
@@ -127,7 +127,7 @@ const AnimatedImageReveal = ({featuredImage, isHovered}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AnimatedImageReveal
+export default AnimatedImageReveal;
