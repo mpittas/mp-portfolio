@@ -12,12 +12,12 @@ const HeroSection = () => {
           </span>{" "}
           into UI/UX Excellence"
         </TitleBig>
-        <Link
+        {/* <Link
           href="/"
           className="underline uppercase text-sm font-medium text-neutral-600 dark:text-neutral-400"
         >
           More about me
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
