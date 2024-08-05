@@ -1,25 +1,25 @@
-"use client"
-import {useState} from "react"
-import PortfolioPosts from "@/components/portfolio/PortfolioPosts"
-import AnimatedImageReveal from "@/components/anim/AnimatedImageReveal"
-import {PortfolioPost} from "@/types"
+"use client";
+import { useState } from "react";
+import PortfolioPosts from "@/components/portfolio/PortfolioPosts";
+import AnimatedImageReveal from "@/components/anim/AnimatedImageReveal";
+import { PortfolioPost } from "@/types";
 
 const ClientProjectSection = ({
   allPortfolios,
 }: {
-  allPortfolios: PortfolioPost[]
+  allPortfolios: PortfolioPost[];
 }) => {
-  const [hoveredImage, setHoveredImage] = useState("")
-  const [isHovered, setIsHovered] = useState(false)
+  const [hoveredImage, setHoveredImage] = useState("");
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleHover = (featuredImage: string) => {
-    setHoveredImage(featuredImage)
-    setIsHovered(true)
-  }
+    setHoveredImage(featuredImage);
+    setIsHovered(true);
+  };
 
   const handleMouseLeave = () => {
-    setIsHovered(false)
-  }
+    setIsHovered(false);
+  };
 
   return (
     <div className="pb-24">
@@ -51,7 +51,7 @@ const ClientProjectSection = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ClientProjectSection
+export default ClientProjectSection;
