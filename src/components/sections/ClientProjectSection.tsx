@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PortfolioPosts from "@/components/portfolio/PortfolioPosts";
 import AnimatedImageReveal from "@/components/anim/AnimatedImageReveal";
 import { PortfolioPost } from "@/types";
@@ -11,18 +11,29 @@ const ClientProjectSection = ({
 }) => {
   const [hoveredImage, setHoveredImage] = useState("");
   const [isHovered, setIsHovered] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(true);
+
+  useEffect(() => {
+    if (allPortfolios.length > 0) {
+      setHoveredImage(allPortfolios[0].metadata.featuredImage);
+      setIsHovered(true);
+    }
+  }, [allPortfolios]);
 
   const handleHover = (featuredImage: string) => {
     setHoveredImage(featuredImage);
     setIsHovered(true);
+    setInitialLoad(false);
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    if (!initialLoad) {
+      setIsHovered(false);
+    }
   };
 
   return (
-    <div className="pb-24">
+    <div className="pb-24 overflow-hidden">
       <div className="max-w-[1920px] mx-auto">
         <div className="px-8 xl:px-24 flex flex-wrap ">
           {/* Col 1 */}
@@ -30,7 +41,7 @@ const ClientProjectSection = ({
             <div className="sticky top-0 pt-24 pr-24">
               <AnimatedImageReveal
                 featuredImage={hoveredImage}
-                isHovered={isHovered}
+                isHovered={isHovered || initialLoad}
               />
             </div>
           </div>
