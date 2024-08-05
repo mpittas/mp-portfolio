@@ -13,7 +13,7 @@ const getButtonStyles = (variant?: string): string => {
     case "figma":
       return "bg-neutral-950 text-white flex items-center space-x-2 hover:bg-neutral-900 dark:bg-neutral-700 dark:hover:bg-neutral-800";
     case "adobexd":
-      return "bg-pink-900 text-white flex items-center space-x-2 hover:bg-pink-800";
+      return "bg-pink-900/[0.4] text-white flex items-center space-x-2 hover:bg-pink-800";
     case "demo":
       return "border border-neutral-700 text-white flex items-center space-x-2 hover:bg-neutral-700";
     default:

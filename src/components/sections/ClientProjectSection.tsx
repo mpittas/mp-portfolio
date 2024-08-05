@@ -9,27 +9,24 @@ const ClientProjectSection = ({
 }: {
   allPortfolios: PortfolioPost[];
 }) => {
-  const [hoveredImage, setHoveredImage] = useState("");
+  const [currentImage, setCurrentImage] = useState("");
   const [isHovered, setIsHovered] = useState(false);
-  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
     if (allPortfolios.length > 0) {
-      setHoveredImage(allPortfolios[0].metadata.featuredImage);
+      setCurrentImage(allPortfolios[0].metadata.featuredImage);
       setIsHovered(true);
     }
   }, [allPortfolios]);
 
   const handleHover = (featuredImage: string) => {
-    setHoveredImage(featuredImage);
+    setCurrentImage(featuredImage);
     setIsHovered(true);
-    setInitialLoad(false);
   };
 
   const handleMouseLeave = () => {
-    if (!initialLoad) {
-      setIsHovered(false);
-    }
+    // We're not changing the currentImage or isHovered state here
+    // This ensures the last hovered image stays visible
   };
 
   return (
@@ -40,8 +37,8 @@ const ClientProjectSection = ({
           <div className="w-full xl:w-5/12 hidden xl:block">
             <div className="sticky top-0 pt-24 pr-24">
               <AnimatedImageReveal
-                featuredImage={hoveredImage}
-                isHovered={isHovered || initialLoad}
+                featuredImage={currentImage}
+                isHovered={isHovered}
               />
             </div>
           </div>
