@@ -11,11 +11,11 @@ interface ButtonProps {
 const getButtonStyles = (variant?: string): string => {
   switch (variant) {
     case "figma":
-      return "bg-neutral-950 text-white flex items-center space-x-2 hover:bg-neutral-900 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-100";
+      return "bg-neutral-950 text-white flex items-center space-x-2 hover:bg-neutral-900 dark:bg-neutral-700 dark:hover:bg-neutral-800";
     case "adobexd":
       return "bg-pink-900 text-white flex items-center space-x-2 hover:bg-pink-800";
     case "demo":
-      return "bg-blue-900 text-white flex items-center space-x-2 hover:bg-blue-800";
+      return "border border-neutral-700 text-white flex items-center space-x-2 hover:bg-neutral-700";
     default:
       return "bg-neutral-900 text-neutral-200 dark:bg-neutral-700/[0.5] dark:text-neutral-200 hover:bg-neutral-950 dark:hover:bg-neutral-700/[0.8]";
   }

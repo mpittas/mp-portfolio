@@ -5,7 +5,7 @@ export default function PlaygroundPage() {
   return (
     <PageWrap>
       <div className="max-w-xl">
-        <TitleBig title="Playground page" />
+        <TitleBig>Playouground page</TitleBig>
       </div>
     </PageWrap>
   );
