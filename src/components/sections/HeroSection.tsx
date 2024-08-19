@@ -1,5 +1,5 @@
-import TitleBig from "@/components/widgets/TitleBig";
-import Link from "next/link";
+import TitleBig from "@/components/widgets/TitleBig"
+import Link from "next/link"
 
 const HeroSection = () => {
   return (
@@ -10,7 +10,7 @@ const HeroSection = () => {
           <span className="text-black dark:text-white">
             Frontend Developer's Journey
           </span>{" "}
-          into UI/UX Excellence"
+          into UI/UX Excellence
         </TitleBig>
         {/* <Link
           href="/"
@@ -20,7 +20,7 @@ const HeroSection = () => {
         </Link> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection
