@@ -54,6 +54,7 @@ const ClientProjectSection = ({
               allPortfolios={allPortfolios}
               onHover={handleHover}
               onMouseLeave={handleMouseLeave}
+              currentImage={currentImage}
             />
           </div>
         </div>
