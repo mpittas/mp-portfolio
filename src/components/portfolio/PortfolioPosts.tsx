@@ -23,11 +23,11 @@ const PortfolioPostsItems = ({
   currentImage: string;
 }) => {
   return (
-    <div className="flex flex-col gap-y-2">
+    <div className="flex flex-col">
       {allPortfolios.map((post) => (
         <Link
           key={post.slug}
-          className={`flex flex-row justify-between items-center p-1 hover:bg-neutral-300 dark:hover:bg-neutral-950/[1] group rounded-md ${
+          className={`flex flex-row justify-between items-center p-4 hover:bg-neutral-300 dark:hover:bg-neutral-950/[1] group rounded-md ${
             currentImage === post.metadata.featuredImage
               ? "bg-neutral-200 dark:bg-neutral-800"
               : ""

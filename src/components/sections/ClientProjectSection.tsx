@@ -30,7 +30,7 @@ const ClientProjectSection = ({
   };
 
   return (
-    <div className="pb-24 overflow-hidden">
+    <div className="pb-24">
       <div className="max-w-[1920px] mx-auto">
         <div className="px-8 xl:px-24 flex flex-wrap ">
           {/* Col 1 */}
