@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Portfolio Modern — Camera Montage</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 90% 70% at 50% 40%, #161616 0%, #0a0a0a 55%, #000 100%);
+      }
+      #scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      #stage {
+        position: absolute;
+        inset: 0;
+        perspective: 1100px;
+        perspective-origin: 50% 42%;
+        will-change: filter;
+      }
+      #world {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 6046px;
+        transform-style: preserve-3d;
+        transform-origin: 960px 540px;
+        will-change: transform;
+      }
+      #page {
+        display: block;
+        width: 1920px;
+        height: 6046px;
+        box-shadow:
+          0 40px 120px rgba(0, 0, 0, 0.55),
+          0 0 0 1px rgba(242, 242, 240, 0.04);
+      }
+      #vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 78% 72% at 50% 48%,
+          transparent 40%,
+          rgba(0, 0, 0, 0.35) 100%
+        );
+        opacity: 0.85;
+      }
+      #grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.07;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="10"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="bg"></div>
+      <section
+        id="scene"
+        class="clip"
+        data-start="0"
+        data-duration="10"
+        data-track-index="1"
+      >
+        <div id="stage">
+          <div id="world" data-layout-allow-overflow>
+            <img
+              id="page"
+              src="assets/full-page.png"
+              width="1920"
+              height="6046"
+              alt="Portfolio Modern case study page"
+            />
+          </div>
+        </div>
+        <div id="vignette"></div>
+        <div id="grain"></div>
+      </section>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      const world = document.getElementById("world");
+      const stage = document.getElementById("stage");
+      const page = document.getElementById("page");
+
+      // Camera state — single writer. Translate outside rotations (screen-aligned).
+      // y negative = travel down the page. z positive = fly in. rx positive = tip far edge away.
+      const cam = { x: 0, y: 0, z: -340, rx: 16, ry: -11 };
+      const drift = { dx: 0, dy: 0, drx: 0, dry: 0 };
+      const travel = { blur: 0 };
+
+      function applyCamera() {
+        world.style.transform =
+          `translate3d(${cam.x + drift.dx}px, ${cam.y + drift.dy}px, ${cam.z}px)` +
+          ` rotateX(${cam.rx + drift.drx}deg) rotateY(${cam.ry + drift.dry}deg)`;
+        const b = travel.blur;
+        stage.style.filter = b > 0.15 ? `blur(${b.toFixed(2)}px)` : "none";
+      }
+
+      applyCamera();
+      gsap.set(page, { opacity: 0 });
+
+      // Hold never dies — soft Lissajous drift through the same writer.
+      const driftDriver = { p: 0 };
+      tl.to(
+        driftDriver,
+        {
+          p: Math.PI * 2 * 1.35,
+          duration: 10,
+          ease: "none",
+          onUpdate: () => {
+            drift.dx = Math.sin(driftDriver.p) * 5.5;
+            drift.dy = Math.sin(driftDriver.p * 1.28) * 4.2;
+            drift.drx = Math.sin(driftDriver.p * 0.7) * 0.28;
+            drift.dry = Math.cos(driftDriver.p * 0.85) * 0.22;
+            applyCamera();
+          },
+        },
+        0,
+      );
+
+      // ── 0.00–0.70  Establish: fade in, wide tilted hero
+      tl.fromTo(
+        page,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.55, ease: "power2.out" },
+        0.08,
+      );
+
+      // ── 0.65–2.25  LEG 1 — dive into JOHNDOE type
+      tl.fromTo(
+        cam,
+        { x: 0, y: 0, z: -340, rx: 16, ry: -11 },
+        {
+          x: -20,
+          y: 40,
+          z: 160,
+          rx: 4.5,
+          ry: -3,
+          duration: 1.45,
+          ease: "power4.out",
+          onUpdate: applyCamera,
+        },
+        0.65,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 4.5, duration: 0.3, ease: "power2.out", onUpdate: applyCamera },
+        0.65,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.75, ease: "power3.out", onUpdate: applyCamera },
+        0.95,
+      );
+
+      // ── 2.35–4.25  LEG 2 — pull back + tilt-scroll into services
+      tl.to(
+        cam,
+        {
+          x: 40,
+          y: -1920,
+          z: -120,
+          rx: 12,
+          ry: 8,
+          duration: 1.85,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        2.35,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 5.5, duration: 0.4, ease: "power1.in", onUpdate: applyCamera },
+        2.35,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.95, ease: "power3.out", onUpdate: applyCamera },
+        3.05,
+      );
+
+      // ── 4.35–6.15  LEG 3 — dive onto ORBITAL plate
+      tl.to(
+        cam,
+        {
+          x: 140,
+          y: -3080,
+          z: 200,
+          rx: 6,
+          ry: -10,
+          duration: 1.45,
+          ease: "power4.out",
+          onUpdate: applyCamera,
+        },
+        4.35,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 5, duration: 0.28, ease: "power2.out", onUpdate: applyCamera },
+        4.35,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.8, ease: "power3.out", onUpdate: applyCamera },
+        4.65,
+      );
+
+      // ── 6.30–8.15  LEG 4 — cruise past LUMEN into the CTA plate
+      tl.to(
+        cam,
+        {
+          x: -20,
+          y: -4280,
+          z: 20,
+          rx: 8,
+          ry: 3,
+          duration: 1.55,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        6.3,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 6, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
+        6.3,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.9, ease: "power4.out", onUpdate: applyCamera },
+        7.0,
+      );
+
+      // ── 8.25–10.0  LEG 5 — final push onto LET'S MAKE IT HAPPEN
+      tl.to(
+        cam,
+        {
+          x: 0,
+          y: -4520,
+          z: 240,
+          rx: 1.2,
+          ry: 0,
+          duration: 1.55,
+          ease: "power4.out",
+          onUpdate: applyCamera,
+        },
+        8.25,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.5, duration: 0.22, ease: "power2.out", onUpdate: applyCamera },
+        8.25,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.7, ease: "power3.out", onUpdate: applyCamera },
+        8.55,
+      );
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

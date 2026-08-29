@@ -1,0 +1,40 @@
+{
+  "category": "webpage",
+  "duration_s": 10,
+  "fps": 30,
+  "canvas": { "width": 1920, "height": 1080 },
+  "style": "cinematic-camera-flight",
+  "palette": ["#0A0A0A", "#F2F2F0", "#111111", "#8C8C8C", "#2C2C2C"],
+  "font": "Sofia Sans Extra Condensed",
+  "export": "mp4",
+  "beats": [
+    { "at": 0.0, "label": "establish-hero" },
+    { "at": 0.7, "label": "dive-johndoe" },
+    { "at": 2.9, "label": "reposition-services" },
+    { "at": 4.7, "label": "dive-orbital" },
+    { "at": 6.9, "label": "whip-cta" },
+    { "at": 8.5, "label": "final-push" }
+  ],
+  "asset_needs": [
+    {
+      "role": "page-plate",
+      "kind": "web",
+      "source": "http://localhost:3000/work/portfolio-modern",
+      "treatment": "none"
+    }
+  ],
+  "brief": "Cursorless cinematic camera flight through the Portfolio Modern case study. Establishing wide tilted hero → dive into JOHNDOE type → pull-back scroll into dark services → dive onto ORBITAL plate → whip to LET'S MAKE IT HAPPEN → final push. Motion is the message; no VO, no invented copy.",
+  "content": {
+    "block": "hand-authored",
+    "customize": {
+      "blueprint": "camera-journey",
+      "sub_shape": "B",
+      "rules": ["3d-camera-flight", "multi-phase-camera", "motion-blur-streak", "viewport-change"]
+    },
+    "page": {
+      "src": "assets/full-page.png",
+      "width": 1920,
+      "height": 6046
+    }
+  }
+}
