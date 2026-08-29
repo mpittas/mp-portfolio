@@ -33,7 +33,7 @@ export function ProjectModules({
               key={i}
               className="bg-paper px-4 pt-12 pb-16 text-ink md:px-7 md:pt-16 md:pb-20"
             >
-              <div className="mx-auto flex max-w-3xl flex-col gap-4">
+              <div className="mx-auto flex max-w-3xl flex-col gap-10">
                 <LinkRow items={group[0].items} />
                 <TextBody module={group[1]} />
               </div>

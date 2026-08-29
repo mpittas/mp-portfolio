@@ -30,7 +30,7 @@ export function HomeGrid() {
             />
             <div data-copy className="mt-3">
               <div className="flex items-start justify-between gap-4">
-                <h2 className="font-display text-xl font-extrabold leading-none tracking-tight transition-colors duration-300 group-hover:text-mute md:text-2xl">
+                <h2 className="font-display text-xl font-normal leading-none tracking-tight transition-colors duration-300 group-hover:text-mute md:text-2xl">
                   {project.title.replace(" - ", " — ")}
                 </h2>
                 <span className="spec shrink-0 text-mute">

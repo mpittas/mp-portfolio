@@ -181,7 +181,7 @@ export function ProjectCase({
             <p className="spec text-mute transition-colors duration-300 group-hover:text-ink">
               Previous
             </p>
-            <p className="mt-3 font-display text-3xl font-extrabold leading-none tracking-tight transition-transform duration-500 ease-out motion-safe:group-hover:-translate-x-1 md:text-4xl">
+            <p className="mt-3 font-display text-3xl font-normal leading-none tracking-tight transition-transform duration-500 ease-out motion-safe:group-hover:-translate-x-1 md:text-4xl">
               {prev.title.replace(" - ", " — ")}
             </p>
           </Link>
@@ -192,7 +192,7 @@ export function ProjectCase({
             <p className="spec text-mute transition-colors duration-300 group-hover:text-ink">
               Next
             </p>
-            <p className="mt-3 font-display text-3xl font-extrabold leading-none tracking-tight transition-transform duration-500 ease-out motion-safe:group-hover:translate-x-1 md:text-4xl">
+            <p className="mt-3 font-display text-3xl font-normal leading-none tracking-tight transition-transform duration-500 ease-out motion-safe:group-hover:translate-x-1 md:text-4xl">
               {next.title.replace(" - ", " — ")}
             </p>
           </Link>

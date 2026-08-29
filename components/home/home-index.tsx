@@ -28,7 +28,7 @@ export function HomeIndex() {
               >
                 <span className="spec">{String(i + 1).padStart(2, "0")}</span>
                 <span>
-                  <span className="font-display text-xl font-extrabold leading-none tracking-tight md:text-2xl">
+                  <span className="font-display text-xl font-normal leading-none tracking-tight md:text-2xl">
                     {project.title.replace(" - ", " — ")}
                   </span>
                   <span className="mt-1 block text-sm">{discipline(project)}</span>

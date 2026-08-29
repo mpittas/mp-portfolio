@@ -19,7 +19,7 @@ export function HomeSheets() {
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>
-            <h2 className="mt-2 truncate font-display text-base font-extrabold leading-none tracking-tight group-hover:text-mute md:text-lg">
+            <h2 className="mt-2 truncate font-display text-base font-normal leading-none tracking-tight group-hover:text-mute md:text-lg">
               {project.title.replace(" - ", " — ")}
             </h2>
           </Link>

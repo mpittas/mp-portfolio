@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Realster — Orbital Camera</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1b1a18;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 88% 70% at 48% 40%, #2a2926 0%, #1b1a18 52%, #0e0d0c 100%);
+      }
+      #scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      #stage {
+        position: absolute;
+        inset: 0;
+        perspective: 1480px;
+        perspective-origin: 50% 45%;
+        will-change: filter;
+      }
+      #world {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 11544px;
+        transform-style: preserve-3d;
+        transform-origin: 960px 540px;
+        will-change: transform;
+      }
+      #page {
+        display: block;
+        width: 1920px;
+        height: 11544px;
+        box-shadow:
+          0 48px 140px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(255, 255, 255, 0.06);
+      }
+      #vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 76% 70% at 50% 48%,
+          transparent 38%,
+          rgba(14, 13, 12, 0.42) 100%
+        );
+        opacity: 0.9;
+      }
+      #grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="10"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="bg"></div>
+      <section
+        id="scene"
+        class="clip"
+        data-start="0"
+        data-duration="10"
+        data-track-index="1"
+      >
+        <div id="stage">
+          <div id="world" data-layout-allow-overflow>
+            <img
+              id="page"
+              src="assets/full-page.png"
+              width="1920"
+              height="11544"
+              alt="Realster Greater Boston real estate site"
+            />
+          </div>
+        </div>
+        <div id="vignette"></div>
+        <div id="grain"></div>
+      </section>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      const world = document.getElementById("world");
+      const stage = document.getElementById("stage");
+      const page = document.getElementById("page");
+
+      // Camera state — single writer. Translate outside rotations (screen-aligned).
+      // Redesigned with wider field-of-view (no extreme zoom-in), lateral dolly tracks,
+      // and dynamic crane / isometric sweep choreography for distinct variety.
+      // y negative = travel down the page. z negative = pull back (wider).
+      const cam = { x: -80, y: 0, z: -560, rx: 14, ry: -18, rz: 0 };
+      const drift = { dx: 0, dy: 0, drx: 0, dry: 0 };
+      const travel = { blur: 0 };
+
+      function applyCamera() {
+        world.style.transform =
+          `translate3d(${cam.x + drift.dx}px, ${cam.y + drift.dy}px, ${cam.z}px)` +
+          ` rotateX(${cam.rx + drift.drx}deg) rotateY(${cam.ry + drift.dry}deg) rotateZ(${cam.rz}deg)`;
+        const b = travel.blur;
+        stage.style.filter = b > 0.15 ? `blur(${b.toFixed(2)}px)` : "none";
+      }
+
+      applyCamera();
+      gsap.set(page, { opacity: 0 });
+
+      // Continuous soft organic floating drift
+      const driftDriver = { p: 0 };
+      tl.to(
+        driftDriver,
+        {
+          p: Math.PI * 2 * 1.4,
+          duration: 10,
+          ease: "none",
+          onUpdate: () => {
+            drift.dx = Math.sin(driftDriver.p) * 6;
+            drift.dy = Math.sin(driftDriver.p * 1.15) * 4.5;
+            drift.drx = Math.sin(driftDriver.p * 0.6) * 0.3;
+            drift.dry = Math.cos(driftDriver.p * 0.85) * 0.5;
+            applyCamera();
+          },
+        },
+        0,
+      );
+
+      // ── 0.00–0.70  Establish: graceful fade-in at wide elevated 3/4 angle
+      tl.fromTo(
+        page,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.6, ease: "power2.out" },
+        0.05,
+      );
+
+      // ── 0.60–2.00  LEG 1: Smooth diagonal glide across Hero & Search (wide, generous framing)
+      tl.fromTo(
+        cam,
+        { x: -100, y: -80, z: -540, rx: 14, ry: -18, rz: 0 },
+        {
+          x: -20,
+          y: -40,
+          z: -140,
+          rx: 4,
+          ry: -4,
+          rz: 0,
+          duration: 1.4,
+          ease: "power3.out",
+          onUpdate: applyCamera,
+        },
+        0.6,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.2, duration: 0.25, ease: "power2.out", onUpdate: applyCamera },
+        0.6,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.7, ease: "power3.out", onUpdate: applyCamera },
+        0.85,
+      );
+
+      // ── 2.00–4.00  LEG 2: Lateral Dolly Track across "Six Homes" Showcase
+      tl.to(
+        cam,
+        {
+          x: 100,
+          y: -1400,
+          z: -260,
+          rx: 8,
+          ry: 12,
+          rz: -1,
+          duration: 2.0,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        2.0,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 4.5, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
+        2.0,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        2.7,
+      );
+
+      // ── 4.00–6.00  LEG 3: Wide Sweeping Arc across Neighborhoods ("Pick the street")
+      tl.to(
+        cam,
+        {
+          x: -100,
+          y: -5300,
+          z: -440,
+          rx: 14,
+          ry: -16,
+          rz: 1.5,
+          duration: 2.0,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        4.0,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 4.8, duration: 0.32, ease: "power1.in", onUpdate: applyCamera },
+        4.0,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.9, ease: "power3.out", onUpdate: applyCamera },
+        4.55,
+      );
+
+      // ── 6.00–7.90  LEG 4: Cinematic Crane Descend onto Dark Stats ("Twenty-eight years")
+      tl.to(
+        cam,
+        {
+          x: 30,
+          y: -6900,
+          z: -280,
+          rx: 5,
+          ry: 6,
+          rz: 0,
+          duration: 1.9,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        6.0,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 4.2, duration: 0.3, ease: "power2.out", onUpdate: applyCamera },
+        6.0,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        6.5,
+      );
+
+      // ── 7.90–10.0  LEG 5: Final Balanced Presentation Lockup on FAQ & Contact
+      tl.to(
+        cam,
+        {
+          x: 0,
+          y: -10200,
+          z: -320,
+          rx: 3,
+          ry: 0,
+          rz: 0,
+          duration: 2.1,
+          ease: "power3.out",
+          onUpdate: applyCamera,
+        },
+        7.9,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 2.8, duration: 0.22, ease: "power2.out", onUpdate: applyCamera },
+        7.9,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.7, ease: "power3.out", onUpdate: applyCamera },
+        8.2,
+      );
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

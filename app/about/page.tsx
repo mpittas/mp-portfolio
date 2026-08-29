@@ -69,7 +69,7 @@ export default function AboutPage() {
             <ul className="mt-8 divide-y divide-rule/40 border-y border-rule/40">
               {site.experience.map((job) => (
                 <li key={`${job.role}-${job.dates}`} className="py-6">
-                  <p className="text-2xl font-display font-extrabold leading-none tracking-tight">
+                  <p className="text-2xl font-display font-normal leading-none tracking-tight">
                     {job.role}
                   </p>
                   <p className="mt-2 text-ink">{job.org}</p>

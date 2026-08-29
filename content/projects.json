@@ -1,7 +1,64 @@
 [
   {
-    "slug": "portfolio-modern",
-    "title": "Portfolio Modern",
+    "slug": "realster",
+    "title": "Realster",
+    "year": "2026",
+    "tags": [
+      "Next.js",
+      "Motion",
+      "Tailwind"
+    ],
+    "url": "https://realestates-pi.vercel.app",
+    "seoDescription": "A Greater Boston real estate marketing site in Next.js with Motion reveals, Lenis scrolling, and a search-led hero.",
+    "cover": "/media/notion/realster/cover.mp4",
+    "coverPoster": "/media/notion/realster/cover-poster.jpg",
+    "modules": [
+      {
+        "type": "video",
+        "src": "/media/notion/realster/cover.mp4",
+        "poster": "/media/notion/realster/cover-poster.jpg",
+        "ratio": 0.5625
+      },
+      {
+        "items": [
+          {
+            "href": "https://realestates-pi.vercel.app",
+            "label": "Demo"
+          },
+          {
+            "href": "https://github.com/mpittas/realster",
+            "label": "Code"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "A Greater Boston brokerage marketing site I built in Next.js 16 and TypeScript. The pitch is simple: every home on the books is listed by a Realster agent. You land on a split hero — headline and supporting copy on one side, a full-bleed villa plate on the other — with floating overlay cards for price, open-house status, and median asking. A search panel overlaps the hero: saved-search chips, Where / Price / Beds filters, and a direct CTA into the inventory.\n\nBelow that the page runs as a long product story: a homes carousel, private exclusives that never hit a portal, a book-a-viewing flow, neighborhood accordion with live counts, a dark numbers band (28 years, 6 offices, 1,140 closings), agent portraits, a three-step how-it-works tab panel, a filterable browse book, FAQ, press logos, and a contact form.\n\nMotion is Motion (Framer): staggered reveals, soft rise/scale entrances, and reduced-motion fallbacks. Lenis owns the scroll. Tailwind v4 holds a warm white / charcoal / lilac token set with panel and card radii. The site is one composition of sections, not a multi-page MLS.",
+        "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/realster/neighborhoods.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/realster/how-it-works.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/realster/faq.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "folioport",
+    "title": "Folioport",
     "year": "2026",
     "tags": [
       "Vue",
@@ -24,10 +81,6 @@
           {
             "href": "https://portfolio-modern-lilac.vercel.app",
             "label": "Demo"
-          },
-          {
-            "href": "https://github.com/mpittas/portfolio-modern",
-            "label": "GitHub"
           }
         ],
         "type": "links"

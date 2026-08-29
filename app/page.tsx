@@ -11,7 +11,7 @@ import { HomeList } from "@/components/home/home-list";
 
 export default function Home() {
   return (
-    <main>
+    <main className="pb-24 md:pb-36">
       <HomeLead />
       <HomeList />
     </main>

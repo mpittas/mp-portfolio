@@ -1,0 +1,41 @@
+{
+  "category": "webpage",
+  "duration_s": 10,
+  "fps": 30,
+  "canvas": { "width": 1920, "height": 1080 },
+  "style": "orbital-camera-flight",
+  "palette": ["#1B1A18", "#FFFFFF", "#F3F3F3", "#6A6662", "#C4B5FD"],
+  "font": "Geist",
+  "export": "mp4",
+  "beats": [
+    { "at": 0.0, "label": "establish-orbit" },
+    { "at": 0.7, "label": "dive-hero" },
+    { "at": 2.3, "label": "orbit-neighborhoods" },
+    { "at": 4.4, "label": "counter-orbit-how" },
+    { "at": 6.5, "label": "swing-browse" },
+    { "at": 8.3, "label": "settle-faq" }
+  ],
+  "asset_needs": [
+    {
+      "role": "page-plate",
+      "kind": "web",
+      "source": "https://realestates-pi.vercel.app",
+      "treatment": "none"
+    }
+  ],
+  "brief": "Cursorless orbital 3D camera flight through the Realster Greater Boston marketing site. Wide yaw establish → dive into hero → long rotateY arc into neighborhoods → counter-orbit through how-it-works → swing past browse → settle on FAQ/press. Motion is the message; no VO, no invented copy. Same 10s length as Folioport.",
+  "content": {
+    "block": "hand-authored",
+    "customize": {
+      "blueprint": "camera-journey",
+      "sub_shape": "B",
+      "rules": ["3d-camera-flight", "multi-phase-camera", "motion-blur-streak", "viewport-change"],
+      "emphasis": "orbital-rotateY"
+    },
+    "page": {
+      "src": "assets/full-page.png",
+      "width": 1920,
+      "height": 11544
+    }
+  }
+}

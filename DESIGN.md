@@ -11,19 +11,19 @@ colors:
   mark: "#CFCFCB"
 typography:
   display:
-    fontFamily: "Sofia Sans Extra Condensed, Arial Narrow, sans-serif"
+    fontFamily: "Valley Sans, Helvetica, sans-serif"
     fontSize: "clamp(3.5rem, 12vw, 9rem)"
-    fontWeight: 800
+    fontWeight: 400
     lineHeight: 0.86
     letterSpacing: "-0.03em"
   body:
-    fontFamily: "Sofia Sans, Helvetica, sans-serif"
+    fontFamily: "Valley Sans, Helvetica, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.55
     letterSpacing: "0.01em"
   spec:
-    fontFamily: "Sofia Sans Condensed, Helvetica, sans-serif"
+    fontFamily: "Valley Sans, Helvetica, sans-serif"
     fontSize: "0.8125rem"
     fontWeight: 600
     lineHeight: 1.2
@@ -62,7 +62,7 @@ components:
 
 ## Overview
 
-The site is a **black field**: near-black board, light ink, condensed Sofia Sans, and the work presented as plates. Chrome is spec labels, not cards. Color lives in the case studies; the interface stays board, ink, and rule.
+The site is a **black field**: near-black board, light ink, Valley Sans, and the work presented as plates. Chrome is spec labels, not cards. Color lives in the case studies; the interface stays board, ink, and rule.
 
 Visitor mode is Experience. Two routes share one catalog: an express sequence of current plates, then a full index.
 
@@ -75,7 +75,7 @@ Visitor mode is Experience. Two routes share one catalog: an express sequence of
 
 ## Typography
 
-Sofia Sans Extra Condensed for the name and project titles. Sofia Sans for reading. Sofia Sans Condensed, tracked, for nav, plate marks, and credits. No serif display. Tracking on display stays at or above -0.03em.
+Valley Sans for the name, project titles, reading text, nav, plate marks, and credits. Regular (400) for display and body, SemiBold and tracked for spec labels. No serif display. Tracking on display stays at or above -0.03em.
 
 ## Layout
 
