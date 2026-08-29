@@ -1,0 +1,26 @@
+{
+  "category": "web-showcase",
+  "duration_s": 10,
+  "fps": 30,
+  "canvas": { "width": 1920, "height": 1080 },
+  "style": "spatial-3d-amphitheater-walkthrough",
+  "palette": ["#00966E", "#00D689", "#001D13", "#022D1E", "#051511", "#E8F0DC"],
+  "font": "Inter",
+  "export": "mp4",
+  "beats": [
+    { "at": 0.0, "label": "home-hero-solar-gateway" },
+    { "at": 2.2, "label": "about-vision-heritage" },
+    { "at": 4.3, "label": "services-epc-lifecycle" },
+    { "at": 6.5, "label": "projects-solar-plants" },
+    { "at": 8.5, "label": "spatial-overview-cta" },
+    { "at": 10.0, "label": "end" }
+  ],
+  "asset_needs": [
+    { "role": "page-home", "kind": "image", "source": "assets/page-home.png" },
+    { "role": "page-about", "kind": "image", "source": "assets/page-about.png" },
+    { "role": "page-services", "kind": "image", "source": "assets/page-services.png" },
+    { "role": "page-projects", "kind": "image", "source": "assets/page-projects.png" },
+    { "role": "page-contact", "kind": "image", "source": "assets/page-contact.png" }
+  ],
+  "brief": "A 10s spatial 3D camera flight through the VS Construction Services (VSCS) solar EPC platform, exploring Home, About Us, Services, Projects, and Consultation in an immersive amphitheater layout with dynamic depth-of-field and glowing emerald lighting."
+}

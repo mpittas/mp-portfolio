@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Songrates — 3D Orbital UI Showcase</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #070406;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 80% 65% at 50% 32%, rgba(255, 127, 95, 0.14) 0%, transparent 60%),
+          radial-gradient(ellipse 95% 80% at 48% 40%, #2b0e17 0%, #150911 50%, #070406 100%);
+      }
+      #scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      #stage {
+        position: absolute;
+        inset: 0;
+        perspective: 1450px;
+        perspective-origin: 50% 45%;
+        will-change: filter;
+      }
+      #world {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 12000px;
+        height: 4000px;
+        transform-style: preserve-3d;
+        transform-origin: 960px 540px;
+        will-change: transform;
+      }
+      .plane {
+        position: absolute;
+        overflow: hidden;
+        border-radius: 18px;
+        box-shadow:
+          0 45px 140px rgba(0, 0, 0, 0.78),
+          0 0 0 1px rgba(255, 255, 255, 0.09);
+        background: #0f0c11;
+        transform-style: preserve-3d;
+      }
+      .plane img {
+        display: block;
+        width: 1920px;
+      }
+      #vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 75% 68% at 50% 48%,
+          transparent 35%,
+          rgba(6, 3, 5, 0.5) 100%
+        );
+        opacity: 0.92;
+      }
+      #grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="10"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="bg"></div>
+      <section
+        id="scene"
+        class="clip"
+        data-start="0"
+        data-duration="10"
+        data-track-index="1"
+      >
+        <div id="stage" data-layout-allow-overflow>
+          <div id="world" data-layout-allow-overflow>
+            <!-- 1. Home Feed: Hero "Discover and Rate Music" & Trending Songs -->
+            <div
+              class="plane"
+              id="plane-home"
+              style="left: 0px; top: 0px; width: 1920px; height: 2179px;"
+            >
+              <img
+                src="assets/page-home.png"
+                width="1920"
+                height="2179"
+                alt="Songrates Home Feed"
+              />
+            </div>
+
+            <!-- 2. Explore Page: Music Discovery, Moods, Genres & Top Charts -->
+            <div
+              class="plane"
+              id="plane-explore"
+              style="left: 2350px; top: 0px; width: 1920px; height: 3200px;"
+            >
+              <img
+                src="assets/page-explore.png"
+                width="1920"
+                height="5120"
+                alt="Songrates Explore & Music Discovery"
+              />
+            </div>
+
+            <!-- 3. Album Scoring Experience: Track-by-Track Scoring & Community Score -->
+            <div
+              class="plane"
+              id="plane-album"
+              style="left: 4700px; top: 0px; width: 1920px; height: 2172px;"
+            >
+              <img
+                src="assets/page-album.png"
+                width="1920"
+                height="2172"
+                alt="Songrates Album Track Scoring"
+              />
+            </div>
+
+            <!-- 4. Curated Top 100 Apple Music Playlist -->
+            <div
+              class="plane"
+              id="plane-playlist"
+              style="left: 7050px; top: 0px; width: 1920px; height: 3000px;"
+            >
+              <img
+                src="assets/page-playlist.png"
+                width="1920"
+                height="7798"
+                alt="Songrates Apple Music Top 100 Playlist"
+              />
+            </div>
+
+            <!-- 5. User Profile: Leveling, Score History & Achievements -->
+            <div
+              class="plane"
+              id="plane-user"
+              style="left: 9400px; top: 0px; width: 1920px; height: 1314px;"
+            >
+              <img
+                src="assets/page-user.png"
+                width="1920"
+                height="1314"
+                alt="Songrates User Profile and Leveling"
+              />
+            </div>
+          </div>
+        </div>
+        <div id="vignette"></div>
+        <div id="grain"></div>
+      </section>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      const world = document.getElementById("world");
+      const stage = document.getElementById("stage");
+
+      // 3D Orbital Camera tracking system
+      // x: world X offset, y: world Y offset, z: perspective depth
+      // rx: pitch, ry: orbital yaw, rz: roll
+      const cam = { x: 80, y: 15, z: -870, rx: 17, ry: 23, rz: 2.8 };
+      const drift = { dx: 0, dy: 0, drx: 0, dry: 0 };
+      const travel = { blur: 0 };
+
+      function applyCamera() {
+        const currentCenterX = -cam.x + 960;
+        const currentCenterY = -cam.y + 540;
+        world.style.transformOrigin = `${currentCenterX}px ${currentCenterY}px`;
+        world.style.transform =
+          `translate3d(${cam.x + drift.dx}px, ${cam.y + drift.dy}px, ${cam.z}px)` +
+          ` rotateX(${cam.rx + drift.drx}deg) rotateY(${cam.ry + drift.dry}deg) rotateZ(${cam.rz}deg)`;
+        const b = travel.blur;
+        stage.style.filter = b > 0.15 ? `blur(${b.toFixed(2)}px)` : "none";
+      }
+
+      applyCamera();
+
+      // Continuous organic 3D camera drift for realistic handheld/cinematic feel
+      const driftDriver = { p: 0 };
+      tl.to(
+        driftDriver,
+        {
+          p: Math.PI * 2 * 1.5,
+          duration: 10,
+          ease: "none",
+          onUpdate: () => {
+            drift.dx = Math.sin(driftDriver.p) * 6.5;
+            drift.dy = Math.sin(driftDriver.p * 1.15) * 4.5;
+            drift.drx = Math.sin(driftDriver.p * 0.75) * 0.35;
+            drift.dry = Math.cos(driftDriver.p * 0.85) * 0.5;
+            applyCamera();
+          },
+        },
+        0,
+      );
+
+      // Fade-in root scene at start
+      const root = document.getElementById("root");
+      tl.fromTo(
+        root,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.45, ease: "power2.out" },
+        0.05,
+      );
+
+      // ── 0.00–2.20  LEG 1: Home Feed — "Discover and Rate Music" & Trending Tracks
+      tl.fromTo(
+        cam,
+        { x: 80, y: 15, z: -870, rx: 17, ry: 23, rz: 2.8 },
+        {
+          x: 40,
+          y: -240,
+          z: -830,
+          rx: 9,
+          ry: 12,
+          rz: 1.2,
+          duration: 1.7,
+          ease: "power2.out",
+          onUpdate: applyCamera,
+        },
+        0.4,
+      );
+
+      // ── 2.20–4.60  LEG 2: Orbit into Explore Page (Search, Genres, Moods & Top Charts)
+      tl.to(
+        cam,
+        {
+          x: -2350,
+          y: -360,
+          z: -850,
+          rx: 12,
+          ry: -17,
+          rz: -2.0,
+          duration: 2.2,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        2.2,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.2, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
+        2.2,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        2.9,
+      );
+
+      // ── 4.60–7.00  LEG 3: Orbital Dive into Album Scoring (Gorillaz The Mountain, 6.8 Chip, Track Ratings)
+      tl.to(
+        cam,
+        {
+          x: -4700,
+          y: -200,
+          z: -810,
+          rx: 13,
+          ry: 16,
+          rz: 1.6,
+          duration: 2.2,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        4.6,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.4, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
+        4.6,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        5.3,
+      );
+
+      // ── 7.00–8.70  LEG 4: Orbit into Apple Music Top 100 Playlist (Artwork Grid & Global Tracklist)
+      tl.to(
+        cam,
+        {
+          x: -7050,
+          y: -260,
+          z: -840,
+          rx: 11,
+          ry: -14,
+          rz: -1.5,
+          duration: 1.7,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        7.0,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 2.8, duration: 0.3, ease: "power1.in", onUpdate: applyCamera },
+        7.0,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.75, ease: "power3.out", onUpdate: applyCamera },
+        7.6,
+      );
+
+      // ── 8.70–10.0  LEG 5: Final Settle on User Profile & Expansive Multi-Plane Overview
+      tl.to(
+        cam,
+        {
+          x: -9400,
+          y: -60,
+          z: -860,
+          rx: 5,
+          ry: 3,
+          rz: 0.5,
+          duration: 1.3,
+          ease: "power3.out",
+          onUpdate: applyCamera,
+        },
+        8.7,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 2.2, duration: 0.22, ease: "power2.out", onUpdate: applyCamera },
+        8.7,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.65, ease: "power3.out", onUpdate: applyCamera },
+        9.0,
+      );
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

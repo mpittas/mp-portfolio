@@ -1,8 +1,120 @@
 [
   {
+    "slug": "dokr",
+    "title": "Dokr",
+    "year": "2023",
+    "tags": [
+      "Next.js",
+      "GSAP",
+      "Motion"
+    ],
+    "url": "https://dokr-kohl.vercel.app",
+    "seoDescription": "Motion-first marketing site for Dokr, a digital banking brand, built in Next.js with GSAP and Framer Motion.",
+    "cover": "/media/notion/dokr/cover.jpg",
+    "coverPoster": "/media/notion/dokr/cover-poster.jpg",
+    "modules": [
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/dokr/hero.jpg"
+      },
+      {
+        "items": [
+          {
+            "href": "https://dokr-kohl.vercel.app",
+            "label": "Demo"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "Dokr is a marketing website for a digital banking brand. Its job is to sell a fee-free account, cards, and wealth tools as one confident story, not a dry product list.\n\nWhat I built: A single-page landing with a letter-flip preloader, mask-reveal headlines, parallax product art, and Lenis smooth scrolling. The page walks from a banking hero into press marks, product offers (payments, investing, wealth, planning), fee-free promises, cards, social proof, a join CTA, and FAQ. Motion is part of the pitch: the site should feel like the bank.\n\nTech stack: Next.js 13, React 18, TypeScript, styled-components, GSAP, Framer Motion, Lenis, and Geist.",
+        "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/dokr/offers.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/dokr/freedom.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/dokr/faq.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "umedio",
+    "title": "Umedio",
+    "year": "2024",
+    "tags": [
+      "Next.js",
+      "GSAP",
+      "Tailwind"
+    ],
+    "url": "https://umedio.vercel.app",
+    "seoDescription": "Marketing site for Umedio, cloud practice management software for private clinics, built in Next.js with GSAP motion.",
+    "cover": "/media/notion/umedio/cover.mp4",
+    "coverPoster": "/media/notion/umedio/cover-poster.jpg",
+    "modules": [
+      {
+        "type": "video",
+        "src": "/media/notion/umedio/cover.mp4",
+        "poster": "/media/notion/umedio/cover-poster.jpg",
+        "ratio": 0.5625
+      },
+      {
+        "items": [
+          {
+            "href": "https://umedio.vercel.app",
+            "label": "Demo"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "Umedio is a marketing website for cloud practice management software aimed at private clinics. Its job is to sell an all-in-one platform for bookings, billing, automation, and patient admin so clinicians can spend less time on paperwork.\n\nWhat I built: A multi-page SaaS marketing site with a deep-teal brand system, GSAP page motion, Lenis smooth scrolling, and product storytelling across home, features, pricing, and a Santis clinic case study. Sections cover online bookings, tasks, leads, inbox, integrations, billing tools, and trust marks from major UK private hospitals.\n\nTech stack: Next.js 14, React 18, TypeScript, Tailwind CSS, GSAP, Lenis, Swiper, and Headless UI.",
+        "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/umedio/workflows.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/umedio/features.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/umedio/pricing.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/umedio/case-study.jpg"
+      }
+    ]
+  },
+  {
     "slug": "realster",
     "title": "Realster",
-    "year": "2026",
+    "year": "2025",
     "tags": [
       "Next.js",
       "Motion",
@@ -24,10 +136,6 @@
           {
             "href": "https://realestates-pi.vercel.app",
             "label": "Demo"
-          },
-          {
-            "href": "https://github.com/mpittas/realster",
-            "label": "Code"
           }
         ],
         "type": "links"
@@ -59,7 +167,7 @@
   {
     "slug": "folioport",
     "title": "Folioport",
-    "year": "2026",
+    "year": "2024",
     "tags": [
       "Vue",
       "GSAP",
@@ -145,6 +253,24 @@
       {
         "text": "KnowYourGeo is a free training app for GeoGuessr players who want to improve, not just chase a score. You practice on real Google Street View, pin guesses on a map, and leave each round knowing which clues you missed.\n\nWhat I built: Map pickers (world or by continent), Moving / No Move and timer constraints, AI round review that highlights street signs and regional meta, field guides, and profiles that journal sessions and weak spots. Auth supports email and Google. AI analysis runs on secured, rate-limited server routes so API keys never ship to the browser.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Google Maps / Street View, Google Gemini, Supabase Auth, and Upstash Redis.",
         "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/know-your-geo/home.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/know-your-geo/ai-coach.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/know-your-geo/guides.jpg"
       }
     ]
   },
@@ -184,13 +310,31 @@
       {
         "text": "Songrates is a music discovery app built around one loop: find a song or album, then rate it. It turns casual listening into a shared catalog of opinions, playlists, and fully rated releases.\n\nWhat I built: Home feeds for trending tracks, country Top 100 playlists, and community-rated albums; album pages with track-by-track scoring; reviews; playlists; artist follows; and public profiles with a leveling system unlocked by fully rated albums. Guests can rate; signed-in users keep progress and unlock profile perks.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Supabase (auth + database), Apple Music API, TanStack Query, and React Three Fiber for upcoming 3D vinyl experiences.",
         "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/songrates/home.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/songrates/album.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/songrates/playlist.jpg"
       }
     ]
   },
   {
     "slug": "vscs-strapi",
     "title": "VSCS",
-    "year": "2026",
+    "year": "2025",
     "tags": [
       "Next.js",
       "Strapi",
@@ -198,11 +342,13 @@
     ],
     "url": "https://vscs-strapi.vercel.app",
     "seoDescription": "Bilingual marketing site for a solar EPC company. Next.js frontend with a Strapi 5 CMS.",
-    "cover": "/media/notion/vscs-strapi/cover.jpg",
+    "cover": "/media/notion/vscs-strapi/cover.mp4",
+    "coverPoster": "/media/notion/vscs-strapi/cover-poster.jpg",
     "modules": [
       {
-        "type": "image",
-        "src": "/media/notion/vscs-strapi/cover.jpg",
+        "type": "video",
+        "src": "/media/notion/vscs-strapi/cover.mp4",
+        "poster": "/media/notion/vscs-strapi/cover-poster.jpg",
         "ratio": 0.5625
       },
       {
@@ -225,12 +371,31 @@
       {
         "text": "VSCS is the company website for VS Construction Services, a Bulgarian solar EPC business. It explains their turnkey photovoltaic offer, showcases completed projects, publishes news, and turns visitors into consultations and leads.\n\nWhat I built: A bilingual (Bulgarian / English) marketing site with services, project map, blog, careers, and form flows, all editable from a CMS. The frontend revalidates when Strapi content changes, so the client can update copy and media without redeploying the whole app.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Strapi 5, i18next, Mapbox, GSAP, Lenis, and Nodemailer (SMTP forms). Local CMS uses SQLite; production targets PostgreSQL.",
         "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/vscs-strapi/home.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/vscs-strapi/services.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/vscs-strapi/projects.jpg"
       }
     ]
   },
   {
     "slug": "mikrofond",
     "title": "Mikrofond",
+    "year": "2023",
     "tags": [
       "WordPress",
       "Elementor",
@@ -238,11 +403,13 @@
     ],
     "url": "https://mikrofond.bg/",
     "seoDescription": "Production WordPress site for a Bulgarian microfinance company. Designed in Figma, built in Elementor Pro.",
-    "cover": "/media/notion/mikrofond/cover.jpg",
+    "cover": "/media/notion/mikrofond/cover.mp4",
+    "coverPoster": "/media/notion/mikrofond/cover-poster.jpg",
     "modules": [
       {
-        "type": "image",
-        "src": "/media/notion/mikrofond/cover.jpg",
+        "type": "video",
+        "src": "/media/notion/mikrofond/cover.mp4",
+        "poster": "/media/notion/mikrofond/cover-poster.jpg",
         "ratio": 0.5625
       },
       {
@@ -279,6 +446,65 @@
         "ratio": 0.5625,
         "type": "image",
         "src": "/media/notion/mikrofond/kontakti.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "collection-of-landing-pages",
+    "title": "Collection of Landing Pages",
+    "year": "2021",
+    "tags": [
+      "Figma",
+      "UI",
+      "UX"
+    ],
+    "url": "https://www.figma.com/design/ZEbHNI3J2lr2r9y3ZVoXYS/Collection-of-Landing-pages",
+    "seoDescription": "A Figma collection of landing page concepts across SaaS, retail, and entertainment, showing how I approach design and UX in one file.",
+    "cover": "/media/notion/collection-of-landing-pages/cover.mp4",
+    "coverPoster": "/media/notion/collection-of-landing-pages/cover-poster.jpg",
+    "modules": [
+      {
+        "type": "video",
+        "src": "/media/notion/collection-of-landing-pages/cover.mp4",
+        "poster": "/media/notion/collection-of-landing-pages/cover-poster.jpg",
+        "ratio": 0.5625
+      },
+      {
+        "items": [
+          {
+            "href": "https://www.figma.com/design/ZEbHNI3J2lr2r9y3ZVoXYS/Collection-of-Landing-pages",
+            "label": "Figma"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "A Figma file of landing page concepts I designed across very different industries. It is one place to skim how I think about hierarchy, conversion, and visual tone, from dark SaaS to retail and entertainment.\n\nWhat I built: Ten complete landing pages in a single showcase. Dark-mode product interfaces, a Japanese snack subscription, an interior studio, a recipe platform, B2B consulting layouts, and a designer portfolio. Each page uses a simple structure, custom components, and type that stays clear at a glance.\n\nTools: Figma.",
+        "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/collection-of-landing-pages/got.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/collection-of-landing-pages/retail.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/collection-of-landing-pages/studio.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/collection-of-landing-pages/recipes.jpg"
       }
     ]
   }

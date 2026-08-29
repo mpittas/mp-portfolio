@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>KnowYourGeo — Multi-Page & Interactive Gaming Showcase</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "IBM Plex Sans";
+        src:
+          url("capture/assets/fonts/03fc1b4a8d284b5e-s.p.0wiir8udbzjvx.woff2") format("woff2"),
+          local("IBM Plex Sans");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "IBM Plex Mono";
+        src:
+          url("capture/assets/fonts/99e609270109b47d-s.p.40sczeszzbjw1.woff2") format("woff2"),
+          local("IBM Plex Mono");
+        font-weight: 400 700;
+        font-display: swap;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #070c05;
+        font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+        color: #fdfcf8;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 80% 65% at 50% 32%, rgba(65, 88, 0, 0.24) 0%, transparent 62%),
+          radial-gradient(ellipse 95% 80% at 48% 40%, #162410 0%, #0d160a 50%, #060a04 100%);
+      }
+      #scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      #stage {
+        position: absolute;
+        inset: 0;
+        perspective: 1460px;
+        perspective-origin: 50% 45%;
+        will-change: filter;
+      }
+      #world {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 12000px;
+        height: 4000px;
+        transform-style: preserve-3d;
+        transform-origin: 960px 540px;
+        will-change: transform;
+      }
+      .plane {
+        position: absolute;
+        overflow: hidden;
+        border-radius: 18px;
+        box-shadow:
+          0 45px 140px rgba(0, 0, 0, 0.78),
+          0 0 0 1px rgba(255, 255, 255, 0.09);
+        background: #11170e;
+        transform-style: preserve-3d;
+      }
+      .plane img.page-img {
+        display: block;
+        width: 1920px;
+      }
+
+      /* ── Interactive Game Plane Styling ── */
+      #plane-game {
+        background: #080d05;
+        position: absolute;
+        overflow: hidden;
+      }
+      .game-viewport {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      .streetview-bg {
+        position: absolute;
+        left: -150px;
+        top: -150px;
+        width: 2220px;
+        height: 1380px;
+        background-image: url("assets/norway-mountain-road.jpg");
+        background-size: cover;
+        background-position: center 40%;
+        transform-origin: center center;
+        will-change: transform;
+      }
+      .streetview-vignette {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.45) 100%);
+        pointer-events: none;
+      }
+
+      /* Game Header HUD */
+      .game-hud-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 68px;
+        background: rgba(15, 23, 13, 0.88);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 36px;
+        z-index: 10;
+      }
+      .game-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .game-brand-logo {
+        width: 32px;
+        height: 32px;
+        color: #8bb800;
+      }
+      .game-brand-name {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #fdfcf8;
+      }
+      .game-hud-center {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .hud-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 9999px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #efebe0;
+      }
+      .hud-pill.highlight {
+        background: #415800;
+        border-color: #5c7c00;
+        color: #ffffff;
+      }
+      .hud-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #e07937;
+        box-shadow: 0 0 10px #e07937;
+      }
+      .game-hud-score {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        font-family: "IBM Plex Mono", monospace;
+      }
+      .score-display {
+        font-size: 16px;
+        font-weight: 600;
+        color: #8bb800;
+      }
+      .score-val {
+        color: #fdfcf8;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .timer-display {
+        font-size: 16px;
+        font-weight: 700;
+        color: #e07937;
+        padding: 4px 12px;
+        background: rgba(224, 121, 55, 0.15);
+        border: 1px solid rgba(224, 121, 55, 0.3);
+        border-radius: 6px;
+      }
+
+      /* AI Clue Detection Overlays */
+      .ai-clue-box {
+        position: absolute;
+        border: 2px solid #8bb800;
+        background: rgba(65, 88, 0, 0.18);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border-radius: 6px;
+        box-shadow:
+          0 0 20px rgba(139, 184, 0, 0.35),
+          inset 0 0 15px rgba(139, 184, 0, 0.2);
+        z-index: 5;
+        opacity: 0;
+        transform: scale(0.92);
+        will-change: opacity, transform;
+      }
+      .ai-clue-tag {
+        position: absolute;
+        top: -34px;
+        left: -2px;
+        background: #415800;
+        color: #ffffff;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        white-space: nowrap;
+      }
+      .ai-clue-meta {
+        position: absolute;
+        bottom: -32px;
+        left: -2px;
+        background: rgba(14, 21, 11, 0.92);
+        border: 1px solid rgba(139, 184, 0, 0.4);
+        color: #e0ded5;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-family: "IBM Plex Mono", monospace;
+        white-space: nowrap;
+      }
+      .clue-confidence {
+        color: #8bb800;
+        font-weight: 700;
+      }
+
+      /* Minimap Guess Widget */
+      .minimap-card {
+        position: absolute;
+        bottom: 32px;
+        right: 36px;
+        width: 360px;
+        height: 250px;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.16);
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.7),
+          0 0 0 1px rgba(65, 88, 0, 0.4);
+        background: #111a0e;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+      }
+      .minimap-bg {
+        position: relative;
+        flex: 1;
+        background: #162413 url("assets/blue-marble-2002.jpg") no-repeat center 35%;
+        background-size: 700px;
+      }
+      .minimap-crosshair {
+        position: absolute;
+        left: 54%;
+        top: 38%;
+        transform: translate(-50%, -50%);
+        width: 36px;
+        height: 36px;
+      }
+      .minimap-pin {
+        position: absolute;
+        left: 54%;
+        top: 38%;
+        transform: translate(-50%, -100%) scale(0);
+        width: 32px;
+        height: 42px;
+        will-change: transform;
+      }
+      .minimap-radar {
+        position: absolute;
+        left: 54%;
+        top: 38%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 2px solid #8bb800;
+        background: rgba(139, 184, 0, 0.2);
+        opacity: 0;
+      }
+      .minimap-footer {
+        height: 48px;
+        background: rgba(14, 21, 11, 0.95);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+      }
+      .minimap-btn {
+        background: #415800;
+        color: #fdfcf8;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 6px;
+        border: none;
+      }
+
+      /* Gemini AI Round Review Coach Card */
+      .ai-coach-card {
+        position: absolute;
+        top: 96px;
+        right: 36px;
+        width: 440px;
+        background: rgba(15, 23, 13, 0.94);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(139, 184, 0, 0.35);
+        border-radius: 14px;
+        padding: 22px;
+        box-shadow:
+          0 32px 70px rgba(0, 0, 0, 0.8),
+          0 0 25px rgba(65, 88, 0, 0.25);
+        z-index: 12;
+        opacity: 0;
+        transform: translateX(40px);
+        will-change: opacity, transform;
+      }
+      .coach-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .coach-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        background: rgba(139, 184, 0, 0.18);
+        border: 1px solid rgba(139, 184, 0, 0.4);
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #8bb800;
+      }
+      .score-burst {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .score-big {
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: #fdfcf8;
+        font-family: "IBM Plex Mono", monospace;
+        display: inline-block;
+      }
+      .score-tag {
+        font-size: 13px;
+        font-weight: 600;
+        color: #e07937;
+        display: inline-block;
+      }
+      .coach-text {
+        font-size: 13px;
+        line-height: 1.55;
+        color: #d6d3c7;
+        margin-top: 4px;
+        margin-bottom: 16px;
+        display: block;
+      }
+      .coach-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .coach-tag {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #efebe0;
+      }
+
+      /* Compass Widget */
+      .streetview-compass {
+        position: absolute;
+        top: 96px;
+        left: 40px;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(15, 23, 13, 0.75);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+        z-index: 8;
+      }
+
+      #vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 75% 68% at 50% 48%,
+          transparent 35%,
+          rgba(6, 10, 4, 0.52) 100%
+        );
+        opacity: 0.92;
+      }
+      #grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="10"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="bg"></div>
+      <section
+        id="scene"
+        class="clip"
+        data-start="0"
+        data-duration="10"
+        data-track-index="1"
+      >
+        <div id="stage" data-layout-allow-overflow>
+          <div id="world" data-layout-allow-overflow>
+            <!-- 1. Home / Atlas Setup -->
+            <div
+              class="plane"
+              id="plane-home"
+              style="left: 0px; top: 0px; width: 1920px; height: 2500px;"
+            >
+              <img
+                class="page-img"
+                src="assets/page-home.png"
+                width="1920"
+                height="4424"
+                alt="KnowYourGeo Home & Atlas Drill Setup"
+              />
+            </div>
+
+            <!-- 2. The Signature Interactive Gaming Page -->
+            <div
+              class="plane"
+              id="plane-game"
+              style="left: 2350px; top: 0px; width: 1920px; height: 1080px;"
+            >
+              <div class="game-viewport">
+                <div class="streetview-bg" id="game-pano"></div>
+                <div class="streetview-vignette"></div>
+
+                <div class="streetview-compass">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3L15 12H9L12 3Z" fill="#e07937" />
+                    <path d="M12 21L9 12H15L12 21Z" fill="#8bb800" />
+                    <circle cx="12" cy="12" r="2" fill="#fff" />
+                  </svg>
+                </div>
+
+                <div class="game-hud-header">
+                  <div class="game-brand">
+                    <svg viewBox="0 0 256 256" fill="none" class="game-brand-logo">
+                      <path fill="currentColor" d="M65.025 143.01C70.813 165.5 88.518 183.205 111.008 188.993V254.018C53.108 246.798 7.22 200.909 0 143.01ZM254.016 143.01C246.796 200.909 200.907 246.798 143.008 254.018V188.993C165.498 183.205 183.203 165.5 188.991 143.01ZM127.008 111.01C135.845 111.01 143.008 118.173 143.008 127.01C143.008 135.847 135.845 143.01 127.008 143.01C118.171 143.01 111.008 135.847 111.008 127.01C111.008 118.173 118.171 111.01 127.008 111.01ZM111.008 65.026C88.518 70.814 70.813 88.52 65.025 111.01H0C7.22 53.11 53.109 7.221 111.008 0.001ZM143.008 0C200.907 7.221 246.796 53.111 254.016 111.01H188.991C183.203 88.52 165.498 70.814 143.008 65.026Z"/>
+                    </svg>
+                    <span class="game-brand-name">KnowYourGeo</span>
+                  </div>
+
+                  <div class="game-hud-center">
+                    <span class="hud-pill highlight">ROUND 1 / 5</span>
+                    <span class="hud-pill"><span class="hud-dot"></span>WORLD DRILL</span>
+                    <span class="hud-pill">NO MOVE</span>
+                    <span class="hud-pill">60s</span>
+                  </div>
+
+                  <div class="game-hud-score">
+                    <div class="score-display">SCORE: <span class="score-val" id="score-counter">19,842</span> / 25k</div>
+                    <div class="timer-display">00:48</div>
+                  </div>
+                </div>
+
+                <!-- AI Clue 1 -->
+                <div class="ai-clue-box" id="clue-1" style="left: 680px; top: 620px; width: 440px; height: 180px;">
+                  <div class="ai-clue-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg>
+                    AI DETECT · ROAD META
+                  </div>
+                  <div class="ai-clue-meta">
+                    White dashed center + yellow edge line · <span class="clue-confidence">98% Norway</span>
+                  </div>
+                </div>
+
+                <!-- AI Clue 2 -->
+                <div class="ai-clue-box" id="clue-2" style="left: 420px; top: 490px; width: 180px; height: 260px;">
+                  <div class="ai-clue-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg>
+                    SNOW BOLLARD
+                  </div>
+                  <div class="ai-clue-meta">
+                    Wood snow pole w/ red band · <span class="clue-confidence">95% Scandinavian</span>
+                  </div>
+                </div>
+
+                <!-- AI Clue 3 -->
+                <div class="ai-clue-box" id="clue-3" style="left: 1160px; top: 220px; width: 360px; height: 220px;">
+                  <div class="ai-clue-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg>
+                    TOPOGRAPHY & FLORA
+                  </div>
+                  <div class="ai-clue-meta">
+                    Coastal fjord terrain · Betula pendula · <span class="clue-confidence">92% Nordic</span>
+                  </div>
+                </div>
+
+                <!-- Minimap Guessing Widget -->
+                <div class="minimap-card" id="game-minimap">
+                  <div class="minimap-bg">
+                    <div class="minimap-crosshair">
+                      <svg viewBox="0 0 36 36" fill="none" stroke="#e0ded5" stroke-width="1.5">
+                        <circle cx="18" cy="18" r="14" stroke-dasharray="2 2" opacity="0.6"/>
+                        <line x1="18" y1="2" x2="18" y2="34"/>
+                        <line x1="2" y1="18" x2="34" y2="18"/>
+                      </svg>
+                    </div>
+                    <div class="minimap-radar" id="mini-radar"></div>
+                    <div class="minimap-pin" id="mini-pin">
+                      <svg viewBox="0 0 32 42" fill="none">
+                        <path d="M16 0C7.163 0 0 7.163 0 16C0 27 16 42 16 42C16 42 32 27 32 16C32 7.163 24.837 0 16 0Z" fill="#e07937"/>
+                        <circle cx="16" cy="16" r="6" fill="#ffffff"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="minimap-footer">
+                    <span style="font-size: 11px; font-family: monospace; color: #8bb800;">E39, MØRE OG ROMSDAL</span>
+                    <button class="minimap-btn">CONFIRM GUESS</button>
+                  </div>
+                </div>
+
+                <!-- Gemini AI Geography Coach Round Review Card -->
+                <div class="ai-coach-card" id="coach-card" data-layout-allow-overlap>
+                  <div class="coach-header">
+                    <span class="coach-badge">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z"/></svg>
+                      GEMINI 3.6 FLASH · AI COACH
+                    </span>
+                    <span style="font-size: 11px; color: #8bb800; font-weight: 700;">94% CONFIDENCE</span>
+                  </div>
+                  <div class="score-burst" data-layout-allow-overlap>
+                    <span class="score-big">+4,964</span>
+                    <span class="score-tag">14.2 km · Excellent!</span>
+                  </div>
+                  <p class="coach-text" data-layout-allow-overlap>
+                    "Dashed white center lines paired with yellow road edge stripes and wood-backed red reflector snow poles pinpoint Norway's western coastal routes, distinguishing it from Swedish white outer edge markings."
+                  </p>
+                  <div class="coach-tags">
+                    <span class="coach-tag" style="background: rgba(139, 184, 0, 0.2); border-color: #8bb800; color: #8bb800;">✓ Norway Confirmed</span>
+                    <span class="coach-tag">Bollard Meta</span>
+                    <span class="coach-tag">Edge Stripes</span>
+                    <span class="coach-tag">Fjord Topography</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Field Guides Catalog -->
+            <div
+              class="plane"
+              id="plane-guides"
+              style="left: 4700px; top: 0px; width: 1920px; height: 1894px;"
+            >
+              <img
+                class="page-img"
+                src="assets/page-guides.png"
+                width="1920"
+                height="1894"
+                alt="KnowYourGeo Field Guides Catalog"
+              />
+            </div>
+
+            <!-- 4. Deep Guide Experience -->
+            <div
+              class="plane"
+              id="plane-guide-detail"
+              style="left: 7050px; top: 0px; width: 1920px; height: 2600px;"
+            >
+              <img
+                class="page-img"
+                src="assets/page-guide-detail.png"
+                width="1920"
+                height="7160"
+                alt="Bollards & Road Furniture Meta Deep Guide"
+              />
+            </div>
+
+            <!-- 5. Pricing & Pro Training -->
+            <div
+              class="plane"
+              id="plane-pricing"
+              style="left: 9400px; top: 0px; width: 1920px; height: 2200px;"
+            >
+              <img
+                class="page-img"
+                src="assets/page-pricing.png"
+                width="1920"
+                height="3341"
+                alt="KnowYourGeo Pro Training & Pricing"
+              />
+            </div>
+          </div>
+        </div>
+        <div id="vignette"></div>
+        <div id="grain"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      const world = document.getElementById("world");
+      const stage = document.getElementById("stage");
+
+      const gamePano = document.getElementById("game-pano");
+      const clue1 = document.getElementById("clue-1");
+      const clue2 = document.getElementById("clue-2");
+      const clue3 = document.getElementById("clue-3");
+      const miniPin = document.getElementById("mini-pin");
+      const miniRadar = document.getElementById("mini-radar");
+      const coachCard = document.getElementById("coach-card");
+      const scoreCounter = document.getElementById("score-counter");
+
+      const cam = { x: 70, y: -60, z: -890, rx: 16, ry: 20, rz: 2.5 };
+      const drift = { dx: 0, dy: 0, drx: 0, dry: 0 };
+      const travel = { blur: 0 };
+
+      function applyCamera() {
+        const currentCenterY = -cam.y + 540;
+        world.style.transformOrigin = `960px ${currentCenterY}px`;
+        world.style.transform =
+          `translate3d(${cam.x + drift.dx}px, ${cam.y + drift.dy}px, ${cam.z}px)` +
+          ` rotateX(${cam.rx + drift.drx}deg) rotateY(${cam.ry + drift.dry}deg) rotateZ(${cam.rz}deg)`;
+        const b = travel.blur;
+        stage.style.filter = b > 0.15 ? `blur(${b.toFixed(2)}px)` : "none";
+      }
+
+      applyCamera();
+
+      gsap.set(["#plane-home", "#plane-game", "#plane-guides", "#plane-guide-detail", "#plane-pricing"], {
+        opacity: 0,
+      });
+
+      const driftDriver = { p: 0 };
+      tl.to(
+        driftDriver,
+        {
+          p: Math.PI * 2 * 1.5,
+          duration: 10,
+          ease: "none",
+          onUpdate: () => {
+            drift.dx = Math.sin(driftDriver.p) * 6;
+            drift.dy = Math.sin(driftDriver.p * 1.15) * 4.5;
+            drift.drx = Math.sin(driftDriver.p * 0.75) * 0.35;
+            drift.dry = Math.cos(driftDriver.p * 0.9) * 0.45;
+            applyCamera();
+          },
+        },
+        0,
+      );
+
+      // 0.00–0.45 Fade in
+      tl.to(
+        ["#plane-home", "#plane-game", "#plane-guides", "#plane-guide-detail", "#plane-pricing"],
+        { opacity: 1, duration: 0.45, ease: "power2.out" },
+        0.05,
+      );
+
+      // 0.05–1.90 Beat 1: Home
+      tl.fromTo(
+        cam,
+        { x: 70, y: -60, z: -890, rx: 16, ry: 20, rz: 2.5 },
+        {
+          x: 20,
+          y: -240,
+          z: -850,
+          rx: 9,
+          ry: 12,
+          rz: 1,
+          duration: 1.85,
+          ease: "power2.out",
+          onUpdate: applyCamera,
+        },
+        0.05,
+      );
+
+      // 1.90–3.60 Beat 2A: Sweep to Gaming Page
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.5, duration: 0.28, ease: "power1.in", onUpdate: applyCamera },
+        1.90,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.7, ease: "power3.out", onUpdate: applyCamera },
+        2.20,
+      );
+
+      tl.to(
+        cam,
+        {
+          x: -2350,
+          y: 0,
+          z: -840,
+          rx: 3.5,
+          ry: -3.0,
+          rz: -0.4,
+          duration: 1.65,
+          ease: "power3.inOut",
+          onUpdate: applyCamera,
+        },
+        1.95,
+      );
+
+      tl.fromTo(
+        gamePano,
+        { x: 0, y: 0, scale: 1 },
+        { x: -90, y: -25, scale: 1.05, duration: 3.4, ease: "power1.inOut" },
+        2.0,
+      );
+
+      tl.to(clue1, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(1.6)" }, 2.65);
+      tl.to(clue2, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(1.6)" }, 2.90);
+      tl.to(clue3, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(1.6)" }, 3.15);
+
+      // 3.60–5.40 Beat 2B: Minimap & AI Coach
+      tl.fromTo(miniPin, { scale: 0, y: -40 }, { scale: 1, y: 0, duration: 0.45, ease: "back.out(2.2)" }, 3.55);
+      tl.fromTo(miniRadar, { opacity: 0.9, scale: 0.2 }, { opacity: 0, scale: 2.2, duration: 0.75, ease: "power2.out" }, 3.70);
+      tl.to(coachCard, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 4.0);
+
+      tl.to(
+        cam,
+        {
+          x: -2410,
+          y: -30,
+          z: -820,
+          rx: 2.5,
+          ry: 1.5,
+          rz: 0.2,
+          duration: 1.80,
+          ease: "sine.inOut",
+          onUpdate: applyCamera,
+        },
+        3.60,
+      );
+
+      // 5.40–6.50 Beat 3A: Guides Catalog
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.2, duration: 0.26, ease: "power1.in", onUpdate: applyCamera },
+        5.40,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.65, ease: "power3.out", onUpdate: applyCamera },
+        5.70,
+      );
+
+      tl.to(
+        cam,
+        {
+          x: -4700,
+          y: -180,
+          z: -850,
+          rx: 11,
+          ry: -12,
+          rz: -1.5,
+          duration: 1.10,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        5.40,
+      );
+
+      // 6.50–7.50 Beat 3B: Deep Guide
+      tl.to(
+        cam,
+        {
+          x: -7050,
+          y: -280,
+          z: -860,
+          rx: 8,
+          ry: 10,
+          rz: 1.2,
+          duration: 1.00,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        6.50,
+      );
+
+      // 7.50–8.60 Beat 4: Pricing
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.0, duration: 0.25, ease: "power1.in", onUpdate: applyCamera },
+        7.50,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.65, ease: "power3.out", onUpdate: applyCamera },
+        7.78,
+      );
+
+      tl.to(
+        cam,
+        {
+          x: -9400,
+          y: -180,
+          z: -840,
+          rx: 6,
+          ry: -8,
+          rz: -0.8,
+          duration: 1.10,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        7.50,
+      );
+
+      // 8.60–9.95 Beat 5: Pullback
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 2.2, duration: 0.25, ease: "power2.out", onUpdate: applyCamera },
+        8.60,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.75, ease: "power3.out", onUpdate: applyCamera },
+        8.88,
+      );
+
+      tl.to(
+        cam,
+        {
+          x: -4700,
+          y: -120,
+          z: -2150,
+          rx: 16,
+          ry: 6,
+          rz: 0.8,
+          duration: 1.35,
+          ease: "power3.out",
+          onUpdate: applyCamera,
+        },
+        8.60,
+      );
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

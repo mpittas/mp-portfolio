@@ -1,0 +1,60 @@
+{
+  "category": "web-gameplay",
+  "duration_s": 10,
+  "fps": 30,
+  "canvas": { "width": 1920, "height": 1080 },
+  "style": "interactive-gameplay-walkthrough",
+  "palette": ["#415800", "#FCFBF7", "#081006", "#EFEBE0", "#E07937", "#8BB800"],
+  "font": "IBM Plex Sans",
+  "export": "mp4",
+  "beats": [
+    { "at": 0.0, "label": "home-atlas-drill-setup" },
+    { "at": 2.0, "label": "gaming-streetview-drop" },
+    { "at": 2.8, "label": "ai-clue-recognition-reticles" },
+    { "at": 3.8, "label": "minimap-pin-guess" },
+    { "at": 4.5, "label": "distance-score-ai-coach" },
+    { "at": 5.6, "label": "field-guides-catalog" },
+    { "at": 7.4, "label": "pricing-pro-training" },
+    { "at": 8.8, "label": "aerial-pullback-overview" }
+  ],
+  "asset_needs": [
+    {
+      "role": "page-home",
+      "kind": "image",
+      "source": "assets/page-home.png",
+      "treatment": "none"
+    },
+    {
+      "role": "streetview-panorama",
+      "kind": "image",
+      "source": "assets/norway-mountain-road.jpg",
+      "treatment": "none"
+    },
+    {
+      "role": "page-guides",
+      "kind": "image",
+      "source": "assets/page-guides.png",
+      "treatment": "none"
+    },
+    {
+      "role": "page-guide-detail",
+      "kind": "image",
+      "source": "assets/page-guide-detail.png",
+      "treatment": "none"
+    },
+    {
+      "role": "page-pricing",
+      "kind": "image",
+      "source": "assets/page-pricing.png",
+      "treatment": "none"
+    }
+  ],
+  "brief": "Full interactive gameplay and multi-page walkthrough of KnowYourGeo: Launch drill from Atlas → drop into active panoramic Street View round → AI clue target popups on road markings & flora → interactive map pin placement & confirm → distance calculation (+4,964 PTS) and Gemini AI coach analysis → transition through Field Guides meta & Pricing.",
+  "content": {
+    "block": "hand-authored",
+    "customize": {
+      "blueprint": "gameplay-journey",
+      "rules": ["interactive-ui", "clue-overlays", "score-counter", "ai-coaching", "multi-page-orbit"]
+    }
+  }
+}

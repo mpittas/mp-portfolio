@@ -13,6 +13,9 @@ const CATALOG_SLUGS = [
   "songrates",
   "vscs-strapi",
   "mikrofond",
+  "collection-of-landing-pages",
+  "dokr",
+  "umedio",
 ] as const;
 
 const catalogIndex = new Map<string, number>(

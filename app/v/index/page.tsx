@@ -1,18 +1,5 @@
-import type { Metadata } from "next";
-import { HomeChrome } from "@/components/home/home-chrome";
-import { HomeIndex } from "@/components/home/home-index";
-import { HomeLead } from "@/components/home/home-lead";
-
-export const metadata: Metadata = {
-  title: "Work · Index",
-};
+import { redirect } from "next/navigation";
 
 export default function IndexHome() {
-  return (
-    <main>
-      <HomeChrome />
-      <HomeLead />
-      <HomeIndex />
-    </main>
-  );
+  redirect("/");
 }

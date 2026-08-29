@@ -7,8 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "capture:stills": "node scripts/capture-project-stills.mjs",
     "video": "npm run dev --prefix videos/portfolio-modern",
-    "video:render": "npm run render --prefix videos/portfolio-modern -- --quality high --output out/portfolio-modern.mp4"
+    "video:render": "npm run render --prefix videos/portfolio-modern -- --quality high --output out/portfolio-modern.mp4",
+    "video:landing-designs": "npm run dev --prefix videos/landing-designs",
+    "video:landing-designs:render": "npm run render --prefix videos/landing-designs -- --quality high --output out/landing-designs.mp4",
+    "video:mikrofond": "npm run dev --prefix videos/mikrofond",
+    "video:mikrofond:render": "npm run render --prefix videos/mikrofond -- --quality high --output out/mikrofond.mp4"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -25,6 +30,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.1",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -1,0 +1,41 @@
+{
+  "project": "landing-designs-showcase",
+  "durationSeconds": 12.0,
+  "shots": [
+    {
+      "id": "shot-1",
+      "name": "Establishing Gallery Arc & Title Badge",
+      "start": 0.0,
+      "end": 2.5,
+      "description": "Sweeping low-angle perspective showing the curved 3D floating gallery of Figma designs with cinematic HUD badge."
+    },
+    {
+      "id": "shot-2",
+      "name": "Hero Entertainment & Dark Theme Detail",
+      "start": 2.5,
+      "end": 5.0,
+      "description": "Smooth orbital dive into GOT Landing Page and Home.jpg showcasing hero typography, lighting, and layout craft."
+    },
+    {
+      "id": "shot-3",
+      "name": "SaaS Systems & Interaction Flythrough",
+      "start": 5.0,
+      "end": 7.5,
+      "description": "High-velocity lateral orbital glide through Home-1, Home page, and Frame 192 with dynamic rack focus."
+    },
+    {
+      "id": "shot-4",
+      "name": "Enterprise & Editorial Design Matrix",
+      "start": 7.5,
+      "end": 9.8,
+      "description": "Precision tracking across Business, Business 2, and Blog landing layouts, exploring grid structure."
+    },
+    {
+      "id": "shot-5",
+      "name": "Panoramic Pullback & Portfolio Lockup",
+      "start": 9.8,
+      "end": 12.0,
+      "description": "Expansive wide 3D pullback capturing the full 10-piece matrix in isometric harmony with portfolio closing mark."
+    }
+  ]
+}

@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>VSCS — 3D Spatial Solar Showcase</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #02120b;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+
+      /* ── Deep Solar Obsidian & Emerald Aurora Backdrop ── */
+      #bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 90% 70% at 50% 18%, rgba(0, 150, 110, 0.22) 0%, transparent 64%),
+          radial-gradient(ellipse 110% 85% at 46% 35%, #05261a 0%, #02150e 48%, #010c07 100%);
+      }
+
+      /* Ambient Solar Rays / Glow Beams */
+      #solar-glow {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 18% 25%, rgba(0, 214, 137, 0.12) 0%, transparent 45%),
+          radial-gradient(circle at 82% 35%, rgba(180, 215, 95, 0.08) 0%, transparent 50%);
+        pointer-events: none;
+      }
+
+      #scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      #stage {
+        position: absolute;
+        inset: 0;
+        perspective: 1420px;
+        perspective-origin: 50% 46%;
+        will-change: filter;
+      }
+      #world {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 13000px;
+        height: 5000px;
+        transform-style: preserve-3d;
+        transform-origin: 960px 540px;
+        will-change: transform;
+      }
+
+      /* ── 3D Spatial Amphitheater Planes ── */
+      .plane {
+        position: absolute;
+        overflow: hidden;
+        border-radius: 24px;
+        box-shadow:
+          0 55px 160px rgba(0, 0, 0, 0.88),
+          0 0 0 1px rgba(255, 255, 255, 0.1),
+          0 0 45px rgba(0, 150, 110, 0.16);
+        background: #021a11;
+        transform-style: preserve-3d;
+        transition: box-shadow 0.5s ease;
+      }
+      .plane img {
+        display: block;
+        width: 1920px;
+      }
+
+      /* Subtle plane glass reflections */
+      .plane::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: 24px;
+        background: linear-gradient(
+          125deg,
+          rgba(255, 255, 255, 0.09) 0%,
+          transparent 32%,
+          transparent 80%,
+          rgba(0, 214, 137, 0.06) 100%
+        );
+      }
+
+      /* Individual Spatial Amphitheater Angles */
+      #plane-home {
+        transform: translate3d(0, 0, 0) rotateY(0deg);
+      }
+      #plane-about {
+        transform: translate3d(0, 0, -260px) rotateY(-9deg);
+      }
+      #plane-services {
+        transform: translate3d(0, 0, -140px) rotateY(7deg);
+      }
+      #plane-projects {
+        transform: translate3d(0, 0, -320px) rotateY(-11deg);
+      }
+      #plane-contact {
+        transform: translate3d(0, 0, -100px) rotateY(5deg);
+      }
+
+      /* ── Floating 3D Solar Badges in Spatial Arena ── */
+      .spatial-badge {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 24px;
+        border-radius: 9999px;
+        background: rgba(2, 28, 18, 0.88);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 214, 137, 0.35);
+        box-shadow:
+          0 20px 50px rgba(0, 0, 0, 0.65),
+          0 0 25px rgba(0, 150, 110, 0.28);
+        color: #ffffff;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-size: 14px;
+        transform-style: preserve-3d;
+        pointer-events: none;
+      }
+      .spatial-badge .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #00d689;
+        box-shadow: 0 0 12px #00d689;
+      }
+      .spatial-badge .icon-svg {
+        width: 20px;
+        height: 20px;
+        fill: #00d689;
+      }
+
+      /* ── Foreground HUD Brand Bar ── */
+      #hud-header {
+        position: absolute;
+        top: 36px;
+        left: 48px;
+        right: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        pointer-events: none;
+        z-index: 50;
+      }
+      .brand-lockup {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 10px 22px;
+        border-radius: 9999px;
+        background: rgba(2, 22, 14, 0.72);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      }
+      .brand-logo-img {
+        height: 28px;
+        width: auto;
+        display: block;
+      }
+      .brand-divider {
+        width: 1px;
+        height: 18px;
+        background: rgba(255, 255, 255, 0.18);
+      }
+      .brand-tagline {
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .brand-tagline .live-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #00d689;
+        box-shadow: 0 0 10px #00d689;
+      }
+
+      .hud-cta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 22px;
+        border-radius: 9999px;
+        background: #00e08f;
+        box-shadow:
+          0 10px 30px rgba(0, 224, 143, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        font-size: 13.5px;
+        font-weight: 700;
+        color: #02120b;
+        letter-spacing: 0.02em;
+      }
+
+      /* ── Vignette & Film Texture ── */
+      #vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 80% 72% at 50% 48%,
+          transparent 38%,
+          rgba(1, 10, 6, 0.58) 100%
+        );
+        opacity: 0.95;
+      }
+      #grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.048;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="10"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="bg"></div>
+      <div id="solar-glow"></div>
+
+      <!-- HUD Top Bar -->
+      <header id="hud-header">
+        <div class="brand-lockup">
+          <img src="assets/logo.svg" alt="VSCS Logo" class="brand-logo-img" />
+          <div class="brand-divider"></div>
+          <span class="brand-tagline">
+            <span class="live-dot"></span>
+            Соларни EPC Решения До Ключ
+          </span>
+        </div>
+        <div class="hud-cta">
+          Запазете консултация
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </div>
+      </header>
+
+      <section
+        id="scene"
+        class="clip"
+        data-start="0"
+        data-duration="10"
+        data-track-index="1"
+      >
+        <div id="stage" data-layout-allow-overflow>
+          <div id="world" data-layout-allow-overflow>
+            <!-- 1. НАЧАЛО (Home): Solar Gateway Hero & Client Proof -->
+            <div
+              class="plane"
+              id="plane-home"
+              style="left: 0px; top: 0px; width: 1920px; height: 3200px;"
+            >
+              <img
+                src="assets/page-home.png"
+                width="1920"
+                height="7061"
+                alt="VSCS Home Page"
+              />
+            </div>
+
+            <!-- Floating Badge 1: Clean Energy Leader -->
+            <div
+              class="spatial-badge"
+              id="badge-home"
+              data-layout-allow-occlusion
+              style="left: 640px; top: 380px; transform: translate3d(0, 0, 180px);"
+            >
+              <div class="dot"></div>
+              <span>Възобновяема Енергия • Строителство До Ключ</span>
+            </div>
+
+            <!-- 2. ЗА НАС (About Us): Heritage & Founder Vision -->
+            <div
+              class="plane"
+              id="plane-about"
+              style="left: 2320px; top: 70px; width: 1920px; height: 3000px;"
+            >
+              <img
+                src="assets/page-about.png"
+                width="1920"
+                height="6295"
+                alt="VSCS About Us"
+              />
+            </div>
+
+            <!-- Floating Badge 2: Mission & Values -->
+            <div
+              class="spatial-badge"
+              id="badge-about"
+              data-layout-allow-occlusion
+              style="left: 2950px; top: 320px; transform: translate3d(0, 0, 160px);"
+            >
+              <div class="dot"></div>
+              <span>Професионализъм • Иновации • Устойчивост</span>
+            </div>
+
+            <!-- 3. УСЛУГИ (Services): Full Turnkey EPC Lifecycle -->
+            <div
+              class="plane"
+              id="plane-services"
+              style="left: 4640px; top: 120px; width: 1920px; height: 2800px;"
+            >
+              <img
+                src="assets/page-services.png"
+                width="1920"
+                height="4827"
+                alt="VSCS Turnkey Solar Services"
+              />
+            </div>
+
+            <!-- Floating Badge 3: EPC Stages -->
+            <div
+              class="spatial-badge"
+              id="badge-services"
+              data-layout-allow-occlusion
+              style="left: 5280px; top: 350px; transform: translate3d(0, 0, 190px);"
+            >
+              <div class="dot"></div>
+              <span>Инженеринг • Доставка • Монтаж • Свързване</span>
+            </div>
+
+            <!-- 4. ПРОЕКТИ (Projects): Utility-Scale Solar Power Plants -->
+            <div
+              class="plane"
+              id="plane-projects"
+              style="left: 6960px; top: 60px; width: 1920px; height: 2800px;"
+            >
+              <img
+                src="assets/page-projects.png"
+                width="1920"
+                height="3452"
+                alt="VSCS Solar Plant Projects"
+              />
+            </div>
+
+            <!-- Floating Badge 4: Megawatt Portfolio -->
+            <div
+              class="spatial-badge"
+              id="badge-projects"
+              data-layout-allow-occlusion
+              style="left: 7600px; top: 310px; transform: translate3d(0, 0, 170px);"
+            >
+              <div class="dot"></div>
+              <span>Полинеза • Златното пиле • Черногорово • Зволен</span>
+            </div>
+
+            <!-- 5. КОНТАКТИ & КОНСУЛТАЦИЯ (Contact): Corporate Hub -->
+            <div
+              class="plane"
+              id="plane-contact"
+              style="left: 9280px; top: 0px; width: 1920px; height: 1672px;"
+            >
+              <img
+                src="assets/page-contact.png"
+                width="1920"
+                height="1672"
+                alt="VSCS Contact and Consultation"
+              />
+            </div>
+          </div>
+        </div>
+        <div id="vignette"></div>
+        <div id="grain"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      const world = document.getElementById("world");
+      const stage = document.getElementById("stage");
+
+      // 3D Spatial Amphitheater Camera tracking system
+      // x: world X offset, y: world Y offset, z: perspective depth
+      // rx: pitch, ry: orbital yaw, rz: roll
+      const cam = { x: 75, y: 15, z: -870, rx: 17, ry: 22, rz: 2.5 };
+      const drift = { dx: 0, dy: 0, drx: 0, dry: 0 };
+      const travel = { blur: 0 };
+
+      function applyCamera() {
+        const currentCenterX = -cam.x + 960;
+        const currentCenterY = -cam.y + 540;
+        world.style.transformOrigin = `${currentCenterX}px ${currentCenterY}px`;
+        world.style.transform =
+          `translate3d(${cam.x + drift.dx}px, ${cam.y + drift.dy}px, ${cam.z}px)` +
+          ` rotateX(${cam.rx + drift.drx}deg) rotateY(${cam.ry + drift.dry}deg) rotateZ(${cam.rz}deg)`;
+        const b = travel.blur;
+        stage.style.filter = b > 0.15 ? `blur(${b.toFixed(2)}px)` : "none";
+      }
+
+      applyCamera();
+
+      // Continuous organic 3D camera drift for weight & cinematic realism
+      const driftDriver = { p: 0 };
+      tl.to(
+        driftDriver,
+        {
+          p: Math.PI * 2 * 1.5,
+          duration: 10,
+          ease: "none",
+          onUpdate: () => {
+            drift.dx = Math.sin(driftDriver.p) * 6.5;
+            drift.dy = Math.sin(driftDriver.p * 1.15) * 4.2;
+            drift.drx = Math.sin(driftDriver.p * 0.75) * 0.32;
+            drift.dry = Math.cos(driftDriver.p * 0.85) * 0.45;
+            applyCamera();
+          },
+        },
+        0,
+      );
+
+      // Fade-in root scene smoothly at start
+      const root = document.getElementById("root");
+      tl.fromTo(
+        root,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.45, ease: "power2.out" },
+        0.05,
+      );
+
+      // ── 0.00–2.10  LEG 1: The Solar Gateway (Home — "Вашият партньор в соларния бизнес")
+      tl.fromTo(
+        cam,
+        { x: 75, y: 15, z: -870, rx: 17, ry: 22, rz: 2.5 },
+        {
+          x: 35,
+          y: -260,
+          z: -825,
+          rx: 8.5,
+          ry: 11,
+          rz: 1.0,
+          duration: 1.7,
+          ease: "power2.out",
+          onUpdate: applyCamera,
+        },
+        0.35,
+      );
+
+      // ── 2.10–4.30  LEG 2: Vision & Heritage (About Us — "За Нас")
+      // High-velocity orbital swing into plane-about
+      tl.to(
+        cam,
+        {
+          x: -2320,
+          y: -360,
+          z: -850,
+          rx: 12,
+          ry: -17,
+          rz: -2.0,
+          duration: 2.15,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        2.1,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.2, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
+        2.1,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        2.8,
+      );
+
+      // ── 4.30–6.50  LEG 3: Turnkey EPC Solutions (Services — "Услуги")
+      // Sweeping reverse orbital curve with rack focus
+      tl.to(
+        cam,
+        {
+          x: -4640,
+          y: -290,
+          z: -815,
+          rx: 12.5,
+          ry: 15,
+          rz: 1.6,
+          duration: 2.15,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        4.3,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.4, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
+        4.3,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        5.0,
+      );
+
+      // ── 6.50–8.35  LEG 4: Utility-Scale Solar Plants (Projects — "Проекти")
+      // Swift orbital glide across photovoltaic gallery cards
+      tl.to(
+        cam,
+        {
+          x: -6960,
+          y: -240,
+          z: -835,
+          rx: 10.5,
+          ry: -14,
+          rz: -1.4,
+          duration: 1.8,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        6.5,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 2.9, duration: 0.3, ease: "power1.in", onUpdate: applyCamera },
+        6.5,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.8, ease: "power3.out", onUpdate: applyCamera },
+        7.1,
+      );
+
+      // ── 8.35–10.0  LEG 5: Grand Spatial Amphitheater Overview & CTA
+      // Smooth crane-up and expansive wide 3D pullback symmetrically framing all 5 floating planes
+      tl.to(
+        cam,
+        {
+          x: -4640,
+          y: -130,
+          z: -2680,
+          rx: 9.5,
+          ry: 0,
+          rz: 0,
+          duration: 1.65,
+          ease: "power3.out",
+          onUpdate: applyCamera,
+        },
+        8.35,
+      );
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 2.2, duration: 0.25, ease: "power2.out", onUpdate: applyCamera },
+        8.35,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.75, ease: "power3.out", onUpdate: applyCamera },
+        8.7,
+      );
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

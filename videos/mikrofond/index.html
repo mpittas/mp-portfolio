@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Mikrofond — 3D Orbital Homepage Showcase</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #040913;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #040913;
+      }
+
+      /* ── Atmospheric Brand Backdrop ── */
+      #bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 90% 70% at 50% 28%, rgba(0, 168, 204, 0.18) 0%, transparent 65%),
+          radial-gradient(ellipse 110% 85% at 48% 42%, #0a1b33 0%, #061122 45%, #03070f 100%);
+      }
+
+      /* Ambient Volumetric Cyan/Blue Lighting Beams */
+      #ambient-glow {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 18% 30%, rgba(0, 180, 216, 0.14) 0%, transparent 48%),
+          radial-gradient(circle at 82% 40%, rgba(2, 132, 199, 0.11) 0%, transparent 52%),
+          radial-gradient(circle at 50% 85%, rgba(0, 168, 204, 0.08) 0%, transparent 55%);
+        pointer-events: none;
+      }
+
+      #scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      #stage {
+        position: absolute;
+        inset: 0;
+        perspective: 1450px;
+        perspective-origin: 50% 45%;
+        will-change: filter;
+      }
+
+      #world {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 5368px;
+        transform-style: preserve-3d;
+        transform-origin: 960px 540px;
+        will-change: transform;
+      }
+
+      /* ── Floating 3D Homepage UI Plate ── */
+      #page-card {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 5368px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #ffffff;
+        box-shadow:
+          0 50px 150px rgba(0, 0, 0, 0.85),
+          0 20px 60px rgba(0, 16, 36, 0.65),
+          0 0 0 1px rgba(255, 255, 255, 0.15),
+          0 0 80px rgba(0, 168, 204, 0.18);
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+      }
+
+      #page-img {
+        display: block;
+        width: 1920px;
+        height: 5368px;
+      }
+
+      /* Specular Glass Sheen reflecting light angles */
+      #page-sheen {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.12) 0%,
+          transparent 32%,
+          transparent 75%,
+          rgba(0, 168, 204, 0.08) 100%
+        );
+        mix-blend-mode: overlay;
+      }
+
+      /* Dynamic Sweep Reveal Light Beam */
+      #reveal-shimmer {
+        position: absolute;
+        inset: -50%;
+        width: 200%;
+        height: 200%;
+        pointer-events: none;
+        background: linear-gradient(
+          115deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.18) 48%,
+          rgba(0, 212, 255, 0.28) 50%,
+          rgba(255, 255, 255, 0.18) 52%,
+          transparent 60%
+        );
+        transform: translate(-100%, -100%);
+        mix-blend-mode: screen;
+      }
+
+      /* Atmospheric Vignette */
+      #vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 76% 70% at 50% 48%,
+          transparent 42%,
+          rgba(2, 6, 14, 0.6) 100%
+        );
+        opacity: 0.9;
+      }
+
+      /* High-End Cinematic Grain */
+      #grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.05;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="12"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="bg"></div>
+      <div id="ambient-glow"></div>
+
+      <section
+        id="scene"
+        class="clip"
+        data-start="0"
+        data-duration="12"
+        data-track-index="1"
+      >
+        <div id="stage" data-layout-allow-overflow>
+          <div id="world" data-layout-allow-overflow>
+            <!-- Pure Mikrofond Homepage UI Plate -->
+            <div id="page-card">
+              <img
+                id="page-img"
+                src="assets/full-page.png"
+                width="1920"
+                height="5368"
+                alt="Mikrofond Homepage"
+              />
+              <div id="page-sheen"></div>
+              <div id="reveal-shimmer"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="vignette"></div>
+        <div id="grain"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      const world = document.getElementById("world");
+      const stage = document.getElementById("stage");
+      const pageCard = document.getElementById("page-card");
+      const shimmer = document.getElementById("reveal-shimmer");
+
+      // ── 3D Orbital Camera System ──
+      // x, y, z: camera world translations
+      // rx: pitch, ry: orbital yaw, rz: roll tilt
+      const cam = {
+        x: 140,
+        y: 110,
+        z: -680,
+        rx: 17,
+        ry: -22,
+        rz: -2.6,
+      };
+
+      const drift = { dx: 0, dy: 0, drx: 0, dry: 0 };
+      const travel = { blur: 0 };
+
+      function applyCamera() {
+        world.style.transform =
+          `translate3d(${cam.x + drift.dx}px, ${cam.y + drift.dy}px, ${cam.z}px)` +
+          ` rotateX(${cam.rx + drift.drx}deg) rotateY(${cam.ry + drift.dry}deg) rotateZ(${cam.rz}deg)`;
+
+        const b = travel.blur;
+        stage.style.filter = b > 0.15 ? `blur(${b.toFixed(2)}px)` : "none";
+      }
+
+      applyCamera();
+
+      // Initial visual setup for reveal
+      gsap.set(pageCard, { opacity: 0, scale: 0.94 });
+
+      // ── Organic Cinematic Drift (Lissajous curve) ──
+      const driftDriver = { p: 0 };
+      tl.to(
+        driftDriver,
+        {
+          p: Math.PI * 2 * 1.6,
+          duration: 12,
+          ease: "none",
+          onUpdate: () => {
+            drift.dx = Math.sin(driftDriver.p) * 6.0;
+            drift.dy = Math.sin(driftDriver.p * 1.25) * 4.5;
+            drift.drx = Math.sin(driftDriver.p * 0.72) * 0.32;
+            drift.dry = Math.cos(driftDriver.p * 0.88) * 0.42;
+            applyCamera();
+          },
+        },
+        0,
+      );
+
+      // ── 0.00–1.60  REVEAL ANIMATION: Elevation Lift, Opacity & Luminous Light Sweep ──
+      tl.fromTo(
+        pageCard,
+        { opacity: 0, scale: 0.94 },
+        { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" },
+        0.08,
+      );
+
+      tl.fromTo(
+        shimmer,
+        { transform: "translate(-80%, -80%)" },
+        {
+          transform: "translate(80%, 80%)",
+          duration: 1.8,
+          ease: "power2.inOut",
+        },
+        0.2,
+      );
+
+      // ── 0.60–2.80  BEAT 1: Establishing 3D Orbit over Hero & Offerings ──
+      tl.to(
+        cam,
+        {
+          x: 40,
+          y: -40,
+          z: -460,
+          rx: 9,
+          ry: -12,
+          rz: -1.2,
+          duration: 2.1,
+          ease: "power2.out",
+          onUpdate: applyCamera,
+        },
+        0.6,
+      );
+
+      // ── 2.80–5.50  BEAT 2: Orbital Swoop & Glide Down through Value Pillars & Partner Banner ──
+      tl.to(
+        cam,
+        {
+          x: -60,
+          y: -680,
+          z: -420,
+          rx: 11,
+          ry: 16,
+          rz: 2.0,
+          duration: 2.7,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        2.8,
+      );
+
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 4.2, duration: 0.4, ease: "power1.in", onUpdate: applyCamera },
+        2.8,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.95, ease: "power3.out", onUpdate: applyCamera },
+        3.5,
+      );
+
+      // ── 5.50–8.20  BEAT 3: Deep Orbital Glide into Certificates & "Микрофонд в цифри" Stats ──
+      tl.to(
+        cam,
+        {
+          x: 50,
+          y: -2300,
+          z: -380,
+          rx: 14,
+          ry: -15,
+          rz: -1.8,
+          duration: 2.7,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        5.5,
+      );
+
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 4.8, duration: 0.4, ease: "power1.in", onUpdate: applyCamera },
+        5.5,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 1.0, ease: "power3.out", onUpdate: applyCamera },
+        6.3,
+      );
+
+      // ── 8.20–12.00 BEAT 4: THE GRAND ZOOM-OUT FINALE — Full Homepage UI Captured in 3D Orbit ──
+      // Camera pulls far back along Z to capture the complete page structure from header to footer
+      tl.to(
+        cam,
+        {
+          x: 0,
+          y: -2050,
+          z: -3100,
+          rx: 18,
+          ry: -14,
+          rz: -1.2,
+          duration: 2.8,
+          ease: "power3.inOut",
+          onUpdate: applyCamera,
+        },
+        8.2,
+      );
+
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 5.5, duration: 0.5, ease: "power2.in", onUpdate: applyCamera },
+        8.2,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 1.2, ease: "power3.out", onUpdate: applyCamera },
+        9.1,
+      );
+
+      // Subtle final orbit settle into rest
+      tl.to(
+        cam,
+        {
+          ry: -9,
+          rx: 15,
+          duration: 1.0,
+          ease: "power1.out",
+          onUpdate: applyCamera,
+        },
+        11.0,
+      );
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

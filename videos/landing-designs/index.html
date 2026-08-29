@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>Figma Landing Designs — 3D Spatial Montage</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #060609;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+
+      /* ── Deep Obsidian, Cosmic Graphite & Subtle Violet Aurora ── */
+      #bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 95% 75% at 50% 18%, rgba(120, 95, 245, 0.16) 0%, transparent 65%),
+          radial-gradient(ellipse 110% 85% at 48% 35%, #100d1c 0%, #08070e 50%, #040407 100%);
+      }
+
+      /* Ambient Light Beams & Glows */
+      #ambient-glow {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
+          radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.09) 0%, transparent 50%),
+          radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 55%);
+        pointer-events: none;
+      }
+
+      #scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      #stage {
+        position: absolute;
+        inset: 0;
+        perspective: 1450px;
+        perspective-origin: 50% 48%;
+        will-change: filter;
+      }
+
+      #world {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 25000px;
+        height: 8000px;
+        transform-style: preserve-3d;
+        transform-origin: 960px 540px;
+        will-change: transform;
+      }
+
+      /* ── 3D Spatial Design Planes ── */
+      .plane {
+        position: absolute;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow:
+          0 50px 140px rgba(0, 0, 0, 0.85),
+          0 10px 30px rgba(0, 0, 0, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.12),
+          0 0 45px rgba(124, 93, 250, 0.14);
+        background: #0d0c14;
+        transform-style: preserve-3d;
+      }
+
+      .plane img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      /* Subtle frosted glass rim reflection */
+      .plane::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.12) 0%,
+          rgba(255, 255, 255, 0.03) 25%,
+          transparent 50%,
+          rgba(124, 93, 250, 0.08) 100%
+        );
+      }
+
+      /* ── Cinema Post Effects ── */
+      #vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 80% 72% at 50% 50%,
+          transparent 45%,
+          rgba(4, 4, 7, 0.45) 80%,
+          rgba(3, 3, 5, 0.8) 100%
+        );
+      }
+
+      #grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.05;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-nzh3" id="root" data-composition-id="main" data-start="0" data-duration="12" data-fps="30" data-width="1920" data-height="1080">
+      <div data-hf-id="hf-2xc0" id="bg"></div>
+      <div data-hf-id="hf-jqtr" id="ambient-glow"></div>
+
+      <section data-hf-id="hf-7nvl" id="scene" class="clip" data-start="0" data-duration="12">
+        <div data-hf-id="hf-j1he" id="stage" data-layout-allow-overflow="">
+          <div data-hf-id="hf-k6zw" id="world" data-layout-allow-overflow="">
+
+            <!-- 1. GOT Landing Page (Cinematic Entertainment) -->
+            <div data-hf-id="hf-d6rp" class="plane" id="plane-got" data-layout-allow-overflow="" style="left: 0px; top: 0px; width: 1440px; transform: translate3d(0, 0, 0) rotateY(12deg);">
+              <img data-hf-id="hf-arm7" src="assets/GOT Landing page.jpg" width="1440" height="3317" alt="Game of Thrones Landing Page">
+            </div>
+
+            <!-- 2. Home.jpg (Clean Product & Studio) -->
+            <div data-hf-id="hf-vdae" class="plane" id="plane-home" data-layout-allow-overflow="" style="left: 1750px; top: 80px; width: 1440px; transform: translate3d(0, 0, -180px) rotateY(6deg);">
+              <img data-hf-id="hf-uyks" src="assets/Home.jpg" width="1440" height="3204" alt="Home Landing Page">
+            </div>
+
+            <!-- 3. Home-1.jpg (Modern SaaS High-Converting) -->
+            <div data-hf-id="hf-jr8l" class="plane" id="plane-home1" data-layout-allow-overflow="" style="left: 3500px; top: -40px; width: 1512px; transform: translate3d(0, 0, -80px) rotateY(-2deg);">
+              <img data-hf-id="hf-utqw" src="assets/Home-1.jpg" width="1512" height="3588" alt="Home-1 SaaS Landing">
+            </div>
+
+            <!-- 4. Home page.jpg (SaaS Platform & App) -->
+            <div data-hf-id="hf-s7in" class="plane" id="plane-homepage" data-layout-allow-overflow="" style="left: 5350px; top: 120px; width: 1512px; transform: translate3d(0, 0, -260px) rotateY(8deg);">
+              <img data-hf-id="hf-s4h0" src="assets/Home page.jpg" width="1512" height="2862" alt="Home Page Platform">
+            </div>
+
+            <!-- 5. Frame 192.jpg (Creative UI Systems) -->
+            <div data-hf-id="hf-tued" class="plane" id="plane-frame192" data-layout-allow-overflow="" style="left: 7200px; top: -60px; width: 1512px; transform: translate3d(0, 0, -120px) rotateY(-7deg);">
+              <img data-hf-id="hf-nc8h" src="assets/Frame 192.jpg" width="1512" height="2668" alt="Frame 192 UI Layout">
+            </div>
+
+            <!-- 6. Business.jpg (Enterprise B2B Consulting) -->
+            <div data-hf-id="hf-c31z" class="plane" id="plane-business" data-layout-allow-overflow="" style="left: 9050px; top: 60px; width: 1512px; transform: translate3d(0, 0, -220px) rotateY(6deg);">
+              <img data-hf-id="hf-ehq7" src="assets/Business.jpg" width="1512" height="2506" alt="Business Landing">
+            </div>
+
+            <!-- 7. Business 2.jpg (Corporate Services) -->
+            <div data-hf-id="hf-h2rm" class="plane" id="plane-business2" data-layout-allow-overflow="" style="left: 10900px; top: -30px; width: 1512px; transform: translate3d(0, 0, -100px) rotateY(-5deg);">
+              <img data-hf-id="hf-7yty" src="assets/Business 2.jpg" width="1512" height="2862" alt="Business 2 Landing">
+            </div>
+
+            <!-- 8. Blog.jpg (Editorial & Content Portal) -->
+            <div data-hf-id="hf-7eki" class="plane" id="plane-blog" data-layout-allow-overflow="" style="left: 12750px; top: 100px; width: 1512px; transform: translate3d(0, 0, -280px) rotateY(9deg);">
+              <img data-hf-id="hf-qq73" src="assets/Blog.jpg" width="1512" height="3824" alt="Editorial Blog Layout">
+            </div>
+
+            <!-- 9. Landing page.jpg (High-Conversion Marketing) -->
+            <div data-hf-id="hf-27n7" class="plane" id="plane-landing" data-layout-allow-overflow="" style="left: 14600px; top: -50px; width: 1512px; transform: translate3d(0, 0, -140px) rotateY(-6deg);">
+              <img data-hf-id="hf-qo21" src="assets/Landing page.jpg" width="1512" height="3086" alt="High-Impact Landing Page">
+            </div>
+
+            <!-- 10. Portfolio.jpg (Creative Portfolio Showcase) -->
+            <div data-hf-id="hf-egna" class="plane" id="plane-portfolio" data-layout-allow-overflow="" style="left: 16450px; top: 40px; width: 1512px; transform: translate3d(0, 0, 0) rotateY(0deg);">
+              <img data-hf-id="hf-9rql" src="assets/Portfolio.jpg" width="1512" height="2986" alt="Portfolio Design Showcase">
+            </div>
+
+          </div>
+        </div>
+
+        <div data-hf-id="hf-h7i3" id="vignette"></div>
+        <div data-hf-id="hf-f6d6" id="grain"></div>
+
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+
+      const world = document.getElementById("world");
+      const stage = document.getElementById("stage");
+
+      // Camera coordinates and rack-focus blur state
+      const cam = {
+        x: 0,
+        y: 0,
+        z: 0,
+        rx: 0,
+        ry: 0,
+        rz: 0,
+      };
+
+      const travel = {
+        blur: 0,
+      };
+
+      function applyCamera() {
+        world.style.transform =
+          "translate3d(" +
+          cam.x.toFixed(2) +
+          "px, " +
+          cam.y.toFixed(2) +
+          "px, " +
+          cam.z.toFixed(2) +
+          "px) " +
+          "rotateX(" +
+          cam.rx.toFixed(3) +
+          "deg) " +
+          "rotateY(" +
+          cam.ry.toFixed(3) +
+          "deg) " +
+          "rotateZ(" +
+          cam.rz.toFixed(3) +
+          "deg)";
+
+        if (travel.blur > 0.05) {
+          stage.style.filter = "blur(" + travel.blur.toFixed(2) + "px)";
+        } else {
+          stage.style.filter = "none";
+        }
+      }
+
+      const tl = gsap.timeline({ paused: true });
+
+      // Initial synchronous setup at t=0: balanced starting perspective
+      tl.set(
+        cam,
+        {
+          x: 240,
+          y: -180,
+          z: -1800,
+          rx: 12,
+          ry: 15,
+          rz: -1.5,
+          onUpdate: applyCamera,
+        },
+        0,
+      );
+      tl.set(travel, { blur: 0, onUpdate: applyCamera }, 0);
+
+      // Root fade-in
+      const root = document.getElementById("root");
+      tl.fromTo(
+        root,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.45, ease: "power2.out" },
+        0.05,
+      );
+
+      // ── 0.00–2.40  LEG 1: Establishing Arc (GOT Landing Page) ──
+      // Smooth descent with comfortable viewing distance (not zoomed in)
+      tl.to(
+        cam,
+        {
+          x: 180,
+          y: -240,
+          z: -1250,
+          rx: 6.5,
+          ry: 8.5,
+          rz: -0.8,
+          duration: 2.35,
+          ease: "power2.out",
+          onUpdate: applyCamera,
+        },
+        0.05,
+      );
+
+      // ── 2.40–4.80  LEG 2: Studio & Digital Experience (Home.jpg) ──
+      // Smooth lateral orbit maintaining full design visibility
+      tl.to(
+        cam,
+        {
+          x: -2100,
+          y: -260,
+          z: -1280,
+          rx: 5.5,
+          ry: -6,
+          rz: 0.6,
+          duration: 2.35,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        2.4,
+      );
+
+      // Subtle dynamic rack focus blur during transit
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 2.8, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
+        2.4,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        3.1,
+      );
+
+      // ── 4.80–7.20  LEG 3: SaaS Systems (Home-1, Home page, Frame 192) ──
+      // Gentle glide across the mid-section layouts
+      tl.to(
+        cam,
+        {
+          x: -6200,
+          y: -260,
+          z: -1300,
+          rx: 6,
+          ry: 7.5,
+          rz: -0.8,
+          duration: 2.35,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        4.8,
+      );
+
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.0, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
+        4.8,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        5.5,
+      );
+
+      // ── 7.20–9.60  LEG 4: Enterprise, Editorial & Portfolio (Business, Blog, Portfolio) ──
+      // Clean, unhurried glide without tight zoom-in
+      tl.to(
+        cam,
+        {
+          x: -12500,
+          y: -280,
+          z: -1340,
+          rx: 5.5,
+          ry: -6.5,
+          rz: 0.6,
+          duration: 2.35,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        7.2,
+      );
+
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.0, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
+        7.2,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        7.9,
+      );
+
+      // ── 9.60–12.00  LEG 5: Expansive Panoramic Pullback ──
+      // Deep wide crane-up and spacious isometric framing showing all designs floating in harmony
+      tl.to(
+        cam,
+        {
+          x: -8800,
+          y: -650,
+          z: -6500,
+          rx: 11,
+          ry: 0,
+          rz: 0,
+          duration: 2.35,
+          ease: "power3.out",
+          onUpdate: applyCamera,
+        },
+        9.6,
+      );
+
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 2.0, duration: 0.3, ease: "power2.out", onUpdate: applyCamera },
+        9.6,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        10.1,
+      );
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

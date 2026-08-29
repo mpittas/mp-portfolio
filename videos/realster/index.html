@@ -124,14 +124,17 @@
       const page = document.getElementById("page");
 
       // Camera state — single writer. Translate outside rotations (screen-aligned).
-      // Redesigned with wider field-of-view (no extreme zoom-in), lateral dolly tracks,
-      // and dynamic crane / isometric sweep choreography for distinct variety.
+      // Zoomed-out panoramic orbital controls with dynamic transform origin tracking
+      // so the page never zooms in as it scrolls down.
       // y negative = travel down the page. z negative = pull back (wider).
-      const cam = { x: -80, y: 0, z: -560, rx: 14, ry: -18, rz: 0 };
+      const cam = { x: -60, y: 0, z: -920, rx: 14, ry: -20, rz: -2.5 };
       const drift = { dx: 0, dy: 0, drx: 0, dry: 0 };
       const travel = { blur: 0 };
 
       function applyCamera() {
+        // Track the rotation center to the currently viewed section on the long page
+        const currentCenterY = -cam.y + 540;
+        world.style.transformOrigin = `960px ${currentCenterY}px`;
         world.style.transform =
           `translate3d(${cam.x + drift.dx}px, ${cam.y + drift.dy}px, ${cam.z}px)` +
           ` rotateX(${cam.rx + drift.drx}deg) rotateY(${cam.ry + drift.dry}deg) rotateZ(${cam.rz}deg)`;
@@ -142,73 +145,73 @@
       applyCamera();
       gsap.set(page, { opacity: 0 });
 
-      // Continuous soft organic floating drift
+      // Continuous organic 3D floating drift across the full flight
       const driftDriver = { p: 0 };
       tl.to(
         driftDriver,
         {
-          p: Math.PI * 2 * 1.4,
+          p: Math.PI * 2 * 1.5,
           duration: 10,
           ease: "none",
           onUpdate: () => {
             drift.dx = Math.sin(driftDriver.p) * 6;
-            drift.dy = Math.sin(driftDriver.p * 1.15) * 4.5;
-            drift.drx = Math.sin(driftDriver.p * 0.6) * 0.3;
-            drift.dry = Math.cos(driftDriver.p * 0.85) * 0.5;
+            drift.dy = Math.sin(driftDriver.p * 1.2) * 4.5;
+            drift.drx = Math.sin(driftDriver.p * 0.7) * 0.35;
+            drift.dry = Math.cos(driftDriver.p * 0.9) * 0.5;
             applyCamera();
           },
         },
         0,
       );
 
-      // ── 0.00–0.70  Establish: graceful fade-in at wide elevated 3/4 angle
+      // ── 0.00–0.60  Establish: fade in on wide 3D panoramic vantage
       tl.fromTo(
         page,
         { opacity: 0 },
-        { opacity: 1, duration: 0.6, ease: "power2.out" },
+        { opacity: 1, duration: 0.55, ease: "power2.out" },
         0.05,
       );
 
-      // ── 0.60–2.00  LEG 1: Smooth diagonal glide across Hero & Search (wide, generous framing)
+      // ── 0.50–2.00  LEG 1: Wide Orbital Arc into Hero & Search (panoramic zoomed-out framing)
       tl.fromTo(
         cam,
-        { x: -100, y: -80, z: -540, rx: 14, ry: -18, rz: 0 },
+        { x: -70, y: -20, z: -920, rx: 14, ry: -20, rz: -2.5 },
         {
-          x: -20,
-          y: -40,
-          z: -140,
-          rx: 4,
-          ry: -4,
-          rz: 0,
-          duration: 1.4,
+          x: -40,
+          y: -100,
+          z: -880,
+          rx: 9,
+          ry: -11,
+          rz: -1,
+          duration: 1.5,
           ease: "power3.out",
           onUpdate: applyCamera,
         },
-        0.6,
+        0.5,
       );
       tl.fromTo(
         travel,
         { blur: 0 },
-        { blur: 3.2, duration: 0.25, ease: "power2.out", onUpdate: applyCamera },
-        0.6,
+        { blur: 2.2, duration: 0.25, ease: "power2.out", onUpdate: applyCamera },
+        0.5,
       );
       tl.to(
         travel,
         { blur: 0, duration: 0.7, ease: "power3.out", onUpdate: applyCamera },
-        0.85,
+        0.75,
       );
 
-      // ── 2.00–4.00  LEG 2: Lateral Dolly Track across "Six Homes" Showcase
+      // ── 2.00–4.10  LEG 2: Sweeping Zoomed-Out Counter-Orbit across Featured Exclusives & Showcase
       tl.to(
         cam,
         {
-          x: 100,
-          y: -1400,
-          z: -260,
-          rx: 8,
-          ry: 12,
-          rz: -1,
-          duration: 2.0,
+          x: 50,
+          y: -1950,
+          z: -900,
+          rx: 11,
+          ry: 14,
+          rz: 2,
+          duration: 2.1,
           ease: "power2.inOut",
           onUpdate: applyCamera,
         },
@@ -217,7 +220,7 @@
       tl.fromTo(
         travel,
         { blur: 0 },
-        { blur: 4.5, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
+        { blur: 3.2, duration: 0.35, ease: "power1.in", onUpdate: applyCamera },
         2.0,
       );
       tl.to(
@@ -226,88 +229,88 @@
         2.7,
       );
 
-      // ── 4.00–6.00  LEG 3: Wide Sweeping Arc across Neighborhoods ("Pick the street")
+      // ── 4.10–6.20  LEG 3: Expansive High-Altitude Orbit over Neighborhoods & Stats (Maintains Wide Overview)
       tl.to(
         cam,
         {
-          x: -100,
-          y: -5300,
-          z: -440,
-          rx: 14,
-          ry: -16,
-          rz: 1.5,
-          duration: 2.0,
+          x: -50,
+          y: -5400,
+          z: -920,
+          rx: 12,
+          ry: -14,
+          rz: -1.5,
+          duration: 2.1,
           ease: "power2.inOut",
           onUpdate: applyCamera,
         },
-        4.0,
+        4.1,
       );
       tl.fromTo(
         travel,
         { blur: 0 },
-        { blur: 4.8, duration: 0.32, ease: "power1.in", onUpdate: applyCamera },
-        4.0,
+        { blur: 3.5, duration: 0.32, ease: "power1.in", onUpdate: applyCamera },
+        4.1,
       );
       tl.to(
         travel,
         { blur: 0, duration: 0.9, ease: "power3.out", onUpdate: applyCamera },
-        4.55,
+        4.7,
       );
 
-      // ── 6.00–7.90  LEG 4: Cinematic Crane Descend onto Dark Stats ("Twenty-eight years")
+      // ── 6.20–8.20  LEG 4: Wide Dynamic Orbit across How-It-Works & Browse Book (Generous UI Margins)
       tl.to(
         cam,
         {
-          x: 30,
-          y: -6900,
-          z: -280,
-          rx: 5,
-          ry: 6,
-          rz: 0,
-          duration: 1.9,
+          x: 40,
+          y: -7700,
+          z: -890,
+          rx: 10,
+          ry: 12,
+          rz: 1.2,
+          duration: 2.0,
           ease: "power2.inOut",
           onUpdate: applyCamera,
         },
-        6.0,
+        6.2,
       );
       tl.fromTo(
         travel,
         { blur: 0 },
-        { blur: 4.2, duration: 0.3, ease: "power2.out", onUpdate: applyCamera },
-        6.0,
+        { blur: 3.0, duration: 0.3, ease: "power2.out", onUpdate: applyCamera },
+        6.2,
       );
       tl.to(
         travel,
         { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
-        6.5,
+        6.7,
       );
 
-      // ── 7.90–10.0  LEG 5: Final Balanced Presentation Lockup on FAQ & Contact
+      // ── 8.20–10.0  LEG 5: Final Balanced Orbital Deceleration & Settle on FAQ & Contact
       tl.to(
         cam,
         {
           x: 0,
-          y: -10200,
-          z: -320,
-          rx: 3,
-          ry: 0,
+          y: -10150,
+          z: -860,
+          rx: 5,
+          ry: -3,
           rz: 0,
-          duration: 2.1,
+          duration: 1.8,
           ease: "power3.out",
           onUpdate: applyCamera,
         },
-        7.9,
+        8.2,
       );
       tl.fromTo(
         travel,
         { blur: 0 },
-        { blur: 2.8, duration: 0.22, ease: "power2.out", onUpdate: applyCamera },
-        7.9,
+        { blur: 2.0, duration: 0.22, ease: "power2.out", onUpdate: applyCamera },
+        8.2,
       );
       tl.to(
         travel,
         { blur: 0, duration: 0.7, ease: "power3.out", onUpdate: applyCamera },
-        8.2,
+        8.5,
       );
 
       window.__timelines["main"] = tl;

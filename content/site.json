@@ -42,7 +42,9 @@
   "contactHeading": "CONTACT",
   "contactBody": "I'd love to hear about that idea of yours. Drop me a line.",
   "googleForm": "",
-  "socials": [],
+  "socials": [
+    { "label": "GitHub", "href": "https://github.com/mpittas" }
+  ],
   "logo": "/favicon.svg",
   "portrait": "/media/site/me-2.webp",
   "aboutPhotos": ["/media/site/me-1.webp"]

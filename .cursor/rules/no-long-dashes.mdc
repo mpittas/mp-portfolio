@@ -1,0 +1,28 @@
+---
+description: Never use em dashes or en dashes in website copy
+alwaysApply: true
+---
+
+# No long dashes in site copy
+
+Never use em dashes (`—`) or en dashes (`–`) in any user-facing website text.
+
+Applies to:
+
+- Project descriptions, SEO blurbs, and titles in `content/`
+- About, intro, experience, education, and contact copy
+- UI strings, metadata titles, form messages, and empty-state placeholders
+- Any new copy written for this portfolio
+
+Use instead:
+
+- A comma, period, colon, or parentheses for a pause
+- A regular hyphen (`-`) for compound words and date ranges (`2021 - Present`)
+- A spaced hyphen (` - `) only when a title already uses that pattern
+
+Do not:
+
+- Convert `" - "` to `" — "` in components or utilities
+- Insert typographic long dashes for “polish”
+
+When editing existing copy, replace any `—` or `–` you find.

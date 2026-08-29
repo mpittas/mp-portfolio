@@ -1,0 +1,25 @@
+{
+  "category": "web-showcase",
+  "duration_s": 10,
+  "fps": 30,
+  "canvas": { "width": 1920, "height": 1080 },
+  "style": "orbital-3d-multi-page-walkthrough",
+  "palette": ["#FF7F5F", "#F05F45", "#8F1D28", "#181018", "#0F0C11", "#4FBF82"],
+  "font": "Inter",
+  "export": "mp4",
+  "beats": [
+    { "at": 0.0, "label": "home-hero-trending" },
+    { "at": 2.5, "label": "explore-discovery-orbit" },
+    { "at": 5.0, "label": "album-rating-dive" },
+    { "at": 7.4, "label": "playlist-profile-wide-orbit" },
+    { "at": 10.0, "label": "end" }
+  ],
+  "asset_needs": [
+    { "role": "page-home", "kind": "image", "source": "assets/page-home.png" },
+    { "role": "page-explore", "kind": "image", "source": "assets/page-explore.png" },
+    { "role": "page-album", "kind": "image", "source": "assets/page-album.png" },
+    { "role": "page-playlist", "kind": "image", "source": "assets/page-playlist.png" },
+    { "role": "page-user", "kind": "image", "source": "assets/page-user.png" }
+  ],
+  "brief": "Detailed 3D orbital camera flight exploring Songrates across home and inner pages: Home trending tracks → Explore charts & genres → Album track-by-track scoring & community badges → Apple Music playlists & profiles."
+}

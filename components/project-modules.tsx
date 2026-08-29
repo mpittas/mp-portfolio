@@ -34,14 +34,16 @@ export function ProjectModules({
 
   const flushGallery = (key: string) => {
     if (!gallery.length) return;
-    nodes.push(
-      <ScreenshotGallery key={key} images={gallery} title={title} />,
-    );
+    nodes.push(<ScreenshotGallery key={key} images={gallery} title={title} />);
     gallery = [];
   };
 
   blocks.forEach((group, i) => {
-    if (group.length === 2 && group[0].type === "links" && group[1].type === "text") {
+    if (
+      group.length === 2 &&
+      group[0].type === "links" &&
+      group[1].type === "text"
+    ) {
       flushGallery(`gallery-before-${i}`);
       nodes.push(
         <section
@@ -126,7 +128,8 @@ function ScreenshotGallery({
       <div className="mx-auto flex max-w-5xl flex-col gap-6 md:gap-8">
         {images.map((module, i) => {
           const gif = module.src.endsWith(".gif");
-          const ratio = module.ratio && module.ratio > 0.1 ? module.ratio : 0.667;
+          const ratio =
+            module.ratio && module.ratio > 0.1 ? module.ratio : 0.667;
 
           return (
             <figure
@@ -317,23 +320,18 @@ function LinkRow({ items }: { items: { label: string; href: string }[] }) {
           <a
             key={item.href}
             href={item.href}
-            className="spec group relative inline-flex cursor-pointer items-center gap-3 overflow-hidden bg-ink px-7 py-4 text-board no-underline"
+            className="spec group relative inline-flex cursor-pointer items-center gap-3 overflow-hidden bg-white px-7 py-4 text-board no-underline motion-reduce:hover:bg-mute"
             target="_blank"
             rel="noreferrer"
           >
             <span
               aria-hidden
-              className="pointer-events-none absolute inset-y-0 left-0 w-0 bg-board transition-[width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full motion-reduce:hidden"
+              className="pointer-events-none absolute inset-y-0 left-0 w-0 bg-neutral-200 transition-[width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full motion-reduce:hidden"
             />
-            <span
-              aria-hidden
-              className="relative z-10 transition-colors duration-300 group-hover:text-ink motion-reduce:group-hover:text-board"
-            >
+            <span aria-hidden className="relative z-10">
               <LinkIcon kind={kind} />
             </span>
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-ink motion-reduce:group-hover:text-board">
-              {item.label}
-            </span>
+            <span className="relative z-10">{item.label}</span>
           </a>
         );
       })}
