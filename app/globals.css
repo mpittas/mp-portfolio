@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+@theme inline {
+  --color-board: #0a0a0a;
+  --color-ink: #f2f2f0;
+  --color-paper: #111111;
+  --color-rule: #2c2c2c;
+  --color-mute: #8c8c8c;
+  --color-plate: #000000;
+  --color-mark: #cfcfcb;
+  --color-mark-soft: #1a1a1a;
+  --font-display: var(--font-neke-display);
+  --font-sans: var(--font-neke-body);
+  --font-spec: var(--font-neke-spec);
+}
+
+@layer base {
+  html {
+    background: var(--color-board);
+    color: var(--color-ink);
+    color-scheme: dark;
+    scrollbar-color: var(--color-rule) var(--color-board);
+  }
+
+  body {
+    background: var(--color-board);
+    color: var(--color-ink);
+    font-family: var(--font-sans), Helvetica, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    caret-color: var(--color-ink);
+  }
+
+  button,
+  [role="button"],
+  input[type="submit"] {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-board);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+}
+
+@utility spec {
+  font-family: var(--font-spec), Helvetica, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@utility display-title {
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

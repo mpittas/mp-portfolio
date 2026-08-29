@@ -1,0 +1,49 @@
+{
+  "name": "Marios Pittas",
+  "shortName": "Marios",
+  "role": "Frontend Developer & UI/UX Designer",
+  "introHeading": "Hello there",
+  "intro": "I'm Marios Pittas, a frontend developer and UI/UX designer based in Vratsa, Bulgaria. Over the past ten years I've turned a lifelong interest in computers into a career bridging design and code — designing clean, intuitive interfaces in Figma and bringing them to life with React, TypeScript, Webflow or WordPress.",
+  "aboutHeading": "Marios Pittas",
+  "aboutSub": "Hello! My name is Marios Pittas. I am 31 years old, based in Vratsa, Bulgaria, and a proud dad to a six-month-old.",
+  "aboutParagraphs": [
+    "Over the past ten years, I have turned my lifelong interest in computers into a career in front-end development and UI/UX design. My real strength is bridging the gap between design and code. I enjoy designing clean, intuitive interfaces in Figma and bringing them to life with React, TypeScript, Webflow or WordPress.",
+    "I like taking full ownership of projects from the first idea to the final launch. Lately, I have been focused on building interactive web apps from scratch, turning complex requirements into clean and reusable code. I put a lot of effort into making sure my projects are fully mobile responsive, fast, and accessible.",
+    "I am fluent in English, highly comfortable with modern tech stacks, and always learning new tools to improve my work. I believe the best results happen when great design meets solid engineering, and I am excited to bring that mix of creativity and clean code to a great team."
+  ],
+  "experience": [
+    {
+      "role": "React / Webflow / Figma",
+      "org": "OutsourceBulgaria",
+      "dates": "December 2021 – Present"
+    },
+    {
+      "role": "Front-End Developer",
+      "org": "Tech City Ventures",
+      "dates": "May 2020 – November 2021"
+    },
+    {
+      "role": "UI Designer",
+      "org": "CoinMarketLaunch",
+      "dates": "September 2018 – April 2020"
+    },
+    {
+      "role": "Front-End Developer",
+      "org": "Webiorr",
+      "dates": "June 2016 – July 2018"
+    }
+  ],
+  "education": [
+    "Bachelor's degree in Web Design & Image Advertising — Sofia, September 2019 – Present",
+    "Secondary School — Yoan Ekzarh Language High School, Vratsa, September 2002 – September 2014"
+  ],
+  "other": [],
+  "cvUrl": "/media/site/cv/Marios_Pittas_CV.pdf",
+  "contactHeading": "CONTACT",
+  "contactBody": "I'd love to hear about that idea of yours. Drop me a line.",
+  "googleForm": "",
+  "socials": [],
+  "logo": "/favicon.svg",
+  "portrait": "/media/site/about-photo-1.webp",
+  "aboutPhotos": ["/media/site/about-photo-2.webp"]
+}

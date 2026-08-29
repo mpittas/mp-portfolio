@@ -1,0 +1,14 @@
+---
+description: Always use the mpittas GitHub account and never trigger account-picker popups
+alwaysApply: true
+---
+
+# GitHub account
+
+Always push and pull this repo with the **mpittas** GitHub account.
+
+- Remote: `https://github.com/mpittas/nikolayneke.git`
+- Git identity: `mpittas` / `webpittas@gmail.com`
+- Use `gh` (authenticated as `mpittas`) for GitHub operations
+- Do not open Git Credential Manager or other account-selection popups
+- Do not switch remotes, credentials, or GitHub users

@@ -1,0 +1,59 @@
+[
+  {
+    "slug": "portfolio-modern",
+    "title": "Portfolio Modern",
+    "year": "2026",
+    "tags": [
+      "Vue",
+      "GSAP",
+      "Tailwind"
+    ],
+    "url": "https://portfolio-modern-lilac.vercel.app",
+    "seoDescription": "A motion-first Vue 3 portfolio with GSAP choreography, Lenis scrolling, and a custom cursor.",
+    "cover": "/media/notion/portfolio-modern/cover.mp4",
+    "coverPoster": "/media/notion/portfolio-modern/cover-poster.jpg",
+    "modules": [
+      {
+        "type": "video",
+        "src": "/media/notion/portfolio-modern/cover.mp4",
+        "poster": "/media/notion/portfolio-modern/cover-poster.jpg",
+        "ratio": 0.5625
+      },
+      {
+        "items": [
+          {
+            "href": "https://portfolio-modern-lilac.vercel.app",
+            "label": "Demo"
+          },
+          {
+            "href": "https://github.com/mpittas/portfolio-modern",
+            "label": "GitHub"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "A motion-first freelance folio I built in Vue 3 and TypeScript, so the site itself is the work sample. You land on an SVG wipe loader, then a split-text hero that scales down as you scroll. Services stack as sticky cards. Selected works keep a giant index that ticks as you pass each project, and the WebM previews only play and un-blur when they enter the viewport.\n\nThe motion layer is GSAP: ScrollTrigger, character-level text, elastic magnetic buttons, and a custom cursor that becomes a view chip over the work list. Tailwind v4 holds the flax-smoke palette and a fluid type scale. Lenis handles the scroll. A grain overlay sits over the page. There is also an infinite role marquee, a testimonial slider, and a full-viewport contact plate on a looping video with a Lottie globe.",
+        "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.625,
+        "type": "image",
+        "src": "/media/notion/portfolio-modern/services.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.625,
+        "type": "image",
+        "src": "/media/notion/portfolio-modern/works.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.625,
+        "type": "image",
+        "src": "/media/notion/portfolio-modern/contact.jpg"
+      }
+    ]
+  }
+]
