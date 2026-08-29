@@ -29,11 +29,11 @@ export function HomeIndex() {
                 <span className="spec">{String(i + 1).padStart(2, "0")}</span>
                 <span>
                   <span className="font-display text-xl font-normal leading-none tracking-tight md:text-2xl">
-                    {project.title.replace(" - ", " — ")}
+                    {project.title}
                   </span>
                   <span className="mt-1 block text-sm">{discipline(project)}</span>
                 </span>
-                <span className="spec">{project.year ?? "—"}</span>
+                <span className="spec">{project.year ?? "-"}</span>
               </Link>
             </li>
           );
@@ -59,7 +59,7 @@ export function HomeIndex() {
             {discipline(active)}
           </p>
           <h2 className="display-title mt-2 text-[clamp(1.5rem,2.4vw,2rem)]">
-            {active.title.replace(" - ", " — ")}
+            {active.title}
           </h2>
         </Link>
       </div>

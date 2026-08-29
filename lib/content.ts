@@ -6,7 +6,14 @@ export const site = siteJson as SiteContent;
 export const EXPRESS_COUNT = 1;
 
 /** Current catalog slugs, in published order. Replace when new projects are imported. */
-const CATALOG_SLUGS = ["realster", "folioport"] as const;
+const CATALOG_SLUGS = [
+  "realster",
+  "folioport",
+  "know-your-geo",
+  "songrates",
+  "vscs-strapi",
+  "mikrofond",
+] as const;
 
 const catalogIndex = new Map<string, number>(
   CATALOG_SLUGS.map((slug, index) => [slug, index]),

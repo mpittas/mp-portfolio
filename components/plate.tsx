@@ -82,7 +82,7 @@ export function Plate({
             {project.year ? ` · ${project.year}` : ""}
           </p>
           <h2 className="display-title mt-2 max-w-5xl text-[clamp(2.4rem,7vw,5.5rem)] text-ink">
-            {project.title.replace(" - ", " — ")}
+            {project.title}
           </h2>
         </div>
         <p className="spec shrink-0 text-ink/80">{discipline(project)}</p>

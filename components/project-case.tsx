@@ -157,7 +157,7 @@ export function ProjectCase({
           data-case-title
           className="display-title mt-4 max-w-6xl text-[clamp(2.8rem,8vw,6.5rem)]"
         >
-          {project.title.replace(" - ", " — ")}
+          {project.title}
         </h1>
         <span
           data-case-rule
@@ -171,7 +171,7 @@ export function ProjectCase({
       {total > 1 ? (
         <nav
           data-case-nav
-          className="relative z-10 grid border-t border-rule/40 bg-board md:grid-cols-2"
+          className="relative z-10 grid border-y border-rule/40 bg-board md:grid-cols-2"
           aria-label="Adjacent projects"
         >
           <Link
@@ -182,7 +182,7 @@ export function ProjectCase({
               Previous
             </p>
             <p className="mt-3 font-display text-3xl font-normal leading-none tracking-tight transition-transform duration-500 ease-out motion-safe:group-hover:-translate-x-1 md:text-4xl">
-              {prev.title.replace(" - ", " — ")}
+              {prev.title}
             </p>
           </Link>
           <Link
@@ -193,7 +193,7 @@ export function ProjectCase({
               Next
             </p>
             <p className="mt-3 font-display text-3xl font-normal leading-none tracking-tight transition-transform duration-500 ease-out motion-safe:group-hover:translate-x-1 md:text-4xl">
-              {next.title.replace(" - ", " — ")}
+              {next.title}
             </p>
           </Link>
         </nav>

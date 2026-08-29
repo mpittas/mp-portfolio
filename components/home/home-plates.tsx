@@ -24,7 +24,7 @@ export function HomePlates() {
               className="mt-4 aspect-16/10 w-full"
             />
             <h2 className="display-title mt-5 text-[clamp(1.75rem,3.2vw,2.5rem)] transition-colors duration-300 group-hover:text-mute">
-              {project.title.replace(" - ", " — ")}
+              {project.title}
             </h2>
             <p className="mt-2 text-mute">{discipline(project)}</p>
           </Link>

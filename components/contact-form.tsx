@@ -71,7 +71,7 @@ export function ContactForm() {
         <p className="mt-6 text-mute" role="status">
           {site.googleForm
             ? "The project form opened in a new tab. I will get back to you as soon as possible."
-            : "Thanks — I will get back to you as soon as I can."}
+            : "Thanks. I will get back to you as soon as I can."}
         </p>
       ) : null}
     </form>

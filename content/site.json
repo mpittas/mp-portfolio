@@ -3,7 +3,7 @@
   "shortName": "Marios",
   "role": "Frontend Developer & UI/UX Designer",
   "introHeading": "Hello there",
-  "intro": "I'm Marios Pittas, a frontend developer and UI/UX designer based in Vratsa, Bulgaria. Over the past ten years I've turned a lifelong interest in computers into a career bridging design and code — designing clean, intuitive interfaces in Figma and bringing them to life with React, TypeScript, Webflow or WordPress.",
+  "intro": "I'm Marios Pittas, a frontend developer and UI/UX designer based in Vratsa, Bulgaria. Over the past ten years I've turned a lifelong interest in computers into a career bridging design and code, designing clean, intuitive interfaces in Figma and bringing them to life with React, TypeScript, Webflow or WordPress.",
   "aboutHeading": "Marios Pittas",
   "aboutSub": "Hello! My name is Marios Pittas. I am 31 years old, based in Vratsa, Bulgaria, and a proud dad to a six-month-old.",
   "aboutParagraphs": [
@@ -15,27 +15,27 @@
     {
       "role": "React / Webflow / Figma",
       "org": "OutsourceBulgaria",
-      "dates": "December 2021 – Present"
+      "dates": "December 2021 - Present"
     },
     {
       "role": "Front-End Developer",
       "org": "Tech City Ventures",
-      "dates": "May 2020 – November 2021"
+      "dates": "May 2020 - November 2021"
     },
     {
       "role": "UI Designer",
       "org": "CoinMarketLaunch",
-      "dates": "September 2018 – April 2020"
+      "dates": "September 2018 - April 2020"
     },
     {
       "role": "Front-End Developer",
       "org": "Webiorr",
-      "dates": "June 2016 – July 2018"
+      "dates": "June 2016 - July 2018"
     }
   ],
   "education": [
-    "Bachelor's degree in Web Design & Image Advertising — Sofia, September 2019 – Present",
-    "Secondary School — Yoan Ekzarh Language High School, Vratsa, September 2002 – September 2014"
+    "Bachelor's degree in Web Design & Image Advertising, Sofia, September 2019 - Present",
+    "Secondary School, Yoan Ekzarh Language High School, Vratsa, September 2002 - September 2014"
   ],
   "other": [],
   "cvUrl": "/media/site/cv/Marios_Pittas_CV.pdf",
@@ -44,6 +44,6 @@
   "googleForm": "",
   "socials": [],
   "logo": "/favicon.svg",
-  "portrait": "/media/site/about-photo-1.webp",
-  "aboutPhotos": ["/media/site/about-photo-2.webp"]
+  "portrait": "/media/site/me-2.webp",
+  "aboutPhotos": ["/media/site/me-1.webp"]
 }

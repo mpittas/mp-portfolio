@@ -46,7 +46,7 @@ export function HomeSpread() {
                   {discipline(project)}
                 </p>
                 <h2 className="display-title mt-3 text-[clamp(1.75rem,3.4vw,2.75rem)]">
-                  {project.title.replace(" - ", " — ")}
+                  {project.title}
                 </h2>
                 <span
                   aria-hidden

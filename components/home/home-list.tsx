@@ -30,7 +30,7 @@ export function HomeList() {
                 {project.year ? ` · ${project.year}` : ""}
               </p>
               <h2 className="mt-1 font-display text-2xl font-normal leading-none tracking-tight md:text-3xl">
-                {project.title.replace(" - ", " — ")}
+                {project.title}
               </h2>
               <p className="mt-2 text-mute">{discipline(project)}</p>
             </div>

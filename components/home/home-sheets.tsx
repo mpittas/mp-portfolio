@@ -20,7 +20,7 @@ export function HomeSheets() {
               </span>
             </div>
             <h2 className="mt-2 truncate font-display text-base font-normal leading-none tracking-tight group-hover:text-mute md:text-lg">
-              {project.title.replace(" - ", " — ")}
+              {project.title}
             </h2>
           </Link>
         </li>

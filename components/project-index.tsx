@@ -46,7 +46,7 @@ export function ProjectIndex() {
                 </div>
                 <div className="mt-3 flex items-baseline justify-between gap-4">
                   <h3 className="font-display text-2xl font-normal leading-none tracking-tight text-ink md:text-3xl">
-                    {project.title.replace(" - ", " — ")}
+                    {project.title}
                   </h3>
                   <span className="spec shrink-0 text-mute">
                     {String(i + 1).padStart(2, "0")}

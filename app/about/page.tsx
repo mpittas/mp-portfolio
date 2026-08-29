@@ -18,7 +18,9 @@ export default function AboutPage() {
             <h1 className="display-title mt-4 text-[clamp(3.5rem,10vw,7rem)]">
               {site.aboutHeading}
             </h1>
-            <p className="mt-6 max-w-xl text-2xl leading-snug">{site.aboutSub}</p>
+            <p className="mt-6 max-w-xl text-2xl leading-snug">
+              {site.aboutSub}
+            </p>
             {(site.aboutParagraphs ?? []).map((paragraph) => (
               <p
                 key={paragraph.slice(0, 32)}
@@ -30,7 +32,7 @@ export default function AboutPage() {
           </div>
           {site.portrait ? (
             <figure className="md:col-span-5">
-              <div className="relative aspect-square overflow-hidden bg-plate">
+              <div className="group relative aspect-square overflow-hidden bg-plate">
                 <Image
                   src={site.portrait}
                   alt={`Portrait of ${site.name}`}
@@ -38,13 +40,13 @@ export default function AboutPage() {
                   priority
                   quality={90}
                   sizes="(min-width: 768px) 40vw, 92vw"
-                  className="object-cover"
+                  className="object-cover grayscale transition-[filter] duration-500 ease-out group-hover:grayscale-0"
                 />
               </div>
               {(site.aboutPhotos ?? []).map((photo) => (
                 <div
                   key={photo}
-                  className="relative mt-7 aspect-square overflow-hidden bg-plate"
+                  className="group relative mt-7 aspect-square overflow-hidden bg-plate"
                 >
                   <Image
                     src={photo}
@@ -53,7 +55,7 @@ export default function AboutPage() {
                     quality={90}
                     loading="lazy"
                     sizes="(min-width: 768px) 40vw, 92vw"
-                    className="object-cover"
+                    className="object-cover grayscale transition-[filter] duration-500 ease-out group-hover:grayscale-0"
                   />
                 </div>
               ))}

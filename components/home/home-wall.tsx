@@ -30,7 +30,7 @@ export function HomeWall() {
                 {project.year ? ` · ${project.year}` : ""}
               </p>
               <h2 className="display-title mt-2 text-[clamp(1.35rem,2.2vw,1.85rem)] group-hover:text-mute">
-                {project.title.replace(" - ", " — ")}
+                {project.title}
               </h2>
               <p className="mt-1 text-sm text-mute">{discipline(project)}</p>
             </Link>

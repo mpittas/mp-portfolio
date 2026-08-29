@@ -26,7 +26,7 @@ export function HomeFolio() {
                   {discipline(project)}
                 </p>
                 <h2 className="display-title mt-2 text-[clamp(1.75rem,4vw,3rem)] group-hover:text-mute">
-                  {project.title.replace(" - ", " — ")}
+                  {project.title}
                 </h2>
               </div>
             </div>

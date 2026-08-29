@@ -16,12 +16,12 @@ const valley = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} — ${site.role}`,
-    template: `%s — ${site.shortName}`,
+    default: `${site.name} - ${site.role}`,
+    template: `%s - ${site.shortName}`,
   },
   description: site.intro,
   openGraph: {
-    title: `${site.name} — ${site.role}`,
+    title: `${site.name} - ${site.role}`,
     description: site.intro,
     type: "website",
   },

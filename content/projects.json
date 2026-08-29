@@ -9,7 +9,7 @@
       "Tailwind"
     ],
     "url": "https://realestates-pi.vercel.app",
-    "seoDescription": "A Greater Boston real estate marketing site in Next.js with Motion reveals, Lenis scrolling, and a search-led hero.",
+    "seoDescription": "Marketing site for a Greater Boston real estate brokerage with search-led home discovery built in Next.js.",
     "cover": "/media/notion/realster/cover.mp4",
     "coverPoster": "/media/notion/realster/cover-poster.jpg",
     "modules": [
@@ -33,7 +33,7 @@
         "type": "links"
       },
       {
-        "text": "A Greater Boston brokerage marketing site I built in Next.js 16 and TypeScript. The pitch is simple: every home on the books is listed by a Realster agent. You land on a split hero — headline and supporting copy on one side, a full-bleed villa plate on the other — with floating overlay cards for price, open-house status, and median asking. A search panel overlaps the hero: saved-search chips, Where / Price / Beds filters, and a direct CTA into the inventory.\n\nBelow that the page runs as a long product story: a homes carousel, private exclusives that never hit a portal, a book-a-viewing flow, neighborhood accordion with live counts, a dark numbers band (28 years, 6 offices, 1,140 closings), agent portraits, a three-step how-it-works tab panel, a filterable browse book, FAQ, press logos, and a contact form.\n\nMotion is Motion (Framer): staggered reveals, soft rise/scale entrances, and reduced-motion fallbacks. Lenis owns the scroll. Tailwind v4 holds a warm white / charcoal / lilac token set with panel and card radii. The site is one composition of sections, not a multi-page MLS.",
+        "text": "Realster is a marketing website for a Greater Boston real estate brokerage. Its job is to help buyers discover homes, explore neighborhoods, book viewings, and connect with agents without feeling like a dry MLS dump.\n\nWhat I built: A long-form product page that sells the brokerage end to end. A search-led hero opens into homes, private exclusives, neighborhood guides, agent profiles, how-it-works, FAQ, and contact. Motion and scroll polish are part of the pitch: the site itself should feel premium.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Motion (Framer Motion), and Lenis smooth scrolling.",
         "type": "text"
       },
       {
@@ -66,7 +66,7 @@
       "Tailwind"
     ],
     "url": "https://portfolio-modern-lilac.vercel.app",
-    "seoDescription": "A motion-first Vue 3 portfolio with GSAP choreography, Lenis scrolling, and a custom cursor.",
+    "seoDescription": "Motion-first freelance portfolio template in Vue 3. The site itself is the work sample.",
     "cover": "/media/notion/portfolio-modern/cover.mp4",
     "coverPoster": "/media/notion/portfolio-modern/cover-poster.jpg",
     "modules": [
@@ -86,7 +86,7 @@
         "type": "links"
       },
       {
-        "text": "A motion-first freelance folio I built in Vue 3 and TypeScript, so the site itself is the work sample. You land on an SVG wipe loader, then a split-text hero that scales down as you scroll. Services stack as sticky cards. Selected works keep a giant index that ticks as you pass each project, and the WebM previews only play and un-blur when they enter the viewport.\n\nThe motion layer is GSAP: ScrollTrigger, character-level text, elastic magnetic buttons, and a custom cursor that becomes a view chip over the work list. Tailwind v4 holds the flax-smoke palette and a fluid type scale. Lenis handles the scroll. A grain overlay sits over the page. There is also an infinite role marquee, a testimonial slider, and a full-viewport contact plate on a looping video with a Lottie globe.",
+        "text": "Folioport is a freelance portfolio website designed to win clients through craft. It presents services, selected work, testimonials, and a contact CTA. Motion is part of the product, not decoration.\n\nWhat I built: A motion-first folio where the site is the work sample. An SVG wipe loader leads into a split-text hero, sticky service cards, a project index with viewport-triggered video previews, a role marquee, testimonials, and a full-bleed contact plate. Custom cursor, magnetic buttons, and scroll-linked text show how far interaction design can go on a marketing page.\n\nTech stack: Vue 3, TypeScript, Tailwind CSS v4, GSAP (ScrollTrigger), Lenis, and Lottie.",
         "type": "text"
       },
       {
@@ -106,6 +106,179 @@
         "ratio": 0.625,
         "type": "image",
         "src": "/media/notion/portfolio-modern/contact.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "know-your-geo",
+    "title": "KnowYourGeo",
+    "year": "2026",
+    "tags": [
+      "Next.js",
+      "Gemini",
+      "Maps"
+    ],
+    "url": "https://knowyourgeo.vercel.app",
+    "seoDescription": "Free GeoGuessr training app with Street View drills, AI coaching, and field guides.",
+    "cover": "/media/notion/know-your-geo/cover.mp4",
+    "coverPoster": "/media/notion/know-your-geo/cover-poster.jpg",
+    "modules": [
+      {
+        "type": "video",
+        "src": "/media/notion/know-your-geo/cover.mp4",
+        "poster": "/media/notion/know-your-geo/cover-poster.jpg",
+        "ratio": 0.5625
+      },
+      {
+        "items": [
+          {
+            "href": "https://knowyourgeo.vercel.app",
+            "label": "Demo"
+          },
+          {
+            "href": "https://github.com/mpittas/knowyourgeo",
+            "label": "Code"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "KnowYourGeo is a free training app for GeoGuessr players who want to improve, not just chase a score. You practice on real Google Street View, pin guesses on a map, and leave each round knowing which clues you missed.\n\nWhat I built: Map pickers (world or by continent), Moving / No Move and timer constraints, AI round review that highlights street signs and regional meta, field guides, and profiles that journal sessions and weak spots. Auth supports email and Google. AI analysis runs on secured, rate-limited server routes so API keys never ship to the browser.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Google Maps / Street View, Google Gemini, Supabase Auth, and Upstash Redis.",
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "slug": "songrates",
+    "title": "Songrates",
+    "year": "2026",
+    "tags": [
+      "Next.js",
+      "Supabase",
+      "Apple Music"
+    ],
+    "url": "https://songrates.vercel.app",
+    "seoDescription": "Music discovery app for rating songs and albums, backed by Apple Music charts and Supabase profiles.",
+    "cover": "/media/notion/songrates/cover.mp4",
+    "coverPoster": "/media/notion/songrates/cover-poster.jpg",
+    "modules": [
+      {
+        "type": "video",
+        "src": "/media/notion/songrates/cover.mp4",
+        "poster": "/media/notion/songrates/cover-poster.jpg",
+        "ratio": 0.5625
+      },
+      {
+        "items": [
+          {
+            "href": "https://songrates.vercel.app",
+            "label": "Demo"
+          },
+          {
+            "href": "https://github.com/mpittas/songrates",
+            "label": "Code"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "Songrates is a music discovery app built around one loop: find a song or album, then rate it. It turns casual listening into a shared catalog of opinions, playlists, and fully rated releases.\n\nWhat I built: Home feeds for trending tracks, country Top 100 playlists, and community-rated albums; album pages with track-by-track scoring; reviews; playlists; artist follows; and public profiles with a leveling system unlocked by fully rated albums. Guests can rate; signed-in users keep progress and unlock profile perks.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Supabase (auth + database), Apple Music API, TanStack Query, and React Three Fiber for upcoming 3D vinyl experiences.",
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "slug": "vscs-strapi",
+    "title": "VSCS",
+    "year": "2026",
+    "tags": [
+      "Next.js",
+      "Strapi",
+      "i18n"
+    ],
+    "url": "https://vscs-strapi.vercel.app",
+    "seoDescription": "Bilingual marketing site for a solar EPC company. Next.js frontend with a Strapi 5 CMS.",
+    "cover": "/media/notion/vscs-strapi/cover.jpg",
+    "modules": [
+      {
+        "type": "image",
+        "src": "/media/notion/vscs-strapi/cover.jpg",
+        "ratio": 0.5625
+      },
+      {
+        "items": [
+          {
+            "href": "https://vscs-strapi.vercel.app",
+            "label": "Demo"
+          },
+          {
+            "href": "https://www.figma.com/design/nJfhqxptljzqxXi8LD2iXT/VSCS-BG?node-id=0-1&t=7EwE6qoNybixpjEb-1",
+            "label": "Figma"
+          },
+          {
+            "href": "https://github.com/mpittas/vscs-strapi",
+            "label": "Code"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "VSCS is the company website for VS Construction Services, a Bulgarian solar EPC business. It explains their turnkey photovoltaic offer, showcases completed projects, publishes news, and turns visitors into consultations and leads.\n\nWhat I built: A bilingual (Bulgarian / English) marketing site with services, project map, blog, careers, and form flows, all editable from a CMS. The frontend revalidates when Strapi content changes, so the client can update copy and media without redeploying the whole app.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Strapi 5, i18next, Mapbox, GSAP, Lenis, and Nodemailer (SMTP forms). Local CMS uses SQLite; production targets PostgreSQL.",
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "slug": "mikrofond",
+    "title": "Mikrofond",
+    "tags": [
+      "WordPress",
+      "Elementor",
+      "Figma"
+    ],
+    "url": "https://mikrofond.bg/",
+    "seoDescription": "Production WordPress site for a Bulgarian microfinance company. Designed in Figma, built in Elementor Pro.",
+    "cover": "/media/notion/mikrofond/cover.jpg",
+    "modules": [
+      {
+        "type": "image",
+        "src": "/media/notion/mikrofond/cover.jpg",
+        "ratio": 0.5625
+      },
+      {
+        "items": [
+          {
+            "href": "https://mikrofond.bg/",
+            "label": "Demo"
+          },
+          {
+            "href": "https://www.figma.com/design/xYm7ObrZuGSfOubtVIlXdT/Mikrofond---Web-Design?node-id=1-1011&t=1VqXmcEfIJIcMAI5-1",
+            "label": "Figma"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "Mikrofond is the company website for a major Bulgarian microfinance institution. It presents financing products, electronic food vouchers, about content, news, and contact flows for businesses that need a production-ready brand site, not a brochure template.\n\nWhat I built: Full visual design in Figma, refined over months with a demanding client, then a fully responsive WordPress build in Elementor Pro. Every page is live with entrance animations, animated statistics, dynamic layouts, and custom graphics. Production hardening covered speed work, asset compression, anti-spam protection, and Google Analytics.\n\nTech stack: WordPress, Elementor Pro, and Figma.",
+        "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/mikrofond/finansirane.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/mikrofond/za-nas.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/mikrofond/kontakti.jpg"
       }
     ]
   }

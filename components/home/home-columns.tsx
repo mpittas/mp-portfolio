@@ -51,10 +51,10 @@ function ColumnCase({
   priority: boolean;
 }) {
   const mark = String(index + 1).padStart(2, "0");
-  const title = project.title.replace(" - ", " — ");
+  const title = project.title;
   const short = projectShortName(project);
-  const rest = title.includes(" — ")
-    ? title.slice(title.indexOf(" — ") + 3)
+  const rest = title.includes(" - ")
+    ? title.slice(title.indexOf(" - ") + 3)
     : discipline(project);
   const reading = projectLead(project) ?? rest;
 
