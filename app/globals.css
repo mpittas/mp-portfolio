@@ -68,6 +68,28 @@
   text-wrap: balance;
 }
 
+@utility skill-name {
+  font-family: var(--font-display), Helvetica, sans-serif;
+  font-weight: 400;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-mark);
+  transition:
+    color 0.5s ease,
+    -webkit-text-stroke-color 0.5s ease;
+}
+
+.group:hover .skill-name {
+  color: var(--color-ink);
+  -webkit-text-stroke-color: var(--color-ink);
+}
+
+@media (hover: none) {
+  .skill-name {
+    color: var(--color-ink);
+    -webkit-text-stroke-color: var(--color-ink);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html.lenis,
   html.lenis body {

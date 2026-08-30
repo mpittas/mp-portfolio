@@ -8,6 +8,7 @@ FORM: Index catalog on a neutral black field.
 import { HomeChrome } from "@/components/home/home-chrome";
 import { HomeIndex } from "@/components/home/home-index";
 import { HomeLead } from "@/components/home/home-lead";
+import { HomeSkills } from "@/components/home/home-skills";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <HomeChrome />
       <HomeLead />
       <HomeIndex />
+      <HomeSkills />
     </main>
   );
 }
