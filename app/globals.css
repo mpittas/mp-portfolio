@@ -72,6 +72,38 @@
   clip-path: inset(50% 50% 50% 50%);
 }
 
+/* Touch / coarse: skip clip-path iris (Safari paints it slowly). Fade on the compositor. */
+@media (hover: none), (pointer: coarse) {
+  [data-cell] {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  [data-cell] [data-skill-rest] {
+    transition: opacity 0.12s ease-out;
+  }
+
+  [data-cell] .skill-plate {
+    clip-path: none !important;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition:
+      opacity 0.14s ease-out,
+      visibility 0.14s ease-out;
+  }
+
+  [data-cell][aria-expanded="true"] .skill-plate {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  [data-cell][aria-expanded="true"] [data-skill-rest] {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html.lenis,
   html.lenis body {

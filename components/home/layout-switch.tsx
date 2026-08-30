@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const layouts = [
-  { href: "/", label: "Index" },
+  { href: "/v/index", label: "Index" },
   { href: "/v/list", label: "List" },
   { href: "/v/columns", label: "Columns" },
 ];
@@ -20,7 +20,9 @@ export function LayoutSwitch() {
       >
         {layouts.map((layout, index) => {
           const active =
-            layout.href === "/" ? pathname === "/" : pathname === layout.href;
+            layout.href === "/v/index"
+              ? pathname === "/" || pathname === "/v/index"
+              : pathname === layout.href;
           return (
             <Link
               key={layout.href}

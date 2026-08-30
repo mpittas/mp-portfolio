@@ -7,6 +7,7 @@ import {
   type Dispatch,
   type FocusEvent as ReactFocusEvent,
   type KeyboardEvent as ReactKeyboardEvent,
+  type MouseEvent as ReactMouseEvent,
   type MutableRefObject,
   type PointerEvent as ReactPointerEvent,
   type SetStateAction,
@@ -43,6 +44,10 @@ const CLOSED_CLIP = "inset(50% 50% 50% 50%)";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function isCoarsePointer() {
+  return window.matchMedia("(pointer: coarse)").matches;
 }
 
 function originFromEvent(el: HTMLElement, clientX: number, clientY: number) {
@@ -105,46 +110,59 @@ export function HomeSkills() {
 
       const mm = gsap.matchMedia();
 
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const heading = el.querySelector<HTMLElement>("[data-heading-inner]");
-        const cells = gsap.utils.toArray<HTMLElement>("[data-cell]", el);
-        const reveals = gsap.utils.toArray<HTMLElement>("[data-fade]", el);
+      mm.add(
+        {
+          motion: "(prefers-reduced-motion: no-preference)",
+          fine: "(hover: hover) and (pointer: fine)",
+        },
+        (ctx) => {
+          if (!ctx.conditions?.motion) return;
 
-        if (heading) gsap.set(heading, { yPercent: 115 });
-        gsap.set(cells, { autoAlpha: 0, y: 24 });
-        gsap.set(reveals, { autoAlpha: 0, y: 16 });
+          const heading = el.querySelector<HTMLElement>("[data-heading-inner]");
+          const cells = gsap.utils.toArray<HTMLElement>("[data-cell]", el);
+          const reveals = gsap.utils.toArray<HTMLElement>("[data-fade]", el);
+          const fine = Boolean(ctx.conditions?.fine);
 
-        ScrollTrigger.create({
-          trigger: el,
-          start: "top 78%",
-          once: true,
-          onEnter: () => {
-            if (heading) {
-              gsap.to(heading, {
-                yPercent: 0,
-                duration: 0.9,
-                ease: "power4.out",
+          if (heading) gsap.set(heading, { yPercent: 115 });
+          gsap.set(reveals, { autoAlpha: 0, y: 16 });
+          // Touch: keep cells visible so taps never hit an autoAlpha:0 layer.
+          // Desktop: staggered reveal as before.
+          if (fine) gsap.set(cells, { autoAlpha: 0, y: 24 });
+
+          ScrollTrigger.create({
+            trigger: el,
+            start: "top 78%",
+            once: true,
+            onEnter: () => {
+              if (heading) {
+                gsap.to(heading, {
+                  yPercent: 0,
+                  duration: fine ? 0.9 : 0.55,
+                  ease: "power4.out",
+                });
+              }
+              gsap.to(reveals, {
+                autoAlpha: 1,
+                y: 0,
+                duration: fine ? 0.6 : 0.4,
+                stagger: fine ? 0.08 : 0.04,
+                delay: fine ? 0.12 : 0,
+                ease: "power3.out",
               });
-            }
-            gsap.to(reveals, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.6,
-              stagger: 0.08,
-              delay: 0.12,
-              ease: "power3.out",
-            });
-            gsap.to(cells, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.7,
-              ease: "power3.out",
-              stagger: { each: 0.04, grid: "auto", from: "start" },
-              delay: 0.2,
-            });
-          },
-        });
-      });
+              if (fine) {
+                gsap.to(cells, {
+                  autoAlpha: 1,
+                  y: 0,
+                  duration: 0.7,
+                  ease: "power3.out",
+                  stagger: { each: 0.04, grid: "auto", from: "start" },
+                  delay: 0.2,
+                });
+              }
+            },
+          });
+        },
+      );
 
       return () => mm.revert();
     },
@@ -152,6 +170,8 @@ export function HomeSkills() {
   );
 
   useEffect(() => {
+    if (isCoarsePointer()) return;
+
     let lastX = 0;
     let lastY = 0;
     let lastT = 0;
@@ -278,13 +298,18 @@ export function HomeSkills() {
 
       <div
         className="relative mt-12 grid grid-cols-2 border-t border-l border-rule/40 md:mt-16 md:grid-cols-4"
-        onPointerLeave={() => setActive(null)}
+        onPointerLeave={(event) => {
+          // Touch end fires pointerleave on Safari; that must not clear the open cell.
+          if (event.pointerType === "touch" || isCoarsePointer()) return;
+          setActive(null);
+        }}
       >
         {cells.map((cell, idx) => (
           <SkillCell
             key={cell.name}
             cell={cell}
             index={idx}
+            occupied={active?.name === cell.name}
             onActive={setActive}
             pointerRef={pointer}
           />
@@ -293,9 +318,16 @@ export function HomeSkills() {
 
       <div className="mt-6 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
         <p data-fade className="spec text-mute">
-          {active
-            ? `( ${active.group} ) ${active.name}`
-            : "( 20 cells, one toolkit. Sweep the grid )"}
+          {active ? (
+            `( ${active.group} ) ${active.name}`
+          ) : (
+            <>
+              <span className="md:hidden">( 20 cells, one toolkit. Tap a cell )</span>
+              <span className="hidden md:inline">
+                ( 20 cells, one toolkit. Sweep the grid )
+              </span>
+            </>
+          )}
         </p>
         <p data-fade className="spec text-mute">
           ( Always learning )
@@ -308,11 +340,13 @@ export function HomeSkills() {
 function SkillCell({
   cell,
   index,
+  occupied,
   onActive,
   pointerRef,
 }: {
   cell: Cell;
   index: number;
+  occupied: boolean;
   onActive: Dispatch<SetStateAction<Cell | null>>;
   pointerRef: MutableRefObject<PointerSample>;
 }) {
@@ -328,6 +362,7 @@ function SkillCell({
 
   const { contextSafe } = useGSAP(
     () => {
+      if (isCoarsePointer()) return;
       gsap.set([title.current, detail.current, meta.current], {
         yPercent: 110,
         autoAlpha: 0,
@@ -338,16 +373,30 @@ function SkillCell({
 
   // contextSafe creates an event callback and never executes it during render.
   // eslint-disable-next-line react-hooks/refs
-  const close = contextSafe((exitSpeed = 0, clientX?: number, clientY?: number) => {
+  const close = contextSafe((
+    exitSpeed = 0,
+    clientX?: number,
+    clientY?: number,
+    snap = false,
+  ) => {
     const plateEl = plate.current;
     if (!plateEl || !openRef.current) return;
     openRef.current = false;
     setExpanded(false);
     onActive((prev) => (prev?.name === cell.name ? null : prev));
 
-    if (prefersReducedMotion()) {
+    if (isCoarsePointer()) {
       openTween.current?.kill();
-      gsap.set(plateEl, { clipPath: CLOSED_CLIP, scale: 1, willChange: "auto" });
+      return;
+    }
+
+    const resetPlate = () => {
+      gsap.set(plateEl, {
+        clipPath: CLOSED_CLIP,
+        scale: 1,
+        autoAlpha: 1,
+        willChange: "auto",
+      });
       gsap.set(rest.current, { autoAlpha: 1, y: 0 });
       gsap.set([title.current, detail.current, meta.current], {
         yPercent: 110,
@@ -355,6 +404,21 @@ function SkillCell({
         y: 0,
         autoAlpha: 0,
       });
+    };
+
+    if (prefersReducedMotion() || snap) {
+      openTween.current?.kill();
+      if (snap && !prefersReducedMotion()) {
+        gsap.to(plateEl, {
+          autoAlpha: 0,
+          duration: 0.12,
+          ease: "power1.in",
+          overwrite: true,
+          onComplete: resetPlate,
+        });
+        return;
+      }
+      resetPlate();
       return;
     }
 
@@ -441,7 +505,7 @@ function SkillCell({
   });
 
   // eslint-disable-next-line react-hooks/refs
-  const open = contextSafe((clientX: number, clientY: number) => {
+  const open = contextSafe((clientX: number, clientY: number, snap = false) => {
     const el = root.current;
     const plateEl = plate.current;
     if (!el || !plateEl) return;
@@ -451,16 +515,28 @@ function SkillCell({
     openRef.current = true;
     setExpanded(true);
 
-    if (prefersReducedMotion()) {
+    if (isCoarsePointer()) {
       openTween.current?.kill();
-      gsap.set(plateEl, { clipPath: OPEN_CLIP });
-      gsap.set(rest.current, { autoAlpha: 0 });
+      return;
+    }
+
+    if (prefersReducedMotion() || snap) {
+      openTween.current?.kill();
+      gsap.set(plateEl, { clipPath: OPEN_CLIP, scale: 1, force3D: true });
+      gsap.set(rest.current, { autoAlpha: 0, y: 0 });
       gsap.set([title.current, detail.current, meta.current], {
         yPercent: 0,
         x: 0,
         y: 0,
         autoAlpha: 1,
       });
+      if (snap && !prefersReducedMotion()) {
+        gsap.fromTo(
+          plateEl,
+          { autoAlpha: 0 },
+          { autoAlpha: 1, duration: 0.16, ease: "power1.out", overwrite: true },
+        );
+      }
       return;
     }
 
@@ -596,31 +672,44 @@ function SkillCell({
       momentum: 0.08,
       directionality: 0,
     };
-    open(box.left + box.width / 2, box.top + box.height / 2);
+    open(box.left + box.width / 2, box.top + box.height / 2, isCoarsePointer());
   });
 
+  useEffect(() => {
+    if (!occupied && openRef.current) close(0, undefined, undefined, true);
+  }, [occupied, close]);
+
   const handlePointerEnter = (event: ReactPointerEvent<HTMLButtonElement>) => {
-    if (event.pointerType === "touch") return;
+    if (event.pointerType === "touch" || isCoarsePointer()) return;
     open(event.clientX, event.clientY);
   };
 
   const handlePointerLeave = (event: ReactPointerEvent<HTMLButtonElement>) => {
-    if (event.pointerType === "touch") return;
+    if (event.pointerType === "touch" || isCoarsePointer()) return;
     close(pointerRef.current.speed, event.clientX, event.clientY);
   };
 
-  const handlePointerUp = (event: ReactPointerEvent<HTMLButtonElement>) => {
-    if (event.pointerType !== "touch") return;
-    if (openRef.current) close(0.2, event.clientX, event.clientY);
-    else open(event.clientX, event.clientY);
+  const toggleTouch = (clientX: number, clientY: number) => {
+    if (openRef.current) close(0.2, clientX, clientY, true);
+    else open(clientX, clientY, true);
+  };
+
+  // Touch / coarse: activate on click only. pointerup+click double-fire was
+  // flashing the plate open then shut on Safari.
+  const handleClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
+    if (!isCoarsePointer()) return;
+    toggleTouch(event.clientX, event.clientY);
   };
 
   const handleFocus = (event: ReactFocusEvent<HTMLButtonElement>) => {
+    // Avoid mouse/touch click focusing and double-toggling the plate.
+    if (!event.currentTarget.matches(":focus-visible")) return;
     if (event.currentTarget.matches(":hover")) return;
     openFromCenter();
   };
 
   const handleBlur = () => {
+    if (isCoarsePointer()) return;
     if (root.current?.matches(":hover")) return;
     close(0.12);
   };
@@ -643,14 +732,15 @@ function SkillCell({
       aria-expanded={expanded}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
-      onPointerUp={handlePointerUp}
+      onClick={handleClick}
       onFocus={handleFocus}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
-      className="relative flex aspect-square cursor-pointer items-center justify-center overflow-hidden border-r border-b border-rule/40 bg-transparent p-3 text-left font-sans select-none md:p-5"
+      className="relative flex aspect-square cursor-pointer touch-manipulation items-center justify-center overflow-hidden border-r border-b border-rule/40 bg-transparent p-3 text-left font-sans select-none md:p-5"
     >
       <span
         ref={rest}
+        data-skill-rest
         className="relative z-10 text-center text-[clamp(0.95rem,1.6vw,1.3rem)] tracking-[-0.01em] text-mute"
       >
         {cell.name}
@@ -662,16 +752,16 @@ function SkillCell({
       >
         <span
           ref={meta}
-          className="spec flex items-start justify-between gap-3 text-board"
+          className="spec flex items-start justify-between gap-2 text-board md:gap-3"
         >
-          <span>{mark}</span>
-          <span>{cell.group}</span>
+          <span className="shrink-0">{mark}</span>
+          <span className="text-right">{cell.group}</span>
         </span>
-        <span className="flex min-h-0 flex-col gap-1.5 md:gap-2">
+        <span className="flex min-h-0 flex-col gap-1 md:gap-2">
           <span className="overflow-hidden">
             <span
               ref={title}
-              className="block text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.08] tracking-[-0.02em]"
+              className="block text-[1.0625rem] leading-[1.1] tracking-[-0.02em] md:text-[clamp(1.1rem,2vw,1.5rem)] md:leading-[1.08]"
             >
               {cell.name}
             </span>
@@ -679,7 +769,7 @@ function SkillCell({
           <span className="overflow-hidden">
             <span
               ref={detail}
-              className="line-clamp-4 block text-[1.0625rem] leading-snug text-board/75 md:line-clamp-5 md:leading-[1.4]"
+              className="line-clamp-4 block text-[0.8125rem] leading-[1.35] text-board/75 md:line-clamp-5 md:text-[1.0625rem] md:leading-[1.4]"
             >
               {cell.detail}
             </span>
