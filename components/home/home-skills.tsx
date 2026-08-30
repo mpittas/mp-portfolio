@@ -752,7 +752,7 @@ function SkillCell({
       >
         <span
           ref={meta}
-          className="spec flex items-start justify-between gap-2 text-board md:gap-3"
+          className="spec flex items-start justify-between gap-2 text-[0.625rem] text-board md:gap-3 md:text-[0.8125rem]"
         >
           <span className="shrink-0">{mark}</span>
           <span className="text-right">{cell.group}</span>

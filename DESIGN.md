@@ -28,6 +28,12 @@ typography:
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "0.08em"
+  specSm:
+    fontFamily: "Valley Sans, Helvetica, sans-serif"
+    fontSize: "0.625rem"
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: "0.08em"
 rounded:
   none: "0px"
   sm: "2px"
