@@ -25,7 +25,7 @@ const jobs = [
   },
   {
     out: "public/media/notion/mikrofond/cover-poster.jpg",
-    shot: "public/media/notion/mikrofond/cover.jpg",
+    shot: "public/media/notion/mikrofond/finansirane.jpg",
     bg: { r: 6, g: 16, b: 30 }, // #06101e
   },
 ];
