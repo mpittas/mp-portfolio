@@ -74,10 +74,10 @@ function motionFromSample(sample: PointerSample) {
     accelerationEnergy * 0.18 +
     momentumEnergy * 0.26;
   const intensity = rawIntensity * rawIntensity * (3 - 2 * rawIntensity);
-  const open = gsap.utils.interpolate(0.9, 0.44, intensity);
-  const close = gsap.utils.interpolate(0.58, 0.3, intensity);
-  const ease = intensity > 0.62 ? "power4.out" : "expo.out";
-  const drift = gsap.utils.interpolate(4, 13, intensity);
+  const open = gsap.utils.interpolate(1.15, 0.62, intensity);
+  const close = gsap.utils.interpolate(0.72, 0.4, intensity);
+  const ease = intensity > 0.62 ? "power3.out" : "power2.inOut";
+  const drift = gsap.utils.interpolate(3, 10, intensity);
   return { intensity, open, close, ease, drift };
 }
 
@@ -368,7 +368,7 @@ function SkillCell({
 
     if (current && current.progress() > 0 && current.progress() < 1) {
       // Mid-open: reverse from where we are, sped up by how hard we leave.
-      current.timeScale(gsap.utils.interpolate(1.15, 1.9, intensity)).reverse();
+      current.timeScale(gsap.utils.interpolate(1.1, 1.55, intensity)).reverse();
       return;
     }
 
@@ -421,7 +421,7 @@ function SkillCell({
         {
           clipPath: endClip,
           duration: closeDur,
-          ease: "power3.inOut",
+          ease: "power2.inOut",
         },
         0.03,
       )
