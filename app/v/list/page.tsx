@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import { HomeChrome } from "@/components/home/home-chrome";
 import { HomeLead } from "@/components/home/home-lead";
 import { HomeList } from "@/components/home/home-list";
+import { HomeSkills } from "@/components/home/home-skills";
 
 export const metadata: Metadata = {
   title: "Work · List",
@@ -16,10 +17,11 @@ export const metadata: Metadata = {
 
 export default function ListHome() {
   return (
-    <main className="pb-24 md:pb-36">
+    <main>
       <HomeChrome />
       <HomeLead />
       <HomeList />
+      <HomeSkills />
     </main>
   );
 }

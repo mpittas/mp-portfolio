@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import { HomeChrome } from "@/components/home/home-chrome";
 import { HomeColumns } from "@/components/home/home-columns";
 import { HomeLead } from "@/components/home/home-lead";
+import { HomeSkills } from "@/components/home/home-skills";
 
 export const metadata: Metadata = {
   title: "Work · Columns",
@@ -20,6 +21,7 @@ export default function ColumnsHome() {
       <HomeChrome />
       <HomeLead />
       <HomeColumns />
+      <HomeSkills />
     </main>
   );
 }
