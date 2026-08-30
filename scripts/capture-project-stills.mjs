@@ -13,7 +13,7 @@ const WIDTH = 1600;
 const HEIGHT = 900;
 const JPEG_QUALITY = 88;
 
-/** @type {{ folder: string, shots: { name: string, url: string, wait?: string, scrollY?: number, settleMs?: number }[] }[]} */
+/** @type {{ folder: string, shots: { name: string, url: string, wait?: string, scrollY?: number, settleMs?: number, click?: string }[] }[]} */
 const JOBS = [
   {
     folder: "know-your-geo",
@@ -96,6 +96,13 @@ async function hideChrome(page) {
         opacity: 0 !important;
         pointer-events: none !important;
       }
+      /* Photofolio custom cursor / magnetic chrome */
+      [class*="cursor" i], .custom-cursor, #cursor, [data-cursor] {
+        display: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+      body, html { cursor: auto !important; }
     `,
   });
   await dismissCookies(page);

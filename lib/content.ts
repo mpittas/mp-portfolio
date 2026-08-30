@@ -8,7 +8,7 @@ export const EXPRESS_COUNT = 1;
 /** Current catalog slugs, in published order. Replace when new projects are imported. */
 const CATALOG_SLUGS = [
   "realster",
-  "folioport",
+  "photofolio",
   "know-your-geo",
   "songrates",
   "vscs-strapi",

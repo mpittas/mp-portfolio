@@ -3,11 +3,7 @@
     "slug": "dokr",
     "title": "Dokr",
     "year": "2023",
-    "tags": [
-      "Next.js",
-      "GSAP",
-      "Motion"
-    ],
+    "tags": ["Next.js", "GSAP", "Motion"],
     "url": "https://dokr-kohl.vercel.app",
     "seoDescription": "Motion-first marketing site for Dokr, a digital banking brand, built in Next.js with GSAP and Framer Motion.",
     "cover": "/media/notion/dokr/cover.jpg",
@@ -56,11 +52,7 @@
     "slug": "umedio",
     "title": "Umedio",
     "year": "2024",
-    "tags": [
-      "Next.js",
-      "GSAP",
-      "Tailwind"
-    ],
+    "tags": ["Next.js", "GSAP", "Tailwind"],
     "url": "https://umedio.vercel.app",
     "seoDescription": "Marketing site for Umedio, cloud practice management software for private clinics, built in Next.js with GSAP motion.",
     "cover": "/media/notion/umedio/cover.mp4",
@@ -115,11 +107,7 @@
     "slug": "realster",
     "title": "Realster",
     "year": "2025",
-    "tags": [
-      "Next.js",
-      "Motion",
-      "Tailwind"
-    ],
+    "tags": ["Next.js", "Motion", "Tailwind"],
     "url": "https://realestates-pi.vercel.app",
     "seoDescription": "Marketing site for a Greater Boston real estate brokerage with search-led home discovery built in Next.js.",
     "cover": "/media/notion/realster/cover.mp4",
@@ -165,55 +153,61 @@
     ]
   },
   {
-    "slug": "folioport",
-    "title": "Folioport",
+    "slug": "photofolio",
+    "title": "Photofolio",
     "year": "2024",
-    "tags": [
-      "Vue",
-      "GSAP",
-      "Tailwind"
-    ],
-    "url": "https://portfolio-modern-lilac.vercel.app",
-    "seoDescription": "Motion-first freelance portfolio template in Vue 3. The site itself is the work sample.",
-    "cover": "/media/notion/portfolio-modern/cover.mp4",
+    "tags": ["Vue", "GSAP", "Tailwind"],
+    "url": "https://photofolio-v1.vercel.app",
+    "seoDescription": "Motion-first photographer portfolio in Vue 3 for portraits, editorial, and documentary work.",
+    "cover": "/media/notion/portfolio-modern/photofolio-video.mp4",
     "coverPoster": "/media/notion/portfolio-modern/cover-poster.jpg",
     "modules": [
       {
         "type": "video",
-        "src": "/media/notion/portfolio-modern/cover.mp4",
+        "src": "/media/notion/portfolio-modern/photofolio-video.mp4",
         "poster": "/media/notion/portfolio-modern/cover-poster.jpg",
         "ratio": 0.5625
       },
       {
         "items": [
           {
-            "href": "https://portfolio-modern-lilac.vercel.app",
+            "href": "https://photofolio-v1.vercel.app",
             "label": "Demo"
+          },
+          {
+            "href": "https://github.com/mpittas/photofolio",
+            "label": "Code"
           }
         ],
         "type": "links"
       },
       {
-        "text": "Folioport is a freelance portfolio website designed to win clients through craft. It presents services, selected work, testimonials, and a contact CTA. Motion is part of the product, not decoration.\n\nWhat I built: A motion-first folio where the site is the work sample. An SVG wipe loader leads into a split-text hero, sticky service cards, a project index with viewport-triggered video previews, a role marquee, testimonials, and a full-bleed contact plate. Custom cursor, magnetic buttons, and scroll-linked text show how far interaction design can go on a marketing page.\n\nTech stack: Vue 3, TypeScript, Tailwind CSS v4, GSAP (ScrollTrigger), Lenis, and Lottie.",
+        "text": "Photofolio is a motion-first portfolio for a freelance photographer. Built around John Doe's practice, it leads with portraits, editorial stories, and documentary coverage, then makes booking a shoot the clear next step.\n\nWhat I built: A single-page Vue site where the photographs carry the pitch. An SVG wipe loader opens into a split-text hero with a Book a shoot CTA, sticky service cards for portrait sessions, editorial and campaign stills, and events/documentary coverage, a selected-works index with viewport-triggered video previews, about and testimonials, and a full-bleed contact plate. Custom cursor, magnetic buttons, and scroll-linked type keep the interaction craft of the original shell while the product identity is fully photographic.\n\nTech stack: Vue 3, TypeScript, Tailwind CSS v4, GSAP (ScrollTrigger), Lenis, and Lottie.",
         "type": "text"
       },
       {
         "original": null,
-        "ratio": 0.625,
+        "ratio": 0.5681,
+        "type": "image",
+        "src": "/media/notion/portfolio-modern/hero.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.4813,
         "type": "image",
         "src": "/media/notion/portfolio-modern/services.jpg"
       },
       {
         "original": null,
-        "ratio": 0.625,
+        "ratio": 0.5469,
         "type": "image",
-        "src": "/media/notion/portfolio-modern/works.jpg"
+        "src": "/media/notion/portfolio-modern/works-2.jpg"
       },
       {
         "original": null,
-        "ratio": 0.625,
+        "ratio": 0.5106,
         "type": "image",
-        "src": "/media/notion/portfolio-modern/contact.jpg"
+        "src": "/media/notion/portfolio-modern/testimonials.jpg"
       }
     ]
   },
@@ -221,11 +215,7 @@
     "slug": "know-your-geo",
     "title": "KnowYourGeo",
     "year": "2026",
-    "tags": [
-      "Next.js",
-      "Gemini",
-      "Maps"
-    ],
+    "tags": ["Next.js", "Gemini", "Maps"],
     "url": "https://knowyourgeo.vercel.app",
     "seoDescription": "Free GeoGuessr training app with Street View drills, AI coaching, and field guides.",
     "cover": "/media/notion/know-your-geo/cover.mp4",
@@ -278,11 +268,7 @@
     "slug": "songrates",
     "title": "Songrates",
     "year": "2026",
-    "tags": [
-      "Next.js",
-      "Supabase",
-      "Apple Music"
-    ],
+    "tags": ["Next.js", "Supabase", "Apple Music"],
     "url": "https://songrates.vercel.app",
     "seoDescription": "Music discovery app for rating songs and albums, backed by Apple Music charts and Supabase profiles.",
     "cover": "/media/notion/songrates/cover.mp4",
@@ -335,11 +321,7 @@
     "slug": "vscs-strapi",
     "title": "VSCS",
     "year": "2025",
-    "tags": [
-      "Next.js",
-      "Strapi",
-      "i18n"
-    ],
+    "tags": ["Next.js", "Strapi", "i18n"],
     "url": "https://vscs-strapi.vercel.app",
     "seoDescription": "Bilingual marketing site for a solar EPC company. Next.js frontend with a Strapi 5 CMS.",
     "cover": "/media/notion/vscs-strapi/cover.mp4",
@@ -396,11 +378,7 @@
     "slug": "mikrofond",
     "title": "Mikrofond",
     "year": "2023",
-    "tags": [
-      "WordPress",
-      "Elementor",
-      "Figma"
-    ],
+    "tags": ["WordPress", "Elementor", "Figma"],
     "url": "https://mikrofond.bg/",
     "seoDescription": "Production WordPress site for a Bulgarian microfinance company. Designed in Figma, built in Elementor Pro.",
     "cover": "/media/notion/mikrofond/cover.mp4",
@@ -453,11 +431,7 @@
     "slug": "collection-of-landing-pages",
     "title": "Collection of Landing Pages",
     "year": "2021",
-    "tags": [
-      "Figma",
-      "UI",
-      "UX"
-    ],
+    "tags": ["Figma", "UI", "UX"],
     "url": "https://www.figma.com/design/ZEbHNI3J2lr2r9y3ZVoXYS/Collection-of-Landing-pages",
     "seoDescription": "A Figma collection of landing page concepts across SaaS, retail, and entertainment, showing how I approach design and UX in one file.",
     "cover": "/media/notion/collection-of-landing-pages/cover.mp4",
