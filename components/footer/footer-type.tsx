@@ -33,13 +33,63 @@ export function FooterType() {
       if (!crop || !row || letters.length === 0) return;
 
       let fitting = false;
+      const measureInk = (fontSize: number) => {
+        const cs = getComputedStyle(row);
+        const canvas = document.createElement("canvas");
+        const pad = Math.ceil(fontSize);
+        canvas.width = Math.ceil(fontSize * MARK.length * 1.4) + pad * 2;
+        canvas.height = Math.ceil(fontSize * 1.6) + pad;
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
+        if (!ctx) return null;
+        ctx.font = `${cs.fontWeight} ${fontSize}px ${cs.fontFamily}`;
+        if ("letterSpacing" in ctx) {
+          (ctx as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing =
+            cs.letterSpacing;
+        }
+        ctx.fillStyle = "#fff";
+        const originX = pad;
+        const originY = Math.ceil(fontSize * 1.05);
+        ctx.fillText(MARK, originX, originY);
+        const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let minX = width;
+        let maxX = -1;
+        for (let y = 0; y < height; y++) {
+          const rowStart = y * width * 4;
+          for (let x = 0; x < width; x++) {
+            if (data[rowStart + x * 4 + 3] > 12) {
+              if (x < minX) minX = x;
+              if (x > maxX) maxX = x;
+            }
+          }
+        }
+        if (maxX < minX) return null;
+        return {
+          left: minX - originX,
+          width: maxX - minX + 1,
+        };
+      };
+
       const fit = () => {
         if (fitting) return;
         fitting = true;
+
+        row.style.marginLeft = "0px";
         const probe = 200;
         crop.style.fontSize = `${probe}px`;
-        const next = (crop.clientWidth / row.scrollWidth) * probe;
+
+        const advance = Math.max(row.scrollWidth, 1);
+        const ink = measureInk(probe);
+        let next = (crop.clientWidth / advance) * probe;
+        let shift = 0;
+
+        if (ink && ink.width > 1) {
+          next = (crop.clientWidth / ink.width) * probe;
+          shift = -ink.left * (next / probe);
+        }
+
         crop.style.fontSize = `${next}px`;
+        row.style.marginLeft = `${shift}px`;
+
         requestAnimationFrame(() => {
           fitting = false;
           ScrollTrigger.refresh();
@@ -53,47 +103,55 @@ export function FooterType() {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const tween = gsap.fromTo(
-          letters,
-          { yPercent: 115 },
-          {
-            yPercent: 0,
-            duration: 1.35,
-            ease: "expo.out",
-            stagger: { each: 0.05, ease: "power2.out" },
-            paused: true,
-            immediateRender: true,
-          },
-        );
+        gsap.set(letters, { yPercent: 115 });
 
+        const tween = gsap.to(letters, {
+          yPercent: 0,
+          duration: 1.35,
+          ease: "expo.out",
+          stagger: { each: 0.05, ease: "power2.out" },
+          paused: true,
+        });
+
+        let played = false;
+        let io: IntersectionObserver | null = null;
         const play = contextSafe(() => {
+          if (played) return;
+          played = true;
           tween.play();
+          io?.disconnect();
         });
-        const rewind = contextSafe(() => {
-          tween.reverse();
-        });
-        const reset = contextSafe(() => {
-          tween.pause(0);
-        });
+
+        // IntersectionObserver is the reliable path on touch / Lenis;
+        // ScrollTrigger remains as a backup for desktop scroll.
+        io = new IntersectionObserver(
+          (entries) => {
+            if (entries.some((entry) => entry.isIntersecting)) play();
+          },
+          { root: null, threshold: 0.01, rootMargin: "0px" },
+        );
+        io.observe(crop);
 
         ScrollTrigger.create({
           trigger: crop,
           start: "top bottom",
-          end: "bottom top",
+          once: true,
           invalidateOnRefresh: true,
           onEnter: play,
-          onEnterBack: play,
-          onLeave: reset,
-          onLeaveBack: reset,
-          onUpdate: (self) => {
-            if (self.direction === 1) play();
-            else rewind();
+          onRefresh: (self) => {
+            if (self.progress > 0) play();
           },
         });
+
+        return () => {
+          io?.disconnect();
+          tween.kill();
+        };
       });
 
       return () => {
         window.removeEventListener("resize", fit);
+        mm.revert();
       };
     },
     { scope: root },
@@ -154,7 +212,7 @@ export function FooterType() {
       </div>
 
       <p className="sr-only">{MARK}</p>
-      <div data-crop className="overflow-hidden leading-none h-[0.62em]">
+      <div data-crop className="w-full overflow-hidden leading-none h-[0.62em]">
         <p
           data-mark
           aria-hidden="true"

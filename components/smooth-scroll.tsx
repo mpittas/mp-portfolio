@@ -24,6 +24,9 @@ export function SmoothScroll() {
     const lenis = new Lenis({
       autoRaf: false,
       duration: 1.1,
+      // Keep ScrollTrigger in sync with touch momentum on iOS/Android.
+      syncTouch: true,
+      syncTouchLerp: 0.075,
     });
 
     lenisRef.current = lenis;
