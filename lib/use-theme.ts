@@ -4,7 +4,7 @@ import { useCallback, useSyncExternalStore } from "react";
 
 export type Theme = "dark" | "light";
 
-export const DEFAULT_THEME: Theme = "dark";
+export const DEFAULT_THEME: Theme = "light";
 const STORAGE_KEY = "theme";
 const META_COLORS: Record<Theme, string> = {
   dark: "#0a0a0a",
@@ -39,7 +39,7 @@ function subscribe(listener: () => void) {
 // The <html data-theme> attribute (written by the inline boot script before
 // paint) is the single source of truth, so server and client always agree.
 function getSnapshot(): Theme {
-  return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+  return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
 }
 
 function getServerSnapshot(): Theme {

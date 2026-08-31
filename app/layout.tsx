@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#f4f4f1",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t="dark"}var d=document.documentElement;d.setAttribute("data-theme",t);d.style.colorScheme=t}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t="light"}var d=document.documentElement;d.setAttribute("data-theme",t);d.style.colorScheme=t}catch(e){}})()`,
           }}
         />
       </head>
