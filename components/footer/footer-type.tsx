@@ -212,20 +212,22 @@ export function FooterType() {
       </div>
 
       <p className="sr-only">{MARK}</p>
-      <div data-crop className="w-full overflow-hidden leading-none h-[0.62em]">
-        <p
-          data-mark
-          aria-hidden="true"
-          className="display-title flex w-max flex-nowrap text-ink"
-        >
-          {Array.from(MARK).map((char, index) => (
-            <span key={`${char}-${index}`} className="inline-block overflow-hidden">
-              <span data-letter className="inline-block will-change-transform">
-                {char}
+      <div className="px-4 md:px-7">
+        <div data-crop className="w-full overflow-hidden leading-none h-[0.62em]">
+          <p
+            data-mark
+            aria-hidden="true"
+            className="display-title flex w-max flex-nowrap text-ink"
+          >
+            {Array.from(MARK).map((char, index) => (
+              <span key={`${char}-${index}`} className="inline-block overflow-hidden">
+                <span data-letter className="inline-block will-change-transform">
+                  {char}
+                </span>
               </span>
-            </span>
-          ))}
-        </p>
+            ))}
+          </p>
+        </div>
       </div>
     </footer>
   );

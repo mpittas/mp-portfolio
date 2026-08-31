@@ -42,6 +42,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${valley.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-board text-ink">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var u=navigator.userAgent;if(u.indexOf("Safari")>-1&&u.indexOf("Chrome")<0&&u.indexOf("Chromium")<0&&u.indexOf("Edg/")<0&&u.indexOf("EdgiOS")<0&&u.indexOf("OPR/")<0&&u.indexOf("OPT/")<0&&u.indexOf("CriOS")<0&&u.indexOf("FxiOS")<0&&u.indexOf("SamsungBrowser")<0){document.documentElement.setAttribute("data-safari","")}}catch(e){}`,
+          }}
+        />
         <SmoothScroll />
         <SiteHeader />
         <div className="flex-1">{children}</div>

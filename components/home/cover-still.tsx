@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { isVideoSrc } from "@/lib/content";
 import type { Project } from "@/lib/types";
@@ -13,12 +16,26 @@ export function CoverStill({
   className?: string;
   priority?: boolean;
 }) {
+  // SSR and the first client render assume Safari: only the poster goes into the HTML,
+  // so WebKit never parses a <video> and never speculatively fetches it. Non-Safari
+  // browsers mount the video after hydration; Safari keeps the static poster.
+  const [staticCover, setStaticCover] = useState(true);
+
+  useEffect(() => {
+    // [data-safari] is set before first paint by an inline script in the root layout.
+    if (!document.documentElement.hasAttribute("data-safari")) {
+      setStaticCover(false);
+    }
+  }, []);
+
   if (!project.cover) {
     return <div className={`bg-plate ${className ?? ""}`} data-still />;
   }
 
   const video = isVideoSrc(project.cover);
   const gif = project.cover.endsWith(".gif");
+  // Without a poster there is nothing static to show, so keep the video everywhere.
+  const showVideo = video && (!staticCover || !project.coverPoster);
 
   return (
     <div
@@ -29,31 +46,32 @@ export function CoverStill({
         data-still-media
         className="absolute inset-[-6%] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover:scale-[1.045] motion-safe:group-focus-visible:scale-[1.045]"
       >
-        {video ? (
-          <>
-            <video
-              src={project.cover}
-              poster={project.coverPoster ?? undefined}
-              muted
-              loop
-              playsInline
-              autoPlay
-              preload={priority ? "auto" : "metadata"}
-              aria-hidden
-              className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
-            />
-            {project.coverPoster ? (
-              <Image
-                src={project.coverPoster}
-                alt=""
-                fill
-                priority={priority}
-                className="hidden object-cover motion-reduce:block"
-                sizes={sizes}
-              />
-            ) : null}
-          </>
-        ) : (
+        {showVideo ? (
+          <video
+            src={project.cover}
+            poster={project.coverPoster ?? undefined}
+            muted
+            loop
+            playsInline
+            autoPlay
+            preload={priority ? "auto" : "metadata"}
+            aria-hidden
+            className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+            data-cover-video
+          />
+        ) : null}
+        {video && project.coverPoster ? (
+          <Image
+            src={project.coverPoster}
+            alt=""
+            fill
+            priority={priority}
+            className={`object-cover ${staticCover ? "" : "hidden motion-reduce:block"}`}
+            sizes={sizes}
+            data-cover-poster
+          />
+        ) : null}
+        {!video ? (
           <Image
             src={project.cover}
             alt=""
@@ -63,7 +81,7 @@ export function CoverStill({
             className="object-cover"
             sizes={sizes}
           />
-        )}
+        ) : null}
       </div>
     </div>
   );
