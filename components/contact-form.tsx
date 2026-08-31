@@ -1,13 +1,80 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/content";
 
 type FormStatus = "idle" | "sending" | "sent" | "error";
 
+function FormNotice({
+  variant,
+  title,
+  children,
+}: {
+  variant: "success" | "error";
+  title: string;
+  children: React.ReactNode;
+}) {
+  const isSuccess = variant === "success";
+
+  return (
+    <div
+      role={isSuccess ? "status" : "alert"}
+      aria-live="polite"
+      className={
+        isSuccess
+          ? "mt-8 border border-rule/40 bg-paper px-5 py-5 md:px-6"
+          : "mt-8 border border-ink bg-ink px-5 py-5 text-board md:px-6"
+      }
+    >
+      <div className="flex items-start gap-4">
+        <span
+          aria-hidden="true"
+          className={
+            isSuccess
+              ? "mt-0.5 inline-flex size-9 shrink-0 items-center justify-center border border-rule/40 bg-board text-ink"
+              : "mt-0.5 inline-flex size-9 shrink-0 items-center justify-center border border-board/20 bg-board/10 text-board"
+          }
+        >
+          {isSuccess ? (
+            <svg viewBox="0 0 16 16" className="size-4" fill="none" aria-hidden="true">
+              <path
+                d="M3.5 8.25 6.5 11.25 12.5 4.75"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="square"
+              />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 16 16" className="size-4" fill="none" aria-hidden="true">
+              <path d="M8 4.5v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+              <circle cx="8" cy="11.25" r="0.75" fill="currentColor" />
+            </svg>
+          )}
+        </span>
+        <div className="min-w-0">
+          <p className={isSuccess ? "spec text-mute" : "spec text-board/70"}>
+            {isSuccess ? "Sent" : "Not sent"}
+          </p>
+          <p className="mt-2 text-lg leading-snug">{title}</p>
+          <p
+            className={
+              isSuccess
+                ? "mt-2 text-base leading-relaxed text-mute"
+                : "mt-2 text-base leading-relaxed text-board/80"
+            }
+          >
+            {children}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const noticeRef = useRef<HTMLDivElement>(null);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -54,8 +121,21 @@ export function ContactForm() {
     }
   }
 
+  useEffect(() => {
+    if (status !== "sent" && status !== "error") return;
+    noticeRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [status]);
+
+  const successBody = site.googleForm
+    ? "Your note is in my inbox, and the project form opened in a new tab. I will get back to you as soon as I can."
+    : "Your note is in my inbox. I will get back to you as soon as I can.";
+
   return (
-    <form onSubmit={onSubmit} className="mt-12 max-w-xl">
+    <form
+      onSubmit={onSubmit}
+      className="mt-12 max-w-xl"
+      aria-busy={status === "sending"}
+    >
       <div className="grid gap-8">
         <label className="block">
           <span className="spec text-mute">Name</span>
@@ -111,18 +191,23 @@ export function ContactForm() {
           </a>
         ) : null}
       </div>
-      {status === "sent" ? (
-        <p className="mt-6 text-mute" role="status">
-          {site.googleForm
-            ? "Your message was sent, and the project form opened in a new tab. I will get back to you as soon as possible."
-            : "Thanks. Your message was sent. I will get back to you as soon as I can."}
-        </p>
-      ) : null}
-      {status === "error" ? (
-        <p className="mt-6 text-mute" role="alert">
-          {errorMessage}
-        </p>
-      ) : null}
+      <div ref={noticeRef}>
+        {status === "sent" ? (
+          <FormNotice variant="success" title="Thanks, message received.">
+            {successBody}
+          </FormNotice>
+        ) : null}
+        {status === "error" ? (
+          <FormNotice variant="error" title="Something went wrong.">
+            <>
+              {errorMessage}
+              <span className="mt-3 block">
+                Try again in a moment, or reach out through one of the links below.
+              </span>
+            </>
+          </FormNotice>
+        ) : null}
+      </div>
     </form>
   );
 }
