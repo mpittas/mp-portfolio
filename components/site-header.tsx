@@ -32,7 +32,7 @@ export function SiteHeader() {
             className="h-6 w-auto dark:invert md:h-7"
           />
         </Link>
-        <nav className="flex items-center gap-5 md:gap-8" aria-label="Primary">
+        <nav className="flex items-center gap-2.5 md:gap-8" aria-label="Primary">
           {links.map((link) => {
             const active =
               link.href === "/"
@@ -44,7 +44,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`spec no-underline transition-colors ${
+                className={`spec no-underline transition-colors text-xs md:text-sm ${
                   active ? "text-ink" : "text-mute hover:text-ink"
                 }`}
                 aria-current={active ? "page" : undefined}

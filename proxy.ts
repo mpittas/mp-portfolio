@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 const MOBILE_UA =
   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i;
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const ua = request.headers.get("user-agent") ?? "";
   if (!MOBILE_UA.test(ua)) {
     return NextResponse.next();
@@ -14,5 +14,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/",
+  matcher: ["/", "/v/index", "/v/columns"],
 };

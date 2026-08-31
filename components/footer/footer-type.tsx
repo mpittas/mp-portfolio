@@ -16,8 +16,9 @@ import {
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const MARK = site.shortName.toLowerCase();
-const LOCATION = "Vratsa, Bulgaria";
-const CTA = site.contactBody.match(/^[^.!?]+[.!?]/)?.[0]?.trim() ?? site.contactBody;
+const LOCATION = "Bulgaria";
+const CTA =
+  site.contactBody.match(/^[^.!?]+[.!?]/)?.[0]?.trim() ?? site.contactBody;
 
 export function FooterType() {
   const root = useRef<HTMLElement>(null);
@@ -43,14 +44,20 @@ export function FooterType() {
         if (!ctx) return null;
         ctx.font = `${cs.fontWeight} ${fontSize}px ${cs.fontFamily}`;
         if ("letterSpacing" in ctx) {
-          (ctx as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing =
-            cs.letterSpacing;
+          (
+            ctx as CanvasRenderingContext2D & { letterSpacing: string }
+          ).letterSpacing = cs.letterSpacing;
         }
         ctx.fillStyle = "#fff";
         const originX = pad;
         const originY = Math.ceil(fontSize * 1.05);
         ctx.fillText(MARK, originX, originY);
-        const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const { data, width, height } = ctx.getImageData(
+          0,
+          0,
+          canvas.width,
+          canvas.height,
+        );
         let minX = width;
         let maxX = -1;
         for (let y = 0; y < height; y++) {
@@ -213,15 +220,24 @@ export function FooterType() {
 
       <p className="sr-only">{MARK}</p>
       <div className="px-4 md:px-7">
-        <div data-crop className="w-full overflow-hidden leading-none h-[0.62em]">
+        <div
+          data-crop
+          className="w-full overflow-hidden leading-none h-[0.62em]"
+        >
           <p
             data-mark
             aria-hidden="true"
             className="display-title flex w-max flex-nowrap text-ink"
           >
             {Array.from(MARK).map((char, index) => (
-              <span key={`${char}-${index}`} className="inline-block overflow-hidden">
-                <span data-letter className="inline-block will-change-transform">
+              <span
+                key={`${char}-${index}`}
+                className="inline-block overflow-hidden"
+              >
+                <span
+                  data-letter
+                  className="inline-block will-change-transform"
+                >
                   {char}
                 </span>
               </span>

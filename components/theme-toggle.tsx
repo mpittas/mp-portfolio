@@ -14,9 +14,13 @@ export function ThemeToggle() {
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       aria-pressed={!isDark}
       title={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      className="spec inline-flex size-9 items-center justify-center text-mute transition-colors hover:text-ink"
+      className="spec inline-flex size-7 items-center justify-center text-mute transition-colors hover:text-ink md:size-9"
     >
-      {isDark ? <LuSun size={18} aria-hidden /> : <LuMoon size={18} aria-hidden />}
+      {isDark ? (
+        <LuSun className="size-3.5 md:size-[18px]" aria-hidden />
+      ) : (
+        <LuMoon className="size-3.5 md:size-[18px]" aria-hidden />
+      )}
     </button>
   );
 }

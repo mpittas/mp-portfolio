@@ -19,7 +19,7 @@ export function LayoutSwitch() {
   const pathname = usePathname();
 
   return (
-    <div className="hidden px-7 pt-8 md:block">
+    <div className="hidden px-7 pt-8 lg:block">
       <nav
         aria-label="Work layout"
         className="inline-flex flex-wrap border border-rule/40"
