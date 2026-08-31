@@ -29,10 +29,10 @@ export function SiteHeader() {
             width={338}
             height={122}
             priority
-            className="h-6 w-auto dark:invert md:h-7"
+            className="w-auto dark:invert h-7"
           />
         </Link>
-        <nav className="flex items-center gap-2.5 md:gap-8" aria-label="Primary">
+        <nav className="flex items-center gap-4 md:gap-8" aria-label="Primary">
           {links.map((link) => {
             const active =
               link.href === "/"
@@ -40,13 +40,14 @@ export function SiteHeader() {
                   pathname.startsWith("/work") ||
                   pathname.startsWith("/v/")
                 : pathname === link.href;
+            const hideOnMobile = link.href === "/";
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`spec no-underline transition-colors text-xs md:text-sm ${
-                  active ? "text-ink" : "text-mute hover:text-ink"
-                }`}
+                  hideOnMobile ? "hidden md:inline" : ""
+                } ${active ? "text-ink" : "text-mute hover:text-ink"}`}
                 aria-current={active ? "page" : undefined}
               >
                 {link.label}
