@@ -320,13 +320,13 @@ function LinkRow({ items }: { items: { label: string; href: string }[] }) {
           <a
             key={item.href}
             href={item.href}
-            className="spec group relative inline-flex cursor-pointer items-center gap-3 overflow-hidden bg-white px-7 py-4 text-board no-underline motion-reduce:hover:bg-mute"
+            className="spec group relative inline-flex cursor-pointer items-center gap-3 overflow-hidden bg-ink px-7 py-4 text-board no-underline motion-reduce:hover:bg-mute"
             target="_blank"
             rel="noreferrer"
           >
             <span
               aria-hidden
-              className="pointer-events-none absolute inset-y-0 left-0 w-0 bg-neutral-200 transition-[width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full motion-reduce:hidden"
+              className="pointer-events-none absolute inset-y-0 left-0 w-0 bg-mute/25 transition-[width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full motion-reduce:hidden"
             />
             <span aria-hidden className="relative z-10">
               <LinkIcon kind={kind} />

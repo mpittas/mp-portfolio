@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/lib/content";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
   { href: "/", label: "Work" },
@@ -28,7 +29,7 @@ export function SiteHeader() {
             width={338}
             height={122}
             priority
-            className="h-6 w-auto invert md:h-7"
+            className="h-6 w-auto dark:invert md:h-7"
           />
         </Link>
         <nav className="flex items-center gap-5 md:gap-8" aria-label="Primary">
@@ -52,6 +53,7 @@ export function SiteHeader() {
               </Link>
             );
           })}
+          <ThemeToggle />
         </nav>
       </div>
     </header>

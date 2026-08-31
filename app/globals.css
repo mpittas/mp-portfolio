@@ -1,15 +1,43 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
+@custom-variant dark (&:where([data-theme="dark"] *));
+@custom-variant light (&:where([data-theme="light"] *));
+
+:root,
+:root[data-theme="dark"] {
+  --board: #0a0a0a;
+  --ink: #f2f2f0;
+  --paper: #111111;
+  --rule: #2c2c2c;
+  --mute: #8c8c8c;
+  --plate: #000000;
+  --mark: #cfcfcb;
+  --mark-soft: #1a1a1a;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --board: #f4f4f1;
+  --ink: #141414;
+  --paper: #eaeae6;
+  --rule: #d9d9d4;
+  --mute: #6b6b66;
+  --plate: #e3e3de;
+  --mark: #2e2e2b;
+  --mark-soft: #eeeeea;
+  color-scheme: light;
+}
+
 @theme inline {
-  --color-board: #0a0a0a;
-  --color-ink: #f2f2f0;
-  --color-paper: #111111;
-  --color-rule: #2c2c2c;
-  --color-mute: #8c8c8c;
-  --color-plate: #000000;
-  --color-mark: #cfcfcb;
-  --color-mark-soft: #1a1a1a;
+  --color-board: var(--board);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-rule: var(--rule);
+  --color-mute: var(--mute);
+  --color-plate: var(--plate);
+  --color-mark: var(--mark);
+  --color-mark-soft: var(--mark-soft);
   --font-display: var(--font-valley);
   --font-sans: var(--font-valley);
   --font-spec: var(--font-valley);
@@ -19,7 +47,6 @@
   html {
     background: var(--color-board);
     color: var(--color-ink);
-    color-scheme: dark;
     scrollbar-color: var(--color-rule) var(--color-board);
   }
 
