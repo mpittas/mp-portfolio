@@ -120,20 +120,26 @@ export function FooterType() {
           paused: true,
         });
 
-        let played = false;
+        let visible = false;
         let io: IntersectionObserver | null = null;
-        const play = contextSafe(() => {
-          if (played) return;
-          played = true;
-          tween.play();
-          io?.disconnect();
+        const restart = contextSafe(() => {
+          if (visible) return;
+          visible = true;
+          tween.restart();
+        });
+        const reset = contextSafe(() => {
+          if (!visible) return;
+          visible = false;
+          tween.pause(0);
+          gsap.set(letters, { yPercent: 115 });
         });
 
         // IntersectionObserver is the reliable path on touch / Lenis;
         // ScrollTrigger remains as a backup for desktop scroll.
         io = new IntersectionObserver(
           (entries) => {
-            if (entries.some((entry) => entry.isIntersecting)) play();
+            if (entries.some((entry) => entry.isIntersecting)) restart();
+            else reset();
           },
           { root: null, threshold: 0.01, rootMargin: "0px" },
         );
@@ -142,12 +148,12 @@ export function FooterType() {
         ScrollTrigger.create({
           trigger: crop,
           start: "top bottom",
-          once: true,
+          end: "bottom top",
           invalidateOnRefresh: true,
-          onEnter: play,
-          onRefresh: (self) => {
-            if (self.progress > 0) play();
-          },
+          onEnter: restart,
+          onEnterBack: restart,
+          onLeave: reset,
+          onLeaveBack: reset,
         });
 
         return () => {
