@@ -28,6 +28,16 @@ const jobs = [
     shot: "public/media/notion/mikrofond/finansirane.jpg",
     bg: { r: 6, g: 16, b: 30 }, // #06101e
   },
+  {
+    out: "public/media/notion/digio/cover-poster.jpg",
+    shot: "public/media/notion/digio/hero.jpg",
+    bg: { r: 28, g: 5, b: 7 }, // #1c0507
+  },
+  {
+    out: "public/media/notion/klndr/cover-poster.jpg",
+    shot: "public/media/notion/klndr/hero.jpg",
+    bg: { r: 15, g: 23, b: 42 }, // #0f172a
+  },
 ];
 
 /** Round top corners only so the plate can sit flush on the canvas bottom. */

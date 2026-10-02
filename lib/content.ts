@@ -7,6 +7,8 @@ export const EXPRESS_COUNT = 1;
 
 /** Current catalog slugs, in published order. Replace when new projects are imported. */
 const CATALOG_SLUGS = [
+  "klndr",
+  "digio",
   "realster",
   "photofolio",
   "know-your-geo",

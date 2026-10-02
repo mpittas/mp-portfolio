@@ -1,5 +1,70 @@
 [
   {
+    "slug": "klndr",
+    "title": "klndr",
+    "year": "2026",
+    "tags": ["Nuxt", "Firebase", "Tailwind"],
+    "url": "https://klndr-v1.vercel.app",
+    "seoDescription": "klndr, a visual day planner for time-blocking: drag activities onto an hour-by-hour timeline. Built with Nuxt, Firebase, and Tailwind.",
+    "cover": "/media/notion/klndr/cover-poster.jpg",
+    "coverPoster": "/media/notion/klndr/cover-poster.jpg",
+    "modules": [
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/klndr/hero.jpg"
+      },
+      {
+        "items": [
+          {
+            "href": "https://klndr-v1.vercel.app",
+            "label": "Demo"
+          },
+          {
+            "href": "https://github.com/mpittas/klndr",
+            "label": "Code"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "klndr is a visual day planner for people who time-block. It bridges the month calendar and the hour-by-hour plan, so a day is something you shape by dragging blocks onto a timeline, not a to-do list you hope fits.\n\nWhat I built: A month view that shows each day's blocks at a glance, and a day view with a quarter-hour timeline where activities snap, stretch, and nudge with the arrow keys. A reusable library of activity templates (emoji, color, category, usual length), a daily routines checklist, and markdown notes for every date. Accounts with Google sign-in sync across devices, there is a light and dark theme, and the layout switches to bottom sheets and tap-to-place on phones.\n\nTech stack: Nuxt 3, Vue 3, TypeScript, Tailwind CSS v4, Firebase (Auth and Firestore), and signed session cookies with jose. The marketing page is a custom landing with scroll reveals and a live planner mockup.",
+        "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/klndr/planner.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/klndr/steps.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/klndr/compare.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/klndr/features.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/klndr/cta.jpg"
+      }
+    ]
+  },
+  {
     "slug": "dokr",
     "title": "Dokr",
     "year": "2023",
@@ -314,6 +379,65 @@
         "ratio": 0.5625,
         "type": "image",
         "src": "/media/notion/songrates/playlist.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "digio",
+    "title": "Digio",
+    "year": "2026",
+    "tags": ["Next.js", "Three.js", "Motion"],
+    "url": "https://digio-seven.vercel.app",
+    "seoDescription": "Marketing site for Digio, a next-generation design agency, built in Next.js with Three.js, Motion, and Lenis smooth scrolling.",
+    "cover": "/media/notion/digio/cover-poster.jpg",
+    "coverPoster": "/media/notion/digio/cover-poster.jpg",
+    "modules": [
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/digio/hero.jpg"
+      },
+      {
+        "items": [
+          {
+            "href": "https://digio-seven.vercel.app",
+            "label": "Demo"
+          },
+          {
+            "href": "https://github.com/mpittas/digio",
+            "label": "Code"
+          }
+        ],
+        "type": "links"
+      },
+      {
+        "text": "Digio is a marketing website for a next-generation design agency offering branding, mobile, and web app design. Its job is to sell premium creative work to startups and category leaders, with a bold first impression and a clear path to booking a call.\n\nWhat I built: A long-form single-page site that opens on a motion-driven hero and moves through an agency intro, by-the-numbers proof, a six-part services list, a selected-work showcase, tiered monthly pricing, testimonials, FAQ, a journal, and a closing call to action. Smooth scrolling, entrance animations, and a 3D layer give it the feel of the studio it represents.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Three.js with React Three Fiber and Drei, Motion, Lenis, and React Icons.",
+        "type": "text"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/digio/numbers.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/digio/services.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/digio/work.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/digio/pricing.jpg"
       }
     ]
   },
