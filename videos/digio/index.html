@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Digio — Next-Generation Design Studio 3D Showcase</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #06050a;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #06050a;
+      }
+
+      /* ── Atmospheric Brand Backdrop ── */
+      #bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 95% 75% at 50% 18%, rgba(225, 29, 72, 0.20) 0%, transparent 68%),
+          radial-gradient(ellipse 110% 85% at 48% 38%, #140d18 0%, #0a070e 50%, #040307 100%);
+      }
+
+      /* Ambient Volumetric Crimson & Violet Lighting Beams */
+      #ambient-glow {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 18% 28%, rgba(225, 29, 72, 0.16) 0%, transparent 45%),
+          radial-gradient(circle at 82% 38%, rgba(168, 85, 247, 0.14) 0%, transparent 50%),
+          radial-gradient(circle at 50% 85%, rgba(244, 63, 94, 0.10) 0%, transparent 55%);
+        pointer-events: none;
+      }
+
+      #scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      #stage {
+        position: absolute;
+        inset: 0;
+        perspective: 1450px;
+        perspective-origin: 50% 48%;
+        will-change: filter;
+      }
+
+      #world {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 10000px;
+        height: 2000px;
+        transform-style: preserve-3d;
+        transform-origin: 960px 540px;
+        will-change: transform;
+      }
+
+      /* ── 3D Spatial UI Planes ── */
+      .plane {
+        position: absolute;
+        width: 1920px;
+        height: 1080px;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #110e16;
+        box-shadow:
+          0 45px 130px rgba(0, 0, 0, 0.88),
+          0 15px 40px rgba(0, 0, 0, 0.65),
+          0 0 0 1px rgba(255, 255, 255, 0.12),
+          0 0 55px rgba(225, 29, 72, 0.16);
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+      }
+
+      .plane img {
+        display: block;
+        width: 1920px;
+        height: 1080px;
+      }
+
+      /* Specular Glass Sheen */
+      .plane::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: 18px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.14) 0%,
+          transparent 30%,
+          transparent 75%,
+          rgba(225, 29, 72, 0.08) 100%
+        );
+        mix-blend-mode: overlay;
+      }
+
+      /* Dynamic Light Sweep Beam on Reveal */
+      #reveal-shimmer {
+        position: absolute;
+        inset: -50%;
+        width: 200%;
+        height: 200%;
+        pointer-events: none;
+        background: linear-gradient(
+          115deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.16) 48%,
+          rgba(251, 113, 133, 0.28) 50%,
+          rgba(255, 255, 255, 0.16) 52%,
+          transparent 60%
+        );
+        transform: translate(-100%, -100%);
+        mix-blend-mode: screen;
+      }
+
+      /* Atmospheric Vignette */
+      #vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 78% 70% at 50% 48%,
+          transparent 44%,
+          rgba(3, 2, 5, 0.65) 100%
+        );
+        opacity: 0.92;
+      }
+
+      /* High-End Cinematic Grain */
+      #grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.04;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="12"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="bg"></div>
+      <div id="ambient-glow"></div>
+
+      <section
+        id="scene"
+        class="clip"
+        data-start="0"
+        data-duration="12"
+        data-track-index="1"
+      >
+        <div id="stage" data-layout-allow-overflow>
+          <div id="world" data-layout-allow-overflow>
+            <!-- 1. Hero Landing: "Designing the Next Generation of Brands" -->
+            <div
+              class="plane"
+              id="plane-hero"
+              data-layout-allow-overflow
+              style="left: 0px; top: 0px; transform: translate3d(0, 0, -40px) rotateY(-3deg);"
+            >
+              <img
+                src="assets/hero.jpg"
+                width="1920"
+                height="1080"
+                alt="Digio Hero Landing"
+              />
+              <div id="reveal-shimmer"></div>
+            </div>
+
+            <!-- 2. Selected Work Showcase: High-End Agency Projects -->
+            <div
+              class="plane"
+              id="plane-work"
+              data-layout-allow-overflow
+              style="left: 2300px; top: -30px; transform: translate3d(0, 0, 20px) rotateY(4deg);"
+            >
+              <img
+                src="assets/work.jpg"
+                width="1920"
+                height="1080"
+                alt="Digio Selected Work"
+              />
+            </div>
+
+            <!-- 3. Services Suite: Branding, Mobile & Web App Design -->
+            <div
+              class="plane"
+              id="plane-services"
+              data-layout-allow-overflow
+              style="left: 4600px; top: 40px; transform: translate3d(0, 0, -50px) rotateY(-4deg);"
+            >
+              <img
+                src="assets/services.jpg"
+                width="1920"
+                height="1080"
+                alt="Digio Services Suite"
+              />
+            </div>
+
+            <!-- 4. Membership & Pricing: Subscription Tiers -->
+            <div
+              class="plane"
+              id="plane-pricing"
+              data-layout-allow-overflow
+              style="left: 6900px; top: 0px; transform: translate3d(0, 0, 0px) rotateY(0deg);"
+            >
+              <img
+                src="assets/pricing.jpg"
+                width="1920"
+                height="1080"
+                alt="Digio Membership Pricing"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div id="vignette"></div>
+        <div id="grain"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+
+      const world = document.getElementById("world");
+      const stage = document.getElementById("stage");
+      const heroPlane = document.getElementById("plane-hero");
+      const shimmer = document.getElementById("reveal-shimmer");
+
+      // Camera coordinates (x, y, z translations, rx: pitch, ry: orbital yaw, rz: roll tilt)
+      const cam = {
+        x: 120,
+        y: -40,
+        z: -480,
+        rx: 7,
+        ry: -9,
+        rz: 0.8,
+      };
+
+      const drift = { dx: 0, dy: 0, drx: 0, dry: 0 };
+      const travel = { blur: 0 };
+
+      function applyCamera() {
+        world.style.transform =
+          "translate3d(" +
+          (cam.x + drift.dx).toFixed(2) +
+          "px, " +
+          (cam.y + drift.dy).toFixed(2) +
+          "px, " +
+          cam.z.toFixed(2) +
+          "px) " +
+          "rotateX(" +
+          (cam.rx + drift.drx).toFixed(3) +
+          "deg) " +
+          "rotateY(" +
+          (cam.ry + drift.dry).toFixed(3) +
+          "deg) " +
+          "rotateZ(" +
+          cam.rz.toFixed(3) +
+          "deg)";
+
+        if (travel.blur > 0.08) {
+          stage.style.filter = "blur(" + travel.blur.toFixed(2) + "px)";
+        } else {
+          stage.style.filter = "none";
+        }
+      }
+
+      applyCamera();
+
+      // Initial visual setup for Hero reveal
+      gsap.set(heroPlane, { opacity: 0, scale: 0.94 });
+
+      // ── Organic Cinematic Drift (Lissajous curve across 12s) ──
+      const driftDriver = { p: 0 };
+      tl.to(
+        driftDriver,
+        {
+          p: Math.PI * 2 * 1.5,
+          duration: 12,
+          ease: "none",
+          onUpdate: () => {
+            drift.dx = Math.sin(driftDriver.p) * 5.5;
+            drift.dy = Math.sin(driftDriver.p * 1.25) * 4.0;
+            drift.drx = Math.sin(driftDriver.p * 0.75) * 0.28;
+            drift.dry = Math.cos(driftDriver.p * 0.85) * 0.38;
+            applyCamera();
+          },
+        },
+        0,
+      );
+
+      // ── 0.00–1.40  REVEAL: Elevation Lift, Opacity & Light Sweep ──
+      tl.fromTo(
+        heroPlane,
+        { opacity: 0, scale: 0.94 },
+        { opacity: 1, scale: 1, duration: 1.1, ease: "power2.out" },
+        0.06,
+      );
+
+      tl.fromTo(
+        shimmer,
+        { transform: "translate(-80%, -80%)" },
+        {
+          transform: "translate(80%, 80%)",
+          duration: 1.7,
+          ease: "power2.inOut",
+        },
+        0.15,
+      );
+
+      // ── 0.40–2.80  BEAT 1: Establishing Orbit over Digio Hero ──
+      tl.to(
+        cam,
+        {
+          x: 0,
+          y: 0,
+          z: -320,
+          rx: 3.2,
+          ry: -4.5,
+          rz: 0.3,
+          duration: 2.3,
+          ease: "power2.out",
+          onUpdate: applyCamera,
+        },
+        0.4,
+      );
+
+      // ── 2.80–5.80  BEAT 2: Orbital Swoop into Selected Work Showcase ──
+      tl.to(
+        cam,
+        {
+          x: -2300,
+          y: 30,
+          z: -270,
+          rx: 2.2,
+          ry: 3.2,
+          rz: -0.4,
+          duration: 2.7,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        2.8,
+      );
+
+      // Velocity-matched rack-focus blur on transition
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.5, duration: 0.38, ease: "power1.in", onUpdate: applyCamera },
+        2.8,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        3.4,
+      );
+
+      // ── 5.80–8.60  BEAT 3: Spatial Glide through Services Suite ──
+      tl.to(
+        cam,
+        {
+          x: -4600,
+          y: -40,
+          z: -300,
+          rx: 3.5,
+          ry: -3.5,
+          rz: 0.4,
+          duration: 2.6,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        5.8,
+      );
+
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.4, duration: 0.38, ease: "power1.in", onUpdate: applyCamera },
+        5.8,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        6.4,
+      );
+
+      // ── 8.60–12.00  BEAT 4: Pull-Back and Settle on Membership & Pricing ──
+      tl.to(
+        cam,
+        {
+          x: -6900,
+          y: 0,
+          z: -340,
+          rx: 1.5,
+          ry: 0,
+          rz: 0,
+          duration: 2.8,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        8.6,
+      );
+
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.2, duration: 0.38, ease: "power1.in", onUpdate: applyCamera },
+        8.6,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.9, ease: "power3.out", onUpdate: applyCamera },
+        9.2,
+      );
+    </script>
+  </body>
+</html>

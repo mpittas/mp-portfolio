@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>klndr — Visual Day Planner 3D Spatial Showcase</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #060812;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #060812;
+      }
+
+      /* ── Atmospheric Brand Backdrop ── */
+      #bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 95% 75% at 50% 20%, rgba(99, 102, 241, 0.18) 0%, transparent 68%),
+          radial-gradient(ellipse 110% 85% at 48% 38%, #0d1226 0%, #070a16 48%, #04050b 100%);
+      }
+
+      /* Ambient Volumetric Violet & Cyan Lighting Beams */
+      #ambient-glow {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 18% 28%, rgba(99, 102, 241, 0.14) 0%, transparent 46%),
+          radial-gradient(circle at 82% 36%, rgba(14, 165, 233, 0.12) 0%, transparent 50%),
+          radial-gradient(circle at 50% 84%, rgba(139, 92, 246, 0.09) 0%, transparent 55%);
+        pointer-events: none;
+      }
+
+      #scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      #stage {
+        position: absolute;
+        inset: 0;
+        perspective: 1450px;
+        perspective-origin: 50% 48%;
+        will-change: filter;
+      }
+
+      #world {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 14000px;
+        height: 2000px;
+        transform-style: preserve-3d;
+        transform-origin: 960px 540px;
+        will-change: transform;
+      }
+
+      /* ── 3D Spatial UI Planes ── */
+      .plane {
+        position: absolute;
+        width: 1920px;
+        height: 1080px;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #0b0f1d;
+        box-shadow:
+          0 45px 130px rgba(0, 0, 0, 0.85),
+          0 15px 40px rgba(0, 0, 0, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.12),
+          0 0 55px rgba(99, 102, 241, 0.16);
+        transform-style: preserve-3d;
+        will-change: transform, opacity;
+      }
+
+      .plane img {
+        display: block;
+        width: 1920px;
+        height: 1080px;
+      }
+
+      /* Specular Glass Sheen */
+      .plane::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: 18px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.14) 0%,
+          transparent 30%,
+          transparent 75%,
+          rgba(99, 102, 241, 0.08) 100%
+        );
+        mix-blend-mode: overlay;
+      }
+
+      /* Dynamic Light Sweep Beam on Reveal */
+      #reveal-shimmer {
+        position: absolute;
+        inset: -50%;
+        width: 200%;
+        height: 200%;
+        pointer-events: none;
+        background: linear-gradient(
+          115deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.16) 48%,
+          rgba(129, 140, 248, 0.28) 50%,
+          rgba(255, 255, 255, 0.16) 52%,
+          transparent 60%
+        );
+        transform: translate(-100%, -100%);
+        mix-blend-mode: screen;
+      }
+
+      /* Atmospheric Vignette */
+      #vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 78% 70% at 50% 48%,
+          transparent 44%,
+          rgba(3, 4, 10, 0.65) 100%
+        );
+        opacity: 0.92;
+      }
+
+      /* High-End Cinematic Grain */
+      #grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.04;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="12"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="bg"></div>
+      <div id="ambient-glow"></div>
+
+      <section
+        id="scene"
+        class="clip"
+        data-start="0"
+        data-duration="12"
+        data-track-index="1"
+      >
+        <div id="stage" data-layout-allow-overflow>
+          <div id="world" data-layout-allow-overflow>
+            <!-- 1. Hero Landing: "Shape your day by dragging blocks onto a timeline" -->
+            <div
+              class="plane"
+              id="plane-hero"
+              data-layout-allow-overflow
+              style="left: 0px; top: 0px; transform: translate3d(0, 0, -40px) rotateY(-3deg);"
+            >
+              <img
+                src="assets/hero.jpg"
+                width="1920"
+                height="1080"
+                alt="klndr Hero Landing"
+              />
+              <div id="reveal-shimmer"></div>
+            </div>
+
+            <!-- 2. Core Feature: Day Planner with quarter-hour grid & task checklist -->
+            <div
+              class="plane"
+              id="plane-planner"
+              data-layout-allow-overflow
+              style="left: 2300px; top: -30px; transform: translate3d(0, 0, 20px) rotateY(4deg);"
+            >
+              <img
+                src="assets/planner.jpg"
+                width="1920"
+                height="1080"
+                alt="klndr Day Planner Time Blocking"
+              />
+            </div>
+
+            <!-- 3. Steps: How it Works Workflow -->
+            <div
+              class="plane"
+              id="plane-steps"
+              data-layout-allow-overflow
+              style="left: 4600px; top: 40px; transform: translate3d(0, 0, -60px) rotateY(-5deg);"
+            >
+              <img
+                src="assets/steps.jpg"
+                width="1920"
+                height="1080"
+                alt="klndr Steps and Workflow"
+              />
+            </div>
+
+            <!-- 4. Features: Templates, Shortcuts, Themes & Cloud Sync -->
+            <div
+              class="plane"
+              id="plane-features"
+              data-layout-allow-overflow
+              style="left: 6900px; top: -20px; transform: translate3d(0, 0, -30px) rotateY(4deg);"
+            >
+              <img
+                src="assets/features.jpg"
+                width="1920"
+                height="1080"
+                alt="klndr Features Breakdown"
+              />
+            </div>
+
+            <!-- 5. Compare: Typical To-Do Lists vs Visual Time Blocking -->
+            <div
+              class="plane"
+              id="plane-compare"
+              data-layout-allow-overflow
+              style="left: 9200px; top: 30px; transform: translate3d(0, 0, -50px) rotateY(-4deg);"
+            >
+              <img
+                src="assets/compare.jpg"
+                width="1920"
+                height="1080"
+                alt="klndr Comparison Showcase"
+              />
+            </div>
+
+            <!-- 6. Call to Action: Start Shaping Your Time -->
+            <div
+              class="plane"
+              id="plane-cta"
+              data-layout-allow-overflow
+              style="left: 11500px; top: 0px; transform: translate3d(0, 0, 0px) rotateY(0deg);"
+            >
+              <img
+                src="assets/cta.jpg"
+                width="1920"
+                height="1080"
+                alt="klndr Call to Action"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div id="vignette"></div>
+        <div id="grain"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+
+      const world = document.getElementById("world");
+      const stage = document.getElementById("stage");
+      const heroPlane = document.getElementById("plane-hero");
+      const shimmer = document.getElementById("reveal-shimmer");
+
+      // Camera coordinates (x, y, z translations, rx: pitch, ry: orbital yaw, rz: roll tilt)
+      const cam = {
+        x: 120,
+        y: -40,
+        z: -480,
+        rx: 7,
+        ry: -9,
+        rz: 0.8,
+      };
+
+      const drift = { dx: 0, dy: 0, drx: 0, dry: 0 };
+      const travel = { blur: 0 };
+
+      function applyCamera() {
+        world.style.transform =
+          "translate3d(" +
+          (cam.x + drift.dx).toFixed(2) +
+          "px, " +
+          (cam.y + drift.dy).toFixed(2) +
+          "px, " +
+          cam.z.toFixed(2) +
+          "px) " +
+          "rotateX(" +
+          (cam.rx + drift.drx).toFixed(3) +
+          "deg) " +
+          "rotateY(" +
+          (cam.ry + drift.dry).toFixed(3) +
+          "deg) " +
+          "rotateZ(" +
+          cam.rz.toFixed(3) +
+          "deg)";
+
+        if (travel.blur > 0.08) {
+          stage.style.filter = "blur(" + travel.blur.toFixed(2) + "px)";
+        } else {
+          stage.style.filter = "none";
+        }
+      }
+
+      applyCamera();
+
+      // Initial visual setup for Hero reveal
+      gsap.set(heroPlane, { opacity: 0, scale: 0.94 });
+
+      // ── Organic Cinematic Drift (Lissajous curve across 12s) ──
+      const driftDriver = { p: 0 };
+      tl.to(
+        driftDriver,
+        {
+          p: Math.PI * 2 * 1.5,
+          duration: 12,
+          ease: "none",
+          onUpdate: () => {
+            drift.dx = Math.sin(driftDriver.p) * 5.5;
+            drift.dy = Math.sin(driftDriver.p * 1.25) * 4.0;
+            drift.drx = Math.sin(driftDriver.p * 0.75) * 0.28;
+            drift.dry = Math.cos(driftDriver.p * 0.85) * 0.38;
+            applyCamera();
+          },
+        },
+        0,
+      );
+
+      // ── 0.00–1.40  REVEAL: Elevation Lift, Opacity & Light Sweep ──
+      tl.fromTo(
+        heroPlane,
+        { opacity: 0, scale: 0.94 },
+        { opacity: 1, scale: 1, duration: 1.1, ease: "power2.out" },
+        0.06,
+      );
+
+      tl.fromTo(
+        shimmer,
+        { transform: "translate(-80%, -80%)" },
+        {
+          transform: "translate(80%, 80%)",
+          duration: 1.7,
+          ease: "power2.inOut",
+        },
+        0.15,
+      );
+
+      // ── 0.40–2.80  BEAT 1: Establishing Orbit over Hero Landing ──
+      tl.to(
+        cam,
+        {
+          x: 0,
+          y: 0,
+          z: -320,
+          rx: 3,
+          ry: -4,
+          rz: 0.3,
+          duration: 2.3,
+          ease: "power2.out",
+          onUpdate: applyCamera,
+        },
+        0.4,
+      );
+
+      // ── 2.80–5.80  BEAT 2: Orbital Swoop into Live Day Planner ──
+      // Highlight the signature quarter-hour time-blocking interface
+      tl.to(
+        cam,
+        {
+          x: -2300,
+          y: 30,
+          z: -270,
+          rx: 2.2,
+          ry: 3.2,
+          rz: -0.4,
+          duration: 2.7,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        2.8,
+      );
+
+      // Velocity-matched rack-focus blur on transition
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.5, duration: 0.38, ease: "power1.in", onUpdate: applyCamera },
+        2.8,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        3.4,
+      );
+
+      // ── 5.80–8.60  BEAT 3: Spatial Glide across Steps & Features ──
+      tl.to(
+        cam,
+        {
+          x: -6900,
+          y: 20,
+          z: -340,
+          rx: 3.8,
+          ry: -3.6,
+          rz: 0.4,
+          duration: 2.6,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        5.8,
+      );
+
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.6, duration: 0.38, ease: "power1.in", onUpdate: applyCamera },
+        5.8,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.85, ease: "power3.out", onUpdate: applyCamera },
+        6.4,
+      );
+
+      // ── 8.60–12.00  BEAT 4: Smooth Finale to CTA & Refined Settle ──
+      tl.to(
+        cam,
+        {
+          x: -11500,
+          y: 0,
+          z: -340,
+          rx: 1.5,
+          ry: 0,
+          rz: 0,
+          duration: 2.8,
+          ease: "power2.inOut",
+          onUpdate: applyCamera,
+        },
+        8.6,
+      );
+
+      tl.fromTo(
+        travel,
+        { blur: 0 },
+        { blur: 3.4, duration: 0.38, ease: "power1.in", onUpdate: applyCamera },
+        8.6,
+      );
+      tl.to(
+        travel,
+        { blur: 0, duration: 0.9, ease: "power3.out", onUpdate: applyCamera },
+        9.2,
+      );
+    </script>
+  </body>
+</html>

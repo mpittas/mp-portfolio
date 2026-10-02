@@ -13,7 +13,11 @@
     "video:landing-designs": "npm run dev --prefix videos/landing-designs",
     "video:landing-designs:render": "npm run render --prefix videos/landing-designs -- --quality high --output out/landing-designs.mp4",
     "video:mikrofond": "npm run dev --prefix videos/mikrofond",
-    "video:mikrofond:render": "npm run render --prefix videos/mikrofond -- --quality high --output out/mikrofond.mp4"
+    "video:mikrofond:render": "npm run render --prefix videos/mikrofond -- --quality high --output out/mikrofond.mp4",
+    "video:klndr": "npm run dev --prefix videos/klndr",
+    "video:klndr:render": "npm run render --prefix videos/klndr -- --quality high --output out/klndr.mp4",
+    "video:digio": "npm run dev --prefix videos/digio",
+    "video:digio:render": "npm run render --prefix videos/digio -- --quality high --output out/digio.mp4"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -6,14 +6,14 @@
     "tags": ["Nuxt", "Firebase", "Tailwind"],
     "url": "https://klndr-v1.vercel.app",
     "seoDescription": "klndr, a visual day planner for time-blocking: drag activities onto an hour-by-hour timeline. Built with Nuxt, Firebase, and Tailwind.",
-    "cover": "/media/notion/klndr/cover-poster.jpg",
+    "cover": "/media/notion/klndr/cover.mp4",
     "coverPoster": "/media/notion/klndr/cover-poster.jpg",
     "modules": [
       {
         "original": null,
         "ratio": 0.5625,
-        "type": "image",
-        "src": "/media/notion/klndr/hero.jpg"
+        "src": "/media/notion/klndr/cover.mp4",
+        "type": "video"
       },
       {
         "items": [
@@ -389,14 +389,15 @@
     "tags": ["Next.js", "Three.js", "Motion"],
     "url": "https://digio-seven.vercel.app",
     "seoDescription": "Marketing site for Digio, a next-generation design agency, built in Next.js with Three.js, Motion, and Lenis smooth scrolling.",
-    "cover": "/media/notion/digio/cover-poster.jpg",
+    "cover": "/media/notion/digio/cover.mp4",
     "coverPoster": "/media/notion/digio/cover-poster.jpg",
     "modules": [
       {
         "original": null,
         "ratio": 0.5625,
-        "type": "image",
-        "src": "/media/notion/digio/hero.jpg"
+        "src": "/media/notion/digio/cover.mp4",
+        "poster": "/media/notion/digio/cover-poster.jpg",
+        "type": "video"
       },
       {
         "items": [
