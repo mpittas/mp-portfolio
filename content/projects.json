@@ -114,61 +114,6 @@
     ]
   },
   {
-    "slug": "umedio",
-    "title": "Umedio",
-    "year": "2024",
-    "tags": ["Next.js", "GSAP", "Tailwind"],
-    "url": "https://umedio.vercel.app",
-    "seoDescription": "Marketing site for Umedio, cloud practice management software for private clinics, built in Next.js with GSAP motion.",
-    "cover": "/media/notion/umedio/cover.mp4",
-    "coverPoster": "/media/notion/umedio/cover-poster.jpg",
-    "modules": [
-      {
-        "type": "video",
-        "src": "/media/notion/umedio/cover.mp4",
-        "poster": "/media/notion/umedio/cover-poster.jpg",
-        "ratio": 0.5625
-      },
-      {
-        "items": [
-          {
-            "href": "https://umedio.vercel.app",
-            "label": "Demo"
-          }
-        ],
-        "type": "links"
-      },
-      {
-        "text": "Umedio is a marketing website for cloud practice management software aimed at private clinics. Its job is to sell an all-in-one platform for bookings, billing, automation, and patient admin so clinicians can spend less time on paperwork.\n\nWhat I built: A multi-page SaaS marketing site with a deep-teal brand system, GSAP page motion, Lenis smooth scrolling, and product storytelling across home, features, pricing, and a Santis clinic case study. Sections cover online bookings, tasks, leads, inbox, integrations, billing tools, and trust marks from major UK private hospitals.\n\nTech stack: Next.js 14, React 18, TypeScript, Tailwind CSS, GSAP, Lenis, Swiper, and Headless UI.",
-        "type": "text"
-      },
-      {
-        "original": null,
-        "ratio": 0.5625,
-        "type": "image",
-        "src": "/media/notion/umedio/workflows.jpg"
-      },
-      {
-        "original": null,
-        "ratio": 0.5625,
-        "type": "image",
-        "src": "/media/notion/umedio/features.jpg"
-      },
-      {
-        "original": null,
-        "ratio": 0.5625,
-        "type": "image",
-        "src": "/media/notion/umedio/pricing.jpg"
-      },
-      {
-        "original": null,
-        "ratio": 0.5625,
-        "type": "image",
-        "src": "/media/notion/umedio/case-study.jpg"
-      }
-    ]
-  },
-  {
     "slug": "realster",
     "title": "Realster",
     "year": "2025",
