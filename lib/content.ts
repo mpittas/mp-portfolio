@@ -17,7 +17,6 @@ const CATALOG_SLUGS = [
   "mikrofond",
   "collection-of-landing-pages",
   "dokr",
-  "umedio",
 ] as const;
 
 const catalogIndex = new Map<string, number>(
