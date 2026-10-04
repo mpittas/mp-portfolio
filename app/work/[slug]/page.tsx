@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCase } from "@/components/project-case";
-import { getNeighbors, getProject, projects } from "@/lib/content";
+import { getNeighbors, getProject, projects, site } from "@/lib/content";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -18,6 +18,12 @@ export async function generateMetadata({
   return {
     title: project.title,
     description: project.seoDescription,
+    openGraph: {
+      title: project.title,
+      description: project.seoDescription,
+      type: "website",
+      siteName: site.name,
+    },
   };
 }
 

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "capture:stills": "node scripts/capture-project-stills.mjs",
+    "export:og": "node scripts/export-og.mjs",
     "video": "npm run dev --prefix videos/portfolio-modern",
     "video:render": "npm run render --prefix videos/portfolio-modern -- --quality high --output out/portfolio-modern.mp4",
     "video:landing-designs": "npm run dev --prefix videos/landing-designs",

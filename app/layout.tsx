@@ -14,7 +14,14 @@ const valley = localFont({
   fallback: ["Helvetica", "sans-serif"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${site.name} - ${site.role}`,
     template: `%s - ${site.shortName}`,
@@ -24,6 +31,10 @@ export const metadata: Metadata = {
     title: `${site.name} - ${site.role}`,
     description: site.intro,
     type: "website",
+    siteName: site.name,
+  },
+  twitter: {
+    card: "summary_large_image",
   },
   icons: {
     icon: site.logo,
