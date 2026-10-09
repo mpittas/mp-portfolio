@@ -7,13 +7,12 @@ import { usePathname, useRouter } from "next/navigation";
 export const DESKTOP_CATALOG_MQ = "(min-width: 1024px)";
 
 const DESKTOP_ONLY_ROUTES = new Set(["/v/index", "/v/columns"]);
-const LIST_ROUTE = "/v/list";
-const DESKTOP_DEFAULT = "/v/index";
+const LIST_ROUTE = "/";
 
 /**
  * Keeps catalog layout in sync with viewport on load and resize:
- * - below lg: List only (desktop-only routes → /v/list)
- * - lg+: Index (default) or Columns (/v/list → /v/index)
+ * - below lg: Minimal only (desktop-only routes → /)
+ * - lg+: Index (default) or Columns
  */
 export function CatalogViewportSync() {
   const router = useRouter();
@@ -25,10 +24,6 @@ export function CatalogViewportSync() {
     const sync = () => {
       if (!mq.matches && DESKTOP_ONLY_ROUTES.has(pathname)) {
         router.replace(LIST_ROUTE);
-        return;
-      }
-      if (mq.matches && pathname === LIST_ROUTE) {
-        router.replace(DESKTOP_DEFAULT);
       }
     };
 

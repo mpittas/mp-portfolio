@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const desktopLayouts = [
-  { href: "/", label: "Minimal" },
   { href: "/v/index", label: "Index" },
   { href: "/v/columns", label: "Columns" },
 ] as const;

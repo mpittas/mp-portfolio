@@ -146,19 +146,21 @@ export function ProjectCase({
 
   return (
     <article ref={root}>
-      <header className="bg-paper px-4 py-12 md:px-7 md:py-16">
+      <header className="bg-paper px-4 pt-12 pb-10 md:px-7 md:pt-16 md:pb-12">
         <p data-case-spec className="spec text-mute">
           Plate {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           {project.year ? ` · ${project.year}` : ""}
           {" · "}
           {discipline(project)}
         </p>
-        <h1
-          data-case-title
-          className="display-title mt-4 max-w-6xl text-[clamp(2.8rem,8vw,6.5rem)]"
-        >
-          {project.title}
-        </h1>
+        <div className="mt-4">
+          <h1
+            data-case-title
+            className="display-title text-[clamp(2.8rem,8vw,6.5rem)] "
+          >
+            {project.title}
+          </h1>
+        </div>
         <span
           data-case-rule
           aria-hidden

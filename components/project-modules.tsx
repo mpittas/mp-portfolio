@@ -1,13 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import type { ReactNode } from "react";
 import { isVideoSrc, videoEmbed } from "@/lib/content";
 import type { MediaModule } from "@/lib/types";
 
 type ImageModule = Extract<MediaModule, { type: "image" }>;
 type VideoModule = Extract<MediaModule, { type: "video" }>;
+type TextModule = Extract<MediaModule, { type: "text" }>;
+type LinkItem = { label: string; href: string };
 
+/**
+ * Same order on every case page: project links, description, then the media below.
+ */
 export function ProjectModules({
   modules,
   title,
@@ -15,170 +19,86 @@ export function ProjectModules({
   modules: MediaModule[];
   title: string;
 }) {
-  const blocks: MediaModule[][] = [];
+  const links: LinkItem[] = [];
+  const texts: TextModule[] = [];
+  const media: (ImageModule | VideoModule)[] = [];
 
-  for (let i = 0; i < modules.length; i += 1) {
-    const current = modules[i];
-    const next = modules[i + 1];
-    if (current.type === "links" && next?.type === "text") {
-      blocks.push([current, next]);
-      i += 1;
-      continue;
-    }
-    blocks.push([current]);
+  for (const module of modules) {
+    if (module.type === "links") links.push(...module.items);
+    else if (module.type === "text") texts.push(module);
+    else media.push(module);
   }
 
-  const nodes: ReactNode[] = [];
-  let gallery: ImageModule[] = [];
-  let heroSpent = false;
-
-  const flushGallery = (key: string) => {
-    if (!gallery.length) return;
-    nodes.push(<ScreenshotGallery key={key} images={gallery} title={title} />);
-    gallery = [];
-  };
-
-  blocks.forEach((group, i) => {
-    if (
-      group.length === 2 &&
-      group[0].type === "links" &&
-      group[1].type === "text"
-    ) {
-      flushGallery(`gallery-before-${i}`);
-      nodes.push(
-        <section
-          key={i}
-          className="bg-paper px-4 pt-12 pb-16 text-ink md:px-7 md:pt-16 md:pb-20"
-        >
-          <div className="mx-auto flex max-w-3xl flex-col gap-10">
-            <LinkRow items={group[0].items} />
-            <TextBody module={group[1]} />
-          </div>
-        </section>,
-      );
-      return;
-    }
-
-    const module = group[0];
-
-    if (module.type === "text") {
-      flushGallery(`gallery-before-${i}`);
-      nodes.push(
-        <section
-          key={i}
-          className="bg-paper px-4 py-16 text-ink md:px-7 md:py-24"
-        >
-          <div className="mx-auto max-w-3xl">
-            <TextBody module={module} />
-          </div>
-        </section>,
-      );
-      return;
-    }
-
-    if (module.type === "links") {
-      flushGallery(`gallery-before-${i}`);
-      nodes.push(
-        <section
-          key={i}
-          className="bg-paper px-4 py-12 text-ink md:px-7 md:py-16"
-        >
-          <div className="mx-auto max-w-3xl">
-            <LinkRow items={module.items} />
-          </div>
-        </section>,
-      );
-      return;
-    }
-
-    if (module.type === "image" && heroSpent) {
-      gallery.push(module);
-      return;
-    }
-
-    flushGallery(`gallery-before-${i}`);
-    heroSpent = true;
-
-    if (module.type === "video") {
-      nodes.push(
-        <HeroFilm key={i} module={module} title={title} priority={i === 0} />,
-      );
-      return;
-    }
-
-    nodes.push(
-      <HeroStill key={i} module={module} title={title} priority={i === 0} />,
-    );
-  });
-
-  flushGallery("gallery-end");
-
-  return <div className="flex flex-col">{nodes}</div>;
-}
-
-function ScreenshotGallery({
-  images,
-  title,
-}: {
-  images: ImageModule[];
-  title: string;
-}) {
   return (
-    <section className="bg-paper px-4 py-10 md:px-7 md:py-14">
-      <div className="mx-auto flex max-w-5xl flex-col gap-6 md:gap-8">
-        {images.map((module, i) => {
-          const gif = module.src.endsWith(".gif");
-          const ratio =
-            module.ratio && module.ratio > 0.1 ? module.ratio : 0.667;
+    <div className="flex flex-col">
+      {links.length || texts.length ? (
+        <section className="bg-paper px-4 pb-12 text-ink md:px-7 md:pb-16">
+          <div className="mx-auto flex max-w-3xl flex-col gap-10">
+            {links.length ? <LinkRow items={links} /> : null}
+            {texts.map((text, i) => (
+              <TextBody key={i} module={text} />
+            ))}
+          </div>
+        </section>
+      ) : null}
 
-          return (
-            <figure
-              key={`${module.src}-${i}`}
-              data-film
-              className="relative z-0 isolate overflow-hidden border border-rule/40 bg-plate"
-            >
-              <div
-                className="relative w-full overflow-hidden"
-                style={{ paddingBottom: `${ratio * 100}%` }}
-              >
-                <div data-film-media className="absolute inset-0">
-                  <Image
-                    src={module.src}
-                    alt={`${title} screenshot ${i + 1}`}
-                    fill
-                    unoptimized={gif}
-                    className="object-cover object-top"
-                    sizes="(min-width: 1024px) 64rem, 100vw"
-                  />
-                </div>
-              </div>
-            </figure>
-          );
-        })}
-      </div>
-    </section>
+      {media.length ? (
+        <section className="bg-paper px-4 pb-16 md:px-7 md:pb-24">
+          <div className="mx-auto flex max-w-5xl flex-col gap-6 md:gap-8">
+            {media.map((item, i) =>
+              item.type === "video" ? (
+                <VideoFigure key={`${item.src}-${i}`} module={item} title={title} />
+              ) : (
+                <ImageFigure
+                  key={`${item.src}-${i}`}
+                  module={item}
+                  alt={`${title} screenshot ${i + 1}`}
+                />
+              ),
+            )}
+          </div>
+        </section>
+      ) : null}
+    </div>
   );
 }
 
-function HeroFilm({
-  module,
-  title,
-  priority,
-}: {
-  module: VideoModule;
-  title: string;
-  priority: boolean;
-}) {
+const FIGURE =
+  "relative z-0 isolate overflow-hidden rounded-xl border border-rule/40 bg-plate";
+
+function ImageFigure({ module, alt }: { module: ImageModule; alt: string }) {
+  const gif = module.src.endsWith(".gif");
+  const ratio = module.ratio && module.ratio > 0.1 ? module.ratio : 0.667;
+
+  return (
+    <figure data-film className={FIGURE}>
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ paddingBottom: `${ratio * 100}%` }}
+      >
+        <div data-film-media className="absolute inset-0">
+          <Image
+            src={module.src}
+            alt={alt}
+            fill
+            unoptimized={gif}
+            className="object-cover object-top"
+            sizes="(min-width: 1024px) 64rem, 100vw"
+          />
+        </div>
+      </div>
+    </figure>
+  );
+}
+
+function VideoFigure({ module, title }: { module: VideoModule; title: string }) {
   const local = isVideoSrc(module.src);
   const ratio = module.ratio && module.ratio > 0.1 ? module.ratio : 0.5625;
 
   return (
-    <figure
-      data-film
-      className="relative z-0 isolate overflow-clip bg-plate [clip-path:inset(0)]"
-    >
+    <figure data-film className={FIGURE}>
       <div
-        className="relative w-full overflow-clip [clip-path:inset(0)]"
+        className="relative w-full overflow-hidden"
         style={{ paddingBottom: `${ratio * 100}%` }}
       >
         <div data-film-media className="absolute inset-0">
@@ -191,18 +111,17 @@ function HeroFilm({
                 loop
                 playsInline
                 autoPlay
-                preload="auto"
+                preload="metadata"
                 aria-label={`${title} video`}
                 className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
               />
               {module.poster ? (
                 <Image
                   src={module.poster}
-                  alt={priority ? title : ""}
+                  alt=""
                   fill
-                  priority={priority}
                   className="hidden object-cover motion-reduce:block"
-                  sizes="100vw"
+                  sizes="(min-width: 1024px) 64rem, 100vw"
                 />
               ) : null}
             </>
@@ -216,43 +135,6 @@ function HeroFilm({
               loading="lazy"
             />
           )}
-        </div>
-      </div>
-    </figure>
-  );
-}
-
-function HeroStill({
-  module,
-  title,
-  priority,
-}: {
-  module: ImageModule;
-  title: string;
-  priority: boolean;
-}) {
-  const gif = module.src.endsWith(".gif");
-  const ratio = module.ratio && module.ratio > 0.1 ? module.ratio : 0.667;
-
-  return (
-    <figure
-      data-film
-      className="relative z-0 isolate overflow-clip bg-plate [clip-path:inset(0)]"
-    >
-      <div
-        className="relative w-full overflow-clip [clip-path:inset(0)]"
-        style={{ paddingBottom: `${ratio * 100}%` }}
-      >
-        <div data-film-media className="absolute inset-0">
-          <Image
-            src={module.src}
-            alt={priority ? title : ""}
-            fill
-            priority={priority}
-            unoptimized={gif}
-            className="object-cover"
-            sizes="100vw"
-          />
         </div>
       </div>
     </figure>
@@ -351,9 +233,78 @@ function TextBody({
   return (
     <div data-film-text className={className}>
       {isCredits ? <p className="spec mb-6 text-mute">Credits</p> : null}
-      <div className="space-y-5 text-lg leading-relaxed whitespace-pre-line">
-        {isCredits ? module.text.replace(/^credits:\s*/i, "") : module.text}
-      </div>
+      {isCredits ? (
+        <div className="text-lg leading-relaxed whitespace-pre-line">
+          {module.text.replace(/^credits:\s*/i, "")}
+        </div>
+      ) : (
+        <div className="space-y-8 text-lg leading-relaxed">
+          {module.text.split(/\n\n+/).map((block, i) => (
+            <TextBlock key={i} text={block} />
+          ))}
+        </div>
+      )}
     </div>
+  );
+}
+
+const HEADINGS = /^(Key features|Highlights|Tech stack|Tools):\s*(.*)$/;
+
+/** One paragraph of a description: an optional labelled heading, then prose or bullets. */
+function TextBlock({ text }: { text: string }) {
+  const lines = text
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const match = lines[0]?.match(HEADINGS);
+
+  if (!match) return <TextLines lines={lines} />;
+
+  const [, heading, inline] = match;
+  const body = [inline, ...lines.slice(1)].filter(Boolean);
+
+  return (
+    <div>
+      <p className="spec mb-3 text-mute">{heading}</p>
+      <TextLines lines={body} />
+    </div>
+  );
+}
+
+function TextLines({ lines }: { lines: string[] }) {
+  if (lines.length && lines.every((line) => line.startsWith("•"))) {
+    return (
+      <ul className="space-y-3">
+        {lines.map((line) => (
+          <li key={line} className="flex items-start gap-3">
+            <span
+              aria-hidden
+              className="mt-[0.3em] flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-500"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                className="size-3"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.25"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3.5 8.5l3 3 6-7" />
+              </svg>
+            </span>
+            <span>{line.replace(/^•\s*/, "")}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <>
+      {lines.map((line, i) => (
+        <p key={i}>{line}</p>
+      ))}
+    </>
   );
 }

@@ -30,6 +30,7 @@ export type Project = {
   tags: string[];
   url: string;
   seoDescription?: string;
+  summary?: string;
   keywords?: string[];
   cover: string | null;
   coverPoster?: string | null;

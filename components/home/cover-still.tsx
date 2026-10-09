@@ -44,7 +44,7 @@ export function CoverStill({
     >
       <div
         data-still-media
-        className="absolute inset-[-6%] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover:scale-[1.045] motion-safe:group-focus-visible:scale-[1.045]"
+        className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover:scale-[1.045] motion-safe:group-focus-visible:scale-[1.045]"
       >
         {showVideo ? (
           <video
@@ -68,6 +68,7 @@ export function CoverStill({
             priority={priority}
             className={`object-cover ${staticCover ? "" : "hidden motion-reduce:block"}`}
             sizes={sizes}
+            quality={90}
             data-cover-poster
           />
         ) : null}
@@ -80,6 +81,7 @@ export function CoverStill({
             unoptimized={gif}
             className="object-cover"
             sizes={sizes}
+            quality={90}
           />
         ) : null}
       </div>
