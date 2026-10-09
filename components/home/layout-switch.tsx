@@ -4,14 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const desktopLayouts = [
+  { href: "/", label: "Minimal" },
   { href: "/v/index", label: "Index" },
   { href: "/v/columns", label: "Columns" },
 ] as const;
 
 function isLayoutActive(pathname: string, href: string) {
-  if (href === "/v/index") {
-    return pathname === "/" || pathname === "/v/index";
-  }
   return pathname === href;
 }
 
