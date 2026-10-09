@@ -11,8 +11,8 @@ const OFFSET_X = 28;
 const EASE = 0.16;
 // Tilt follows horizontal speed: degrees per pixel of movement, capped at MAX_TILT
 const TILT_PER_PX = 0.9;
-const MAX_TILT = 16;
-const TILT_EASE = 0.1;
+const MAX_TILT = 8;
+const TILT_EASE = 0.06;
 
 export function MinimalWorkList({ projects }: { projects: Project[] }) {
   const [hovered, setHovered] = useState<Project | null>(null);
