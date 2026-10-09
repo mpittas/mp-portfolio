@@ -8,25 +8,41 @@ import type { Project } from "@/lib/types";
 
 // Offset of the preview from the cursor, and how quickly it catches up (0 to 1)
 const OFFSET_X = 28;
-const EASE = 0.18;
+const EASE = 0.16;
+// Tilt follows horizontal speed: degrees per pixel of movement, capped at MAX_TILT
+const TILT_PER_PX = 0.9;
+const MAX_TILT = 16;
+const TILT_EASE = 0.1;
 
 export function MinimalWorkList({ projects }: { projects: Project[] }) {
   const [hovered, setHovered] = useState<Project | null>(null);
   const preview = useRef<HTMLDivElement>(null);
   const target = useRef({ x: 0, y: 0 });
   const position = useRef({ x: 0, y: 0 });
+  const tilt = useRef(0);
   const frame = useRef<number | null>(null);
 
   function render() {
     const p = position.current;
     const t = target.current;
-    p.x += (t.x - p.x) * EASE;
+    const dx = t.x - p.x;
+    p.x += dx * EASE;
     p.y += (t.y - p.y) * EASE;
+
+    // Lean into the direction of travel, then ease back upright when the cursor stops
+    const wanted = Math.max(-MAX_TILT, Math.min(MAX_TILT, dx * TILT_PER_PX));
+    tilt.current += (wanted - tilt.current) * TILT_EASE;
+
     if (preview.current) {
-      preview.current.style.transform = `translate3d(${p.x}px, ${p.y}px, 0) translateY(-50%)`;
+      preview.current.style.transform = `translate3d(${p.x}px, ${p.y}px, 0) translateY(-50%) rotate(${tilt.current}deg)`;
     }
-    // Stop once the preview has settled on the cursor
-    if (Math.abs(t.x - p.x) < 0.5 && Math.abs(t.y - p.y) < 0.5) {
+
+    // Stop once the preview has settled on the cursor and is upright
+    const settled =
+      Math.abs(t.x - p.x) < 0.5 &&
+      Math.abs(t.y - p.y) < 0.5 &&
+      Math.abs(tilt.current) < 0.05;
+    if (settled) {
       frame.current = null;
       return;
     }
