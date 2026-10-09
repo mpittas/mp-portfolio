@@ -551,5 +551,25 @@
         "src": "/media/notion/collection-of-landing-pages/recipes.jpg"
       }
     ]
+  },
+  {
+    "slug": "kallos",
+    "title": "Kallos",
+    "year": "2026",
+    "tags": [
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Chart.js"
+    ],
+    "url": "",
+    "seoDescription": "Case study: Kallos, a React admin dashboard with light and dark themes, interactive charts and an e-commerce overview, built on an open-source template.",
+    "cover": "/media/notion/kallos/cover.svg",
+    "modules": [
+      {
+        "type": "text",
+        "text": "Concept. This is a build exercise, not a live product.\n\nAdmin templates give you pages, but they arrive with someone else's name, upgrade prompts and charts that do not match each other. Kallos started from an open-source TailAdmin template. The goal was to turn it into a dashboard with its own identity and one visual system.\n\nWhat changed: the name, logo mark, favicon and page titles were replaced. Light and dark swap in one frame with transitions switched off during the change. Line and bar charts moved to Chart.js with the same colours, gradient fill, grid and tooltips, and charts size to their card. Upgrade and purchase links were removed. The e-commerce dashboard adds channel, category and store performance views, each with a legend and placeholder data.\n\nWhat a real team would add: real data sources, loading, empty and error states for every chart, full translations (only English is in place), and accessibility checks for chart colours and keyboard use."
+      }
+    ]
   }
 ]
