@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ProjectCase } from "@/components/project-case";
+import { CaseStudy } from "@/components/case-study";
 import { getNeighbors, getProject, projects, site } from "@/lib/content";
 
 export function generateStaticParams() {
@@ -15,13 +15,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return { title: "Work" };
+
+  const title = `${project.title}: ${project.tagline}`;
   return {
     title: project.title,
     description: project.seoDescription,
     openGraph: {
-      title: project.title,
+      title,
       description: project.seoDescription,
-      type: "website",
+      type: "article",
       siteName: site.name,
     },
   };
@@ -36,18 +38,11 @@ export default async function ProjectPage({
   const project = getProject(slug);
   if (!project) notFound();
 
-  const { prev, next, index } = getNeighbors(project.slug);
+  const { prev, next } = getNeighbors(project.slug);
 
   return (
     <main>
-      <ProjectCase
-        key={project.slug}
-        project={project}
-        index={index}
-        total={projects.length}
-        prev={prev}
-        next={next}
-      />
+      <CaseStudy project={project} prev={prev} next={next} />
     </main>
   );
 }

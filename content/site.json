@@ -1,49 +1,176 @@
 {
   "name": "Marios Pittas",
   "shortName": "Marios",
-  "role": "Frontend Developer & UI/UX Designer",
-  "introHeading": "Hello there",
-  "intro": "I'm Marios Pittas, a frontend developer and UI/UX designer based in Bulgaria. Over the past ten years I've turned a lifelong interest in computers into a career bridging design and code, designing clean, intuitive interfaces in Figma and bringing them to life with React, TypeScript, Webflow or WordPress.",
-  "aboutHeading": "Marios Pittas",
-  "aboutSub": "Hello! My name is Marios Pittas. I am 31 years old, based in Bulgaria, and I specialize in frontend development and UI/UX design.",
+  "role": "Product Designer",
+  "headline": "Product design, from first sketch to shipped code.",
+  "intro": "I'm Marios, a UI/UX and product designer in Bulgaria. Ten years on the web, six of them shipping React, mean my designs are specific about states, edge cases and handoff.",
+  "availability": "Open to product design roles, remote or hybrid",
+  "location": "Bulgaria",
+  "email": "webpittas@gmail.com",
+  "cvUrl": "/media/site/cv/Marios_Pittas_CV.pdf",
+  "socials": [
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/mariospittas/" },
+    { "label": "GitHub", "href": "https://github.com/mpittas" }
+  ],
+  "stats": [
+    { "value": "10 yrs", "label": "Working on the web since 2016" },
+    { "value": "15+", "label": "Startup design projects as a UI designer" },
+    { "value": "30%", "label": "Faster design handoff on my last team" }
+  ],
+  "capabilities": [
+    {
+      "title": "Product and UX",
+      "body": "Problem framing, user flows, information architecture and wireframes. I write down who it is for and what success looks like before I open Figma.",
+      "tags": ["User flows", "IA", "Wireframes", "Test plans"]
+    },
+    {
+      "title": "UI and visual design",
+      "body": "Type, layout, colour and motion that hold up at every state, not only on the hero screen. Empty, loading, error and edge cases are part of the design.",
+      "tags": ["Figma", "Typography", "Responsive", "Motion"]
+    },
+    {
+      "title": "Design systems",
+      "body": "Tokens, components and documentation that designers and developers both use. I have built on MUI and Ant Design and worked with Storybook.",
+      "tags": ["Tokens", "Components", "Storybook", "Accessibility"]
+    },
+    {
+      "title": "Design to code",
+      "body": "React, Next.js, TypeScript and Tailwind. I prototype in code when a flow needs real behaviour, and I review builds against the design before they ship.",
+      "tags": ["React", "Next.js", "TypeScript", "Prototyping"]
+    }
+  ],
+  "process": [
+    {
+      "title": "Understand",
+      "body": "Who is this for, what are they trying to do, and what does the business need? I write it down first."
+    },
+    {
+      "title": "Frame",
+      "body": "One clear problem statement, a few design principles and a definition of success the team can check."
+    },
+    {
+      "title": "Explore",
+      "body": "Flows first, then low-fidelity options, then the one worth polishing. I keep the rejected options and the reasons."
+    },
+    {
+      "title": "Validate",
+      "body": "Real users where possible, teammates where not. Clickable prototypes beat slide decks."
+    },
+    {
+      "title": "Ship",
+      "body": "Specs that cover the unhappy states, and I stay in the build through review and QA."
+    }
+  ],
+  "toolbox": [
+    {
+      "group": "Design",
+      "items": ["Figma", "Design systems", "Prototyping", "Photoshop", "Illustrator"]
+    },
+    {
+      "group": "Build",
+      "items": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Storybook", "Webflow"]
+    },
+    {
+      "group": "Quality",
+      "items": ["WCAG 2.1", "Playwright", "Jest", "Testing Library"]
+    }
+  ],
+  "aboutSub": "A designer who can also build, and a builder who cares how it feels.",
   "aboutParagraphs": [
-    "Over the past ten years, I have turned my lifelong interest in computers into a career bridging design and code. I enjoy designing clean, intuitive interfaces in Figma and bringing them to life with React, TypeScript, Webflow or WordPress.",
-    "I like taking full ownership of projects from the first idea to the final launch. Lately, I have been focused on building interactive web apps from scratch, turning complex requirements into clean and reusable code. I put a lot of effort into making sure all my websites apps are fully mobile responsive, fast, and accessible.",
-    "I am fluent in English, highly comfortable with modern tech stacks, and always learning new tools to improve my work. I believe the best results happen when great design meets solid engineering, and I am excited to bring that mix of creativity and clean code to a any project."
+    "I started in 2016 turning PSD files into responsive websites. After two years I moved into UI design for startups, where I designed web interfaces and brand assets for crypto and early-stage clients.",
+    "Since 2020 I have been building production interfaces in React and TypeScript, working from other designers' Figma files. That side of the job taught me what makes a design easy or painful to build: missing states, vague spacing, components that only work in one place.",
+    "Now I want to design the products themselves. Outside client work I design and build complete products, like a day planner, a music rating app and an AI training tool for GeoGuessr players, so I know the whole path from the first problem statement to a live URL."
+  ],
+  "lookingFor": [
+    "Product Designer, UI/UX Designer or Design Systems roles on a product team.",
+    "Hybrid roles such as Design Engineer or UX Engineer, where design and code meet.",
+    "Remote from Bulgaria, or hybrid in Sofia. Teams that value critique, testing and accessibility."
   ],
   "experience": [
     {
-      "role": "React / Webflow / Figma",
-      "org": "OutsourceBulgaria",
-      "dates": "December 2021 - Present"
+      "role": "Frontend Developer",
+      "org": "Bulgaria Outsource",
+      "dates": "Dec 2021 - Oct 2026",
+      "summary": "Responsive interfaces for client projects, built from Figma designs in React, TypeScript and Webflow.",
+      "points": [
+        "Turned designs into pixel-accurate, reusable components and pages.",
+        "Streamlined the design-to-development workflow and cut handoff time by about 30%.",
+        "Kept builds fast, mobile-friendly and accessible (WCAG)."
+      ]
     },
     {
-      "role": "Front-End Developer",
+      "role": "Frontend Developer",
       "org": "Tech City Ventures",
-      "dates": "May 2020 - November 2021"
+      "dates": "May 2020 - Nov 2021",
+      "summary": "React front end for a venture-backed product team, working remotely.",
+      "points": [
+        "Built and styled components with the MUI and Ant Design design systems.",
+        "Customised library components to match product designs while keeping them reusable."
+      ]
     },
     {
       "role": "UI Designer",
       "org": "CoinMarketLaunch",
-      "dates": "September 2018 - April 2020"
+      "dates": "Sep 2018 - Apr 2020",
+      "summary": "Web interface design for crypto and startup clients.",
+      "points": [
+        "Designed web interfaces and layouts, and shaped client visual identity across their pages.",
+        "Prepared design files for developer handoff.",
+        "Delivered 15+ projects with Photoshop and the Adobe suite."
+      ]
     },
     {
-      "role": "Front-End Developer",
+      "role": "Frontend Developer",
       "org": "Webiorr",
-      "dates": "June 2016 - July 2018"
+      "dates": "Jun 2016 - Jul 2018",
+      "summary": "Where it started: design files into live websites.",
+      "points": [
+        "Converted PSD designs into responsive, cross-browser websites.",
+        "Optimised pages for speed and compatibility across 20+ client sites."
+      ]
     }
   ],
   "education": [
-    "Bachelor's degree in Web Design & Image Advertising, Sofia, September 2019 - Present",
-    "Secondary School, Yoan Ekzarh Language High School, Vratsa, September 2002 - September 2014"
+    {
+      "title": "New Bulgarian University",
+      "detail": "Web Design and Image Advertising, Sofia. 2019 - expected 2027"
+    },
+    {
+      "title": "SoftUni courses",
+      "detail": "UX design, UI design, graphic design and design fundamentals. 2017 - 2018"
+    }
   ],
-  "other": [],
-  "cvUrl": "/media/site/cv/Marios_Pittas_CV.pdf",
-  "contactHeading": "CONTACT",
-  "contactBody": "I'd love to hear about that idea of yours. Drop me a line.",
-  "googleForm": "",
-  "socials": [{ "label": "GitHub", "href": "https://github.com/mpittas" }],
-  "logo": "/favicon.svg",
-  "portrait": "/media/site/me-2.webp",
-  "aboutPhotos": ["/media/site/me-1.webp"]
+  "languages": [
+    { "name": "Bulgarian", "level": "Native" },
+    { "name": "English", "level": "Fluent, professional working proficiency" }
+  ],
+  "interests": "Drawing, street art and hiking.",
+  "otherWork": [
+    {
+      "title": "Mikrofond",
+      "kind": "Website design and build",
+      "year": "2023",
+      "note": "Full visual design in Figma for a major Bulgarian microfinance institution, then a responsive WordPress build.",
+      "href": "https://mikrofond.bg/",
+      "linkLabel": "Live site"
+    },
+    {
+      "title": "VSCS",
+      "kind": "Bilingual website, CMS-driven",
+      "year": "2025",
+      "note": "Company site for a Bulgarian solar business, designed in Figma and built in Next.js with Strapi.",
+      "href": "https://www.figma.com/design/nJfhqxptljzqxXi8LD2iXT/VSCS-BG?node-id=0-1&t=7EwE6qoNybixpjEb-1",
+      "linkLabel": "Figma file"
+    },
+    {
+      "title": "Collection of Landing Pages",
+      "kind": "UI concepts",
+      "year": "2021",
+      "note": "Ten landing page concepts across very different industries, from dark SaaS to retail and entertainment.",
+      "href": "https://www.figma.com/design/ZEbHNI3J2lr2r9y3ZVoXYS/Collection-of-Landing-pages",
+      "linkLabel": "Figma file"
+    }
+  ],
+  "contactBody": "Hiring for a product designer, or have something worth designing? Email is the fastest way to reach me, or use the form.",
+  "portrait": "/media/site/me-2.webp"
 }

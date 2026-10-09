@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Marios Pittas, Product Designer
 
-## Getting Started
-
-First, run the development server:
+Portfolio built with Next.js 16, React 19 and Tailwind CSS v4.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # http://localhost:3000
+npm run build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things live
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `content/site.json`: name, role, intro, stats, capabilities, process, experience, education, other work.
+- `content/projects.ts`: case studies. Each project is either `shipped` or `concept` and is built from typed blocks (`lib/types.ts`).
+- `components/mocks/`: concept screens built in code (Clearing, Renewal Radar). Edit `mocks.css` for their styling.
+- `app/globals.css`: design tokens and utilities. See `DESIGN.md`.
+- `PRODUCT.md`: audience, positioning and the rules for what the site may claim.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Adding a case study
 
-## Learn More
+1. Add a `Project` to `content/projects.ts` and drop images in `public/media/`.
+2. Use real screenshots for shipped work. For concepts, build screens in `components/mocks` and register them in `components/mocks/index.tsx`, or use `cover: { type: "type", mark }` for a written case study with no images.
+3. Keep concept validation written as a plan, never as results.
 
-To learn more about Next.js, take a look at the following resources:
+## Contact form
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Needs SMTP settings. Copy `.env.example` to `.env.local` and fill it in.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Open Graph images
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`npm run export:og` (with the dev server running) saves every OG image to `og-previews/`.

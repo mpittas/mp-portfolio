@@ -1,62 +1,72 @@
 @import "tailwindcss";
-@import "lenis/dist/lenis.css";
 
 @custom-variant dark (&:where([data-theme="dark"] *));
 @custom-variant light (&:where([data-theme="light"] *));
 
 :root,
-:root[data-theme="dark"] {
-  --board: #0a0a0a;
-  --ink: #f2f2f0;
-  --paper: #111111;
-  --rule: #2c2c2c;
-  --mute: #8c8c8c;
-  --plate: #000000;
-  --mark: #cfcfcb;
-  --mark-soft: #1a1a1a;
-  color-scheme: dark;
-}
-
 :root[data-theme="light"] {
-  --board: #f4f4f1;
-  --ink: #141414;
-  --paper: #eaeae6;
-  --rule: #d9d9d4;
-  --mute: #6b6b66;
-  --plate: #e3e3de;
-  --mark: #2e2e2b;
-  --mark-soft: #eeeeea;
+  --bg: #f4f2ec;
+  --surface: #fbfaf7;
+  --sunken: #ebe8df;
+  --ink: #151513;
+  --mute: #66655e;
+  --line: #dad7cd;
+  --accent: #ff5a36;
+  --accent-ink: #151513;
   color-scheme: light;
 }
 
+:root[data-theme="dark"] {
+  --bg: #0e0e0d;
+  --surface: #171715;
+  --sunken: #1d1d1a;
+  --ink: #f3f1ea;
+  --mute: #a09e94;
+  --line: #2b2b27;
+  --accent: #ff6b4a;
+  --accent-ink: #151513;
+  color-scheme: dark;
+}
+
 @theme inline {
-  --color-board: var(--board);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
   --color-ink: var(--ink);
-  --color-paper: var(--paper);
-  --color-rule: var(--rule);
   --color-mute: var(--mute);
-  --color-plate: var(--plate);
-  --color-mark: var(--mark);
-  --color-mark-soft: var(--mark-soft);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
   --font-display: var(--font-valley);
   --font-sans: var(--font-valley);
-  --font-spec: var(--font-valley);
+  --radius-card: 20px;
 }
 
 @layer base {
   html {
-    background: var(--color-board);
-    color: var(--color-ink);
-    scrollbar-color: var(--color-rule) var(--color-board);
+    background: var(--bg);
+    color: var(--ink);
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   body {
-    background: var(--color-board);
-    color: var(--color-ink);
+    background: var(--bg);
+    color: var(--ink);
     font-family: var(--font-sans), Helvetica, sans-serif;
     font-size: 1.0625rem;
-    line-height: 1.55;
-    caret-color: var(--color-ink);
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
   }
 
   button,
@@ -65,76 +75,183 @@
     cursor: pointer;
   }
 
-  ::selection {
-    background: var(--color-ink);
-    color: var(--color-board);
-  }
-
-  a:focus-visible,
-  button:focus-visible,
-  input:focus-visible,
-  textarea:focus-visible {
-    outline: 2px solid var(--color-ink);
+  :focus-visible {
+    outline: 2px solid var(--ink);
     outline-offset: 3px;
+    border-radius: 6px;
   }
 }
 
-@utility spec {
-  font-family: var(--font-spec), Helvetica, sans-serif;
-  font-size: 0.8125rem;
+/* Type */
+
+@utility eyebrow {
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: var(--mute);
 }
 
-@utility display-title {
+@utility display-xl {
   font-family: var(--font-display), Helvetica, sans-serif;
-  font-weight: 400;
-  line-height: 0.86;
-  letter-spacing: -0.03em;
+  font-weight: 500;
+  font-size: clamp(2.75rem, 6.4vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 
-@utility skill-plate {
-  clip-path: inset(50% 50% 50% 50%);
+@utility display-lg {
+  font-family: var(--font-display), Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4.6vw, 3.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
 }
 
-/* Touch / coarse: skip clip-path iris (Safari paints it slowly). Fade on the compositor. */
-@media (hover: none), (pointer: coarse) {
-  [data-cell] {
-    -webkit-tap-highlight-color: transparent;
-  }
+@utility display-md {
+  font-family: var(--font-display), Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
 
-  [data-cell] [data-skill-rest] {
-    transition: opacity 0.12s ease-out;
-  }
+@utility lede {
+  font-size: clamp(1.1875rem, 1.6vw, 1.4375rem);
+  line-height: 1.45;
+  letter-spacing: -0.012em;
+  text-wrap: pretty;
+}
 
-  [data-cell] .skill-plate {
-    clip-path: none !important;
-    visibility: hidden;
-    opacity: 0;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transition:
-      opacity 0.14s ease-out,
-      visibility 0.14s ease-out;
-  }
+@utility copy {
+  max-width: 62ch;
+  text-wrap: pretty;
+}
 
-  [data-cell][aria-expanded="true"] .skill-plate {
-    visibility: visible;
-    opacity: 1;
-  }
+/* Layout */
 
-  [data-cell][aria-expanded="true"] [data-skill-rest] {
-    opacity: 0;
+@utility wrap {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 2.5rem;
   }
+}
+
+@utility section {
+  padding-block: 4.5rem;
+
+  @media (min-width: 768px) {
+    padding-block: 7rem;
+  }
+}
+
+/* Surfaces and controls */
+
+@utility card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+}
+
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+  background: transparent;
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  padding: 0.95rem 1.6rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+@utility btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+
+  &:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+
+@utility btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+
+  &:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+}
+
+@utility link-u {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease;
+
+  &:hover {
+    text-decoration-color: var(--ink);
+  }
+}
+
+/* Scroll reveal. Content stays visible without JS (the .js class is set by the boot script). */
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js .reveal[data-in="true"] {
+  opacity: 1;
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html.lenis,
-  html.lenis body {
-    height: auto;
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
   *,
@@ -143,6 +260,5 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }

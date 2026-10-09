@@ -1,13 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/lib/content";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
-  { href: "/", label: "Work" },
+  { href: "/#work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -16,39 +15,31 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rule/40 bg-board">
-      <div className="flex items-center justify-between gap-6 px-4 py-3 md:px-7">
+    <header className="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
+      <div className="wrap flex h-16 items-center justify-between gap-6">
         <Link
           href="/"
-          className="shrink-0 no-underline"
-          aria-label={`${site.shortName} home`}
+          className="flex items-center gap-2.5 whitespace-nowrap font-display text-base font-semibold tracking-tight no-underline sm:text-[1.0625rem]"
+          aria-label={`${site.name}, home`}
         >
-          <Image
-            src="/logo-dark.png"
-            alt=""
-            width={338}
-            height={122}
-            priority
-            className="w-auto dark:invert h-7"
-          />
+          <span aria-hidden className="size-2.5 rounded-full bg-accent" />
+          {site.name}
         </Link>
-        <nav className="flex items-center gap-4 md:gap-8" aria-label="Primary">
+
+        <nav className="flex items-center gap-1 sm:gap-2" aria-label="Primary">
           {links.map((link) => {
             const active =
-              link.href === "/"
-                ? pathname === "/" ||
-                  pathname.startsWith("/work") ||
-                  pathname.startsWith("/v/")
+              link.href === "/#work"
+                ? pathname.startsWith("/work")
                 : pathname === link.href;
-            const hideOnMobile = link.href === "/";
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`spec no-underline transition-colors text-xs md:text-sm ${
-                  hideOnMobile ? "hidden md:inline" : ""
-                } ${active ? "text-ink" : "text-mute hover:text-ink"}`}
                 aria-current={active ? "page" : undefined}
+                className={`rounded-full px-3 py-2 text-sm font-medium no-underline transition-colors ${
+                  link.href === "/#work" ? "hidden min-[480px]:inline-flex" : ""
+                } ${active ? "bg-sunken text-ink" : "text-mute hover:text-ink"}`}
               >
                 {link.label}
               </Link>

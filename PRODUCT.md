@@ -8,51 +8,53 @@ web
 
 ## Users
 
-Hiring managers, founders, and collaborators evaluating Marios Pittas for frontend work. They arrive from a forwarded link, often on a laptop, and need to judge craft from the work itself within seconds.
+Hiring managers, design leads and recruiters evaluating Marios Pittas for product design, UI/UX and design systems roles. They arrive from LinkedIn or a forwarded link, usually on a laptop, and decide within a minute whether to read a case study.
 
 ## Product Purpose
 
-A personal portfolio for Marios Pittas, Frontend Developer. It presents selected case studies, plus about and contact, so a visitor can review the work and start a conversation.
+A personal portfolio for Marios Pittas, Product Designer. It shows how he thinks (case studies with decisions and trade-offs), what he has shipped, and how to reach him.
 
-Success is: a hiring visitor understands he builds frontend, can open a case study, and can reach him.
+Success is: a hiring visitor understands he is a product designer who can also build, opens a case study, and gets in touch.
 
 ## Positioning
 
-The site exists so the artifacts lead. The interface stays a quiet black field.
+Product design, from first sketch to shipped code. The differentiator is design plus engineering depth: designs that are specific about states, edge cases and handoff.
 
 ## Operating Context
 
-- Projects currently still use the previous catalog as a placeholder. They will be replaced when a scrape source is provided.
-- About and contact are placeholders until Marios supplies bio, socials, and a contact endpoint.
-- Do not invent clients, awards, email, or socials.
+- Career pivot from front-end development to product design. The site leads with design thinking, not stacks.
+- Two kinds of projects, always labelled: **Shipped product** (real, live, designed and built by Marios) and **Concept** (self-initiated, no client, no users).
+- Concept screens are built in code (`components/mocks`) so spacing and states are real.
+- Four concepts are written case studies with no screens (typographic cover). They never claim research or results either.
+- The CV PDF in `public/media/site/cv` is still the front-end CV and should be replaced with a design CV.
 
 ## Capabilities and Constraints
 
-- Routes: Work (home), project case studies, About, Contact.
-- Contact: on-site name/email/message fields. No public email or Google Form until supplied.
-- Socials: none until supplied.
-- Motion: Lenis smooth scroll; GSAP for authored transitions. Respect `prefers-reduced-motion`.
-- Do not fabricate clients, awards, or capabilities.
+- Routes: Home (hero, selected work, capabilities, process, experience, more work), `/work/[slug]` case studies, About, Contact.
+- Contact: on-site form posting to `/api/contact` (SMTP, see `.env.example`), plus mailto and LinkedIn.
+- Motion: light scroll reveals only. Respect `prefers-reduced-motion`.
+- Theme: light and dark, following the system until the visitor chooses.
 
 ## Brand Commitments
 
-- Name: Marios Pittas. Stamp: Marios.
-- Role: Frontend Developer.
-- Voice: direct, warm, slightly informal ("Hello there", "drop me a line").
-- Palette: black and neutrals. No yellow Memphis marks, no decorative SVG banner.
+- Name: Marios Pittas. Role: Product Designer.
+- Voice: direct, warm, plain. First person. Short sentences.
+- Palette: warm paper, near-black ink, one vermilion accent. Case study visuals carry their own colour.
+- No em dashes or en dashes in any site copy. Use commas, colons, periods, or a regular hyphen.
 
-## Evidence on Hand
+## Evidence Rules
 
-- Identity confirmed in session: Marios Pittas, Frontend Developer.
-- Project catalog pending a scrape source from Marios.
+- Only supplied facts: roles, dates, products and numbers come from Marios's CV, LinkedIn and `content/site.json`.
+- Never invent clients, awards, user research results, usage numbers or outcomes.
+- Concept case studies describe validation as a plan ("how I would test it"), never as findings.
 
 ## Product Principles
 
-1. The work is the product. Interface recedes.
-2. Only supplied facts: no invented bio, socials, or email.
-3. A case study is a film of images, motion, and copy — not a card of tags.
+1. Show the thinking: problem, principles, decisions, trade-offs, what is next.
+2. Say plainly what is real and what is a concept.
+3. The work is shown at reading size, in context, with real states.
 4. Reaching him is a first-class action, not a footer afterthought.
 
 ## Accessibility & Inclusion
 
-Keyboard access to every project and form field. Visible focus. Contrast on chrome (not on photography). Reduced-motion fallbacks for scroll and reveal animations.
+Keyboard access to every link and form field. Visible focus. Body text at AA contrast in both themes. Status and labels never rely on colour alone. Reduced-motion fallbacks for reveals and video.

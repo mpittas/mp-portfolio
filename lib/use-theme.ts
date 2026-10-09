@@ -6,10 +6,6 @@ export type Theme = "dark" | "light";
 
 export const DEFAULT_THEME: Theme = "light";
 const STORAGE_KEY = "theme";
-const META_COLORS: Record<Theme, string> = {
-  dark: "#0a0a0a",
-  light: "#f4f4f1",
-};
 
 const listeners = new Set<() => void>();
 
@@ -23,7 +19,10 @@ function subscribe(listener: () => void) {
   listeners.add(listener);
 
   const onStorage = (event: StorageEvent) => {
-    if (event.key === STORAGE_KEY && (event.newValue === "light" || event.newValue === "dark")) {
+    if (
+      event.key === STORAGE_KEY &&
+      (event.newValue === "light" || event.newValue === "dark")
+    ) {
       applyDocument(event.newValue);
       notify();
     }
@@ -39,7 +38,9 @@ function subscribe(listener: () => void) {
 // The <html data-theme> attribute (written by the inline boot script before
 // paint) is the single source of truth, so server and client always agree.
 function getSnapshot(): Theme {
-  return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  return document.documentElement.getAttribute("data-theme") === "dark"
+    ? "dark"
+    : "light";
 }
 
 function getServerSnapshot(): Theme {
@@ -50,9 +51,6 @@ function applyDocument(theme: Theme) {
   const root = document.documentElement;
   root.setAttribute("data-theme", theme);
   root.style.colorScheme = theme;
-  document
-    .querySelector('meta[name="theme-color"]')
-    ?.setAttribute("content", META_COLORS[theme]);
 }
 
 function applyTheme(theme: Theme) {

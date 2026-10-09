@@ -2,16 +2,14 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="px-4 py-24 md:px-7">
-      <p className="spec text-mute">Missing plate</p>
-      <h1 className="display-title mt-4 text-[clamp(3rem,10vw,7rem)]">
-        That work is not in the catalog.
-      </h1>
-      <Link
-        href="/"
-        className="spec mt-10 inline-block bg-ink px-7 py-4 text-board no-underline hover:bg-mute"
-      >
-        Back to work
+    <main className="wrap py-24 md:py-36">
+      <p className="eyebrow">404</p>
+      <h1 className="display-xl mt-4 max-w-[12ch]">This page wandered off.</h1>
+      <p className="lede copy mt-6 text-mute">
+        The link may be old, or the page may have moved.
+      </p>
+      <Link href="/" className="btn btn-primary mt-9">
+        Back to the work
       </Link>
     </main>
   );

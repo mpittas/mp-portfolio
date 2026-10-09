@@ -7,200 +7,169 @@ import type { Project } from "@/lib/types";
 export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
 
-const BOARD = "#0a0a0a";
-const INK = "#f2f2f0";
-const MUTE = "#8c8c8c";
+const BG = "#f4f2ec";
+const INK = "#151513";
+const MUTE = "#66655e";
+const ACCENT = "#ff5a36";
 
 async function publicDataUri(src: string) {
   const file = await readFile(join(process.cwd(), "public", src));
-  const type = /\.png$/i.test(src) ? "image/png" : "image/jpeg";
-  return `data:${type};base64,${file.toString("base64")}`;
+  return `data:image/jpeg;base64,${file.toString("base64")}`;
 }
 
-function Byline() {
+function Brand() {
   return (
     <div
       style={{
         display: "flex",
-        fontSize: 22,
+        alignItems: "center",
+        gap: 14,
+        fontSize: 30,
         fontWeight: 700,
-        letterSpacing: "0.12em",
-        textTransform: "uppercase",
         color: INK,
       }}
     >
+      <div
+        style={{
+          display: "flex",
+          width: 18,
+          height: 18,
+          borderRadius: 9,
+          background: ACCENT,
+        }}
+      />
       {site.name}
     </div>
   );
 }
 
 export async function projectOgImage(project: Project) {
-  const poster = project.coverPoster ?? project.cover;
   const image =
-    poster && !/\.(mp4|webm|mov)$/i.test(poster)
-      ? await publicDataUri(poster)
+    project.cover.type === "media"
+      ? await publicDataUri(project.cover.media.src)
       : null;
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        background: BG,
+        color: INK,
+      }}
+    >
       <div
         style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          position: "relative",
-          background: BOARD,
-          color: INK,
-        }}
-      >
-        {image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={image}
-            alt=""
-            width={ogSize.width}
-            height={ogSize.height}
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
-        ) : null}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            backgroundImage:
-              "linear-gradient(to bottom, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0) 28%, rgba(10,10,10,0.35) 52%, rgba(10,10,10,0.96) 100%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            padding: "48px 56px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Byline />
-            <div
-              style={{
-                display: "flex",
-                fontSize: 22,
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: INK,
-              }}
-            >
-              {project.year ?? ""}
-            </div>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div
-              style={{
-                display: "flex",
-                fontSize: project.title.length > 16 ? 76 : 120,
-                fontWeight: 700,
-                lineHeight: 1,
-                letterSpacing: "-0.03em",
-              }}
-            >
-              {project.title}
-            </div>
-            <div
-              style={{
-                display: "flex",
-                marginTop: 24,
-                fontSize: 28,
-                fontWeight: 500,
-                letterSpacing: "0.04em",
-                color: "#cfcfcb",
-              }}
-            >
-              {project.tags.join("  ·  ")}
-            </div>
-          </div>
-        </div>
-      </div>
-    ),
-    ogSize,
-  );
-}
-
-export async function siteOgImage(heading = site.name, sub = site.role) {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "56px 64px",
-          background: BOARD,
-          color: INK,
+          width: image ? 560 : 1200,
+          padding: "56px 60px",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            fontSize: 22,
-            fontWeight: 700,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: MUTE,
-          }}
-        >
-          Portfolio
-        </div>
+        <Brand />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
               display: "flex",
-              fontSize: 150,
+              alignSelf: "flex-start",
+              padding: "8px 16px",
+              borderRadius: 999,
+              background: project.kind === "concept" ? ACCENT : "#fbfaf7",
+              border: project.kind === "concept" ? "none" : `2px solid #dad7cd`,
+              fontSize: 22,
               fontWeight: 700,
-              lineHeight: 0.95,
-              letterSpacing: "-0.04em",
             }}
           >
-            {heading}
+            {project.kind === "concept" ? "Concept" : "Shipped product"}
           </div>
           <div
             style={{
               display: "flex",
-              marginTop: 32,
-              fontSize: 40,
-              fontWeight: 500,
-              color: MUTE,
+              marginTop: 24,
+              fontSize: image
+                ? Math.min(104, Math.floor(440 / (project.title.length * 0.58)))
+                : 104,
+              fontWeight: 700,
+              lineHeight: 1,
+              letterSpacing: "-0.04em",
             }}
           >
-            {sub}
+            {project.title}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 22,
+              fontSize: 28,
+              lineHeight: 1.3,
+              color: MUTE,
+              maxWidth: image ? 460 : 900,
+            }}
+          >
+            {project.tagline}
           </div>
         </div>
       </div>
-    ),
+      {image ? (
+        <div style={{ display: "flex", width: 640, height: 630 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image}
+            alt=""
+            width={640}
+            height={630}
+            style={{ width: 640, height: 630, objectFit: "cover" }}
+          />
+        </div>
+      ) : null}
+    </div>,
+    ogSize,
+  );
+}
+
+export async function siteOgImage() {
+  return new ImageResponse(
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "60px 72px",
+        background: BG,
+        color: INK,
+      }}
+    >
+      <Brand />
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+          style={{
+            display: "flex",
+            fontSize: 40,
+            fontWeight: 600,
+            color: MUTE,
+          }}
+        >
+          {site.role}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            marginTop: 18,
+            fontSize: 104,
+            fontWeight: 700,
+            lineHeight: 1,
+            letterSpacing: "-0.045em",
+            maxWidth: 980,
+          }}
+        >
+          {site.headline}
+        </div>
+      </div>
+    </div>,
     ogSize,
   );
 }
