@@ -8,15 +8,16 @@ export const EXPRESS_COUNT = 1;
 /** Current catalog slugs, in published order. Replace when new projects are imported. */
 const CATALOG_SLUGS = [
   "klndr",
+  "kallos",
+  "songrates",
+  "know-your-geo",
   "digio",
+  "dokr",
+  "vscs-strapi",
   "realster",
   "photofolio",
-  "know-your-geo",
-  "songrates",
-  "vscs-strapi",
   "mikrofond",
   "collection-of-landing-pages",
-  "dokr",
 ] as const;
 
 const catalogIndex = new Map<string, number>(

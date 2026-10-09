@@ -6,7 +6,8 @@
     "tags": ["Nuxt", "Firebase", "Tailwind"],
     "url": "https://klndr-v1.vercel.app",
     "seoDescription": "klndr, a visual day planner for time-blocking: drag activities onto an hour-by-hour timeline. Built with Nuxt, Firebase, and Tailwind.",
-    "cover": "/media/notion/klndr/cover.mp4",
+    "summary": "A drag-and-drop day planner for time-blocking.",
+    "cover": "/media/thumbs/klndr-v22.jpg",
     "coverPoster": "/media/notion/klndr/cover-poster.jpg",
     "modules": [
       {
@@ -29,7 +30,7 @@
         "type": "links"
       },
       {
-        "text": "klndr is a visual day planner for people who time-block. It bridges the month calendar and the hour-by-hour plan, so a day is something you shape by dragging blocks onto a timeline, not a to-do list you hope fits.\n\nWhat I built: A month view that shows each day's blocks at a glance, and a day view with a quarter-hour timeline where activities snap, stretch, and nudge with the arrow keys. A reusable library of activity templates (emoji, color, category, usual length), a daily routines checklist, and markdown notes for every date. Accounts with Google sign-in sync across devices, there is a light and dark theme, and the layout switches to bottom sheets and tap-to-place on phones.\n\nTech stack: Nuxt 3, Vue 3, TypeScript, Tailwind CSS v4, Firebase (Auth and Firestore), and signed session cookies with jose. The marketing page is a custom landing with scroll reveals and a live planner mockup.",
+        "text": "klndr is a visual day planner for time-blocking. It connects the month calendar with an hour-by-hour plan, so each day is shaped by dragging activities onto a timeline rather than managing a to-do list.\n\nKey features:\n• Month view with an at-a-glance summary of each day's blocks\n• Day view with a quarter-hour timeline, where activities snap, stretch and nudge with the arrow keys\n• Reusable activity templates for emoji, color, category and typical length\n• Daily routines checklist and markdown notes for every date\n• Google sign-in with sync across devices\n• Light and dark themes, with bottom sheets and tap-to-place on mobile\n• Landing page with scroll reveals and a live planner preview\n\nTech stack: Nuxt 3, Vue 3, TypeScript, Tailwind CSS v4, Firebase (Auth and Firestore), signed session cookies with jose.",
         "type": "text"
       },
       {
@@ -71,7 +72,8 @@
     "tags": ["Next.js", "GSAP", "Motion"],
     "url": "https://dokr-kohl.vercel.app",
     "seoDescription": "Motion-first marketing site for Dokr, a digital banking brand, built in Next.js with GSAP and Framer Motion.",
-    "cover": "/media/notion/dokr/cover.jpg",
+    "summary": "Motion-led marketing site for a digital bank.",
+    "cover": "/media/thumbs/dokr-v22.jpg",
     "coverPoster": "/media/notion/dokr/cover-poster.jpg",
     "modules": [
       {
@@ -90,7 +92,7 @@
         "type": "links"
       },
       {
-        "text": "Dokr is a marketing website for a digital banking brand. Its job is to sell a fee-free account, cards, and wealth tools as one confident story, not a dry product list.\n\nWhat I built: A single-page landing with a letter-flip preloader, mask-reveal headlines, parallax product art, and Lenis smooth scrolling. The page walks from a banking hero into press marks, product offers (payments, investing, wealth, planning), fee-free promises, cards, social proof, a join CTA, and FAQ. Motion is part of the pitch: the site should feel like the bank.\n\nTech stack: Next.js 13, React 18, TypeScript, styled-components, GSAP, Framer Motion, Lenis, and Geist.",
+        "text": "Dokr is a marketing website for a digital banking brand. It presents a fee-free account, cards and wealth tools as one clear story, with motion used to reinforce the brand's modern positioning.\n\nKey features:\n• Letter-flip preloader and mask-reveal headlines\n• Parallax product artwork with smooth scrolling powered by Lenis\n• Sections for payments, investing, wealth and planning, fee-free promises, cards, social proof, a join call to action and FAQ\n\nTech stack: Next.js 13, React 18, TypeScript, styled-components, GSAP, Framer Motion, Lenis, Geist.",
         "type": "text"
       },
       {
@@ -120,7 +122,8 @@
     "tags": ["Next.js", "Motion", "Tailwind"],
     "url": "https://realestates-pi.vercel.app",
     "seoDescription": "Marketing site for a Greater Boston real estate brokerage with search-led home discovery built in Next.js.",
-    "cover": "/media/notion/realster/cover.mp4",
+    "summary": "Real estate site for finding homes in Greater Boston.",
+    "cover": "/media/thumbs/realster-v22.jpg",
     "coverPoster": "/media/notion/realster/cover-poster.jpg",
     "modules": [
       {
@@ -139,7 +142,7 @@
         "type": "links"
       },
       {
-        "text": "Realster is a marketing website for a Greater Boston real estate brokerage. Its job is to help buyers discover homes, explore neighborhoods, book viewings, and connect with agents without feeling like a dry MLS dump.\n\nWhat I built: A long-form product page that sells the brokerage end to end. A search-led hero opens into homes, private exclusives, neighborhood guides, agent profiles, how-it-works, FAQ, and contact. Motion and scroll polish are part of the pitch: the site itself should feel premium.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Motion (Framer Motion), and Lenis smooth scrolling.",
+        "text": "Realster is a marketing website for a Greater Boston real estate brokerage. It helps buyers discover homes, explore neighborhoods, book viewings and connect with agents, with a premium feel rather than a plain listings feed.\n\nKey features:\n• Search-led hero that opens into listings, private exclusives and neighborhood guides\n• Agent profiles, a how-it-works section, FAQ and contact flow\n• Motion and smooth scrolling throughout\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Motion (Framer Motion), Lenis.",
         "type": "text"
       },
       {
@@ -169,7 +172,8 @@
     "tags": ["Vue", "GSAP", "Tailwind"],
     "url": "https://photofolio-v1.vercel.app",
     "seoDescription": "Motion-first photographer portfolio in Vue 3 for portraits, editorial, and documentary work.",
-    "cover": "/media/notion/portfolio-modern/photofolio-video.mp4",
+    "summary": "A motion-first portfolio for a portrait photographer.",
+    "cover": "/media/thumbs/photofolio-v22.jpg",
     "coverPoster": "/media/notion/portfolio-modern/cover-poster.jpg",
     "modules": [
       {
@@ -192,7 +196,7 @@
         "type": "links"
       },
       {
-        "text": "Photofolio is a motion-first portfolio for a freelance photographer. Built around John Doe's practice, it leads with portraits, editorial stories, and documentary coverage, then makes booking a shoot the clear next step.\n\nWhat I built: A single-page Vue site where the photographs carry the pitch. An SVG wipe loader opens into a split-text hero with a Book a shoot CTA, sticky service cards for portrait sessions, editorial and campaign stills, and events/documentary coverage, a selected-works index with viewport-triggered video previews, about and testimonials, and a full-bleed contact plate. Custom cursor, magnetic buttons, and scroll-linked type keep the interaction craft of the original shell while the product identity is fully photographic.\n\nTech stack: Vue 3, TypeScript, Tailwind CSS v4, GSAP (ScrollTrigger), Lenis, and Lottie.",
+        "text": "Photofolio is a motion-first portfolio for a freelance photographer. It leads with portraits, editorial stories and documentary coverage, and makes booking a shoot the clear next step.\n\nKey features:\n• SVG wipe loader and split-text hero with a Book a shoot call to action\n• Sticky service cards for portrait sessions, editorial and campaign work, and events and documentary coverage\n• Selected works index with viewport-triggered video previews\n• About, testimonials and a full-bleed contact section\n• Custom cursor, magnetic buttons and scroll-linked type\n\nTech stack: Vue 3, TypeScript, Tailwind CSS v4, GSAP (ScrollTrigger), Lenis, Lottie.",
         "type": "text"
       },
       {
@@ -228,7 +232,8 @@
     "tags": ["Next.js", "Gemini", "Maps"],
     "url": "https://knowyourgeo.vercel.app",
     "seoDescription": "Free GeoGuessr training app with Street View drills, AI coaching, and field guides.",
-    "cover": "/media/notion/know-your-geo/cover.mp4",
+    "summary": "Free GeoGuessr trainer with AI coaching and field guides.",
+    "cover": "/media/thumbs/know-your-geo-v22.jpg",
     "coverPoster": "/media/notion/know-your-geo/cover-poster.jpg",
     "modules": [
       {
@@ -251,7 +256,7 @@
         "type": "links"
       },
       {
-        "text": "KnowYourGeo is a free training app for GeoGuessr players who want to improve, not just chase a score. You practice on real Google Street View, pin guesses on a map, and leave each round knowing which clues you missed.\n\nWhat I built: Map pickers (world or by continent), Moving / No Move and timer constraints, AI round review that highlights street signs and regional meta, field guides, and profiles that journal sessions and weak spots. Auth supports email and Google. AI analysis runs on secured, rate-limited server routes so API keys never ship to the browser.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Google Maps / Street View, Google Gemini, Supabase Auth, and Upstash Redis.",
+        "text": "KnowYourGeo is a free training app for GeoGuessr players who want to improve, not just chase a score. Players practice on Google Street View, place guesses on a map and review each round to see which clues they missed.\n\nKey features:\n• Map pickers for world or continent rounds\n• Moving / No Move and timer constraints\n• AI round review that highlights street signs and regional meta\n• Field guides and player profiles that log sessions and weak spots\n• Email and Google sign-in\n• AI analysis runs on secured, rate-limited server routes, so API keys never reach the browser\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Google Maps and Street View, Google Gemini, Supabase Auth, Upstash Redis.",
         "type": "text"
       },
       {
@@ -281,7 +286,8 @@
     "tags": ["Next.js", "Supabase", "Apple Music"],
     "url": "https://songrates.vercel.app",
     "seoDescription": "Music discovery app for rating songs and albums, backed by Apple Music charts and Supabase profiles.",
-    "cover": "/media/notion/songrates/cover.mp4",
+    "summary": "Rate songs and albums, powered by Apple Music.",
+    "cover": "/media/thumbs/songrates-v22.jpg",
     "coverPoster": "/media/notion/songrates/cover-poster.jpg",
     "modules": [
       {
@@ -304,7 +310,7 @@
         "type": "links"
       },
       {
-        "text": "Songrates is a music discovery app built around one loop: find a song or album, then rate it. It turns casual listening into a shared catalog of opinions, playlists, and fully rated releases.\n\nWhat I built: Home feeds for trending tracks, country Top 100 playlists, and community-rated albums; album pages with track-by-track scoring; reviews; playlists; artist follows; and public profiles with a leveling system unlocked by fully rated albums. Guests can rate; signed-in users keep progress and unlock profile perks.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Supabase (auth + database), Apple Music API, TanStack Query, and React Three Fiber for upcoming 3D vinyl experiences.",
+        "text": "Songrates is a music discovery app built around one loop: find a song or album, then rate it. Ratings build a shared catalog of opinions, playlists and fully rated releases.\n\nKey features:\n• Home feeds with trending tracks, country Top 100 playlists and community-rated albums\n• Album pages with track-by-track scoring, reviews and playlists\n• Artist follows and public profiles with a leveling system unlocked by fully rated albums\n• Guests can rate; signed-in users keep their progress and unlock profile perks\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Supabase (auth and database), Apple Music API, TanStack Query, React Three Fiber for upcoming 3D vinyl experiences.",
         "type": "text"
       },
       {
@@ -334,7 +340,8 @@
     "tags": ["Next.js", "Three.js", "Motion"],
     "url": "https://digio-seven.vercel.app",
     "seoDescription": "Marketing site for Digio, a next-generation design agency, built in Next.js with Three.js, Motion, and Lenis smooth scrolling.",
-    "cover": "/media/notion/digio/cover.mp4",
+    "summary": "Design agency site with 3D and smooth scrolling.",
+    "cover": "/media/thumbs/digio-v22.jpg",
     "coverPoster": "/media/notion/digio/cover-poster.jpg",
     "modules": [
       {
@@ -358,7 +365,7 @@
         "type": "links"
       },
       {
-        "text": "Digio is a marketing website for a next-generation design agency offering branding, mobile, and web app design. Its job is to sell premium creative work to startups and category leaders, with a bold first impression and a clear path to booking a call.\n\nWhat I built: A long-form single-page site that opens on a motion-driven hero and moves through an agency intro, by-the-numbers proof, a six-part services list, a selected-work showcase, tiered monthly pricing, testimonials, FAQ, a journal, and a closing call to action. Smooth scrolling, entrance animations, and a 3D layer give it the feel of the studio it represents.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Three.js with React Three Fiber and Drei, Motion, Lenis, and React Icons.",
+        "text": "Digio is a marketing website for a next-generation design agency offering branding, mobile and web app design. It is built to win premium clients from startups and category leaders, with a bold first impression and a clear path to booking a call.\n\nKey features:\n• Motion-driven hero, agency intro and by-the-numbers proof\n• Six-part services list and selected-work showcase\n• Tiered monthly pricing, testimonials, FAQ and a journal\n• Smooth scrolling, entrance animations and a 3D layer\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Three.js with React Three Fiber and Drei, Motion, Lenis, React Icons.",
         "type": "text"
       },
       {
@@ -394,7 +401,8 @@
     "tags": ["Next.js", "Strapi", "i18n"],
     "url": "https://vscs-strapi.vercel.app",
     "seoDescription": "Bilingual marketing site for a solar EPC company. Next.js frontend with a Strapi 5 CMS.",
-    "cover": "/media/notion/vscs-strapi/cover.mp4",
+    "summary": "Bilingual solar company site on a Strapi CMS.",
+    "cover": "/media/thumbs/vscs-strapi-v22.jpg",
     "coverPoster": "/media/notion/vscs-strapi/cover-poster.jpg",
     "modules": [
       {
@@ -421,7 +429,7 @@
         "type": "links"
       },
       {
-        "text": "VSCS is the company website for VS Construction Services, a Bulgarian solar EPC business. It explains their turnkey photovoltaic offer, showcases completed projects, publishes news, and turns visitors into consultations and leads.\n\nWhat I built: A bilingual (Bulgarian / English) marketing site with services, project map, blog, careers, and form flows, all editable from a CMS. The frontend revalidates when Strapi content changes, so the client can update copy and media without redeploying the whole app.\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Strapi 5, i18next, Mapbox, GSAP, Lenis, and Nodemailer (SMTP forms). Local CMS uses SQLite; production targets PostgreSQL.",
+        "text": "VSCS is the company website for VS Construction Services, a Bulgarian solar EPC business. It explains the turnkey photovoltaic offer, showcases completed projects, publishes news and turns visitors into consultation requests and leads.\n\nKey features:\n• Bilingual Bulgarian and English content\n• Services, project map, blog, careers and form flows\n• All content editable from a Strapi CMS\n• Frontend revalidates when content changes, so copy and media update without a full redeploy\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Strapi 5, i18next, Mapbox, GSAP, Lenis, Nodemailer (SMTP forms). The local CMS uses SQLite; production targets PostgreSQL.",
         "type": "text"
       },
       {
@@ -451,7 +459,8 @@
     "tags": ["WordPress", "Elementor", "Figma"],
     "url": "https://mikrofond.bg/",
     "seoDescription": "Production WordPress site for a Bulgarian microfinance company. Designed in Figma, built in Elementor Pro.",
-    "cover": "/media/notion/mikrofond/cover.mp4",
+    "summary": "WordPress site for a Bulgarian microfinance company.",
+    "cover": "/media/thumbs/mikrofond-v22.jpg",
     "coverPoster": "/media/notion/mikrofond/cover-poster.jpg",
     "modules": [
       {
@@ -474,7 +483,7 @@
         "type": "links"
       },
       {
-        "text": "Mikrofond is the company website for a major Bulgarian microfinance institution. It presents financing products, electronic food vouchers, about content, news, and contact flows for businesses that need a production-ready brand site, not a brochure template.\n\nWhat I built: Full visual design in Figma, refined over months with a demanding client, then a fully responsive WordPress build in Elementor Pro. Every page is live with entrance animations, animated statistics, dynamic layouts, and custom graphics. Production hardening covered speed work, asset compression, anti-spam protection, and Google Analytics.\n\nTech stack: WordPress, Elementor Pro, and Figma.",
+        "text": "Mikrofond is the company website for a major Bulgarian microfinance institution. It presents financing products, electronic food vouchers, company information, news and contact flows for businesses that need a production-ready brand site.\n\nKey features:\n• Full visual design in Figma, refined over several months with the client\n• Fully responsive WordPress build in Elementor Pro\n• Entrance animations, animated statistics, dynamic layouts and custom graphics\n• Production hardening: speed optimization, asset compression, anti-spam protection and Google Analytics\n\nTech stack: WordPress, Elementor Pro, Figma.",
         "type": "text"
       },
       {
@@ -504,7 +513,8 @@
     "tags": ["Figma", "UI", "UX"],
     "url": "https://www.figma.com/design/ZEbHNI3J2lr2r9y3ZVoXYS/Collection-of-Landing-pages",
     "seoDescription": "A Figma collection of landing page concepts across SaaS, retail, and entertainment, showing how I approach design and UX in one file.",
-    "cover": "/media/notion/collection-of-landing-pages/cover.mp4",
+    "summary": "Landing page concepts for SaaS, retail and entertainment.",
+    "cover": "/media/thumbs/collection-of-landing-pages-v22.jpg",
     "coverPoster": "/media/notion/collection-of-landing-pages/cover-poster.jpg",
     "modules": [
       {
@@ -523,7 +533,7 @@
         "type": "links"
       },
       {
-        "text": "A Figma file of landing page concepts I designed across very different industries. It is one place to skim how I think about hierarchy, conversion, and visual tone, from dark SaaS to retail and entertainment.\n\nWhat I built: Ten complete landing pages in a single showcase. Dark-mode product interfaces, a Japanese snack subscription, an interior studio, a recipe platform, B2B consulting layouts, and a designer portfolio. Each page uses a simple structure, custom components, and type that stays clear at a glance.\n\nTools: Figma.",
+        "text": "A Figma collection of landing page concepts across very different industries. It shows a clear approach to hierarchy, conversion and visual tone, from dark SaaS to retail and entertainment.\n\nKey features:\n• Ten complete landing pages in one showcase\n• Dark-mode product interfaces, a Japanese snack subscription, an interior studio, a recipe platform, B2B consulting layouts and a designer portfolio\n• Simple structure, custom components and type that stays clear at a glance\n\nTools: Figma.",
         "type": "text"
       },
       {
@@ -549,6 +559,51 @@
         "ratio": 0.5625,
         "type": "image",
         "src": "/media/notion/collection-of-landing-pages/recipes.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "kallos",
+    "title": "Kallos",
+    "year": "2026",
+    "tags": [
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Chart.js"
+    ],
+    "url": "https://kallos.vercel.app/",
+    "seoDescription": "Kallos is an e-commerce admin dashboard built with React 19, TypeScript and Tailwind CSS v4, featuring interactive Chart.js charts and light and dark themes.",
+    "summary": "E-commerce admin dashboard with interactive charts and light and dark themes.",
+    "cover": "/media/thumbs/kallos-v22.jpg",
+    "modules": [
+      {
+        "type": "links",
+        "items": [
+          { "label": "Demo", "href": "https://kallos.vercel.app/" }
+        ]
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/kallos/home.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/kallos/dark.jpg"
+      },
+      {
+        "original": null,
+        "ratio": 0.5625,
+        "type": "image",
+        "src": "/media/notion/kallos/statistics.jpg"
+      },
+      {
+        "type": "text",
+        "text": "Kallos is an admin dashboard for e-commerce teams, built with React 19, TypeScript and Tailwind CSS v4. It brings sales, channel, category and store performance into one overview.\n\nKey features:\n• Interactive Chart.js line and bar charts with a shared palette, gradient fills, grids and tooltips\n• Each chart includes a legend and resizes to its card\n• Light and dark themes that switch instantly, backed by one visual system\n\nTech stack: React 19, TypeScript, Tailwind CSS v4, Chart.js."
       }
     ]
   }

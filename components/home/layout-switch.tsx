@@ -9,9 +9,6 @@ const desktopLayouts = [
 ] as const;
 
 function isLayoutActive(pathname: string, href: string) {
-  if (href === "/v/index") {
-    return pathname === "/" || pathname === "/v/index";
-  }
   return pathname === href;
 }
 

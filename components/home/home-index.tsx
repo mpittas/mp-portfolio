@@ -49,7 +49,7 @@ export function HomeIndex() {
           <CoverStill
             project={active}
             priority
-            sizes="(min-width: 768px) 40vw, 100vw"
+            sizes="(min-width: 768px) 80vw, 100vw"
             className="aspect-16/10 w-full"
           />
           <p className="spec mt-3 text-mute">

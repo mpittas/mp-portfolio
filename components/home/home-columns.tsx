@@ -62,8 +62,8 @@ function ColumnCase({
     <CoverStill
       project={project}
       priority={priority}
-      sizes="(min-width: 768px) 33vw, 100vw"
-      className="aspect-square w-full rounded-xl"
+      sizes="(min-width: 768px) 66vw, 100vw"
+      className="aspect-16/10 w-full rounded-xl"
     />
   );
 
